@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SellMoreDetailsForm = (formData, handleChange, handleSubmit) => {
+const SellMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <div className="sexPhotoblock">
           <div className="sex"></div>
           <div className="photo"></div>
@@ -42,7 +42,7 @@ const SellMoreDetailsForm = (formData, handleChange, handleSubmit) => {
             />
           </div>
         </div>
-      </form>
+      </form> */}
     </div>
   );
 };

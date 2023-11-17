@@ -1,52 +1,58 @@
 import React from 'react';
+import {
+  PersonalDetailsWrapper,
+  DetailWrapper,
+  DetailInput,
+  DetailLabel,
+} from './PersonalDetailsForm.styled';
 
-const PersonalDetailsForm = (formData, handleChange, handleSubmit) => {
+const PersonalDetailsForm = ({ formData, handleChange, handleSubmit }) => {
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <PersonalDetailsWrapper onSubmit={handleSubmit}>
         {formData.category !== 'your pet' && (
-          <div>
-            <label htmlFor="titleOfAdd">Title of add</label>
-            <input
+          <DetailWrapper>
+            <DetailLabel htmlFor="titleOfAdd">Title of add</DetailLabel>
+            <DetailInput
               type="text"
               name="titleOfAdd"
               value={formData.titleOfAdd}
               onChange={handleChange}
               placeholder="Title of add"
             />
-          </div>
+          </DetailWrapper>
         )}
-        <div>
-          <label htmlFor="petsName">Pet's name</label>
-          <input
+        <DetailWrapper>
+          <DetailLabel htmlFor="petsName">Pet's name</DetailLabel>
+          <DetailInput
             type="text"
             name="petsName"
             value={formData.petsName}
             onChange={handleChange}
             placeholder="Name of pet"
           />
-        </div>
-        <div>
-          <label htmlFor="petsDateOfBirth">Date of birth</label>
-          <input
+        </DetailWrapper>
+        <DetailWrapper>
+          <DetailLabel htmlFor="petsDateOfBirth">Date of birth</DetailLabel>
+          <DetailInput
             type="text"
             name="petsDateOfBirth"
             value={formData.petsDateOfBirth}
             onChange={handleChange}
             placeholder="00.00.0000"
           />
-        </div>
-        <div>
-          <label htmlFor="petsType">Type</label>
-          <input
+        </DetailWrapper>
+        <DetailWrapper>
+          <DetailLabel htmlFor="petsType">Type</DetailLabel>
+          <DetailInput
             type="text"
             name="petsType"
             value={formData.petsType}
             onChange={handleChange}
-            placeholder="Введіть текст"
+            placeholder="Type of pets"
           />
-        </div>
-      </form>
+        </DetailWrapper>
+      </PersonalDetailsWrapper>
     </div>
   );
 };

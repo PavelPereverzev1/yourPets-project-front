@@ -14,3 +14,13 @@ export const ButtonsBlock = styled.div`
   justify-content: space-between;
   margin-top: 40px;
 `;
+
+export const Title = styled.h2`
+  color: #111;
+  font-family: Manrope;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 24px;
+`;

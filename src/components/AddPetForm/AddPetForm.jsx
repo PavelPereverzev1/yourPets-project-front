@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
-import { Wrapper, ButtonsBlock } from './AddPetForm.syled';
-import ChooseOptionForm from './Step1/ChooseOptionForm';
-import PersonalDetailsForm from './Step2/PersonalDetailsForm';
+import { Wrapper, ButtonsBlock, Title } from './AddPetForm.syled';
+// import ChooseOptionForm from './Step1/ChooseOptionForm';
+// import PersonalDetailsForm from './Step2/PersonalDetailsForm';
 import MoreDetailsForm from './Step3/MoreDetailsForm';
 
 import ButtonComponent from 'components/ButtonComponent/ButtonComponent';
+import StepsBlock from './StepsBlock/StepsBlock';
 
 function AddPetForm() {
   const [formData, setFormData] = useState({
@@ -53,10 +54,23 @@ function AddPetForm() {
 
   return (
     <Wrapper>
+      <Title>Add pet </Title>
+      <StepsBlock></StepsBlock>
       {currentStep === 1 && (
-        <ChooseOptionForm formData={formData} handleChange={handleChange} />
+        <>
+          {/* <ChooseOptionForm formData={formData} handleChange={handleChange} /> */}
+          {/* <PersonalDetailsForm
+            formData={formData}
+            handleChange={handleChange}
+          /> */}
+          <MoreDetailsForm
+            formData={formData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        </>
       )}
-      {currentStep === 2 && (
+      {/* {currentStep === 2 && (
         <PersonalDetailsForm formData={formData} handleChange={handleChange} />
       )}
 
@@ -66,7 +80,7 @@ function AddPetForm() {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
-      )}
+      )} */}
 
       {/* Navigation buttons */}
       <ButtonsBlock>

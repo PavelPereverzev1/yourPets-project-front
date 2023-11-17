@@ -1,47 +1,35 @@
 import React from 'react';
+import {
+  DetailWrapper,
+  DetailInput,
+  DetailLabel,
+} from './AddMoreDetails.styled';
 
-const AddMoreDetailsForm = (formData, handleChange, handleSubmit) => {
+const AddMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="sexPhotoblock">
-          <div className="sex"></div>
-          <div className="photo"></div>
-        </div>
-        <div className="locationPriceBlock">
-          <div>
-            <label htmlFor="location">Location</label>
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              placeholder="Kyiv"
-            />
-          </div>
-          {formData.category !== 'in good hands' && (
-            <div>
-              <label htmlFor="price">Price</label>
-              <input
-                type="text"
-                name="price"
-                value={formData.price}
-                onChange={handleChange}
-                placeholder="000 USD"
-              />
-            </div>
-          )}
-          <div>
-            <label htmlFor="comments">Comments</label>
-            <input
-              type="text"
-              name="comments"
-              value={formData.comments}
-              onChange={handleChange}
-              placeholder="Enter your comment"
-            />
-          </div>
-        </div>
+        <DetailWrapper>
+          <DetailLabel htmlFor="upload">Load the pet's image</DetailLabel>
+          <DetailInput
+            type="file"
+            accept=".JPG, .PNG"
+            id="upload"
+            hidden
+            // onChange={handleFileUpload}
+          />
+        </DetailWrapper>
+
+        <DetailWrapper>
+          <DetailLabel htmlFor="comments">Comments</DetailLabel>
+          <DetailInput
+            type="text"
+            name="comments"
+            value={formData.comments}
+            onChange={handleChange}
+            placeholder="Enter your comment"
+          />
+        </DetailWrapper>
       </form>
     </div>
   );

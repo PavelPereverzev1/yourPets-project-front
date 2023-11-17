@@ -2,7 +2,7 @@ import React from 'react';
 import AddMoreDetailsForm from './AddMoreDetailsForm';
 import SellMoreDetailsForm from './SellMoreDetailsForm';
 
-const MoreDetailsForm = (formData, handleChange, handleSubmit) => {
+const MoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
   return (
     <div>
       {formData.category === 'your pet' ? (
