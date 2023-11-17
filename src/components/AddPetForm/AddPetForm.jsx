@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
+import { Wrapper, ButtonsBlock } from './AddPetForm.syled';
+import ChooseOptionForm from './Step1/ChooseOptionForm';
+import PersonalDetailsForm from './Step2/PersonalDetailsForm';
+import MoreDetailsForm from './Step3/MoreDetailsForm';
 
-import ChooseOptionForm from './ChooseOptionForm';
-import PersonalDetailsForm from './PersonalDetailsForm';
-import MoreDetailsForm from './MoreDetailsForm';
+import ButtonComponent from 'components/ButtonComponent/ButtonComponent';
 
 function AddPetForm() {
   const [formData, setFormData] = useState({
@@ -50,7 +52,7 @@ function AddPetForm() {
   const totalSteps = 3; // need to be update with actual number of forms
 
   return (
-    <div>
+    <Wrapper>
       {currentStep === 1 && (
         <ChooseOptionForm formData={formData} handleChange={handleChange} />
       )}
@@ -67,17 +69,23 @@ function AddPetForm() {
       )}
 
       {/* Navigation buttons */}
-      <div>
+      <ButtonsBlock>
         {currentStep === 1 && (
-          <button>
+          <ButtonComponent name="Cancel" width="100px">
             <Link to="/">Cancel</Link>
-          </button>
+          </ButtonComponent>
         )}
-        {currentStep > 1 && <button onClick={backStep}>Back</button>}
-        {currentStep < totalSteps && <button onClick={nextStep}>Next</button>}
-        {currentStep === 3 && <button onClick={handleSubmit}>Done</button>}
-      </div>
-    </div>
+        {currentStep > 1 && (
+          <ButtonComponent name="Back" width="100px" onClick={backStep} />
+        )}
+        {currentStep < totalSteps && (
+          <ButtonComponent name="Next" width="100px" onClick={nextStep} />
+        )}
+        {currentStep === 3 && (
+          <ButtonComponent name="Done" width="100px" onClick={handleSubmit} />
+        )}
+      </ButtonsBlock>
+    </Wrapper>
   );
 }
 

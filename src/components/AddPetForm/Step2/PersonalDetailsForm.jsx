@@ -4,6 +4,18 @@ const PersonalDetailsForm = (formData, handleChange, handleSubmit) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        {formData.category !== 'your pet' && (
+          <div>
+            <label htmlFor="titleOfAdd">Title of add</label>
+            <input
+              type="text"
+              name="titleOfAdd"
+              value={formData.titleOfAdd}
+              onChange={handleChange}
+              placeholder="Title of add"
+            />
+          </div>
+        )}
         <div>
           <label htmlFor="petsName">Pet's name</label>
           <input
@@ -11,7 +23,7 @@ const PersonalDetailsForm = (formData, handleChange, handleSubmit) => {
             name="petsName"
             value={formData.petsName}
             onChange={handleChange}
-            placeholder="Введіть текст"
+            placeholder="Name of pet"
           />
         </div>
         <div>
@@ -21,7 +33,7 @@ const PersonalDetailsForm = (formData, handleChange, handleSubmit) => {
             name="petsDateOfBirth"
             value={formData.petsDateOfBirth}
             onChange={handleChange}
-            placeholder="Введіть текст"
+            placeholder="00.00.0000"
           />
         </div>
         <div>
