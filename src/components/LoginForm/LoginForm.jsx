@@ -1,4 +1,4 @@
-export const LoginForm = () => {
+const LoginForm = () => {
   return <>LoginForm </>;
 };
 
