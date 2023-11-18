@@ -39,11 +39,6 @@ export const Input = styled(Field)`
   height: 25px;
 `;
 
-export const ButtonSwitchPasswordView = styled.button`
-  margin-left: 5px;
-  cursor: pointer;
-`;
-
 export const Button = styled.button`
   font-weight: 600;
   width: 100px;

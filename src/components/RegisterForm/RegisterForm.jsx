@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
 import * as yup from 'yup';
 import { Formik, ErrorMessage } from 'formik';
+import { ReactComponent as EyeClosedIcon } from 'images/icons/sprite.svg#icon-eye-closed';
+import { ReactComponent as EyeOpenIcon } from 'images/icons/sprite.svg#icon-eye-open';
 // import { register } from 'redux/AuthSlice/operations';
 import {
   ToastText,
@@ -12,7 +14,6 @@ import {
   Title,
   Label,
   Input,
-  ButtonSwitchPasswordView,
   Button,
   ExtraText,
   ErrorText,
@@ -152,12 +153,11 @@ const RegisterForm = () => {
               name="password"
               placeholder="Password"
             />
-            <ButtonSwitchPasswordView
-              type="button"
-              onClick={togglePasswordVisibility}
-            >
-              {passwordVisible ? '👁️' : '👁️‍🗨️'}
-            </ButtonSwitchPasswordView>
+            {passwordVisible ? (
+          <EyeClosedIcon onClick={togglePasswordVisibility} />
+        ) : (
+          <EyeOpenIcon onClick={togglePasswordVisibility} />
+        )}
             <FormError name="password" />
           </Label>
 
@@ -166,14 +166,13 @@ const RegisterForm = () => {
               type={confirmPasswordVisible ? 'text' : 'password'}
               id={confirmPasswordInputId}
               name="confirmPassword"
-              placeholder="Password"
+              placeholder="Confirm password"
             />
-            <ButtonSwitchPasswordView
-              type="button"
-              onClick={toggleConfirmPasswordVisibility}
-            >
-              {confirmPasswordVisible ? '👁️' : '👁️‍🗨️'}
-            </ButtonSwitchPasswordView>
+            {confirmPasswordVisible ? (
+          <EyeClosedIcon onClick={toggleConfirmPasswordVisibility} />
+        ) : (
+          <EyeOpenIcon onClick={toggleConfirmPasswordVisibility} />
+        )}
             <FormError name="confirmPassword" />
           </Label>
 
