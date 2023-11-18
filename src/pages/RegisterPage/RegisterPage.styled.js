@@ -9,8 +9,3 @@ export const Wrapper = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
 `;
-
-export const Title = styled.h1`
-  font-weight: 600;
-  margin-bottom: 15px;
-`;

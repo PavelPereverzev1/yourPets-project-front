@@ -1,10 +1,12 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import { Form, Field } from 'formik';
 
 export const ToastText = styled.span`
   font-weight: 600;
 `;
 
-export const RegForm = styled.form`
+export const RegForm = styled(Form)`
   padding: 10px;
 
   display: flex;
@@ -17,6 +19,11 @@ export const RegForm = styled.form`
   border-radius: 5px;
 `;
 
+export const Title = styled.h1`
+  font-weight: 600;
+  margin-bottom: 15px;
+`;
+
 export const Label = styled.label`
   font-weight: 600;
 
@@ -26,10 +33,15 @@ export const Label = styled.label`
   gap: 5px;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   font-weight: 600;
   width: 500px;
   height: 25px;
+`;
+
+export const ButtonSwitchPasswordView = styled.button`
+  margin-left: 5px;
+  cursor: pointer;
 `;
 
 export const Button = styled.button`
@@ -52,3 +64,13 @@ export const Button = styled.button`
     background-color: rgb(0, 170, 255);
   }
 `;
+
+export const ExtraText = styled.p``;
+
+export const ErrorText = styled.p`
+  font-weight: 600;
+  color: red;
+  max-width: 500px;
+`;
+
+export const LinkToLogin = styled(NavLink)``;
