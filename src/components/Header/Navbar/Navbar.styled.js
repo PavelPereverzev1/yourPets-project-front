@@ -18,10 +18,9 @@ export const Nav = styled.div`
 `;
 
 export const NavbarLink = styled.a`
-  font-family: Manrope500;
   font-size: 32px;
   transition: transform 250ms linear;
-  color: black;
+  color: var(--black);
 
   transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -35,12 +34,11 @@ export const NavbarLink = styled.a`
 
   &:hover,
   &:focus {
-    color: #ffc107;
+    color: var(--yellow);
     cursor: pointer;
   }
 
   &.active {
-    font-family: Manrope700;
-    color: #ffc107;
+    color: var(--yellow);
   }
 `;
