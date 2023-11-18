@@ -5,14 +5,15 @@ const ChooseOptionForm = ({ formData, handleChange, handleSubmit }) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <RadioWrapper>
+        <RadioWrapper role="goup" aria-labelledby="category-radio-group">
           <Label htmlFor="yourPet">
             <RadioButton
               type="radio"
+              id="yourPet"
               name="category"
-              value="yourPet"
+              value="your pet"
               onChange={handleChange}
-              checked={formData.category === 'yourPet'}
+              checked={formData.category === 'your pet'}
             />
             your pet
           </Label>
@@ -20,6 +21,7 @@ const ChooseOptionForm = ({ formData, handleChange, handleSubmit }) => {
           <Label htmlFor="sell">
             <RadioButton
               type="radio"
+              id="sell"
               name="category"
               value="sell"
               onChange={handleChange}
@@ -31,10 +33,11 @@ const ChooseOptionForm = ({ formData, handleChange, handleSubmit }) => {
           <Label htmlFor="lostFound">
             <RadioButton
               type="radio"
+              id="lostFound"
               name="category"
-              value="lostFound"
+              value="lost/found"
               onChange={handleChange}
-              checked={formData.category === 'lostFound'}
+              checked={formData.category === 'lost/found'}
             />
             lost/found
           </Label>
@@ -42,10 +45,11 @@ const ChooseOptionForm = ({ formData, handleChange, handleSubmit }) => {
           <Label htmlFor="inGoodHands">
             <RadioButton
               type="radio"
+              id="inGoodHands"
               name="category"
-              value="inGoodHands"
+              value="in good hands"
               onChange={handleChange}
-              checked={formData.category === 'inGoodHands'}
+              checked={formData.category === 'in good hands'}
             />
             in good hands
           </Label>

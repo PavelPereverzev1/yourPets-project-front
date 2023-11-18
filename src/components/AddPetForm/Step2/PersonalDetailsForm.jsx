@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  PersonalDetailsWrapper,
+  FormPersonalDetails,
   DetailWrapper,
   DetailInput,
   DetailLabel,
@@ -9,7 +9,7 @@ import {
 const PersonalDetailsForm = ({ formData, handleChange, handleSubmit }) => {
   return (
     <div>
-      <PersonalDetailsWrapper onSubmit={handleSubmit}>
+      <FormPersonalDetails onSubmit={handleSubmit}>
         {formData.category !== 'your pet' && (
           <DetailWrapper>
             <DetailLabel htmlFor="titleOfAdd">Title of add</DetailLabel>
@@ -52,7 +52,7 @@ const PersonalDetailsForm = ({ formData, handleChange, handleSubmit }) => {
             placeholder="Type of pets"
           />
         </DetailWrapper>
-      </PersonalDetailsWrapper>
+      </FormPersonalDetails>
     </div>
   );
 };

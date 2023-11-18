@@ -1,16 +1,11 @@
 import React from 'react';
-// import AddMoreDetailsForm from './AddMoreDetailsForm';
+import AddMoreDetailsForm from './AddMoreDetailsForm';
 import SellMoreDetailsForm from './SellMoreDetailsForm';
 
 const MoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
   return (
     <>
-      <SellMoreDetailsForm
-        formData={formData}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
-      {/* {formData.category === 'your pet' ? (
+      {formData.category === 'your pet' ? (
         <AddMoreDetailsForm
           formData={formData}
           handleChange={handleChange}
@@ -22,7 +17,7 @@ const MoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
-      )} */}
+      )}
     </>
   );
 };

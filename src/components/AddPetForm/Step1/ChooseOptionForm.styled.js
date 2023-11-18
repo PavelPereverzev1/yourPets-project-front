@@ -10,8 +10,6 @@ export const RadioWrapper = styled.div`
 
 export const RadioButton = styled.input`
   position: absolute;
-  cursor: pointer;
-  opacity: 0;
 `;
 
 export const Label = styled.label`
@@ -30,7 +28,14 @@ export const Label = styled.label`
   line-height: normal;
   letter-spacing: 0.56px;
 
+  cursor: pointer;
+
   &:hover {
+    color: #ffffff;
+    background-color: #54adff;
+  }
+
+  ${RadioButton}:checked + & {
     color: #ffffff;
     background-color: #54adff;
   }
