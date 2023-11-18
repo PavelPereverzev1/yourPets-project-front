@@ -13,15 +13,14 @@ import { useRef, useState } from 'react';
 import { LuPencilLine } from 'react-icons/lu';
 import { GrClose } from 'react-icons/gr';
 
-const defaultAvatarUrl = 'yourPets-project-front/defaultAvatar.png';
+const defaultAvatarUrl = '/yourPets-project-front/defaultAvatar.png';
 
 const UserData = () => {
   const [isEditFormInactive, setisEditFormInactive] = useState(true);
   const [avatarUrl, setAvatarUrl] = useState(defaultAvatarUrl);
-  // const [uploadedAvatar, setUploadedAvatar] = useState(false);
-  const fileInputRef = useRef();
+  const [uploadedAvatar, setUploadedAvatar] = useState(false);
 
-  // console.log(fileInputRef.current?.value);
+  const fileInputRef = useRef();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -33,10 +32,7 @@ const UserData = () => {
       formData.append('avatar', file);
     }
     fileInputRef.current.value = null;
-
-    console.log(fileInputRef.current.value);
-
-    // setUploadedAvatar(false);
+    setUploadedAvatar(false);
   };
 
   const handleAvatarChange = e => {
@@ -45,13 +41,13 @@ const UserData = () => {
     if (file) {
       const newAvatarUrl = URL.createObjectURL(file);
       setAvatarUrl(newAvatarUrl);
-      // setUploadedAvatar(true);
+      setUploadedAvatar(true);
     }
   };
 
   const handleAvatarRemove = () => {
     setAvatarUrl(defaultAvatarUrl);
-    // setUploadedAvatar(false);
+    setUploadedAvatar(false);
     fileInputRef.current.value = null;
   };
 
@@ -75,7 +71,7 @@ const UserData = () => {
                 onChange={handleAvatarChange}
                 ref={fileInputRef}
               />
-              {fileInputRef.current?.value ? (
+              {uploadedAvatar ? (
                 <>
                   <button type="submit">Confirm</button>
                   <button type="button" onClick={handleAvatarRemove}>
