@@ -1,19 +1,19 @@
 import Modal from 'components/Modal/Modal';
 import { Link } from 'react-router-dom';
-import { BtnContainer, Container } from './ModalAttention.styled';
+import { BtnContainer, Container, Text, Title } from './ModalAttention.styled';
 import { AuthBtn } from 'components/Header/AuthNavigation/AuthNavigation.styled';
 
 export default function ModalAttention({ active, setActive }) {
   return (
     <Modal active={active} setActive={setActive}>
       <Container>
-        <h2>Attention</h2>
-        <p>
+        <Title>Attention</Title>
+        <Text>
           We would like to remind you that certain functionality is available
           only to authorized users.If you have an account, please log in with
           your credentials. If you do not already have an account, you must
           register to access these features.
-        </p>
+        </Text>
         <BtnContainer>
           <AuthBtn as={Link} to="/login">
             Log IN 
