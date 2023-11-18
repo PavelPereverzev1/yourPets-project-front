@@ -6,6 +6,7 @@ import LoginPage from 'pages/LoginPage/LoginPage';
 import { GlobalStyle } from './GlobalStyle.styled';
 import { Filter } from './Filter/Filter';
 import { Routes, Route } from 'react-router-dom';
+import UserPage from 'pages/UserPage/UserPage';
 
 export const App = () => {
   return (
@@ -18,6 +19,7 @@ export const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/filters" element={<Filter />} />
+          <Route path="/user" element={<UserPage />} />
         </Route>
       </Routes>
     </>
