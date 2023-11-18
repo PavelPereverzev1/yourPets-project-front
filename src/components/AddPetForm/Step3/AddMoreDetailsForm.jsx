@@ -1,28 +1,40 @@
 import React from 'react';
 import {
+  AddMoreDetailsWrapper,
   DetailWrapper,
-  DetailInput,
-  DetailLabel,
+  PhotoBlock,
+  PhotoLabel,
+  ImagePreview,
+  UploadIcon,
+  PhotoInput,
+  CommentsInput,
+  CommentsLabel,
 } from './AddMoreDetails.styled';
+// import iconPlus from '../../../images/icons/sprite.svg';
 
 const AddMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <DetailWrapper>
-          <DetailLabel htmlFor="upload">Load the pet's image</DetailLabel>
-          <DetailInput
-            type="file"
-            accept=".JPG, .PNG"
-            id="upload"
-            hidden
-            // onChange={handleFileUpload}
-          />
-        </DetailWrapper>
+      <AddMoreDetailsWrapper onSubmit={handleSubmit}>
+        <PhotoBlock>
+          <PhotoLabel htmlFor="upload">Load the pet's image</PhotoLabel>
+
+          <ImagePreview id="default-svg-preview">
+            <PhotoInput
+              type="file"
+              accept=".JPG, .PNG"
+              id="upload"
+              // onChange={handleFileUpload}
+            />
+            <UploadIcon>
+              <use xlinkHref="../../../images/icons/sprite.svg#icon-plus"></use>
+            </UploadIcon>
+          </ImagePreview>
+        </PhotoBlock>
 
         <DetailWrapper>
-          <DetailLabel htmlFor="comments">Comments</DetailLabel>
-          <DetailInput
+          <CommentsLabel htmlFor="comments">Comments</CommentsLabel>
+          <CommentsInput
             type="text"
             name="comments"
             value={formData.comments}
@@ -30,7 +42,7 @@ const AddMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
             placeholder="Enter your comment"
           />
         </DetailWrapper>
-      </form>
+      </AddMoreDetailsWrapper>
     </div>
   );
 };

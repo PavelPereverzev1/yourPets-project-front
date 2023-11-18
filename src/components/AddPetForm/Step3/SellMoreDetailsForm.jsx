@@ -1,14 +1,22 @@
 import React from 'react';
+import {
+  FormSellMoreDetails,
+  SexPhotoblock,
+  LocationPriceBlock,
+  DetailWrapper,
+  CommentsLabel,
+  CommentsInput,
+} from './SellMoreDetailsForm.styled';
 
 const SellMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
   return (
-    <div>
-      {/* <form onSubmit={handleSubmit}>
-        <div className="sexPhotoblock">
+    <>
+      <FormSellMoreDetails onSubmit={handleSubmit}>
+        <SexPhotoblock className="sexPhotoblock">
           <div className="sex"></div>
           <div className="photo"></div>
-        </div>
-        <div className="locationPriceBlock">
+        </SexPhotoblock>
+        <LocationPriceBlock className="locationPriceBlock">
           <div>
             <label htmlFor="location">Location</label>
             <input
@@ -31,19 +39,19 @@ const SellMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
               />
             </div>
           )}
-          <div>
-            <label htmlFor="comments">Comments</label>
-            <input
+          <DetailWrapper>
+            <CommentsLabel htmlFor="comments">Comments</CommentsLabel>
+            <CommentsInput
               type="text"
               name="comments"
               value={formData.comments}
               onChange={handleChange}
               placeholder="Enter your comment"
             />
-          </div>
-        </div>
-      </form> */}
-    </div>
+          </DetailWrapper>
+        </LocationPriceBlock>
+      </FormSellMoreDetails>
+    </>
   );
 };
 
