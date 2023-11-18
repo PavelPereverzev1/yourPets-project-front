@@ -1,13 +1,14 @@
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
 import * as yup from 'yup';
 import { Formik, ErrorMessage } from 'formik';
+import { useAuth } from 'hooks/useAuth';
 import { ReactComponent as EyeClosedIcon } from 'images/icons/sprite.svg#icon-eye-closed';
 import { ReactComponent as EyeOpenIcon } from 'images/icons/sprite.svg#icon-eye-open';
-// import { register } from 'redux/AuthSlice/operations';
+import { register } from 'redux/AuthSlice/operations';
 import {
   ToastText,
   RegForm,
@@ -67,24 +68,22 @@ const passwordInputId = nanoid();
 const confirmPasswordInputId = nanoid();
 
 const RegisterForm = () => {
-  const [formIsLoading, setFormIsLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
-  // const dispatch = useDispatch();
+  const { isLoading } = useAuth();
+  const dispatch = useDispatch();
 
   const handleSubmit = async ({ name, email, password }, { resetForm }) => {
-    setFormIsLoading(true);
-
     try {
-      // const {
-      //   meta: { requestStatus },
-      //   payload,
-      // } = await dispatch(register({ name, email, password }));
+      const {
+        meta: { requestStatus },
+        payload,
+      } = await dispatch(register({ name, email, password }));
 
-      // if (requestStatus === 'rejected') {
-      //   throw new Error(payload);
-      // }
+      if (requestStatus === 'rejected') {
+        throw new Error(payload);
+      }
 
       resetForm();
     } catch (error) {
@@ -102,8 +101,6 @@ const RegisterForm = () => {
           confirmPassword: '',
         },
       });
-    } finally {
-      setFormIsLoading(false);
     }
   };
 
@@ -141,7 +138,7 @@ const RegisterForm = () => {
               type="email"
               id={emailInputId}
               name="email"
-              placeholder="dmytro@gmail.com"
+              placeholder="Email"
             />
             <FormError name="email" />
           </Label>
@@ -154,10 +151,10 @@ const RegisterForm = () => {
               placeholder="Password"
             />
             {passwordVisible ? (
-          <EyeClosedIcon onClick={togglePasswordVisibility} />
-        ) : (
-          <EyeOpenIcon onClick={togglePasswordVisibility} />
-        )}
+              <EyeClosedIcon onClick={togglePasswordVisibility} />
+            ) : (
+              <EyeOpenIcon onClick={togglePasswordVisibility} />
+            )}
             <FormError name="password" />
           </Label>
 
@@ -169,15 +166,15 @@ const RegisterForm = () => {
               placeholder="Confirm password"
             />
             {confirmPasswordVisible ? (
-          <EyeClosedIcon onClick={toggleConfirmPasswordVisibility} />
-        ) : (
-          <EyeOpenIcon onClick={toggleConfirmPasswordVisibility} />
-        )}
+              <EyeClosedIcon onClick={toggleConfirmPasswordVisibility} />
+            ) : (
+              <EyeOpenIcon onClick={toggleConfirmPasswordVisibility} />
+            )}
             <FormError name="confirmPassword" />
           </Label>
 
-          <Button disabled={formIsLoading} type="submit">
-            {formIsLoading ? 'Loading...' : 'Registration'}
+          <Button disabled={isLoading} type="submit">
+            {isLoading ? 'Loading...' : 'Registration'}
           </Button>
 
           <ExtraText>
