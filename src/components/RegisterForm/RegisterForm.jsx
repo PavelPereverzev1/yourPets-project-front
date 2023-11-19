@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
 import * as yup from 'yup';
@@ -10,7 +10,7 @@ import { ReactComponent as EyeClosedIcon } from 'images/icons/sprite.svg#icon-ey
 import { ReactComponent as EyeOpenIcon } from 'images/icons/sprite.svg#icon-eye-open';
 import { register } from 'redux/AuthSlice/operations';
 import {
-  ToastText,
+  // ToastText,
   RegForm,
   Title,
   Label,
@@ -87,11 +87,11 @@ const RegisterForm = () => {
 
       resetForm();
     } catch (error) {
-      const { message } = error;
+      // const { message } = error;
 
-      toast.error(<ToastText>{message}</ToastText>, {
-        autoClose: 2000,
-      });
+      // toast.error(<ToastText>{message}</ToastText>, {
+      //   autoClose: 2000,
+      // });
 
       resetForm({
         values: {
@@ -114,7 +114,7 @@ const RegisterForm = () => {
 
   return (
     <>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
