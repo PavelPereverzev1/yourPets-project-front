@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const AuthBtn = styled.button`
+export const AuthBtn = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
