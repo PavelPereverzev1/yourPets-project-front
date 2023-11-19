@@ -3,55 +3,64 @@
       "id": 1,
       "location": "Kirov",
       "age": 3,
-      "sex": "Male"
+      "sex": "male",
+      "isFavorite": false
     },
     {
       "id": 2,
       "location": "Location",
       "age": 2,
-      "sex": "Female"
+      "sex": "female",
+      "isFavorite": false
     },
     {
       "id": 3,
       "location": "Kyiv",
       "age": 5,
-      "sex": "Female"
+      "sex": "female",
+      "isFavorite": false
     },
     {
       "id": 6,
       "location": "Lviv",
       "age": 1,
-      "sex": "Male"
+      "sex": "male",
+      "isFavorite": false
     },
     {
       "id": 7,
       "location": "Lviv",
       "age": 1,
-      "sex": "Male"
+      "sex": "male",
+      "isFavorite": false
     },
     {
       "id": 8,
       "location": "Lviv",
       "age": 1,
-      "sex": "Male"
+      "sex": "male",
+      "isFavorite": false
     },
     {
       "id": 9,
       "location": "Lviv",
       "age": 1,
-      "sex": "Male"
+      "sex": "male",
+      "isFavorite": false
     },
     {
       "id": 10,
       "location": "Lviv",
       "age": 1,
-      "sex": "Male"
+      "sex": "male",
+      "isFavorite": false
     },
     {
       "id": 11,
       "location": "Lviv",
       "age": 1,
-      "sex": "Male"
+      "sex": "male",
+      "isFavorite": false
     }
     
   ]
