@@ -4,6 +4,7 @@ import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import { GlobalStyle } from './GlobalStyle.styled';
+import AddPetPage from 'pages/AddPetPage/AddPetPage';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -17,6 +18,7 @@ export const App = () => {
           <Route path="/notices" element={<NoticesPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/add-pet" element={<AddPetPage />} />
         </Route>
       </Routes>
     </>
