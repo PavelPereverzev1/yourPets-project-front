@@ -8,7 +8,7 @@ import Contact from 'components/Contact/Contact';
 
 import petImg from '../../images/pets/pet-photo-example.png';
 
-const ModalNotice = ({ active, setActive }) => {
+const ModalNotice = ({ active, setActive, item }) => {
   // Цей об'єкт імітує пропс який приходе з батьківсьго компоненту NoticeCategoryItem.
   // Потрібно виделити після створення компоненту NoticeCategoryItem.
   const categoryItem = {
@@ -28,8 +28,8 @@ const ModalNotice = ({ active, setActive }) => {
   return (
     <Modal active={active} setActive={setActive}>
       <div className={css.content_top}>
-        <img className={css.pet_photo} src={categoryItem.imgSrc} alt="#" />
-        <p className={css.pet_category}>{categoryItem.category}</p>
+        <img className={css.pet_photo} src={item.img} alt="#" />
+        <p className={css.pet_category}>{item.state}</p>
         <div className={css.advertisement}>
           <h1>{categoryItem.header}</h1>
           <div className={css.advertisement_list}>
@@ -46,8 +46,8 @@ const ModalNotice = ({ active, setActive }) => {
               <li>{categoryItem.name}</li>
               <li>{categoryItem.birthday}</li>
               <li>{categoryItem.type}</li>
-              <li>{categoryItem.city}</li>
-              <li>{categoryItem.sex}</li>
+              <li>{item.location}</li>
+              <li>{item.sex}</li>
               <li>
                 <Link
                   className={css.contacts}
