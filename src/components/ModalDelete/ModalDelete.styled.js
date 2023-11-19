@@ -29,12 +29,14 @@ export const BtnContainer = styled.div`
 `
 export const Title = styled.h2`
     font-family: Manrope, sans-serif;
+    max-width: 200px;
     font-weight: 700;
     font-size: 24px;
     line-height: 32.78px;
     letter-spacing: 0.3px;
     @media screen and (min-width: 768px){
         font-size: 28px;
+        max-width: 600px;
     }
 `
 export const Text = styled.p`
@@ -47,5 +49,10 @@ export const Text = styled.p`
     }
 `
 export const BigText = styled.span`
+    display: block;
     font-weight: 700;
+`
+export const Icon = styled.svg`
+    width: 24px;
+    height: 24px;
 `
