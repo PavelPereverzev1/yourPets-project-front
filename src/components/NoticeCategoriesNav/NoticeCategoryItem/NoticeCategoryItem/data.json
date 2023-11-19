@@ -1,13 +1,13 @@
 [
     {
       "id": 1,
-      "location": "Some Location",
+      "location": "Kirov",
       "age": 3,
       "sex": "Male"
     },
     {
       "id": 2,
-      "location": "Another Location",
+      "location": "Location",
       "age": 2,
       "sex": "Female"
     },

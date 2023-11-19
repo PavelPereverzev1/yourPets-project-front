@@ -15,6 +15,7 @@ import {
   InfoLocation,
   InfoAge,
   InfoPol,
+  InfoText,
 } from './NoticeCategoryItem.js';
 import myImg from './images/cat.png';
 import {
@@ -89,11 +90,11 @@ const NoticeCard = ({ }) => {
         )}
             <InfoLocation>
               <LocationIcon></LocationIcon>
-              <p>{data.location}</p>
+              <InfoText>{data.location}</InfoText>
             </InfoLocation>
             <InfoAge>
               <AgeIcon></AgeIcon>
-              <p>{data.age} year</p>
+              <InfoText>{data.age} year</InfoText>
             </InfoAge>
             <InfoPol>
             {data.sex === 'Male' ? (
@@ -101,7 +102,7 @@ const NoticeCard = ({ }) => {
               ) : data.sex === 'Female' ? (
                 <FemaleIcon></FemaleIcon>
               ): null}
-              <p>{data.sex}</p>
+              <InfoText>{data.sex}</InfoText>
             </InfoPol>
 
             <Image src={myImg}></Image>
