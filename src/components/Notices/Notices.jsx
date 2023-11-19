@@ -1,5 +1,10 @@
+import { NoticeCategoriesNav } from "../NoticeCategoriesNav/NoticeCategoriesNav"
 const Notice = () => {
-  return <>Notice</>;
+  return(
+    <>
+    <NoticeCategoriesNav></NoticeCategoriesNav>
+    </>
+    );
 };
 
 export default Notice;

@@ -2,10 +2,15 @@ import { useFormik } from 'formik';
 import { Button, Form, Input, Label } from './UserForm.styled';
 import user from './user.json';
 
-const UserForm = () => {
+const UserForm = ({ formStatusIndicator }) => {
+  const { isEditFormInactive, setisEditFormInactive } = formStatusIndicator;
+
   const formik = useFormik({
     initialValues: user,
-    onSubmit: values => console.log(values),
+    onSubmit: values => {
+      setisEditFormInactive(true);
+      console.log(values);
+    },
   });
 
   return (
@@ -17,6 +22,7 @@ const UserForm = () => {
         name="name"
         onChange={formik.handleChange}
         value={formik.values.name}
+        disabled={isEditFormInactive}
       />
       <Label htmlFor="email">Email</Label>
       <Input
@@ -25,6 +31,7 @@ const UserForm = () => {
         name="email"
         onChange={formik.handleChange}
         value={formik.values.email}
+        disabled={isEditFormInactive}
       />
       <Label htmlFor="birthday">Birthday</Label>
       <Input
@@ -33,6 +40,7 @@ const UserForm = () => {
         name="birthday"
         onChange={formik.handleChange}
         value={formik.values.birthday}
+        disabled={isEditFormInactive}
       />
       <Label htmlFor="phone">Phone</Label>
       <Input
@@ -41,6 +49,7 @@ const UserForm = () => {
         name="phone"
         onChange={formik.handleChange}
         value={formik.values.phone}
+        disabled={isEditFormInactive}
       />
       <Label htmlFor="city">City</Label>
       <Input
@@ -49,8 +58,9 @@ const UserForm = () => {
         name="city"
         onChange={formik.handleChange}
         value={formik.values.city}
+        disabled={isEditFormInactive}
       />
-      <Button type="submit">Save</Button>
+      {!isEditFormInactive && <Button type="submit">Save</Button>}
     </Form>
   );
 };

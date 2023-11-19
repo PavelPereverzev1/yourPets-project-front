@@ -1,15 +1,15 @@
 import { styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const AuthBtn = styled.button`
+export const AuthBtn = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  font-family: Manrope700, sans-serif;
   font-size: 16px;
-  border: 2px solid #ffc107;
-  color: #ffc107;
-  background-color: #fff;
+  border: 2px solid var(--yellow);
+  color: var(--yellow);
+  background-color: var(--white);
   padding: 8px 20px;
   gap: 8px;
 
@@ -21,9 +21,9 @@ export const AuthBtn = styled.button`
   }
   &:hover,
   &:focus {
-    color: #fff;
+    color: var(--white);
     border: 2px solid transparent;
-    background-color: #ffc107;
+    background-color: var(--yellow);
     cursor: pointer;
   }
 `;

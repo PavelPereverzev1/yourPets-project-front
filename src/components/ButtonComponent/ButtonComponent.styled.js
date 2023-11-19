@@ -15,10 +15,17 @@ export const Button = styled.button`
   letter-spacing: 0.3px;
   transition: background-image 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  fill: white;
+  stroke: #54adff;
   &:hover,
   &:focus {
     background-image: linear-gradient(to left, #419ef1, #9bd0ff);
     color: #fef9f9;
+    fill: #54adff;
+    stroke: white;
   }
 `;
