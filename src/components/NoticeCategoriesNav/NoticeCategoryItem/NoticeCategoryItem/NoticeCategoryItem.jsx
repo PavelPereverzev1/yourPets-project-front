@@ -16,7 +16,7 @@ import {
   InfoPol,
   InfoText,
 } from './NoticeCategoryItem.js';
-import myImg from './images/cat.png';
+
 import {
   PetIcon,
   FavoriteIcon,
@@ -62,16 +62,14 @@ const NoticeCard = () => {
         {dataf.map((item) => (
           <Item key={item.id}>
             <ImageBlock>
-              <InGoodHands>In good hands</InGoodHands>
+              <InGoodHands>{item.state}</InGoodHands>
               <Favorite onClick={() => handleAddToFavorite(item.id)}>
                 <FavoriteIcon isFavorite={item.isFavorite}></FavoriteIcon>
               </Favorite>
               {isLoggedIn && (
                 <Favorite
                   onClick={() => handleAddToFavorite(item.id)}
-                  style={{
-                    backgroundColor: item.isFavorite ? 'yellow' : 'yellow',
-                  }}
+                  
                 >
                   <FavoriteIcon isFavorite={item.isFavorite}></FavoriteIcon>
                   {item.isFavorite ? 'Видалити з обраних' : 'Додати до обраних'}
@@ -79,24 +77,26 @@ const NoticeCard = () => {
               )}
               <InfoLocation>
                 <LocationIcon></LocationIcon>
-                <InfoText>{item.location}</InfoText>
+                <InfoText>{item.location.length > 5
+                    ? item.location.slice(0, 5) + '...'
+                    : item.location}</InfoText>
               </InfoLocation>
               <InfoAge>
                 <AgeIcon></AgeIcon>
                 <InfoText>{item.age} year</InfoText>
               </InfoAge>
               <InfoPol>
-                {item.sex === 'Male' ? (
+                {item.sex === 'male' ? (
                   <MaleIcon></MaleIcon>
-                ) : item.sex === 'Female' ? (
+                ) : item.sex === 'female' ? (
                   <FemaleIcon></FemaleIcon>
                 ) : null}
                 <InfoText>{item.sex}</InfoText>
               </InfoPol>
-              <Image src={myImg}></Image>
+              <Image src={item.img}></Image>
             </ImageBlock>
             <TextDiv>
-              <Text>Сute cat looking for a home</Text>
+              <Text>Сute cat/dog looking for a home</Text>
             </TextDiv>
             <LearnMoreDiv>
               <LearnMore onClick={handleLearnMore}>

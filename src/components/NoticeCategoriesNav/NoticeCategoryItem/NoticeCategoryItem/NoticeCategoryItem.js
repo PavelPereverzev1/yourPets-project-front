@@ -102,9 +102,8 @@ export const LearnMoreDiv = styled.div`
 
 `
 export const LearnMore = styled.button`
-transition-property: border, fill;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1),
+background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
 border: 2px solid #54ADFF;
 justify-content:center;
@@ -162,6 +161,7 @@ background-color:#CCE4FB;
 
 
 export const Favorite = styled.button`
+
 display:flex;
 align-items:center;
 justify-content: center;
@@ -176,6 +176,7 @@ border:2px solid #CCE4FB;
 &:hover{
 cursor:pointer;
     svg{
+        
         fill:#54ADFF;
     }
 }
@@ -190,8 +191,8 @@ position: absolute;
 justify-content: center;
 display:flex;
 height:20px;
-width:80px;
-padding:2px 4px 2px 4px;
+width:85px;
+padding:11px 5px 11px 5px;
 align-items:center;
 border-radius: 16px 16px 16px 16px;
 border: 2px solid #CCE4FB;
@@ -202,9 +203,12 @@ p{
     font-size:12px;
 font-weight:600;
 padding-right:5px;
+margin-left:5px;
 }
 svg{
-    padding-right:5px;
+    width:24px;
+    height:24px;
+   
 }
 `;
 export const InfoAge = styled.div`
@@ -215,7 +219,7 @@ justify-content: center;
 display:flex;
 height:20px;
 width:80px;
-padding:2px 4px 2px 4px;
+padding:11px 5px 11px 5px;
 align-items:center;
 border-radius: 16px 16px 16px 16px;
 border: 2px solid #CCE4FB;
@@ -239,7 +243,7 @@ justify-content: center;
 display:flex;
 height:20px;
 width:80px;
-padding:2px 4px 2px 4px;
+padding:11px 5px 11px 5px;
 align-items:center;
 border-radius: 16px 16px 16px 16px;
 border: 2px solid #CCE4FB;
