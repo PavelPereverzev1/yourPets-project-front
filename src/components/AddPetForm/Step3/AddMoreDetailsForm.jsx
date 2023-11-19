@@ -1,4 +1,5 @@
 import React from 'react';
+import sprite from '../../../images/icons/sprite.svg';
 import {
   AddMoreDetailsWrapper,
   DetailWrapper,
@@ -27,7 +28,7 @@ const AddMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
               // onChange={handleFileUpload}
             />
             <UploadIcon>
-              <use xlinkHref="../../../images/icons/sprite.svg#icon-plus"></use>
+              <use href={`${sprite}#icon-plus`} />
             </UploadIcon>
           </ImagePreview>
         </PhotoBlock>

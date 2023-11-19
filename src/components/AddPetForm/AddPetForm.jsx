@@ -16,7 +16,6 @@ import ChooseOptionForm from './Step1/ChooseOptionForm';
 import PersonalDetailsForm from './Step2/PersonalDetailsForm';
 import MoreDetailsForm from './Step3/MoreDetailsForm';
 
-import ButtonComponent from 'components/ButtonComponent/ButtonComponent';
 import StepsBlock from './StepsBlock/StepsBlock';
 
 function AddPetForm() {
