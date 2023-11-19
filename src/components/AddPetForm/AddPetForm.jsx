@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import sprite from '../../images/icons/sprite.svg';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-import { Wrapper, ButtonsBlock, Title } from './AddPetForm.syled';
+import {
+  Wrapper,
+  ButtonsBlock,
+  Title,
+  ButtonBlue,
+  ButtonWhite,
+  BtnIcon,
+} from './AddPetForm.syled';
 import ChooseOptionForm from './Step1/ChooseOptionForm';
 import PersonalDetailsForm from './Step2/PersonalDetailsForm';
 import MoreDetailsForm from './Step3/MoreDetailsForm';
@@ -51,9 +59,7 @@ function AddPetForm() {
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
-    console.log(currentStep);
   };
-  // console.log(currentStep);
 
   const backStep = () => {
     setCurrentStep(currentStep - 1);
@@ -84,20 +90,38 @@ function AddPetForm() {
       {/* Navigation buttons */}
       <ButtonsBlock>
         {currentStep === 1 && (
-          <ButtonComponent name="Cancel" width="100px">
-            <Link to="/">Home</Link>
-          </ButtonComponent>
+          <ButtonWhite>
+            <BtnIcon>
+              <use href={`${sprite}#icon-arrow-left`} />
+            </BtnIcon>
+            <Link to="/"></Link>
+            Cancel
+          </ButtonWhite>
         )}
         {currentStep > 1 && (
-          <ButtonComponent name="Back" width="100px" onClick={backStep} />
+          <ButtonWhite onClick={backStep}>
+            <BtnIcon>
+              <use href={`${sprite}#icon-arrow-left`} />
+            </BtnIcon>
+            Back
+          </ButtonWhite>
         )}
         {currentStep < totalSteps && (
-          <ButtonComponent name="Next" width="100px" onClick={nextStep} />
+          <ButtonBlue onClick={nextStep}>
+            Next
+            <BtnIcon>
+              <use href={`${sprite}#icon-pawprint-1`} />
+            </BtnIcon>
+          </ButtonBlue>
         )}
         {currentStep === 3 && (
-          <ButtonComponent name="Done" width="100px" onClick={handleSubmit}>
-            <Link to="/">Home</Link>
-          </ButtonComponent>
+          <ButtonBlue onClick={handleSubmit}>
+            <Link to="/"></Link>
+            Done
+            <BtnIcon>
+              <use href={`${sprite}#icon-pawprint-1`} />
+            </BtnIcon>
+          </ButtonBlue>
         )}
       </ButtonsBlock>
     </Wrapper>
