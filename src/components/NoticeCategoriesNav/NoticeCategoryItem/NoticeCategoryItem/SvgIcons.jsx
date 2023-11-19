@@ -28,7 +28,7 @@ return(
 
 export const LocationIcon = () => {
 return(
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 32" width="24" height="24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 32" width="32" height="32">
 <path fill="none" stroke="#54adff"  strokeLinejoin="round" strokeLinecap="round" strokeMiterlimit="4" strokeWidth="2" d="M27.677 14.667c0 5.891-4.776 10.667-10.667 13.333-5.891-2.667-10.667-7.442-10.667-13.333s4.776-10.667 10.667-10.667c5.891 0 10.667 4.776 10.667 10.667z"></path>
 <path fill="none" stroke="#54adff"  strokeLinejoin="round" strokeLinecap="round" strokeMiterlimit="4" strokeWidth="2" d="M21.010 14.667c0 2.209-1.791 4-4 4s-4-1.791-4-4c0-2.209 1.791-4 4-4s4 1.791 4 4z"></path>
 </svg>
