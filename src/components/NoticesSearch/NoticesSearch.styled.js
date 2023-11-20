@@ -51,6 +51,7 @@ export const ButtonSearch = styled.button`
   border: none;
   width: 24px;
   height: 24px;
+  margin-right: ${({ hasQuery }) => (hasQuery ? '10px' : '0')};
 `;
 
 export const SearchIcon = styled.svg`
@@ -63,7 +64,6 @@ export const ButtonCancel = styled.button`
   border: none;
   width: 24px;
   height: 24px;
-  margin-left: 10px;
 `;
 
 export const DelateIcon = styled.svg`
