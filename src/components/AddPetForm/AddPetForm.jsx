@@ -1,19 +1,10 @@
-import React, { createContext, useContext, useState } from 'react';
-// import sprite from '../../images/icons/sprite.svg';
-// import { Link } from 'react-router-dom';
+import React, { createContext, useState } from 'react';
 
 import ChooseOptionForm from './Step1/ChooseOptionForm';
 import PersonalDetailsForm from './Step2/PersonalDetailsForm';
 import MoreDetailsForm from './Step3/MoreDetailsForm';
 
 import axios from 'axios';
-
-// import {
-//   ButtonsBlock,
-//   ButtonBlue,
-//   ButtonWhite,
-//   BtnIcon,
-// } from './AddPetForm.syled';
 
 export const FormContext = createContext();
 
@@ -76,7 +67,6 @@ function AddPetForm() {
     <FormContext.Provider value={formProps}>
       {currentStep === 1 && <ChooseOptionForm />}
       {currentStep === 2 && <PersonalDetailsForm />}
-
       {currentStep === 3 && <MoreDetailsForm />}
     </FormContext.Provider>
   );
