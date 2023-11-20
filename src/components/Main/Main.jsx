@@ -5,6 +5,8 @@ import mainTabletRetina from '../../images/pets/pets-tablet@2x.png';
 import mainDesktop from '../../images/pets/pets-desktop@1x.png';
 import mainDesktopRetina from '../../images/pets/pets-desktop@2x.png';
 
+import BackgroundImg from '../BackgroundImg/BackgroundImg';
+
 import {
   MainContainer,
   MainTitleMobile,
@@ -14,39 +16,41 @@ import {
 
 const Main = () => {
   return (
-    <MainContainer>
-      <MainTitleMobile>
-        Take good care of
-        <br /> your small pets
-      </MainTitleMobile>
+    <BackgroundImg>
+      <MainContainer>
+        <MainTitleMobile>
+          Take good care of
+          <br /> your small pets
+        </MainTitleMobile>
 
-      <MainTitleDesktop>
-        Take good care of your small
-        <br /> pets
-      </MainTitleDesktop>
+        <MainTitleDesktop>
+          Take good care of your small
+          <br /> pets
+        </MainTitleDesktop>
 
-      <picture>
-        <source
-          srcSet={`${mainMobile}, ${mainMobileRetina} 2x`}
-          type="image/png"
-          media="(max-width: 480px)"
-        />
+        <picture>
+          <source
+            srcSet={`${mainMobile}, ${mainMobileRetina} 2x`}
+            type="image/png"
+            media="(max-width: 480px)"
+          />
 
-        <source
-          srcSet={`${mainTablet}, ${mainTabletRetina} 2x`}
-          type="image/png"
-          media="(max-width: 768px)"
-        />
+          <source
+            srcSet={`${mainTablet}, ${mainTabletRetina} 2x`}
+            type="image/png"
+            media="(max-width: 768px)"
+          />
 
-        <source
-          srcSet={`${mainDesktop}, ${mainDesktopRetina} 2x`}
-          type="image/png"
-          media="(min-width: 1280px)"
-        />
+          <source
+            srcSet={`${mainDesktop}, ${mainDesktopRetina} 2x`}
+            type="image/png"
+            media="(min-width: 1280px)"
+          />
 
-        <MainPetsPicture src={mainMobile} alt="main page pets" />
-      </picture>
-    </MainContainer>
+          <MainPetsPicture src={mainMobile} alt="main page pets" />
+        </picture>
+      </MainContainer>
+    </BackgroundImg>
   );
 };
 
