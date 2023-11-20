@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Label = styled.label`
   position: relative;
 
-
   display: inline-block;
 
   @media screen and (min-width: 768px){
@@ -46,22 +45,19 @@ export const Queryform = styled.input`
     color: #888888;
   }
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     width: 608px;
     border-radius: 20px;
     margin-top: 40px;
     margin-bottom: 40px;
     font-weight: 500;
     font-size: 20px;
-   
-    &::placeholder {
-        font-size: 20px;
-      }
-}
-`;
 
-// top: 10px;
-// left: ${({ hasQuery }) => (hasQuery ? '214px' : '244px')};
+    &::placeholder {
+      font-size: 20px;
+    }
+  }
+`;
 
 export const ButtonWrapper = styled.div`
   position: absolute;
@@ -77,8 +73,12 @@ export const ButtonSearch = styled.button`
   height: 24px;
   position: absolute;
   top: 50%;
-  left: ${({ hasQuery }) => (hasQuery ? '214px' : '244px')};
+  left: ${({ hasQuery }) => (hasQuery ? '225px' : '244px')};
   transform: translateY(-50%);
+
+  @media screen and (min-width: 768px) {
+    left: ${({ hasQuery }) => (hasQuery ? '240px' : '260px')};
+  }
 `;
 
 export const SearchIcon = styled.svg`
@@ -94,8 +94,12 @@ export const ButtonCancel = styled.button`
 
   position: absolute;
   top: 50%;
-  left: 244px;
+  left: 250px;
   transform: translateY(-50%);
+
+  @media screen and (min-width: 768px) {
+    left: 270px;
+  }
 `;
 
 export const DelateIcon = styled.svg`
