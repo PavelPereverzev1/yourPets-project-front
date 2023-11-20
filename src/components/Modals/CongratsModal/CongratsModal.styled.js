@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { PiPawPrint } from "react-icons/pi";
+
 
 export const Container = styled.div`
     padding: 68px 16px 60px;
@@ -36,7 +38,8 @@ export const Text = styled.p`
         margin-bottom: 60px;
     }
 `
-export const Icon = styled.svg`
+export const Icon = styled(PiPawPrint)`
     width: 24px;
     height: 24px;
+    transform: rotate(25deg);
 `
