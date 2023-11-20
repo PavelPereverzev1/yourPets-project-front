@@ -3,15 +3,35 @@ import styled from '@emotion/styled';
 
 export const Container = styled.ul`
 
-display: flex;
-flex-wrap: wrap; 
-list-style: none;
-padding: 0;
-
-margin-left:0px;
+margin-top: 24px;
+margin-bottom: 40px;
 justify-content: center;
+align-items: center;
 
+@media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+  }
+
+@media (min-width: 768px) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  column-gap: 32px;
+  row-gap: 24px;
+  max-width: 1280px;
+  justify-content: center;
+  align-items: center;
+}
 `;
+
 export const Item = styled.li`
 
 
@@ -24,7 +44,6 @@ border: 1px solid #ccc;
 text-align: center; 
 
 vertical-align: top;
-margin:20px 0px 0px 20px;
 max-width:288px;
 
 justify-content: center;

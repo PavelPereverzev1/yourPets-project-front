@@ -4,7 +4,7 @@ import {
   Image,
   TextDiv,
   Text,
-  Container,
+  // Container,
   Item,
   LearnMore,
   TextMore,
@@ -15,7 +15,7 @@ import {
   InfoAge,
   InfoPol,
   InfoText,
-} from './NoticeCategoryItem.js';
+} from './NoticeCategoryItem';
 
 import {
   PetIcon,
@@ -25,26 +25,41 @@ import {
   MaleIcon,
   FemaleIcon,
 } from './SvgIcons.jsx';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import data from './data.json';
 
-const NoticeCard = () => {
+
+const NoticeCategoryItem = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [dataf, setDataf] = useState([]);
 
+
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentPageItems = data.slice(startIndex, endIndex);
+  const handlePageChange = page => {
+    setCurrentPage(page);
+  };
+
+
+
+
   useEffect(() => {
     setDataf(data.map(item => ({ ...item, isFavorite: false })));
-   
+
   }, []);
 
   const handleAddToFavorite = (id) => {
-    if(!isLoggedIn){
+    if (!isLoggedIn) {
       setIsLoggedIn(isLoggedIn)
     }
     if (isLoggedIn) {
-      Notify.failure('Please, sign in');
+      console.log('error')
     } else {
-      
+
       const updatedData = dataf.map((item) =>
         item.id === id ? { ...item, isFavorite: !item.isFavorite } : item
       );
@@ -53,13 +68,12 @@ const NoticeCard = () => {
   };
 
   const handleLearnMore = () => {
-   
+
   };
 
   return (
     <>
-      <Container>
-        {dataf.map((item) => (
+        {currentPageItems.map((item) => (
           <Item key={item.id}>
             <ImageBlock>
               <InGoodHands>{item.state}</InGoodHands>
@@ -69,7 +83,7 @@ const NoticeCard = () => {
               {isLoggedIn && (
                 <Favorite
                   onClick={() => handleAddToFavorite(item.id)}
-                  
+
                 >
                   <FavoriteIcon isFavorite={item.isFavorite}></FavoriteIcon>
                   {item.isFavorite ? 'Видалити з обраних' : 'Додати до обраних'}
@@ -78,8 +92,8 @@ const NoticeCard = () => {
               <InfoLocation>
                 <LocationIcon></LocationIcon>
                 <InfoText>{item.location.length > 5
-                    ? item.location.slice(0, 5) + '...'
-                    : item.location}</InfoText>
+                  ? item.location.slice(0, 5) + '...'
+                  : item.location}</InfoText>
               </InfoLocation>
               <InfoAge>
                 <AgeIcon></AgeIcon>
@@ -106,9 +120,9 @@ const NoticeCard = () => {
             </LearnMoreDiv>
           </Item>
         ))}
-      </Container>
+      
     </>
   );
 };
 
-export default NoticeCard;
+export default NoticeCategoryItem;
