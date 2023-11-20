@@ -11,7 +11,7 @@ import {
 import sprite from '../../images/icons/sprite.svg';
 
 function NoticesSearch() {
-  const [query, setQuery] = useState();
+  const [query, setQuery] = useState('');
 
   const handleInputChange = e => {
     setQuery(e.target.value);
@@ -28,7 +28,7 @@ function NoticesSearch() {
         value={query}
         onChange={handleInputChange}
       />
-      <ButtonWrapper style={{ left: query ? '214px' : '244px'}}>
+      <ButtonWrapper  hasQuery={query.length > 0}>
         <ButtonSearch hasQuery={query.length > 0}>
           <SearchIcon>
             <use href={`${sprite}#icon-search`}></use>

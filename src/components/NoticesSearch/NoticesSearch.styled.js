@@ -2,6 +2,14 @@ import styled from 'styled-components';
 
 export const Label = styled.label`
   position: relative;
+
+
+  display: inline-block;
+
+  @media screen and (min-width: 768px){
+   display: flex;
+   justify-content: center;
+   align-items: center;
 `;
 
 export const Queryform = styled.input`
@@ -37,12 +45,28 @@ export const Queryform = styled.input`
     letter-spacing: 0.04em;
     color: #888888;
   }
+
+  @media screen and (min-width: 768px){
+    width: 608px;
+    border-radius: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-weight: 500;
+    font-size: 20px;
+   
+    &::placeholder {
+        font-size: 20px;
+      }
+}
 `;
+
+// top: 10px;
+// left: ${({ hasQuery }) => (hasQuery ? '214px' : '244px')};
 
 export const ButtonWrapper = styled.div`
   position: absolute;
-  top: 10px;
-  left: 244px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
 `;
 
@@ -51,7 +75,10 @@ export const ButtonSearch = styled.button`
   border: none;
   width: 24px;
   height: 24px;
-  margin-right: ${({ hasQuery }) => (hasQuery ? '10px' : '0')};
+  position: absolute;
+  top: 50%;
+  left: ${({ hasQuery }) => (hasQuery ? '214px' : '244px')};
+  transform: translateY(-50%);
 `;
 
 export const SearchIcon = styled.svg`
@@ -64,6 +91,11 @@ export const ButtonCancel = styled.button`
   border: none;
   width: 24px;
   height: 24px;
+
+  position: absolute;
+  top: 50%;
+  left: 244px;
+  transform: translateY(-50%);
 `;
 
 export const DelateIcon = styled.svg`
