@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { ContactButton, ContactText } from './Contact.styled';
+import { ContactButton } from './Contact.styled';
 
 const Contact = ({ categoryItem }) => {
   return (
