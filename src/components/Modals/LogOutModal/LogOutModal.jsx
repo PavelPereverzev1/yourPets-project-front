@@ -1,33 +1,21 @@
 import Modal from 'components/Modals/Modal/Modal';
-import {
-  BigText,
-  BtnContainer,
-  Container,
-  Icon,
-  Text,
-  Title,
-} from './DeleteModal.styled';
 import { Button } from 'components/ButtonComponent/ButtonComponent.styled';
 import sprite from '../../../images/icons/sprite.svg';
+import { BtnContainer, Container, Icon, Title } from './LogOutModal.styled';
 
-export default function DeleteModal({ active, setActive, yes }) {
+export default function LogOutModal({ active, setActive, yes }) {
   return (
     <Modal active={active} setActive={setActive}>
       <Container>
-        <Title>Delete adverstiment?</Title>
-        <Text>
-          Are you sure you want to delete{' '}
-          <BigText>“Cute dog looking for a home”?</BigText> You can`t undo this
-          action.
-        </Text>
+        <Title>Already leaving?</Title>
         <BtnContainer>
           <Button width={'256px'} onClick={() => setActive(false)}>
-            No
+            Cancel
           </Button>
           <Button width={'256px'} onClick={() => yes()}>
             Yes
             <Icon>
-              <use href={`${sprite}#icon-trash-2`} />
+              <use href={`${sprite}#icon-logout`} />
             </Icon>
           </Button>
         </BtnContainer>
