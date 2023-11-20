@@ -12,12 +12,24 @@ const NavList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  @media screen and (min-width: 768px) {
+    gap: 12px;
+    width: 312px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 540px;
+  }
 `;
 const NavElement = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1200px) {
+  }
 `;
+
 const StyledNavLink = styled(NavLink)`
   display: block;
   height: 35px;
@@ -31,6 +43,16 @@ const StyledNavLink = styled(NavLink)`
   font-weight: 500;
   line-height: normal;
   letter-spacing: 0.56px;
+  transition: background-color 250ms cubic-bezier(0.075, 0.82, 0.165, 1),
+    color 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1200px) {
+  }
+  &:hover {
+    background-color: #54adff;
+    color: #fef9f9;
+  }
   &.active {
     background: #54adff;
     color: #fef9f9;
