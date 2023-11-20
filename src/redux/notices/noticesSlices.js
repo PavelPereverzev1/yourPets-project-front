@@ -5,6 +5,18 @@ import { getNoticesThunk } from './noticesOperations';
 
 const initialState = {
   items: [],
+  isLoading: false,
+  noticesError: null,
+};
+
+const handlePending = state => {
+  state.isLoading = true;
+  state.noticesError = null;
+};
+
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.noticesError = payload;
 };
 
 const noticesSlice = createSlice({
@@ -12,14 +24,11 @@ const noticesSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(getNoticesThunk.pending, (state, action) => {
-        console.log('pending');
-      })
+      .addCase(getNoticesThunk.pending, handlePending)
+      .addCase(getNoticesThunk.rejected, handleRejected)
       .addCase(getNoticesThunk.fulfilled, (state, { payload }) => {
         state.items = payload.data;
-      })
-      .addCase(getNoticesThunk.rejected, (state, action) => {
-        console.log('rejected');
+        state.isLoading = false;
       });
   },
 });
