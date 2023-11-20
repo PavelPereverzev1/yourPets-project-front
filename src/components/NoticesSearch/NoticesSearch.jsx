@@ -39,8 +39,8 @@ function NoticesSearch() {
         value={query}
         onChange={handleInputChange}
       />
-      <ButtonWrapper hasQuery={query.length > 0}>
-        <ButtonSearch hasQuery={query.length > 0} onClick={handleSubmit}>
+      <ButtonWrapper hasquery={query.length > 0}>
+        <ButtonSearch hasquery={query.length > 0} onClick={handleSubmit}>
           <SearchIcon>
             <use href={`${sprite}#icon-search`}></use>
           </SearchIcon>
