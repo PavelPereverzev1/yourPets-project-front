@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { PiPawPrint } from 'react-icons/pi';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   padding: 60px 20px;
@@ -51,38 +50,43 @@ export const Text = styled.p`
     line-height: 28px;
   }
 `;
-export const AuthBtn = styled.button`
+const sharedStyles = css`
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 20px;
-  font-size: 16px;
-  border: 2px solid var(--yellow);
+  align-items: center;
+  gap: 12px;
+  height: 38px;
+  padding: 8px 28px;
+  background-color: transparent;
+  cursor: pointer;
   color: var(--yellow);
-  background-color: var(--white);
-  padding: 7px 20px;
-  gap: 8px;
+  font-family: Manrope, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.36;
+  letter-spacing: 0.3px;
+`;
+export const Icon = styled.svg`
+    width: 24px;
+    height: 24px;
+    fill: var(--yellow);
+    transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
+`
+export const ButtonOrange = styled.button`
+  ${sharedStyles};
+  width: 248px;
+  border: 2px solid var(--yellow);
+  border-radius: 40px;
+  transition: background-image 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  @media screen and (min-width: 768px) {
-    width: 168px;
-  }
   &:hover,
   &:focus {
+    background-image: linear-gradient(to left, var(--yellow), var(--yellow));
     color: var(--white);
-    border: 2px solid transparent;
-    background-color: var(--yellow);
-    cursor: pointer;
   }
-`;
-export const Icon = styled(PiPawPrint)`
-  width: 22px;
-  height: 22px;
-  transform: rotate(25deg);
-  @media screen and (min-width: 768px) {
-    width: 23px;
-    height: 23px;
+
+  &:hover ${Icon}, &:focus ${Icon} {
+    fill: var(--white);
   }
 `;
