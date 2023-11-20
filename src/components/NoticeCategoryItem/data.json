@@ -349,5 +349,32 @@
     "isFavorite": false,
     "img":"https://cdn.discordapp.com/attachments/633013489803460631/1175858973312815174/image.png?ex=656cc301&is=655a4e01&hm=4212109c751beeeeb8f1441c478a6b75401a8f690d70a94cc1d74a3c0fe77754&",
     "state": "lost"
+  },
+  {
+    "id": 59,
+    "location": "Kyiv",
+    "age": 1,
+    "sex": "male",
+    "isFavorite": false,
+    "img":"https://cdn.discordapp.com/attachments/633013489803460631/1175858973312815174/image.png?ex=656cc301&is=655a4e01&hm=4212109c751beeeeb8f1441c478a6b75401a8f690d70a94cc1d74a3c0fe77754&",
+    "state": "lost"
+  },
+  {
+    "id": 60,
+    "location": "Kyiv",
+    "age": 1,
+    "sex": "male",
+    "isFavorite": false,
+    "img":"https://cdn.discordapp.com/attachments/633013489803460631/1175858973312815174/image.png?ex=656cc301&is=655a4e01&hm=4212109c751beeeeb8f1441c478a6b75401a8f690d70a94cc1d74a3c0fe77754&",
+    "state": "lost"
+  },
+  {
+    "id": 61,
+    "location": "Kyiv",
+    "age": 1,
+    "sex": "male",
+    "isFavorite": false,
+    "img":"https://cdn.discordapp.com/attachments/633013489803460631/1175858973312815174/image.png?ex=656cc301&is=655a4e01&hm=4212109c751beeeeb8f1441c478a6b75401a8f690d70a94cc1d74a3c0fe77754&",
+    "state": "lost"
   }
 ]
