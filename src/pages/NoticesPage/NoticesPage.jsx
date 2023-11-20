@@ -1,9 +1,9 @@
-import Notices from 'components/Notices/Notices';
+import { NoticeCategoriesNav } from 'components/NoticeCategoriesNav/NoticeCategoriesNav';
 
 const MainPage = () => {
   return (
     <>
-      <Notices />
+      <NoticeCategoriesNav />
     </>
   );
 };

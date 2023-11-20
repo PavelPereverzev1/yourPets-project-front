@@ -1,48 +1,46 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    padding: 60px 20px;
+    padding: 77px 12px 60px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 44px;
     text-align: center;
     align-items: center;
     justify-content: center;
     @media screen and (min-width: 768px){
-        padding: 60px 40px;
-        gap: 40px;
+        padding: 108px 155px;
+        gap: 48px;
         max-width: 608px;
     }
 `
 export const BtnContainer = styled.div`
-    padding-top: 20px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     @media screen and (min-width: 768px){
-        padding-top: 0;
+        width: 275px;
+        padding-top: 8px;
         flex-direction: row;
-        gap: 20px;
+        gap: 17px;
     }
 `
 export const Title = styled.h2`
     font-family: Manrope, sans-serif;
+    max-width: 200px;
     font-weight: 500;
     font-size: 24px;
-    line-height: 32.78px;
+    line-height: 1.36;
     letter-spacing: 0.3px;
+    color: #111111;
     @media screen and (min-width: 768px){
         font-size: 36px;
-        line-height: 49.18px;
+        max-width: 600px;
+        letter-spacing: 0.4px;
     }
 `
-export const Text = styled.p`
-    font-family: Manrope, sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 18px;
-    @media screen and (min-width: 768px){
-        font-size: 20px;
-        line-height: 28px;
-    }
+export const Icon = styled.svg`
+    width: 24px;
+    height: 24px;
 `

@@ -1,9 +1,9 @@
-import Modal from 'components/Modal/Modal';
+import Modal from 'components/Modals/Modal/Modal';
 import { Link } from 'react-router-dom';
-import { BtnContainer, Container, Text, Title } from './ModalAttention.styled';
-import { AuthBtn } from 'components/Header/AuthNavigation/AuthNavigation.styled';
+import { BtnContainer, Container, Text, Icon, Title, ButtonOrange } from './AttentionModal.styled';
+import sprite from '../../../images/icons/sprite.svg';
 
-export default function ModalAttention({ active, setActive }) {
+export default function AttentionModal({ active, setActive }) {
   return (
     <Modal active={active} setActive={setActive}>
       <Container>
@@ -15,12 +15,15 @@ export default function ModalAttention({ active, setActive }) {
           register to access these features.
         </Text>
         <BtnContainer>
-          <AuthBtn as={Link} to="/login">
+          <ButtonOrange as={Link} to="/login">
             Log IN 
-          </AuthBtn>
-          <AuthBtn as={Link} to="/register">
+            <Icon>
+                    <use href={`${sprite}#icon-pawprint-1`} />
+                    </Icon>
+          </ButtonOrange>
+          <ButtonOrange as={Link} to="/register">
             Registration
-          </AuthBtn>
+          </ButtonOrange>
         </BtnContainer>
       </Container>
     </Modal>
