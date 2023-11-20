@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import NoticeCard from './NoticeCategoryItem/NoticeCategoryItem/NoticeCategoryItem.jsx'
+import NoticeCard from '../NoticeCategoryItem/NoticeCategoryItem.jsx'
 export const NoticeCategoriesNav = () => {
   return (
     <>
