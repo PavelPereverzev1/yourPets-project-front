@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Label,
+  Form,
   Queryform,
   ButtonSearch,
   SearchIcon,
@@ -9,6 +9,7 @@ import {
   ButtonWrapper,
 } from './NoticesSearch.styled';
 import sprite from '../../images/icons/sprite.svg';
+import axios from 'axios';
 
 function NoticesSearch() {
   const [query, setQuery] = useState('');
@@ -21,15 +22,25 @@ function NoticesSearch() {
     setQuery('');
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios('')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => console.error(error));
+  };
+
   return (
-    <Label>
+    <Form onSubmit={handleSubmit}>
       <Queryform
         placeholder="Search"
         value={query}
         onChange={handleInputChange}
       />
-      <ButtonWrapper  hasQuery={query.length > 0}>
-        <ButtonSearch hasQuery={query.length > 0}>
+      <ButtonWrapper hasQuery={query.length > 0}>
+        <ButtonSearch hasQuery={query.length > 0} onClick={handleSubmit}>
           <SearchIcon>
             <use href={`${sprite}#icon-search`}></use>
           </SearchIcon>
@@ -42,7 +53,7 @@ function NoticesSearch() {
           </ButtonCancel>
         )}
       </ButtonWrapper>
-    </Label>
+    </Form>
   );
 }
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Label = styled.label`
+export const Form = styled.form`
   position: relative;
 
   display: inline-block;
