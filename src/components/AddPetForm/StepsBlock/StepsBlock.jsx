@@ -6,20 +6,41 @@ import {
   StepsBlockWrapper,
 } from './StepsBlock.styled';
 
-const StepsBlock = () => {
+const StepsBlock = ({ step }) => {
+  let firstStepColor = '';
+  let secondStepColor = '';
+  let thirdStepColor = '';
+
+  switch (step) {
+    case 1:
+      firstStepColor = '#54ADFF';
+      break;
+    case 2:
+      firstStepColor = '#00C3AD';
+      secondStepColor = '#54ADFF';
+      break;
+    case 3:
+      firstStepColor = '#00C3AD';
+      secondStepColor = '#00C3AD';
+      thirdStepColor = '#54ADFF';
+      break;
+    default:
+      break;
+  }
+
   return (
     <StepsBlockWrapper>
       <StepBlock>
-        <StepName>Choose option</StepName>
-        <StepLine />
+        <StepName color={firstStepColor}>Choose option</StepName>
+        <StepLine bg={firstStepColor} />
       </StepBlock>
       <StepBlock>
-        <StepName>Persons details</StepName>
-        <StepLine />
+        <StepName color={secondStepColor}>Persons details</StepName>
+        <StepLine bg={secondStepColor} />
       </StepBlock>
       <StepBlock>
-        <StepName>More info</StepName>
-        <StepLine />
+        <StepName color={thirdStepColor}>More info</StepName>
+        <StepLine bg={thirdStepColor} />
       </StepBlock>
     </StepsBlockWrapper>
   );

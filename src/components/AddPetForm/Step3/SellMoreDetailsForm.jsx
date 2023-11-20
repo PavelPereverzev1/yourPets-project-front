@@ -23,7 +23,7 @@ import {
 
 const SellMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
   return (
-    <div>
+    <>
       <FormSellMoreDetails onSubmit={handleSubmit}>
         <SexPhotoblock className="sexPhotoblock">
           <Sexblock className="sexblock">
@@ -90,7 +90,7 @@ const SellMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
           </DetailWrapper>
         </LocationPriceBlock>
       </FormSellMoreDetails>
-    </div>
+    </>
   );
 };
 

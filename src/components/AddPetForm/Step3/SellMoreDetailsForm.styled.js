@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const FormSellMoreDetails = styled.form`
+  width: 100%;
   display: flex;
+  justify-content: center;
   gap: 24px;
 `;
 
