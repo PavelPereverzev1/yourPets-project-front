@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FilterCategories } from './components/FilterCategories';
 import {
-  // Container,
   FilterContainer,
   MainFilterBtn,
   FiltrSpan,
