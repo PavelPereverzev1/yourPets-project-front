@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { FormContext } from '../AddPetForm';
 import {
   Form,
@@ -10,6 +10,13 @@ import BackgroundCard from '../BackgroundCard';
 import TitleComponent from '../../TitleComponent/TitleComponent';
 import StepsBlock from '../StepsBlock';
 import ButtonsBlock from '../ButtonsBlock';
+// import sprite from '../../../images/icons/sprite.svg';
+// import {
+//   ButtonBlue,
+//   ButtonWhite,
+//   BtnIcon,
+// } from '../ButtonsBlock/ButtonsBlock.styled';
+// import ErrorComponent from '../ErrorComponent';
 
 const ChooseOptionForm = () => {
   const formProps = useContext(FormContext);
@@ -23,6 +30,23 @@ const ChooseOptionForm = () => {
     handleSubmit,
   } = formProps;
 
+  const [validationError, setValidationError] = useState(false);
+
+  const validateForm = () => {
+    if (formData.category === '') {
+      setValidationError(true);
+      return false;
+    }
+    return true;
+  };
+  console.log(validationError);
+
+  const handleNextStep = () => {
+    const isValid = validateForm();
+    if (isValid) {
+      nextStep(nextStep); // Викликаємо наступний крок, якщо валідація успішна
+    }
+  };
   return (
     <>
       <BackgroundCard>
@@ -79,14 +103,40 @@ const ChooseOptionForm = () => {
               in good hands
             </Label>
           </RadioWrapper>
+          {/* {validationError && <ErrorComponent>Error message</ErrorComponent>} */}
         </Form>
+
         <ButtonsBlock
           currentStep={currentStep}
           totalSteps={totalSteps}
-          nextStep={nextStep}
+          nextStep={handleNextStep}
           backStep={backStep}
           handleSubmit={handleSubmit}
         />
+        {/* <div>
+          <ButtonWhite>
+            <BtnIcon>
+              <use href={`${sprite}#icon-arrow-left`} />
+            </BtnIcon>
+            Cancel
+          </ButtonWhite>
+          <ButtonBlue
+            onClick={
+              validation ? (
+                nextStep
+              ) : (
+                <ErrorComponent>
+                  Please select at least one category
+                </ErrorComponent>
+              )
+            }
+          >
+            Next
+            <BtnIcon>
+              <use href={`${sprite}#icon-pawprint-1`} />
+            </BtnIcon>
+          </ButtonBlue>
+        </div> */}
       </BackgroundCard>
     </>
   );

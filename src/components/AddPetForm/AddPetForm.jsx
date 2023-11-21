@@ -21,6 +21,7 @@ function AddPetForm() {
     location: '',
     price: '',
     sex: '',
+    isError: 'false',
   };
   const [formData, setFormData] = useState(initialFormData);
   const [currentStep, setCurrentStep] = useState(1);
@@ -56,6 +57,7 @@ function AddPetForm() {
     setCurrentStep(currentStep - 1);
     console.log(formData);
   };
+
   const formProps = {
     formData,
     handleChange,
