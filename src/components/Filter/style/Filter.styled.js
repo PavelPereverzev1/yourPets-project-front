@@ -29,9 +29,9 @@ const MainFilterBtn = styled.div`
   cursor: pointer;
   transition: background-color 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
   @media screen and (min-width: 768px) {
-    top: 0;
-    right: 0;
     position: relative;
+    top: 1;
+    right: 1;
     box-sizing: border-box;
     width: 152px;
     padding: 8px 20px;
@@ -76,6 +76,7 @@ const FiltrSpan = styled.span`
   }
 `;
 const FilterContainer = styled.div`
+  z-index: 9123123123123123;
   width: 100%;
   position: absolute;
   background-color: #fff;
@@ -84,9 +85,9 @@ const FilterContainer = styled.div`
   top: -50%;
   padding: 8px;
   @media screen and (min-width: 768px) {
-    width: 154px;
+    width: 156px;
     top: 27%;
-    left: -10%;
+    right: 1%;
   }
 `;
 const FiltersBtn = styled.button`
