@@ -24,7 +24,7 @@ const ModalNotice = ({ active, setActive, item }) => {
     };
     getData();
     console.log(getData);
-  }, []);
+  }, [id]);
 
   // const categoryItem = {
   //   name: 'Rich',
