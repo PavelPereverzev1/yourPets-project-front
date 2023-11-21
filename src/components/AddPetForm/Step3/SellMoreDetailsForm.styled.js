@@ -9,6 +9,7 @@ export const FormSellMoreDetails = styled.form`
 
 export const SexPhotoblock = styled.div`
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   gap: 48px;
 `;
@@ -21,20 +22,10 @@ export const SexList = styled.div`
   flex-direction: row;
   gap: 12px;
 `;
-export const SexItem = styled.div`
+export const SexBtn = styled.button`
   display: flex;
   flex-direction: row;
   gap: 12px;
-`;
-export const IconSex = styled.svg`
-  display: flex;
-  width: 24px;
-  height: 24px;
-  background-color: #111;
-`;
-
-export const NameSex = styled.p`
-  display: inline-block;
 
   color: #888;
   font-family: Manrope;
@@ -44,7 +35,14 @@ export const NameSex = styled.p`
   line-height: 150%; /* 24px */
   letter-spacing: 0.64px;
 `;
+export const IconSex = styled.svg`
+  width: 24px;
+  height: 24px;
+  fill: var(--blueLink);
+  transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
 
+//Photoblock
 export const PhotoBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,8 +90,11 @@ export const UploadIcon = styled.svg`
   fill: #111;
 `;
 
+//LocationPriceblock
 export const LocationPriceBlock = styled.div`
-  padding: 12px 16px;
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
 `;
 
 export const DetailWrapper = styled.div`
@@ -115,8 +116,6 @@ export const DetailLabel = styled.label`
 export const DetailInput = styled.input`
   display: flex;
   padding: 12px 16px;
-  align-items: center;
-  gap: 10px;
 
   border-radius: 40px;
   border: 1px solid #54adff;

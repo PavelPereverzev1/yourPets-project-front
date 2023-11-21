@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import BackgroundImg from '../BackgroundImg/BackgroundImg';
 
 import ChooseOptionForm from './Step1/ChooseOptionForm';
 import PersonalDetailsForm from './Step2/PersonalDetailsForm';
@@ -28,6 +29,7 @@ function AddPetForm() {
   const handleChange = e => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    console.log(formData);
   };
 
   const handleSubmit = async e => {
@@ -47,11 +49,12 @@ function AddPetForm() {
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
+    console.log(formData);
   };
 
   const backStep = () => {
     setCurrentStep(currentStep - 1);
-    console.log(currentStep);
+    console.log(formData);
   };
   const formProps = {
     formData,
@@ -64,11 +67,13 @@ function AddPetForm() {
   };
 
   return (
-    <FormContext.Provider value={formProps}>
-      {currentStep === 1 && <ChooseOptionForm />}
-      {currentStep === 2 && <PersonalDetailsForm />}
-      {currentStep === 3 && <MoreDetailsForm />}
-    </FormContext.Provider>
+    <BackgroundImg>
+      <FormContext.Provider value={formProps}>
+        {currentStep === 1 && <ChooseOptionForm />}
+        {currentStep === 2 && <PersonalDetailsForm />}
+        {currentStep === 3 && <MoreDetailsForm />}
+      </FormContext.Provider>
+    </BackgroundImg>
   );
 }
 
