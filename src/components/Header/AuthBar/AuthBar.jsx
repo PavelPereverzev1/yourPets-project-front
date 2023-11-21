@@ -10,7 +10,6 @@ function AuthBar({ name = true }) {
 
   return (
     <AuthContainer>
-      <AuthNavigation />
       {isLoggedIn ? <UserBar name={name} /> : <AuthNavigation />}
     </AuthContainer>
   );

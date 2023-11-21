@@ -54,7 +54,7 @@ const Header = () => {
       {isDesktop && (
         <>
           <Navbar />
-          {isLoggedIn ? (
+          {!isLoggedIn ? (
             <AuthBar />
           ) : (
             <Container>
