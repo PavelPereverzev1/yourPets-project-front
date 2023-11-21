@@ -1,0 +1,95 @@
+.content_top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 13px;
+    padding: 44px 12px 0 12px;
+}
+.pet_photo {
+    width: 240px;
+    height: 240px;
+}
+.advertisement {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: flex-start; */
+    gap: 20px;
+}
+.advertisement_list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+.content_middle {
+    padding: 13px 12px 0 12px;
+}
+.content_bottom {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px; 
+    padding: 12px 12px 16px 12px;
+}
+.pet_category {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    border-radius: 0 16px 16px 0;
+    padding: 11px 22px 11px 12px;
+    background-color: #CCE4FB;
+}
+.contacts {
+    color: #FFC107;
+}
+
+@media screen and (min-width: 768px){
+    .content_top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 32px 32px 0 32px;
+    }
+    .pet_photo {
+        width: 262px;
+        height: 298px;
+    }
+    .advertisement {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        padding-right: 50px;
+    }
+    .advertisement_list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        /* align-items: center; */
+        gap: 50px;
+    }
+    .content_middle {
+        padding: 28px 32px 0 32px;
+    }
+    .content_bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: 17px; 
+        padding: 70px 32px 24px 32px;
+    }
+    .pet_category {
+        position: absolute;
+        top: 48px;
+        left: 32px;
+        border-radius: 0 16px 16px 0;
+    }
+}
