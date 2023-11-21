@@ -7,10 +7,13 @@ import AuthBar from './AuthBar/AuthBar';
 import MenuBtn from './MenuBtn/MenuBtn';
 import MobileMenu from './MobileMenu/MobileMenu';
 import useWindowWidth from '../../hooks/useWindowWidth';
-
+import LogoutBtn from './LogoutBtn/LogoutBtn';
+import { useAuth } from '../../hooks/useAuth';
 import { HeaderContainer, Container } from './Header.styled';
 
 const Header = () => {
+  const { isLoggedIn } = useAuth();
+
   const location = useLocation();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
@@ -30,6 +33,7 @@ const Header = () => {
 
       {isMobile && (
         <Container>
+          {isLoggedIn && !isOpenMenu && <AuthBar name={false} />}
           <MenuBtn
             isOpen={isOpenMenu}
             onClick={() => setIsOpenMenu(!isOpenMenu)}
@@ -39,7 +43,7 @@ const Header = () => {
 
       {isTablet && (
         <Container>
-          <AuthBar />
+          {isOpenMenu ? isLoggedIn ? <LogoutBtn /> : <AuthBar /> : <AuthBar />}
           <MenuBtn
             isOpen={isOpenMenu}
             onClick={() => setIsOpenMenu(!isOpenMenu)}
@@ -50,9 +54,14 @@ const Header = () => {
       {isDesktop && (
         <>
           <Navbar />
-          <Container>
+          {isLoggedIn ? (
             <AuthBar />
-          </Container>
+          ) : (
+            <Container>
+              <LogoutBtn />
+              <AuthBar />
+            </Container>
+          )}
         </>
       )}
 
