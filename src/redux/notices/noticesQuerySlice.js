@@ -1,12 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 const noticesQuerySlice = createSlice({
   name: 'query',
   initialState: {
     searchQuery: '',
-    category: '',
+    category: 'sell',
     filter: {
       upToOneYear: false,
       upToTwoYears: false,

@@ -3,9 +3,14 @@ import axios from 'axios';
 
 export const getNoticesThunk = createAsyncThunk(
   'notices/getNoticesThunk',
-  async (params, thunkAPI) => {
+  async (query, thunkAPI) => {
+    const { category, searchQuery, filter } = query;
+    const { upToOneYear, upToTwoYears, fromTwoYears, female, male } = filter;
+
+    const path = `/notices?category=${category}&search=${searchQuery}&upToOneYear=${upToOneYear}&upToTwoYears=${upToTwoYears}&fromTwoYears=${fromTwoYears}&female=${female}&male=${male}`;
+
     try {
-      const res = await axios.get('/notices', params);
+      const res = await axios.get(path);
 
       return res.data;
     } catch (error) {

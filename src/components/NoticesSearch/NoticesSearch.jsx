@@ -9,10 +9,12 @@ import {
   ButtonWrapper,
 } from './NoticesSearch.styled';
 import sprite from '../../images/icons/sprite.svg';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setSearchQuery } from 'redux/notices/noticesQuerySlice';
 
 function NoticesSearch() {
   const [query, setQuery] = useState('');
+  const dispatch = useDispatch();
 
   const handleInputChange = e => {
     setQuery(e.target.value);
@@ -20,16 +22,13 @@ function NoticesSearch() {
 
   const handleClearQuery = () => {
     setQuery('');
+    dispatch(setSearchQuery(''));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    axios('')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => console.error(error));
+
+    dispatch(setSearchQuery(query));
   };
 
   return (

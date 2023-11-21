@@ -1,3 +1,5 @@
+export const selectNotices = state => state.notices.items;
+
 export const selectQuery = state => state.query;
 
 export const selectSearchQuery = state => state.query.searchQuery;

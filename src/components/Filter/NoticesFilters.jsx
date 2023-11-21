@@ -8,7 +8,7 @@ import {
   FiltersBtn,
 } from './style/Filter.styled';
 
-export const Filter = () => {
+export const NoticesFilters = () => {
   const filterByAge = ['up to 1 year', 'up to 2 years', 'from 2 years'];
   const filterByGender = ['male', 'female'];
   const filters = {
