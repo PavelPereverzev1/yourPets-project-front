@@ -1,18 +1,28 @@
 import styled from 'styled-components';
+export const Form = styled.form`
+  width: 100%;
+`;
 
 export const RadioWrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
   gap: 12px;
 `;
 
 export const RadioButton = styled.input`
   position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: block;
+
+  opacity: 1;
 `;
 
 export const Label = styled.label`
+  position: relative;
   display: block;
 
   height: 35px;
