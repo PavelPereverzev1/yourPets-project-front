@@ -28,14 +28,14 @@ export const NoticesList = styled.ul`
 }
 `;
 
-// export const NotFoundPetsMessage = styled.p`
-//   color: #111111;
-//   font-weight: 700;
-//   font-size: 24px;
-//   margin: 40px auto;
-//   text-align: center;
+export const NotFoundPetsMessage = styled.p`
+  color: #111111;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 40px auto;
+  text-align: center;
 
-//   @media screen and (min-width: 768px) {
-//     font-size: 48px;
-//   }
-// `;
+  @media screen and (min-width: 768px) {
+    font-size: 48px;
+  }
+`;
