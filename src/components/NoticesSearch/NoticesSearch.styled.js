@@ -74,11 +74,11 @@ export const ButtonSearch = styled.button`
   cursor: pointer;
   position: absolute;
   top: 50%;
-  left: ${({ hasQuery }) => (hasQuery ? '225px' : '244px')};
+  left: ${({ hasquery }) => (hasquery ? '225px' : '244px')};
   transform: translateY(-50%);
 
   @media screen and (min-width: 768px) {
-    left: ${({ hasQuery }) => (hasQuery ? '240px' : '260px')};
+    left: ${({ hasquery }) => (hasquery ? '240px' : '260px')};
   }
 `;
 
