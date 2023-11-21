@@ -11,8 +11,8 @@ export const useAuth = () => {
   const user = useSelector(selectUser);
   const isRefreshing = useSelector(selectIsRefreshing);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const selIsLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const authError = useSelector(selectAuthError);
 
-  return { user, isRefreshing, isLoggedIn, selIsLoading, authError };
+  return { user, isRefreshing, isLoggedIn, isLoading, authError };
 };
