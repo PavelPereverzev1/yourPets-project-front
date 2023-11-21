@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FormContext } from '../AddPetForm';
 import {
   FormPersonalDetails,
   DetailWrapper,
   DetailInput,
   DetailLabel,
 } from './PersonalDetailsForm.styled';
+import BackgroundCard from '../BackgroundCard';
+import TitleComponent from '../../TitleComponent/TitleComponent';
+import StepsBlock from '../StepsBlock';
+import ButtonsBlock from '../ButtonsBlock';
 
-const PersonalDetailsForm = ({ formData, handleChange, handleSubmit }) => {
+const PersonalDetailsForm = () => {
+  const formProps = useContext(FormContext);
+  const {
+    formData,
+    handleChange,
+    currentStep,
+    totalSteps,
+    nextStep,
+    backStep,
+    handleSubmit,
+  } = formProps;
+
   return (
-    <div>
+    <BackgroundCard>
+      <TitleComponent name="Add pet" />
+      <StepsBlock step={currentStep} />
       <FormPersonalDetails onSubmit={handleSubmit}>
         {formData.category !== 'your pet' && (
           <DetailWrapper>
@@ -53,7 +71,14 @@ const PersonalDetailsForm = ({ formData, handleChange, handleSubmit }) => {
           />
         </DetailWrapper>
       </FormPersonalDetails>
-    </div>
+      <ButtonsBlock
+        currentStep={currentStep}
+        totalSteps={totalSteps}
+        nextStep={nextStep}
+        backStep={backStep}
+        handleSubmit={handleSubmit}
+      />
+    </BackgroundCard>
   );
 };
 

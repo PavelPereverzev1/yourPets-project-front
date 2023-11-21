@@ -5,9 +5,8 @@ import {
   SexPhotoblock,
   Sexblock,
   SexList,
-  SexItem,
+  SexBtn,
   IconSex,
-  NameSex,
   PhotoBlock,
   ImagePreview,
   PhotoInput,
@@ -23,20 +22,34 @@ import {
 
 const SellMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
   return (
-    <div>
+    <>
       <FormSellMoreDetails onSubmit={handleSubmit}>
         <SexPhotoblock className="sexPhotoblock">
           <Sexblock className="sexblock">
             <h3>The Sex</h3>
             <SexList>
-              <SexItem>
-                <IconSex></IconSex>
-                <NameSex>Female</NameSex>
-              </SexItem>
-              <SexItem>
-                <IconSex></IconSex>
-                <NameSex>Male</NameSex>
-              </SexItem>
+              <SexBtn
+                type="button"
+                name="sex"
+                value="female"
+                onClick={handleChange}
+              >
+                <IconSex>
+                  <use href={`${sprite}#icon-female`} />
+                </IconSex>
+                Female
+              </SexBtn>
+              <SexBtn
+                type="button"
+                name="sex"
+                value="male"
+                onClick={handleChange}
+              >
+                <IconSex>
+                  <use href={`${sprite}#icon-male`} />
+                </IconSex>
+                Male
+              </SexBtn>
             </SexList>
           </Sexblock>
           <PhotoBlock>
@@ -90,7 +103,7 @@ const SellMoreDetailsForm = ({ formData, handleChange, handleSubmit }) => {
           </DetailWrapper>
         </LocationPriceBlock>
       </FormSellMoreDetails>
-    </div>
+    </>
   );
 };
 
