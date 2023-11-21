@@ -1,15 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import ButtonComponent from 'components/ButtonComponent/ButtonComponent';
+import { ContactButton } from './Contact.styled';
 
-const Contact = ({ categoryItem }) => {
+const Contact = ({ notice }) => {
   return (
-    <ButtonComponent width={129}>
-      <Link className="contact" to={`tel:${categoryItem.phone}`}>
-        Contact
-      </Link>
-    </ButtonComponent>
+    <ContactButton>
+      <Link to={`tel:${notice.phone}`}>Contact</Link>
+    </ContactButton>
   );
 };
 
