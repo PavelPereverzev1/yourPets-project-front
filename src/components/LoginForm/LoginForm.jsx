@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
@@ -41,7 +42,7 @@ const schema = yup.object().shape({
     .max(16, 'Password must not exceed 16 characters.')
     .matches(
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,16}$/,
-      'Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 digit.'
+      'At least 1 uppercase letter, 1 lowercase letter, and 1 digit.'
     )
     .required('Password is required.'),
 });
@@ -56,6 +57,8 @@ const passwordInputId = nanoid();
 
 const LoginForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const navigate = useNavigate();
 
   const { isLoading } = useAuth();
   const dispatch = useDispatch();
@@ -72,6 +75,8 @@ const LoginForm = () => {
       }
 
       resetForm();
+
+      navigate('/user');
     } catch (error) {
       const { message } = error;
 

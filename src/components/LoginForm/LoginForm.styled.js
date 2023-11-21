@@ -20,8 +20,9 @@ export const LogForm = styled(Form)`
 `;
 
 export const Title = styled.h1`
-  font-weight: 600;
   margin-bottom: 15px;
+
+  font-weight: 600;
 `;
 
 export const Label = styled.label`
@@ -35,14 +36,15 @@ export const Label = styled.label`
 
 export const Input = styled(Field)`
   font-weight: 600;
+
   width: 500px;
   height: 25px;
 `;
 
 export const Button = styled.button`
-  font-weight: 600;
   width: 100px;
   height: 30px;
+  font-weight: 600;
   border-radius: 4px;
   background-color: rgb(63, 81, 181);
   text-align: center;
