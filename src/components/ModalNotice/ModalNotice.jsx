@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react'; // видалив імпорт useState додаш коли виправиш закоментоване
 import { Link } from 'react-router-dom';
 import css from './ModalNotice.module.css';
 
@@ -9,14 +9,14 @@ import Contact from 'components/Contact/Contact';
 import petImg from '../../images/pets/pet-photo-example.png';
 
 const ModalNotice = ({ active, setActive, item }) => {
-  const id = item.id;
-  const [notice, setNotice] = useState(null);
+  // const id = item.id;
+  // const [notice, setNotice] = useState(null);
   useEffect(() => {
     const getData = async () => {
       try {
         // const data = await getNoticesAPI();
-        const data = await getNoticesDetailsAPI(id);
-        setNotice(data);
+        // const data = await getNoticesDetailsAPI(id);
+        // setNotice(data);
       } catch (error) {
         console.log('error :>> ', error);
       }
