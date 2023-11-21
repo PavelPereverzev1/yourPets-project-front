@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'; // видалив імпорт useState додаш коли виправиш закоментоване
+import React, { useEffect, useState } from 'react'; 
 import { Link } from 'react-router-dom';
 import css from './ModalNotice.module.css';
 
@@ -10,14 +10,14 @@ import getNoticesDetailsAPI from '../../services/noticesAPI';
 // import petImg from '../../images/pets/pet-photo-example.png';
 
 const ModalNotice = ({ active, setActive, item }) => {
-  // const id = item.id;
-  // const [notice, setNotice] = useState(null);
+  const id = item.id;
+  const [notice, setNotice] = useState(null);
   useEffect(() => {
     const getData = async () => {
       try {
         // const data = await getNoticesAPI();
-        // const data = await getNoticesDetailsAPI(id);
-        // setNotice(data);
+        const data = await getNoticesDetailsAPI(id);
+        setNotice(data);
       } catch (error) {
         console.log('error :>> ', error);
       }
@@ -47,7 +47,7 @@ const ModalNotice = ({ active, setActive, item }) => {
         <img className={css.pet_photo} src={notice.img} alt="#" />
         <p className={css.pet_category}>{notice.category}</p>
         <div className={css.advertisement}>
-          <h1>{categoryItem.header}</h1>
+          {/* <h1>{categoryItem.header}</h1> */}
           <div className={css.advertisement_list}>
             <ul className="advertisement-list-left">
               <li>Name:</li>
@@ -67,7 +67,7 @@ const ModalNotice = ({ active, setActive, item }) => {
               <li>
                 <Link
                   className={css.contacts}
-                  to={`mailto:${categoryItem.email}`}
+                  // to={`mailto:${categoryItem.email}`}
                 >
                   {notice.email}
                 </Link>
