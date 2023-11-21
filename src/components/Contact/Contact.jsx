@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 import { ContactButton } from './Contact.styled';
 
-const Contact = ({ categoryItem }) => {
+const Contact = ({ notice }) => {
   return (
     <ContactButton>
-      <Link to={`tel:${categoryItem.phone}`}>Contact</Link>
+      <Link to={`tel:${notice.phone}`}>Contact</Link>
     </ContactButton>
   );
 };
