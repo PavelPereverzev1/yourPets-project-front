@@ -1,25 +1,26 @@
 // import React from 'react'
-// import { NoticesList, NotFoundPetsMessage } from './NoticesCategoriesList.styled';
-// // await import item
+import { useSelector } from 'react-redux';
+import { NoticesList } from './NoticesCategoriesList.styled';
+import { selectNotices } from 'redux/notices/noticesSelectors';
+import { useEffect } from 'react';
+import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 
-// const NoticesCategoriesList = () => {
-// // select items from redux state
-//   return (
-//     <>
-//         <NoticesList>
-//           {notice.length > 0 ? (
-//             notice.map(item => (
-//               <NoticeCategoryItem
-//               key={notice.id}
-//               >
-//               </NoticeCategoryItem>
-//             ))
-//           ) : (
-//             <NotFoundPetsMessage>Cant find pets, reload page or try again later</NotFoundPetsMessage>
-//           )}
-//         </NoticesList>
-//     </>
-//   );
-// };
+const NoticesCategoriesList = () => {
+  // select items from redux state
 
-// export default NoticesCategoriesList;
+  const notices = useSelector(selectNotices);
+
+  useEffect(() => {
+    console.log(notices);
+  }, [notices]);
+
+  return (
+    <>
+      <NoticesList>
+        <NoticeCategoryItem data={notices} />
+      </NoticesList>
+    </>
+  );
+};
+
+export default NoticesCategoriesList;
