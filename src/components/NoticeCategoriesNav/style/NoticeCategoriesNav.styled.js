@@ -58,5 +58,11 @@ const StyledNavLink = styled(NavLink)`
     color: #fef9f9;
   }
 `;
+const NoticeNavContainer = styled.div`
+  align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+`;
 
-export { NavElements, NavList, NavElement, StyledNavLink };
+export { NavElements, NavList, NavElement, StyledNavLink, NoticeNavContainer };
