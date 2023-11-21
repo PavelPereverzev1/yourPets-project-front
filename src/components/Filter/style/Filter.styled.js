@@ -29,6 +29,8 @@ const MainFilterBtn = styled.div`
   cursor: pointer;
   transition: background-color 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
   @media screen and (min-width: 768px) {
+    top: 0;
+    right: 0;
     position: relative;
     box-sizing: border-box;
     width: 152px;
