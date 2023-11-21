@@ -8,19 +8,22 @@ import Contact from 'components/Contact/Contact';
 
 import petImg from '../../images/pets/pet-photo-example.png';
 
-const ModalNotice = ({ active, setActive }) => {
-  // const [pet, setPet] = useState(null);
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const data = await getPetsDetails(id);
-  //       setItem(data);
-  //     } catch (error) {
-  //       console.log('error :>> ', error);
-  //     }
-  //   };
-  //   getData();
-  // }, [id]);
+const ModalNotice = ({ active, setActive, item }) => {
+  const id = item.id;
+  const [notice, setNotice] = useState(null);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        // const data = await getNoticesAPI();
+        const data = await getNoticesDetailsAPI(id);
+        setNotice(data);
+      } catch (error) {
+        console.log('error :>> ', error);
+      }
+    };
+    getData();
+    console.log(getData);
+  }, []);
 
   const categoryItem = {
     name: 'Rich',
