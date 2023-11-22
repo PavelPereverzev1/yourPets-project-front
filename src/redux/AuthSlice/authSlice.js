@@ -15,6 +15,7 @@ const initialState = {
   isFirstLoggedIn: false,
   isRefreshing: false,
   isLoading: false,
+  isUserDataLoaded: false,
   authError: null,
 };
 
@@ -63,6 +64,7 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
         state.isLoading = false;
+        state.isUserDataLoaded = false;
       })
       .addCase(logOut.rejected, handleRejected)
       .addCase(refreshUser.pending, state => {
@@ -72,6 +74,7 @@ const authSlice = createSlice({
         state.user = { ...state.user, ...action.payload.user };
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.isUserDataLoaded = true;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
@@ -99,3 +102,5 @@ export const selectIsLoading = state => state.auth.isLoading;
 export const selectAuthError = state => state.auth.authError;
 
 export const selectIsFirstLoggedIn = state => state.auth.isFirstLoggedIn;
+
+export const selectIsUserDataLoaded = state => state.auth.isUserDataLoaded;

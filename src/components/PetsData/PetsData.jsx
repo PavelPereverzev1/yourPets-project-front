@@ -5,7 +5,7 @@ const PetsData = () => {
   return (
     <Section>
       <Title>My pets:</Title>
-      <PetsList />
+      {/* <PetsList /> */}
     </Section>
   );
 };

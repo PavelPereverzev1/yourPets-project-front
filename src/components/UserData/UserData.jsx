@@ -14,7 +14,7 @@ import { LuPencilLine } from 'react-icons/lu';
 import { GrClose } from 'react-icons/gr';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/AuthSlice';
+import { selectIsUserDataLoaded, selectUser } from 'redux/AuthSlice';
 import { refreshUser, updateUser } from 'redux/AuthSlice/operations';
 import LogoutBtn from 'components/Header/LogoutBtn/LogoutBtn';
 import { validateUserSchema } from 'helpers/validateUserSchema';
@@ -30,7 +30,9 @@ const UserData = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshUser());
+    if (!selectIsUserDataLoaded) {
+      dispatch(refreshUser());
+    }
   }, [dispatch]);
 
   const fileInputRef = useRef();
