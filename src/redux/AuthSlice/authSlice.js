@@ -5,6 +5,7 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
+  isFirstLoggedIn: false,
   isRefreshing: false,
   isLoading: false,
   authError: null,
@@ -31,6 +32,7 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isLoading = false;
+        state.isFirstLoggedIn = true;
       })
       .addCase(register.rejected, handleRejected)
       .addCase(logIn.pending, handlePending)
@@ -75,3 +77,5 @@ export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selectIsLoading = state => state.auth.isLoading;
 
 export const selectAuthError = state => state.auth.authError;
+
+export const selectIsFirstLoggedIn = state => state.auth.isFirstLoggedIn;

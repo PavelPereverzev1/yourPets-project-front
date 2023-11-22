@@ -17,6 +17,7 @@ import { queryReducer } from './notices/noticesQuerySlice';
 const authPersistConfig = {
   key: 'auth',
   storage,
+  blacklist: ['isFirstLoggedIn'],
 };
 
 export const store = configureStore({
