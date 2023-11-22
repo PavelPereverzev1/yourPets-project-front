@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
@@ -74,7 +74,7 @@ const RegisterForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { isLoading } = useAuth();
   const dispatch = useDispatch();
@@ -92,7 +92,7 @@ const RegisterForm = () => {
 
       resetForm();
 
-      navigate('/user');
+      // navigate('/user');
     } catch (error) {
       const { message } = error;
 
