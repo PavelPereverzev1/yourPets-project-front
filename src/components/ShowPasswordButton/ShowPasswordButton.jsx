@@ -1,15 +1,16 @@
+import PropTypes from 'prop-types';
 import sprite from 'images/icons/sprite.svg';
 import { EyeBtn, Svg, Use } from './ShowPasswordButton.styled';
 
-const ShowPasswordButton = ({ isOpen, onClick, disabled = false, stroke = "var(--blueLink)" }) => {
+const ShowPasswordButton = ({ isOpen, onClick }) => {
   return (
-    <EyeBtn type="button" disabled={disabled} onClick={onClick}>
+    <EyeBtn type="button" onClick={onClick}>
       {isOpen ? (
-        <Svg stroke={stroke}>
+        <Svg>
           <Use href={`${sprite}#icon-eye-open`} />
         </Svg>
       ) : (
-        <Svg stroke={stroke}>
+        <Svg>
           <Use href={`${sprite}#icon-eye-closed`} />
         </Svg>
       )}
@@ -18,3 +19,8 @@ const ShowPasswordButton = ({ isOpen, onClick, disabled = false, stroke = "var(-
 };
 
 export default ShowPasswordButton;
+
+ShowPasswordButton.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

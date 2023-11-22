@@ -21,7 +21,7 @@ export const Svg = styled.svg`
   width: 100%;
   height: 100%;
 
-  stroke: ${({ stroke }) => stroke};
+  stroke: var(--blueLink);
 `;
 
 export const Use = styled.use``;

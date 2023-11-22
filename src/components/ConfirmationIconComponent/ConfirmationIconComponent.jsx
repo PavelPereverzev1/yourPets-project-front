@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import sprite from 'images/icons/sprite.svg';
 import { ConfirmationSvg, Use } from './ConfirmationIconComponent.styled';
 
@@ -10,3 +11,7 @@ const ConfirmationIconComponent = ({ positionRight = 16 }) => {
 };
 
 export default ConfirmationIconComponent;
+
+ConfirmationIconComponent.propTypes = {
+  positionRight: PropTypes.number,
+};

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useField } from 'formik';
 import sprite from 'images/icons/sprite.svg';
 import { ClearBtn, Svg, Use } from './ClearInputFieldButton.styled';
@@ -23,3 +24,8 @@ const ClearInputFieldButton = ({ name, positionRight = 16 }) => {
 };
 
 export default ClearInputFieldButton;
+
+ClearInputFieldButton.propTypes = {
+  name: PropTypes.string.isRequired,
+  positionRight: PropTypes.number,
+};

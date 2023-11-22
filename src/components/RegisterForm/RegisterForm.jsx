@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
@@ -21,6 +21,7 @@ import {
   Button,
   ExtraText,
   ErrorText,
+  PasswordSecureText,
   LinkToLogin,
 } from './RegisterForm.styled';
 
@@ -41,7 +42,10 @@ const schema = yup.object().shape({
     .required('Name is required.'),
   email: yup
     .string()
-    .email('Example: dmytro@gmail.com')
+    .matches(
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+      'Example: user@gmail.com'
+    )
     .required('Email is required.'),
   password: yup
     .string()
@@ -74,7 +78,7 @@ const RegisterForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { isLoading } = useAuth();
   const dispatch = useDispatch();
@@ -92,7 +96,7 @@ const RegisterForm = () => {
 
       resetForm();
 
-      navigate('/user');
+      // navigate('/user');
     } catch (error) {
       const { message } = error;
 
@@ -175,22 +179,15 @@ const RegisterForm = () => {
               {touched.password && errors.password && (
                 <ClearInputFieldButton name="password" positionRight={46} />
               )}
-              {touched.password && !errors.password ? (
-                <>
-                  {setPasswordVisible(false)}
-                  <ConfirmationIconComponent positionRight={46} />
-                  <ShowPasswordButton
-                    stroke="var(--gray)"
-                    isOpen={passwordVisible}
-                    onClick={togglePasswordVisibility}
-                    disabled
-                  />
-                </>
-              ) : (
-                <ShowPasswordButton
-                  isOpen={passwordVisible}
-                  onClick={togglePasswordVisibility}
-                />
+              {touched.password && !errors.password && (
+                <ConfirmationIconComponent positionRight={46} />
+              )}
+              <ShowPasswordButton
+                isOpen={passwordVisible}
+                onClick={togglePasswordVisibility}
+              />
+              {touched.password && !errors.password && !passwordVisible && (
+                <PasswordSecureText>Password is secure.</PasswordSecureText>
               )}
               <FormError name="password" />
             </Label>
@@ -221,6 +218,11 @@ const RegisterForm = () => {
                 isOpen={confirmPasswordVisible}
                 onClick={toggleConfirmPasswordVisibility}
               />
+              {touched.confirmPassword &&
+                !errors.confirmPassword &&
+                !confirmPasswordVisible && (
+                  <PasswordSecureText>Password is secure.</PasswordSecureText>
+                )}
               <FormError name="confirmPassword" />
             </Label>
 
