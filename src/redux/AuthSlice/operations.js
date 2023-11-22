@@ -77,12 +77,23 @@ export const refreshUser = createAsyncThunk(
       setAuthHeader(persistedToken);
 
       const response = await axios.get('/users/current');
-
       return response.data;
     } catch {
       return thunkAPI.rejectWithValue(
         'Failed to update the page with your data. Please refresh the page or try again later.'
       );
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  'auth/update',
+  async (formData, thunkAPI) => {
+    try {
+      const res = await axios.patch('/users', formData);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

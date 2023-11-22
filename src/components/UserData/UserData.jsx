@@ -9,29 +9,65 @@ import {
   UploadBtn,
   UploadInput,
 } from './UserData.styled';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { LuPencilLine } from 'react-icons/lu';
 import { GrClose } from 'react-icons/gr';
+import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from 'redux/AuthSlice';
+import { refreshUser, updateUser } from 'redux/AuthSlice/operations';
+import LogoutBtn from 'components/Header/LogoutBtn/LogoutBtn';
+import { validateUserSchema } from 'helpers/validateUserSchema';
 
-const defaultAvatarUrl = '/yourPets-project-front/defaultAvatar.png';
+// const defaultAvatarUrl = '/yourPets-project-front/defaultAvatar.png';
 
 const UserData = () => {
-  const [isEditFormInactive, setisEditFormInactive] = useState(true);
-  const [avatarUrl, setAvatarUrl] = useState(defaultAvatarUrl);
+  const [isEditFormInactive, setIsEditFormInactive] = useState(true);
+  const [uploadAvatarURL, setUploadAvatarURL] = useState(null);
   const [uploadedAvatar, setUploadedAvatar] = useState(false);
 
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   const fileInputRef = useRef();
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    const file = fileInputRef.current?.files[0];
-    console.log(file);
-    if (file) {
+  const formik = useFormik({
+    initialValues: {
+      name: user.name,
+      email: user.email,
+      birthday: user.birthday,
+      phone: user.phone,
+      city: user.city,
+    },
+    validationSchema: validateUserSchema,
+    onSubmit: async values => {
       const formData = new FormData();
-      formData.append('avatar', file);
-    }
-    fileInputRef.current.value = null;
+
+      for (const key in values) {
+        formData.append(key, values[key]);
+      }
+
+      if (fileInputRef.current.files[0]) {
+        const file = fileInputRef.current.files[0];
+        formData.append('avatar', file);
+        fileInputRef.current.value = null;
+      }
+
+      const res = await dispatch(updateUser(formData));
+
+      if (updateUser.fulfilled.match(res)) {
+        setIsEditFormInactive(true);
+        return;
+      }
+      alert('database error, please try again later');
+    },
+  });
+
+  const handleAvatarConfirm = e => {
+    e.preventDefault();
     setUploadedAvatar(false);
   };
 
@@ -40,13 +76,13 @@ const UserData = () => {
 
     if (file) {
       const newAvatarUrl = URL.createObjectURL(file);
-      setAvatarUrl(newAvatarUrl);
+      setUploadAvatarURL(newAvatarUrl);
       setUploadedAvatar(true);
     }
   };
 
   const handleAvatarRemove = () => {
-    setAvatarUrl(defaultAvatarUrl);
+    setUploadAvatarURL(null);
     setUploadedAvatar(false);
     fileInputRef.current.value = null;
   };
@@ -57,12 +93,12 @@ const UserData = () => {
       <Card>
         <CardBtn
           as={isEditFormInactive ? LuPencilLine : GrClose}
-          onClick={() => setisEditFormInactive(!isEditFormInactive)}
+          onClick={() => setIsEditFormInactive(!isEditFormInactive)}
         />
         <AvatarContainer>
-          <Avatar src={avatarUrl} alt="User avatar" />
+          <Avatar src={uploadAvatarURL ?? user.avatarURL} alt="User avatar" />
           {!isEditFormInactive && (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleAvatarConfirm}>
               <UploadInput
                 id="file-upload"
                 type="file"
@@ -84,9 +120,8 @@ const UserData = () => {
             </form>
           )}
         </AvatarContainer>
-        <UserForm
-          formStatusIndicator={{ isEditFormInactive, setisEditFormInactive }}
-        />
+        <UserForm isEditFormInactive={isEditFormInactive} formik={formik} />
+        <LogoutBtn />
       </Card>
     </Section>
   );

@@ -15,8 +15,6 @@ const PetsList = () => {
     getMyPets();
   }, []);
 
-  console.log(myPets);
-
   return (
     <List>
       {myPets.map(pet => {
