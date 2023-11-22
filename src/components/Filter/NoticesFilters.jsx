@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FilterCategories } from './components/FilterCategories';
 import {
-  Container,
   FilterContainer,
   MainFilterBtn,
   FiltrSpan,
@@ -30,7 +29,7 @@ export const NoticesFilters = () => {
     });
   };
   return (
-    <Container>
+    <>
       <MainFilterBtn onClick={() => setDisplay(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +55,6 @@ export const NoticesFilters = () => {
           ))}
         </FilterContainer>
       )}
-    </Container>
+    </>
   );
 };

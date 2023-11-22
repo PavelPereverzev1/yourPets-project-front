@@ -11,11 +11,11 @@ export default function Modal({ active, setActive, children }) {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
+    // document.body.style.overflow = 'hidden';
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'visible';
+      // document.body.style.overflow = 'visible';
     };
   }, [setActive]);
   return (
