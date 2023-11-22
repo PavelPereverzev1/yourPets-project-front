@@ -5,7 +5,7 @@ import ChooseOptionForm from './Step1/ChooseOptionForm';
 import PersonalDetailsForm from './Step2/PersonalDetailsForm';
 import MoreDetailsForm from './Step3/MoreDetailsForm';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 export const FormContext = createContext();
 
@@ -24,57 +24,94 @@ function AddPetForm() {
     isError: 'false',
   };
   const [formData, setFormData] = useState(initialFormData);
-  const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 3; // need to be update with actual number of forms
+  const [currentStep, setCurrentStep] = useState(0);
+  // const totalSteps = 3; // need to be update with actual number of forms
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    console.log(formData);
+  const makeRequest = formData => {
+    console.log('Form Submitted', formData);
   };
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:3001/form', formData);
-      if (response.data.success) {
-        alert('Data sent successfully');
-      }
-    } catch (error) {
-      console.error('Error sending data', error);
+  const handleNextStep = (newData, final = false) => {
+    setFormData(prev => ({ ...prev, ...newData }));
+
+    if (final) {
+      makeRequest(newData);
+      return;
     }
-
-    console.log('Спрацював сабміт:', formData);
-    setFormData(initialFormData);
+    setCurrentStep(prev => prev + 1);
   };
 
-  const nextStep = () => {
-    setCurrentStep(currentStep + 1);
-    console.log(formData);
+  const handleBackStep = newData => {
+    setFormData(prev => ({ ...prev, ...newData }));
+    setCurrentStep(prev => prev - 1);
   };
+  const steps = [
+    <ChooseOptionForm next={handleNextStep} data={formData} />,
+    <PersonalDetailsForm
+      next={handleNextStep}
+      prev={handleBackStep}
+      data={formData}
+    />,
+    <MoreDetailsForm
+      next={handleNextStep}
+      prev={handleBackStep}
+      data={formData}
+    />,
+  ];
 
-  const backStep = () => {
-    setCurrentStep(currentStep - 1);
-    console.log(formData);
-  };
+  console.log('data:', formData);
+  // const handleSubmit = async e => {
+  //     e.preventDefault();
+  //     try {
+  //       const response = await axios.post(
+  //         'http://localhost:3001/form',
+  //         formData
+  //       );
+  //       if (response.data.success) {
+  //         alert('Data sent successfully');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error sending data', error);
+  //     }
 
-  const formProps = {
-    formData,
-    handleChange,
-    currentStep,
-    totalSteps,
-    nextStep,
-    backStep,
-    handleSubmit,
-  };
+  //     console.log('Спрацював сабміт:', formData);
+  //     setFormData(initialFormData);
+  // };
+
+  // const handleChange = e => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  //   console.log(formData);
+  // };
+
+  // const nextStep = () => {
+  //   setCurrentStep(currentStep + 1);
+  //   console.log(formData);
+  // };
+
+  // const backStep = () => {
+  //   setCurrentStep(currentStep - 1);
+  //   console.log(formData);
+  // };
+
+  // const formProps = {
+  //   formData,
+  //   handleChange,
+  //   currentStep,
+  //   totalSteps,
+  //   nextStep,
+  //   backStep,
+  //   handleSubmit,
+  // };
 
   return (
     <BackgroundImg>
-      <FormContext.Provider value={formProps}>
+      {steps[currentStep]}
+      {/* <FormContext.Provider value={formProps}>
         {currentStep === 1 && <ChooseOptionForm />}
         {currentStep === 2 && <PersonalDetailsForm />}
         {currentStep === 3 && <MoreDetailsForm />}
-      </FormContext.Provider>
+      </FormContext.Provider> */}
     </BackgroundImg>
   );
 }
