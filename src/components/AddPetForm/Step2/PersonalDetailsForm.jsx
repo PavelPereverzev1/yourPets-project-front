@@ -1,10 +1,10 @@
-import { Form, Formik, Field, ErrorMessage } from 'formik';
+import { Form, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import React from 'react';
 // import { FormContext } from '../AddPetForm';
 // import { temporaryBox } from './PersonalDetailsForm.styled';
 import {
-  FormPersonalDetails,
+  // FormPersonalDetails,
   DetailWrapper,
   DetailInput,
   DetailLabel,
