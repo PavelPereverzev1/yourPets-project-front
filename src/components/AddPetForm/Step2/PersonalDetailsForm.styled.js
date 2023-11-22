@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form as FormikForm, Formik, Field, ErrorMessage } from 'formik';
+import { Form as FormikForm, Field} from 'formik';
 
 export const temporaryBox = styled.div`
   display: flex;
