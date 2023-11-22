@@ -25,7 +25,6 @@ function AddPetForm() {
   };
   const [formData, setFormData] = useState(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
-  // const totalSteps = 3; // need to be update with actual number of forms
 
   const makeRequest = formData => {
     console.log('Form Submitted', formData);
