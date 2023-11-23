@@ -70,7 +70,7 @@ export const GlobalStyle = createGlobalStyle`
       'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; */
-    font-family: 'Manrope';
+    font-family: 'Manrope'; 
     background-color: var(--background);
     color: var(--black);
   }
