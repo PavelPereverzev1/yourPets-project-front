@@ -1,7 +1,11 @@
-
+import TitleComponent from "components/TitleComponent/TitleComponent";
+import NoticesSearch from "components/NoticesSearch/NoticesSearch";
 const NewsPage = () => {
   return (
-    <div>News</div>
+    <>
+   <TitleComponent name="News"/>
+   <NoticesSearch />
+  </>
   );
 };
 
