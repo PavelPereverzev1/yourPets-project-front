@@ -3,50 +3,151 @@ import { styled } from 'styled-components';
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
+  gap: 18px;
+
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+  }
 `;
 
 export const Title = styled.h2`
-  font-size: 1.75rem;
-  font-style: normal;
+  font-size: 20px;
   font-weight: 500;
   line-height: normal;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
 `;
 
 export const Card = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  width: 24.6875rem;
-  height: 32.5rem;
-
-  border-radius: 2.5rem;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px 8px 25px 8px;
+  border-radius: 20px;
   background: var(--white);
+  box-shadow: var(--boxShadowDefault);
 
-  /* Shadow default */
-  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 71px;
+    padding: 20px 20px 16px 20px;
+    min-height: 270px;
+    border-radius: 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    width: 395px;
+    height: 520px;
+  }
 `;
 
 export const CardBtn = styled.button`
   position: absolute;
-  top: 1.13rem;
-  right: 1.13rem;
-  color: var(--blueLink);
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
   cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    top: 18px;
+    right: 18px;
+  }
 `;
 
-export const AvatarContainer = styled.div``;
+export const EditIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  fill: var(--blueLink);
+`;
+
+export const CloseIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  stroke: var(--blueLink);
+`;
+
+export const AvatarContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  height: 224px;
+`;
+
+export const Thumb = styled.div`
+  width: 182px;
+  height: 182px;
+  border-radius: 40px;
+  overflow: hidden;
+`;
 
 export const Avatar = styled.img`
-  width: 11.375rem;
-  height: 11.375rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const UploadBtn = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.48px;
   cursor: pointer;
 `;
 
 export const UploadInput = styled.input`
   display: none;
+`;
+
+export const CameraIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  stroke: var(--blueLink);
+`;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+export const ConfirmBtn = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.48px;
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+
+export const ConfirmIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  stroke: var(--blueLink);
+`;
+
+export const RemoveBtn = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+
+export const RemoveIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  stroke: var(--red);
 `;

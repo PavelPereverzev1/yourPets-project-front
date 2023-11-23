@@ -1,31 +1,62 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  width: ${props => props.width || '248px'};
-  height: 38px;
-  color: #54adff;
-  background-color: transparent;
-  cursor: pointer;
-  border: 2px solid #54adff;
-  border-radius: 40px;
-  font-family: Manrope, sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.36;
-  letter-spacing: 0.3px;
-  transition: background-image 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
-  gap: 8px;
   justify-content: center;
   align-items: center;
-  fill: white;
-  stroke: #54adff;
+  gap: 8px;
+  width: ${props => props.width || '248px'};
+  height: ${props => props.height || '38px'};
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.64px;
+  color: var(--blueLink);
+  background-color: transparent;
+  border: 2px solid var(--blueLink);
+  border-radius: 40px;
+  fill: var(--white);
+  stroke: var(--blueLink);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+    fill var(--transition), stroke var(--transition);
+
   &:hover,
   &:focus {
-    background-image: linear-gradient(to left, #419ef1, #9bd0ff);
-    color: #fef9f9;
-    fill: #54adff;
-    stroke: white;
+    border: none;
+    background-image: var(--blueGradient);
+    background-color: var(--blueLink);
+    color: var(--background);
+    fill: var(--blueLink);
+    stroke: var(--white);
   }
+`;
+
+export const FilledButton = styled(Button)`
+  color: var(--white);
+  background-color: var(--blueLink);
+  border: none;
+  fill: var(--blueLink);
+  stroke: var(--white);
+  transition: background-color var(--transition), color var(--transition),
+    fill var(--transition), stroke var(--transition);
+
+  &:hover,
+  &:focus {
+    background-image: var(--blueGradient);
+    color: var(--background);
+    fill: var(--white);
+    stroke: var(--blueLink);
+  }
+
+  &:disabled {
+    background-color: var(--blueLight);
+    pointer-events: none;
+  }
+`;
+
+export const RoundButton = styled(FilledButton)`
+  flex-direction: column;
+  width: 80px;
+  height: 80px;
 `;
