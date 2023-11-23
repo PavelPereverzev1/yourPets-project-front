@@ -1,4 +1,5 @@
 import UserForm from 'components/UserForm/UserForm';
+import sprite from 'images/icons/sprite.svg';
 import {
   CardBtn,
   Card,
@@ -8,18 +9,21 @@ import {
   Avatar,
   UploadBtn,
   UploadInput,
+  EditIcon,
+  CloseIcon,
+  Thumb,
+  CameraIcon,
+  ConfirmBtn,
+  BtnWrapper,
+  RemoveBtn,
+  RemoveIcon,
 } from './UserData.styled';
 import { useEffect, useRef, useState } from 'react';
-import { LuPencilLine } from 'react-icons/lu';
-import { GrClose } from 'react-icons/gr';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsUserDataLoaded, selectUser } from 'redux/AuthSlice';
 import { refreshUser, updateUser } from 'redux/AuthSlice/operations';
-import LogoutBtn from 'components/Header/LogoutBtn/LogoutBtn';
 import { validateUserSchema } from 'helpers/validateUserSchema';
-
-// const defaultAvatarUrl = '/yourPets-project-front/defaultAvatar.png';
 
 const UserData = () => {
   const [isEditFormInactive, setIsEditFormInactive] = useState(true);
@@ -93,12 +97,25 @@ const UserData = () => {
     <Section>
       <Title>My information:</Title>
       <Card>
-        <CardBtn
-          as={isEditFormInactive ? LuPencilLine : GrClose}
-          onClick={() => setIsEditFormInactive(!isEditFormInactive)}
-        />
+        <CardBtn onClick={() => setIsEditFormInactive(!isEditFormInactive)}>
+          {isEditFormInactive ? (
+            <EditIcon>
+              <use href={`${sprite}#icon-edit-2`} />
+            </EditIcon>
+          ) : (
+            <CloseIcon>
+              <use href={`${sprite}#icon-cross-small`} />
+            </CloseIcon>
+          )}
+        </CardBtn>
         <AvatarContainer>
-          <Avatar src={uploadAvatarURL ?? user.avatarURL} alt="User avatar" />
+          <Thumb>
+            <Avatar
+              src={uploadAvatarURL ?? user.avatarURL}
+              alt="User avatar"
+              loading="lazy"
+            />
+          </Thumb>
           {!isEditFormInactive && (
             <form onSubmit={handleAvatarConfirm}>
               <UploadInput
@@ -110,20 +127,31 @@ const UserData = () => {
                 ref={fileInputRef}
               />
               {uploadedAvatar ? (
-                <>
-                  <button type="submit">Confirm</button>
-                  <button type="button" onClick={handleAvatarRemove}>
-                    X
-                  </button>
-                </>
+                <BtnWrapper>
+                  <ConfirmBtn type="submit">
+                    <CameraIcon>
+                      <use href={`${sprite}#icon-check`} />
+                    </CameraIcon>
+                    Confirm
+                  </ConfirmBtn>
+                  <RemoveBtn type="button" onClick={handleAvatarRemove}>
+                    <RemoveIcon>
+                      <use href={`${sprite}#icon-cross-small`} />
+                    </RemoveIcon>
+                  </RemoveBtn>
+                </BtnWrapper>
               ) : (
-                <UploadBtn htmlFor="file-upload">Edit Photo</UploadBtn>
+                <UploadBtn htmlFor="file-upload">
+                  <CameraIcon>
+                    <use href={`${sprite}#icon-camera`} />
+                  </CameraIcon>
+                  Edit Photo
+                </UploadBtn>
               )}
             </form>
           )}
         </AvatarContainer>
         <UserForm isEditFormInactive={isEditFormInactive} formik={formik} />
-        <LogoutBtn />
       </Card>
     </Section>
   );
