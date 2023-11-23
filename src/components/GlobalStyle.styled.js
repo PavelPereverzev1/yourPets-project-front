@@ -13,6 +13,9 @@ export const GlobalStyle = createGlobalStyle`
     --green: #00C3AD;
     --gray: #888888;
     --white: #FFFFFF;
+    --boxShadowDefault: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+    --boxShadowHover: 7px 13px 14px 0px rgba(116, 177, 232, 0.24);
+    --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1)
   }
 
   * {
