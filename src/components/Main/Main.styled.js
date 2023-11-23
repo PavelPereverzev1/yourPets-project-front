@@ -50,6 +50,5 @@ export const MainPetsPicture = styled.img`
   }
   @media screen and (min-width: 1200px) {
     position: static;
-    width: auto;
   }
 `;
