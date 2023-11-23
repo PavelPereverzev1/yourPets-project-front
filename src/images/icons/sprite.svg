@@ -55,7 +55,7 @@
 <path fill="none" stroke="#54adff" style="stroke: var(--color1, #54adff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M20.17 14.72c0 2.121-1.719 3.84-3.84 3.84s-3.84-1.719-3.84-3.84c0-2.121 1.719-3.84 3.84-3.84s3.84 1.719 3.84 3.84z"></path>
 </symbol>
 <symbol id="icon-logout" viewBox="0 0 32 32">
-<path fill="none" stroke="#fef9f9" style="stroke: var(--color1, #fef9f9)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M18.667 5.333h5.333c1.473 0 2.667 1.194 2.667 2.667v16c0 1.473-1.194 2.667-2.667 2.667h-5.333M4 16h16M4 16l5.333-5.333M4 16l5.333 5.333"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M18.667 5.333h5.333c1.473 0 2.667 1.194 2.667 2.667v16c0 1.473-1.194 2.667-2.667 2.667h-5.333M4 16h16M4 16l5.333-5.333M4 16l5.333 5.333"></path>
 </symbol>
 <symbol id="icon-male" viewBox="0 0 32 32">
 <path fill="none" stroke="#54adff" style="stroke: var(--color1, #54adff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M16.33 14.72c-3.535 0-6.4 2.865-6.4 6.4s2.865 6.4 6.4 6.4c3.535 0 6.4-2.865 6.4-6.4s-2.865-6.4-6.4-6.4zM16.33 14.72v-10.24M16.33 4.48l5.12 5.12M16.33 4.48l-5.12 5.12"></path>
