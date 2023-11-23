@@ -19,6 +19,8 @@ export const ButtonLogout = styled.button`
   color: var(--white);
   background-color: var(--blueLink);
   transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  fill: #54adff;
+  stroke: white;
 
   @media screen and (min-width: 768px) {
     position: static;
