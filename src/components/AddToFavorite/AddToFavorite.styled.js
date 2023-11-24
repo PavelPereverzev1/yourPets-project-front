@@ -8,24 +8,24 @@ export const AddToFavoriteButton = styled.button`
   width: 256px;
   height: 40px;
   border-radius: 40px;
-  background-color: #54adff;
-  border: 2px solid #54adff;
+  background-color: var(--blueLink);
+  border: 2px solid var(--blueLink);
   cursor: pointer;
   p {
-    color: #fff;
+    color: var(--white);
   }
   svg {
     width: 18px;
     height: 18px;
   }
   &:hover {
-    background-color: #fff;
+    background-color: var(--white);
 
     p {
-      color: #54adff;
+      color: var(--blueLink);
     }
     svg {
-      stroke: #54adff;
+      stroke: var(--blueLink);
     }
   }
   @media screen and (min-width: 768px) {

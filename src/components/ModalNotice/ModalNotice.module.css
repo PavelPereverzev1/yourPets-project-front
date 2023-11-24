@@ -41,10 +41,10 @@
     left: 20px;
     border-radius: 0 16px 16px 0;
     padding: 11px 22px 11px 12px;
-    background-color: #CCE4FB;
+    background-color: var(--blueLight);
 }
 .contacts {
-    color: #FFC107;
+    color: var(--yellow);
 }
 
 @media screen and (min-width: 768px){
