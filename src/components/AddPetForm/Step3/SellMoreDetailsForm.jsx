@@ -1,15 +1,17 @@
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import React from 'react';
+import React, { useRef } from 'react';
 import sprite from '../../../images/icons/sprite.svg';
 import {
   FormSellMoreDetails,
+  BlocksWrapper,
   SexPhotoblock,
   Sexblock,
   RadioButton,
   IconSex,
   PhotoBlock,
   ImagePreview,
+  DefaultImage,
   PhotoInput,
   PhotoLabel,
   UploadIcon,
@@ -17,7 +19,6 @@ import {
   DetailWrapper,
   CommentsLabel,
   CommentsInput,
-  SexList,
   Label,
 } from './SellMoreDetailsForm.styled';
 import BackgroundCard from '../BackgroundCard';
@@ -28,39 +29,41 @@ import {
   ButtonWhite,
   BtnIcon,
 } from '../ButtonsBlock/ButtonsBlock.styled';
+import PreviewImage from '../ImageForm/PreviewImage';
+
+const SUPPORTED_FORMATS = ['image/png', 'image/jpeg', 'image/jpg'];
 
 const stepThreeValidationSchema = Yup.object().shape({
   file: Yup.mixed()
+    .nullable()
     .required('Select a file')
-    .test('fileSize', 'The file must be less than 3MB', value => {
-      if (!value) return true; // Дозволити порожні значення
-      return value.size <= 3145728; // 3MB in bytes
-    }),
+    .test(
+      'FILE_SIZE',
+      'Uploaded file must be 3MB or less',
+      value => !value || (value && value.size <= 3145728)
+    )
+    .test(
+      'FILE_FORMAT',
+      'Uploaded file has unsupported format',
+      value => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
+    ),
 
-  sex: Yup.string().when('category', {
-    is: val => ['sell', 'lost-found', 'in-good-hands'].includes(val),
-    then: Yup.string().required('Select gender').oneOf(['male', 'female']),
-  }),
+  sex: Yup.string().required('Select gender').oneOf(['male', 'female']),
 
-  location: Yup.string().when('category', {
-    is: val => ['sell', 'lost-found', 'in-good-hands'].includes(val),
-    then: Yup.string().required('Enter location'),
-  }),
+  location: Yup.string().required('Enter location'),
 
-  price: Yup.number().when('category', {
-    is: val => val === 'sell',
-    then: Yup.number()
-      .required('Enter price')
-      .min(1, 'The price must be greater than 0'),
-  }),
+  price: Yup.number()
+    .required('Enter price')
+    .min(1, 'The price must be greater than 0'),
 
   comments: Yup.string().max(120, 'max 120 symbols'),
 });
 
-const SellMoreDetailsForm = props => {
+const SellMoreDetailsForm = ({ next, prev, data }) => {
   const handleSubmit = values => {
-    props.next(values, true);
+    next(values, true);
   };
+  const fileRef = useRef(null);
 
   return (
     <BackgroundCard width="882px">
@@ -68,57 +71,59 @@ const SellMoreDetailsForm = props => {
       <StepsBlock step={3} />
       <Formik
         validationSchema={stepThreeValidationSchema}
-        initialValues={props.data}
+        initialValues={data}
         onSubmit={handleSubmit}
       >
-        {({ values }) => (
+        {({ values, setFieldValue }) => (
           <FormSellMoreDetails>
-            <div>
+            <BlocksWrapper>
               <SexPhotoblock>
-                <Label>
-                  <RadioButton type="radio" name="sex" value="female" />
-                  Female
-                </Label>
-
-                <Label>
-                  <RadioButton type="radio" name="sex" value="male" />
-                  Male
-                </Label>
-
                 <Sexblock role="group" aria-labelledby="gender-radio-group">
                   <h3>The Sex</h3>
-                  <SexList>
-                    <label>
-                      <RadioButton type="radio" name="sex" value="female" />
-                      <IconSex>
-                        <use href={`${sprite}#icon-female`} />
-                      </IconSex>
-                      Female
-                    </label>
-                    <label>
-                      <RadioButton type="radio" name="sex" value="male" />
-                      <IconSex>
-                        <use href={`${sprite}#icon-male`} />
-                      </IconSex>
-                      Male
-                    </label>
-                  </SexList>
+                  <Label>
+                    <IconSex>
+                      <use href={`${sprite}#icon-female`} />
+                    </IconSex>
+                    <RadioButton type="radio" name="sex" value="female" />
+                    Female
+                  </Label>
+
+                  <Label>
+                    <IconSex>
+                      <use href={`${sprite}#icon-male`} />
+                    </IconSex>
+                    <RadioButton type="radio" name="sex" value="male" />
+                    Male
+                  </Label>
+
                   <ErrorMessage name="sex" />
                 </Sexblock>
 
                 <PhotoBlock>
                   <PhotoLabel htmlFor="file">Load the pet’s image:</PhotoLabel>
-                  <ImagePreview id="default-svg-preview">
+
+                  <ImagePreview>
                     <PhotoInput
+                      ref={fileRef}
+                      hidden
                       type="file"
-                      accept=".JPG, .PNG"
                       id="file"
                       name="file"
+                      onChange={event => {
+                        setFieldValue('file', event.target.files[0]);
+                      }}
                     />
-                    <UploadIcon>
-                      <use href={`${sprite}#icon-plus`} />
-                    </UploadIcon>
+                    {values.file !== null ? (
+                      <PreviewImage file={values.file} />
+                    ) : (
+                      <DefaultImage>
+                        <UploadIcon>
+                          <use href={`${sprite}#icon-plus`} />
+                        </UploadIcon>
+                      </DefaultImage>
+                    )}
                   </ImagePreview>
+                  <ErrorMessage name="file" />
                 </PhotoBlock>
               </SexPhotoblock>
 
@@ -133,11 +138,17 @@ const SellMoreDetailsForm = props => {
                   <ErrorMessage name="location" />
                 </DetailWrapper>
 
-                <DetailWrapper>
-                  <label htmlFor="price"> Price</label>
-                  <Field id="price" name="price" placeholder="000 USD"></Field>
-                  <ErrorMessage name="price" />
-                </DetailWrapper>
+                {values.category === 'sell' && (
+                  <DetailWrapper>
+                    <label htmlFor="price"> Price</label>
+                    <Field
+                      id="price"
+                      name="price"
+                      placeholder="000 USD"
+                    ></Field>
+                    <ErrorMessage name="price" />
+                  </DetailWrapper>
+                )}
 
                 <DetailWrapper>
                   <CommentsLabel htmlFor="comments"> Comments</CommentsLabel>
@@ -149,9 +160,9 @@ const SellMoreDetailsForm = props => {
                   <ErrorMessage name="comments" />
                 </DetailWrapper>
               </LocationPriceBlock>
-            </div>
+            </BlocksWrapper>
 
-            <ButtonWhite type="button" onClick={() => props.prev(values)}>
+            <ButtonWhite type="button" onClick={() => prev(values)}>
               <BtnIcon>
                 <use href={`${sprite}#icon-arrow-left`} />
               </BtnIcon>
