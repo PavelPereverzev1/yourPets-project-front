@@ -11,7 +11,7 @@ export const RegForm = styled(Form)`
   height: 479px;
 
   padding: 28px 12px 28px 12px;
-  margin-top: 45px;
+  margin: 45px auto 0;
 
   background-color: var(--white);
   border-radius: 20px;
@@ -181,12 +181,28 @@ export const Button = styled.button`
   color: var(--white);
   background-color: var(--blueLink);
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  ${({ disabled }) =>
+    disabled &&
+    `
+    background-color: var(--gray);
+    cursor: not-allowed;
 
-  &:hover,
+    &:hover,
+  &:focus {
+    background-color: var(--gray);
+  }
+  `};
+
+  ${({ disabled }) =>
+    !disabled &&
+    `
+    &:hover,
   &:focus {
     background-color: #00bfff;
   }
+  `};
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     width: 458px;
