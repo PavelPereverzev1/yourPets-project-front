@@ -15,10 +15,10 @@ export const PetIcon = () => {
     
     }
     
-    export const FavoriteIcon = ({ isFavorite }) => {
+    export const FavoriteIcon = ({ isfavorite }) => {
         return (
           <svg
-            fill={isFavorite ? '#54ADFF' : '#CCE4FB'}
+            fill={isfavorite ? '#54ADFF' : '#CCE4FB'}
             stroke="#54ADFF"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"

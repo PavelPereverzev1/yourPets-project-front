@@ -74,7 +74,7 @@ const toggleFavorite = (noticeId) => {
             {isLoggedIn && (
               <>
               <Favorite onClick={() => toggleFavorite(notice.id)}>
-                <FavoriteIcon isFavorite={favorites.some((favorite) => favorite.id === notice.id)}></FavoriteIcon>
+                <FavoriteIcon isfavorite={favorites.some((favorite) => favorite === notice.id)}></FavoriteIcon>
                 
               </Favorite>
               <Remove onClick={() => setDeleteModalActive(true)}>
