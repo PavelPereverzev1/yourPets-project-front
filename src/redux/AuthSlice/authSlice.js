@@ -9,14 +9,16 @@ const initialState = {
     phone: '',
     city: '',
     avatarURL: '/yourPets-project-front/defaultAvatar.png',
+    favourites: [],
+    _id: '',
   },
-  token: null,
   isLoggedIn: false,
-  isFirstLoggedIn: false,
   isRefreshing: false,
   isLoading: false,
-  isUserDataLoaded: false,
   authError: null,
+  isFirstLoggedIn: false,
+  isUserDataLoaded: false,
+  token: null,
 };
 
 const handlePending = state => {
@@ -60,6 +62,8 @@ const authSlice = createSlice({
           phone: '',
           city: '',
           avatarURL: null,
+          favourites: [],
+          _id: '',
         };
         state.token = null;
         state.isLoggedIn = false;
