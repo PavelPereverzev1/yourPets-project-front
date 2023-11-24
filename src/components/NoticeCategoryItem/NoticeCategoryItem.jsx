@@ -105,7 +105,7 @@ const toggleFavorite = (noticeId) => {
             <Image src={notice.photoURL}></Image>
           </ImageBlock>
           <TextDiv>
-            <Text>Сute cat/dog looking for a home</Text>
+            <Text>{notice.title}</Text>
           </TextDiv>
           <LearnMoreDiv>
             <LearnMore  >
