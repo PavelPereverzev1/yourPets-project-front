@@ -1,19 +1,19 @@
-import React, { createContext, useState } from 'react';
+import React, { useState } from 'react';
+
 import BackgroundImg from '../BackgroundImg/BackgroundImg';
 
 import ChooseOptionForm from './Step1/ChooseOptionForm';
 import PersonalDetailsForm from './Step2/PersonalDetailsForm';
 import MoreDetailsForm from './Step3/MoreDetailsForm';
 
-// import axios from 'axios';
-
-export const FormContext = createContext();
+import axios from 'axios';
+axios.defaults.baseURL = 'https://yourpets-project-backend.onrender.com';
 
 function AddPetForm() {
   const initialFormData = {
     category: '',
     name: '',
-    date: '',
+    birthday: '',
     type: '',
     titleOfAdd: '',
     file: null,
@@ -22,11 +22,29 @@ function AddPetForm() {
     price: '',
     sex: '',
   };
+
   const [formData, setFormData] = useState(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
 
-  const makeRequest = formData => {
-    console.log('Form Submitted', formData);
+  const makeRequest = async formData => {
+    let url;
+
+    try {
+      if (formData.category === 'your pet') {
+        url = '/pets';
+      } else {
+        url = '/notices';
+      }
+
+      const response = await axios.post(url, formData);
+      console.log('Response from server:', response.data);
+
+      if (formData.category === 'your pet') {
+      } else {
+      }
+    } catch (error) {
+      console.error('Error sending data:', error);
+    }
   };
 
   const handleNextStep = (newData, final = false) => {
@@ -34,6 +52,8 @@ function AddPetForm() {
 
     if (final) {
       makeRequest(newData);
+      // setFormData(initialFormData);
+      // setCurrentStep(0);
       return;
     }
     setCurrentStep(prev => prev + 1);
@@ -58,60 +78,8 @@ function AddPetForm() {
   ];
 
   console.log('data:', formData);
-  // const handleSubmit = async e => {
-  //     e.preventDefault();
-  //     try {
-  //       const response = await axios.post(
-  //         'http://localhost:3001/form',
-  //         formData
-  //       );
-  //       if (response.data.success) {
-  //         alert('Data sent successfully');
-  //       }
-  //     } catch (error) {
-  //       console.error('Error sending data', error);
-  //     }
 
-  //     console.log('Спрацював сабміт:', formData);
-  //     setFormData(initialFormData);
-  // };
-
-  // const handleChange = e => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  //   console.log(formData);
-  // };
-
-  // const nextStep = () => {
-  //   setCurrentStep(currentStep + 1);
-  //   console.log(formData);
-  // };
-
-  // const backStep = () => {
-  //   setCurrentStep(currentStep - 1);
-  //   console.log(formData);
-  // };
-
-  // const formProps = {
-  //   formData,
-  //   handleChange,
-  //   currentStep,
-  //   totalSteps,
-  //   nextStep,
-  //   backStep,
-  //   handleSubmit,
-  // };
-
-  return (
-    <BackgroundImg>
-      {steps[currentStep]}
-      {/* <FormContext.Provider value={formProps}>
-        {currentStep === 1 && <ChooseOptionForm />}
-        {currentStep === 2 && <PersonalDetailsForm />}
-        {currentStep === 3 && <MoreDetailsForm />}
-      </FormContext.Provider> */}
-    </BackgroundImg>
-  );
+  return <BackgroundImg>{steps[currentStep]}</BackgroundImg>;
 }
 
 export default AddPetForm;

@@ -4,8 +4,13 @@ import { Form as FormikForm, Field } from 'formik';
 export const FormSellMoreDetails = styled(FormikForm)`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 24px;
+`;
+
+export const BlocksWrapper = styled.div`
+  display: flex;
 `;
 
 export const SexPhotoblock = styled.div`
@@ -26,29 +31,15 @@ export const SexList = styled.div`
 
 export const RadioButton = styled(Field)`
   position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   display: block;
 
   opacity: 1;
 `;
-export const SexBtn = styled(Field)`
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
 
-  color: #888;
-  font-family: Manrope;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 24px */
-  letter-spacing: 0.64px;
-`;
-export const IconSex = styled.svg`
-  width: 24px;
-  height: 24px;
-  fill: var(--blueLink);
-  transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
-`;
 export const Label = styled.label`
   position: relative;
   display: block;
@@ -79,6 +70,26 @@ export const Label = styled.label`
   }
 `;
 
+export const SexBtn = styled(Field)`
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+
+  color: #888;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  letter-spacing: 0.64px;
+`;
+export const IconSex = styled.svg`
+  width: 24px;
+  height: 24px;
+  fill: var(--blueLink);
+  transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
 //Photoblock
 export const PhotoBlock = styled.div`
   display: flex;
@@ -103,14 +114,18 @@ export const ImagePreview = styled.div`
   position: relative;
   width: 182px;
   height: 182px;
+  border-radius: 40px;
+  overflow: hidden;
+`;
+export const DefaultImage = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  border-radius: 40px;
   background-color: var(--blueLight);
 `;
-export const PhotoInput = styled(Field)`
+export const PhotoInput = styled.input`
   position: absolute;
   display: block;
   top: 0;
