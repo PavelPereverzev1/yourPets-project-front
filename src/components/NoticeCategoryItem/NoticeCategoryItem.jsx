@@ -23,7 +23,6 @@ import AttentionModal from 'components/Modals/AttentionModal/AttentionModal.jsx'
 import DeleteModal from 'components/Modals/DeleteModal/DeleteModal.jsx'
 import { useAuth } from '../../hooks/useAuth.js';
 
-
 import {
   PetIcon,
   FavoriteIcon,
@@ -74,7 +73,7 @@ const toggleFavorite = (noticeId) => {
             {isLoggedIn && (
               <>
               <Favorite onClick={() => toggleFavorite(notice.id)}>
-                <FavoriteIcon isFavorite={favorites.some((favorite) => favorite.id === notice.id)}></FavoriteIcon>
+                <FavoriteIcon isfavorite={favorites.some((favorite) => favorite === notice.id)}></FavoriteIcon>
                 
               </Favorite>
               <Remove onClick={() => setDeleteModalActive(true)}>
@@ -106,10 +105,10 @@ const toggleFavorite = (noticeId) => {
             <Image src={notice.photoURL}></Image>
           </ImageBlock>
           <TextDiv>
-            <Text>Сute cat/dog looking for a home</Text>
+            <Text>{notice.title}</Text>
           </TextDiv>
           <LearnMoreDiv>
-            <LearnMore >
+            <LearnMore  >
               <TextMore>Learn more</TextMore>
               <PetIcon></PetIcon>
             </LearnMore>
@@ -117,7 +116,7 @@ const toggleFavorite = (noticeId) => {
         </Item>
         <AttentionModal active={modalActive} setActive={setModalActive}></AttentionModal>
         <DeleteModal active={deleteModalActive} setActive={setDeleteModalActive} ></DeleteModal>
-   
+
       
     </>
   );
