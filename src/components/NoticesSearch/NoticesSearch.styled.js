@@ -9,6 +9,7 @@ export const Form = styled.form`
    display: flex;
    justify-content: center;
    align-items: center;
+  }
 `;
 
 export const Queryform = styled.input`
@@ -74,12 +75,7 @@ export const ButtonSearch = styled.button`
   cursor: pointer;
   position: absolute;
   top: 50%;
-  left: ${({ hasquery }) => (hasquery ? '225px' : '244px')};
   transform: translateY(-50%);
-
-  @media screen and (min-width: 768px) {
-    left: ${({ hasquery }) => (hasquery ? '240px' : '260px')};
-  }
 `;
 
 export const SearchIcon = styled.svg`
