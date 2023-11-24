@@ -22,7 +22,7 @@ import {
 import AttentionModal from 'components/Modals/AttentionModal/AttentionModal.jsx';
 import DeleteModal from 'components/Modals/DeleteModal/DeleteModal.jsx'
 import { useAuth } from '../../hooks/useAuth.js';
-
+import ModalNotice from '../ModalNotice/ModalNotice.jsx'
 
 import {
   PetIcon,
@@ -41,7 +41,7 @@ const NoticeCategoryItem = ({ notice }) => {
 
 const [modalActive, setModalActive] = useState(false)
 const [deleteModalActive, setDeleteModalActive] = useState(false)
-
+const [noticeActive, setNoticeActive] = useState(false)
 
 
 
@@ -109,7 +109,7 @@ const toggleFavorite = (noticeId) => {
             <Text>Сute cat/dog looking for a home</Text>
           </TextDiv>
           <LearnMoreDiv>
-            <LearnMore >
+            <LearnMore onClick={() => setNoticeActive(true)} >
               <TextMore>Learn more</TextMore>
               <PetIcon></PetIcon>
             </LearnMore>
@@ -117,7 +117,7 @@ const toggleFavorite = (noticeId) => {
         </Item>
         <AttentionModal active={modalActive} setActive={setModalActive}></AttentionModal>
         <DeleteModal active={deleteModalActive} setActive={setDeleteModalActive} ></DeleteModal>
-   
+       <ModalNotice active={noticeActive} setActive={setNoticeActive}></ModalNotice>
       
     </>
   );
