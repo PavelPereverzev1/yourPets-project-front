@@ -11,6 +11,7 @@ import ClearInputFieldButton from 'components/ClearInputFieldButton';
 import ConfirmationIconComponent from 'components/ConfirmationIconComponent';
 import { useAuth } from 'hooks/useAuth';
 import { logIn } from 'redux/AuthSlice/operations';
+import BackgroundImg from '../BackgroundImg/BackgroundImg';
 import {
   ToastText,
   LogForm,
@@ -70,7 +71,7 @@ const LoginForm = () => {
   const { isLoading } = useAuth();
   const dispatch = useDispatch();
 
-   const handleValidation = async (values) => {
+  const handleValidation = async values => {
     try {
       await schema.validate(values, { abortEarly: false });
       setIsFormValid(true);
@@ -108,70 +109,74 @@ const LoginForm = () => {
 
   return (
     <>
-      <ToastContainer />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={handleSubmit}
-        validate={handleValidation}
-      >
-        {({ errors, touched }) => (
-          <LogForm>
-            <Title>Login</Title>
+      <BackgroundImg>
+        <ToastContainer />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={schema}
+          onSubmit={handleSubmit}
+          validate={handleValidation}
+        >
+          {({ errors, touched }) => (
+            <LogForm>
+              <Title>Login</Title>
 
-            <Label htmlFor={emailInputId}>
-              <InputForEmail
-                autoComplete="on"
-                type="email"
-                id={emailInputId}
-                name="email"
-                placeholder="Email"
-                error={touched.email && errors.email ? 1 : 0}
-                valid={touched.email && !errors.email ? 1 : 0}
-              />
-              {touched.email && errors.email && (
-                <ClearInputFieldButton name="email" />
-              )}
-              {touched.email && !errors.email && <ConfirmationIconComponent />}
-              <FormError name="email" />
-            </Label>
+              <Label htmlFor={emailInputId}>
+                <InputForEmail
+                  autoComplete="on"
+                  type="email"
+                  id={emailInputId}
+                  name="email"
+                  placeholder="Email"
+                  error={touched.email && errors.email ? 1 : 0}
+                  valid={touched.email && !errors.email ? 1 : 0}
+                />
+                {touched.email && errors.email && (
+                  <ClearInputFieldButton name="email" />
+                )}
+                {touched.email && !errors.email && (
+                  <ConfirmationIconComponent />
+                )}
+                <FormError name="email" />
+              </Label>
 
-            <Label htmlFor={passwordInputId}>
-              <InputForPassword
-                type={passwordVisible ? 'text' : 'password'}
-                id={passwordInputId}
-                name="password"
-                placeholder="Password"
-                error={touched.password && errors.password ? 1 : 0}
-                valid={touched.password && !errors.password ? 1 : 0}
-              />
-              {touched.password && errors.password && (
-                <ClearInputFieldButton name="password" positionRight={46} />
-              )}
-              {touched.password && !errors.password && (
-                <ConfirmationIconComponent positionRight={46} />
-              )}
-              <ShowPasswordButton
-                isOpen={passwordVisible}
-                onClick={togglePasswordVisibility}
-              />
-              {touched.password && !errors.password && !passwordVisible && (
-                <PasswordSecureText>Password is secure.</PasswordSecureText>
-              )}
-              <FormError name="password" />
-            </Label>
+              <Label htmlFor={passwordInputId}>
+                <InputForPassword
+                  type={passwordVisible ? 'text' : 'password'}
+                  id={passwordInputId}
+                  name="password"
+                  placeholder="Password"
+                  error={touched.password && errors.password ? 1 : 0}
+                  valid={touched.password && !errors.password ? 1 : 0}
+                />
+                {touched.password && errors.password && (
+                  <ClearInputFieldButton name="password" positionRight={46} />
+                )}
+                {touched.password && !errors.password && (
+                  <ConfirmationIconComponent positionRight={46} />
+                )}
+                <ShowPasswordButton
+                  isOpen={passwordVisible}
+                  onClick={togglePasswordVisibility}
+                />
+                {touched.password && !errors.password && !passwordVisible && (
+                  <PasswordSecureText>Password is secure.</PasswordSecureText>
+                )}
+                <FormError name="password" />
+              </Label>
 
-            <Button disabled={isLoading || !isFormValid} type="submit">
-              {isLoading ? 'Loading...' : 'Login'}
-            </Button>
+              <Button disabled={isLoading || !isFormValid} type="submit">
+                {isLoading ? 'Loading...' : 'Login'}
+              </Button>
 
-            <ExtraText>
-              Don't have an account?{' '}
-              <LinkToRegister to="/register">Register</LinkToRegister>
-            </ExtraText>
-          </LogForm>
-        )}
-      </Formik>
+              <ExtraText>
+                Don't have an account?{' '}
+                <LinkToRegister to="/register">Register</LinkToRegister>
+              </ExtraText>
+            </LogForm>
+          )}
+        </Formik>
+      </BackgroundImg>
     </>
   );
 };

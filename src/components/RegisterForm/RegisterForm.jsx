@@ -11,6 +11,7 @@ import ClearInputFieldButton from 'components/ClearInputFieldButton';
 import ConfirmationIconComponent from 'components/ConfirmationIconComponent';
 import { useAuth } from 'hooks/useAuth';
 import { register } from 'redux/AuthSlice/operations';
+import BackgroundImg from '../BackgroundImg/BackgroundImg';
 import {
   ToastText,
   RegForm,
@@ -135,121 +136,125 @@ const RegisterForm = () => {
 
   return (
     <>
-      <ToastContainer />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={handleSubmit}
-        validate={handleValidation}
-      >
-        {({ errors, touched }) => (
-          <RegForm>
-            <Title>Registration</Title>
+      <BackgroundImg>
+        <ToastContainer />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={schema}
+          onSubmit={handleSubmit}
+          validate={handleValidation}
+        >
+          {({ errors, touched }) => (
+            <RegForm>
+              <Title>Registration</Title>
 
-            <Label htmlFor={nameInputId}>
-              <InputForEmailName
-                autoComplete="on"
-                type="text"
-                id={nameInputId}
-                name="name"
-                placeholder="Name"
-                error={touched.name && errors.name ? 1 : 0}
-                valid={touched.name && !errors.name ? 1 : 0}
-              />
-              {touched.name && errors.name && (
-                <ClearInputFieldButton name="name" />
-              )}
-              {touched.name && !errors.name && <ConfirmationIconComponent />}
-              <FormError name="name" />
-            </Label>
-
-            <Label htmlFor={emailInputId}>
-              <InputForEmailName
-                autoComplete="on"
-                type="email"
-                id={emailInputId}
-                name="email"
-                placeholder="Email"
-                error={touched.email && errors.email ? 1 : 0}
-                valid={touched.email && !errors.email ? 1 : 0}
-              />
-              {touched.email && errors.email && (
-                <ClearInputFieldButton name="email" />
-              )}
-              {touched.email && !errors.email && <ConfirmationIconComponent />}
-              <FormError name="email" />
-            </Label>
-
-            <Label htmlFor={passwordInputId}>
-              <InputForPasswords
-                type={passwordVisible ? 'text' : 'password'}
-                id={passwordInputId}
-                name="password"
-                placeholder="Password"
-                error={touched.password && errors.password ? 1 : 0}
-                valid={touched.password && !errors.password ? 1 : 0}
-              />
-              {touched.password && errors.password && (
-                <ClearInputFieldButton name="password" positionRight={46} />
-              )}
-              {touched.password && !errors.password && (
-                <ConfirmationIconComponent positionRight={46} />
-              )}
-              <ShowPasswordButton
-                isOpen={passwordVisible}
-                onClick={togglePasswordVisibility}
-              />
-              {touched.password && !errors.password && !passwordVisible && (
-                <PasswordSecureText>Password is secure.</PasswordSecureText>
-              )}
-              <FormError name="password" />
-            </Label>
-
-            <Label htmlFor={confirmPasswordInputId}>
-              <InputForPasswords
-                type={confirmPasswordVisible ? 'text' : 'password'}
-                id={confirmPasswordInputId}
-                name="confirmPassword"
-                placeholder="Confirm password"
-                error={
-                  touched.confirmPassword && errors.confirmPassword ? 1 : 0
-                }
-                valid={
-                  touched.confirmPassword && !errors.confirmPassword ? 1 : 0
-                }
-              />
-              {touched.confirmPassword && errors.confirmPassword && (
-                <ClearInputFieldButton
-                  name="confirmPassword"
-                  positionRight={46}
+              <Label htmlFor={nameInputId}>
+                <InputForEmailName
+                  autoComplete="on"
+                  type="text"
+                  id={nameInputId}
+                  name="name"
+                  placeholder="Name"
+                  error={touched.name && errors.name ? 1 : 0}
+                  valid={touched.name && !errors.name ? 1 : 0}
                 />
-              )}
-              {touched.confirmPassword && !errors.confirmPassword && (
-                <ConfirmationIconComponent positionRight={46} />
-              )}
-              <ShowPasswordButton
-                isOpen={confirmPasswordVisible}
-                onClick={toggleConfirmPasswordVisibility}
-              />
-              {touched.confirmPassword &&
-                !errors.confirmPassword &&
-                !confirmPasswordVisible && (
+                {touched.name && errors.name && (
+                  <ClearInputFieldButton name="name" />
+                )}
+                {touched.name && !errors.name && <ConfirmationIconComponent />}
+                <FormError name="name" />
+              </Label>
+
+              <Label htmlFor={emailInputId}>
+                <InputForEmailName
+                  autoComplete="on"
+                  type="email"
+                  id={emailInputId}
+                  name="email"
+                  placeholder="Email"
+                  error={touched.email && errors.email ? 1 : 0}
+                  valid={touched.email && !errors.email ? 1 : 0}
+                />
+                {touched.email && errors.email && (
+                  <ClearInputFieldButton name="email" />
+                )}
+                {touched.email && !errors.email && (
+                  <ConfirmationIconComponent />
+                )}
+                <FormError name="email" />
+              </Label>
+
+              <Label htmlFor={passwordInputId}>
+                <InputForPasswords
+                  type={passwordVisible ? 'text' : 'password'}
+                  id={passwordInputId}
+                  name="password"
+                  placeholder="Password"
+                  error={touched.password && errors.password ? 1 : 0}
+                  valid={touched.password && !errors.password ? 1 : 0}
+                />
+                {touched.password && errors.password && (
+                  <ClearInputFieldButton name="password" positionRight={46} />
+                )}
+                {touched.password && !errors.password && (
+                  <ConfirmationIconComponent positionRight={46} />
+                )}
+                <ShowPasswordButton
+                  isOpen={passwordVisible}
+                  onClick={togglePasswordVisibility}
+                />
+                {touched.password && !errors.password && !passwordVisible && (
                   <PasswordSecureText>Password is secure.</PasswordSecureText>
                 )}
-              <FormError name="confirmPassword" />
-            </Label>
+                <FormError name="password" />
+              </Label>
 
-            <Button disabled={isLoading || !isFormValid} type="submit">
-              {isLoading ? 'Loading...' : 'Registration'}
-            </Button>
+              <Label htmlFor={confirmPasswordInputId}>
+                <InputForPasswords
+                  type={confirmPasswordVisible ? 'text' : 'password'}
+                  id={confirmPasswordInputId}
+                  name="confirmPassword"
+                  placeholder="Confirm password"
+                  error={
+                    touched.confirmPassword && errors.confirmPassword ? 1 : 0
+                  }
+                  valid={
+                    touched.confirmPassword && !errors.confirmPassword ? 1 : 0
+                  }
+                />
+                {touched.confirmPassword && errors.confirmPassword && (
+                  <ClearInputFieldButton
+                    name="confirmPassword"
+                    positionRight={46}
+                  />
+                )}
+                {touched.confirmPassword && !errors.confirmPassword && (
+                  <ConfirmationIconComponent positionRight={46} />
+                )}
+                <ShowPasswordButton
+                  isOpen={confirmPasswordVisible}
+                  onClick={toggleConfirmPasswordVisibility}
+                />
+                {touched.confirmPassword &&
+                  !errors.confirmPassword &&
+                  !confirmPasswordVisible && (
+                    <PasswordSecureText>Password is secure.</PasswordSecureText>
+                  )}
+                <FormError name="confirmPassword" />
+              </Label>
 
-            <ExtraText>
-              Already have an account?{' '}
-              <LinkToLogin to="/login">Login</LinkToLogin>
-            </ExtraText>
-          </RegForm>
-        )}
-      </Formik>
+              <Button disabled={isLoading || !isFormValid} type="submit">
+                {isLoading ? 'Loading...' : 'Registration'}
+              </Button>
+
+              <ExtraText>
+                Already have an account?{' '}
+                <LinkToLogin to="/login">Login</LinkToLogin>
+              </ExtraText>
+            </RegForm>
+          )}
+        </Formik>
+      </BackgroundImg>
     </>
   );
 };
