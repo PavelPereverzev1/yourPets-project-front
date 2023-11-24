@@ -31,6 +31,10 @@ function NoticesSearch() {
     dispatch(setSearchQuery(query));
   };
 
+  const buttonSearchStyle = query.length > 0
+  ? { left: '225px', '@media screen and (minWidth: 768px)': { left: '240px' } }
+  : { left: '244px', '@media screen and (minWidth: 768px)': { left: '260px' } };
+
   return (
     <Form onSubmit={handleSubmit}>
       <Queryform
@@ -38,8 +42,8 @@ function NoticesSearch() {
         value={query}
         onChange={handleInputChange}
       />
-      <ButtonWrapper hasquery={query.length > 0}>
-        <ButtonSearch hasquery={query.length > 0} onClick={handleSubmit}>
+      <ButtonWrapper >
+        <ButtonSearch style={buttonSearchStyle} onClick={handleSubmit}>
           <SearchIcon>
             <use href={`${sprite}#icon-search`}></use>
           </SearchIcon>
