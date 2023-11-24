@@ -41,6 +41,7 @@ const NoticesCategoriesList = () => {
             <NoticeCategoryItem
               key={item.id}
               notice={item}
+              handleLearnMore={handleLearnMore}
             ></NoticeCategoryItem>
           ))
         ) : (
@@ -58,7 +59,7 @@ const NoticesCategoriesList = () => {
         <ModalNotice
           active={active}
           setActive={setActive}
-          handleLearnMore={handleLearnMore}
+          noticeDetail={noticeDetail}
         />
       )}
     </>
