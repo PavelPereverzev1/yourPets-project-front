@@ -11,7 +11,7 @@ export const RegForm = styled(Form)`
   height: 479px;
 
   padding: 28px 12px 28px 12px;
-  margin-top: 45px;
+  margin: 45px auto 0;
 
   background-color: var(--white);
   border-radius: 20px;
