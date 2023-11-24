@@ -74,6 +74,7 @@ const authSlice = createSlice({
         state.user = { ...state.user, ...action.payload.user };
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.isLoading = false;
         state.isUserDataLoaded = true;
       })
       .addCase(refreshUser.rejected, state => {

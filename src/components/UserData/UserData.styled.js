@@ -26,7 +26,6 @@ export const Card = styled.div`
   flex-direction: column;
   flex-shrink: 0;
   width: 100%;
-  height: 100%;
   padding: 20px 8px 25px 8px;
   border-radius: 20px;
   background: var(--white);
@@ -46,7 +45,6 @@ export const Card = styled.div`
     justify-content: flex-start;
     gap: 0;
     width: 395px;
-    height: 520px;
   }
 `;
 
@@ -104,6 +102,7 @@ export const Thumb = styled.div`
 `;
 
 export const Avatar = styled.img`
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;

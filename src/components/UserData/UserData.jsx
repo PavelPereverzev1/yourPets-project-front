@@ -31,47 +31,38 @@ const UserData = () => {
   const [uploadedAvatar, setUploadedAvatar] = useState(false);
 
   const user = useSelector(selectUser);
+  const isUserDataLoaded = useSelector(selectIsUserDataLoaded);
   const dispatch = useDispatch();
+  const fileInputRef = useRef();
 
   useEffect(() => {
-    if (!selectIsUserDataLoaded) {
+    if (!isUserDataLoaded) {
       dispatch(refreshUser());
     }
-  }, [dispatch]);
+  }, [dispatch, isUserDataLoaded]);
 
-  const fileInputRef = useRef();
-  const formik = useFormik({
-    initialValues: {
-      name: user.name,
-      email: user.email,
-      birthday: user.birthday,
-      phone: user.phone,
-      city: user.city,
-    },
-    validationSchema: validateUserSchema,
-    onSubmit: async values => {
-      const formData = new FormData();
+  const handleSubmit = async values => {
+    const formData = new FormData();
 
-      for (const key in values) {
-        formData.append(key, values[key]);
-      }
+    for (const key in values) {
+      formData.append(key, values[key]);
+    }
 
-      if (fileInputRef.current.files[0]) {
-        const file = fileInputRef.current.files[0];
-        formData.append('avatar', file);
-        console.log(formData);
-        fileInputRef.current.value = null;
-      }
+    if (fileInputRef.current.files[0]) {
+      const file = fileInputRef.current.files[0];
+      formData.append('avatar', file);
+      console.log(formData);
+      fileInputRef.current.value = null;
+    }
 
-      const res = await dispatch(updateUser(formData));
+    const res = await dispatch(updateUser(formData));
 
-      if (updateUser.fulfilled.match(res)) {
-        setIsEditFormInactive(true);
-        return;
-      }
-      alert('database error, please try again later');
-    },
-  });
+    if (updateUser.fulfilled.match(res)) {
+      setIsEditFormInactive(true);
+      return;
+    }
+    alert('database error, please try again later');
+  };
 
   const handleAvatarConfirm = e => {
     e.preventDefault();
@@ -80,7 +71,6 @@ const UserData = () => {
 
   const handleAvatarChange = e => {
     const file = e.currentTarget.files[0];
-
     if (file) {
       const newAvatarUrl = URL.createObjectURL(file);
       setUploadAvatarURL(newAvatarUrl);
@@ -93,6 +83,18 @@ const UserData = () => {
     setUploadedAvatar(false);
     fileInputRef.current.value = null;
   };
+
+  const formik = useFormik({
+    initialValues: {
+      name: user.name,
+      email: user.email,
+      birthday: user.birthday,
+      phone: user.phone,
+      city: user.city,
+    },
+    validationSchema: validateUserSchema,
+    onSubmit: handleSubmit,
+  });
 
   return (
     <Section>

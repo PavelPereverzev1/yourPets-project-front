@@ -9,9 +9,12 @@ import {
   InputWrapper,
   Label,
 } from './UserForm.styled';
+import { useSelector } from 'react-redux';
+import { selectIsLoading } from 'redux/AuthSlice';
 
 const UserForm = ({ isEditFormInactive, formik }) => {
   const [screenWidth] = useWindowSize();
+  const isLoading = useSelector(selectIsLoading);
 
   return (
     <Form onSubmit={formik.handleSubmit}>
@@ -115,7 +118,7 @@ const UserForm = ({ isEditFormInactive, formik }) => {
           disabled={!formik.isValid}
           $variant="filled"
         >
-          Save
+          {isLoading ? <span>Loading...</span> : <span>Save</span>}
         </ButtonComponent>
       ) : (
         <LogoutUserCardBtn />

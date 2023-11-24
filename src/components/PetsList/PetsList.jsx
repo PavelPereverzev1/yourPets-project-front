@@ -19,7 +19,7 @@ const PetsList = () => {
     <List>
       {myPets.map(pet => {
         return (
-          <ListItem key={pet.id}>
+          <ListItem key={pet._id}>
             <PetsItem pet={pet} />
           </ListItem>
         );
