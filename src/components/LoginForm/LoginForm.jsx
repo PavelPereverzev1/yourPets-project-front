@@ -46,10 +46,10 @@ const schema = yup.object().shape({
     .string()
     .min(6, 'Password must be at least 6 characters long.')
     .max(16, 'Password must not exceed 16 characters.')
-    .matches(
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,16}$/,
-      'Require 1 uppercase, 1 lowercase, and 1 digit.'
-    )
+    // .matches(
+    //   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,16}$/,
+    //   'Require 1 uppercase, 1 lowercase, and 1 digit.'
+    // )
     .required('Password is required.'),
 });
 
@@ -63,11 +63,21 @@ const passwordInputId = nanoid();
 
 const LoginForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   // const navigate = useNavigate();
 
   const { isLoading } = useAuth();
   const dispatch = useDispatch();
+
+   const handleValidation = async (values) => {
+    try {
+      await schema.validate(values, { abortEarly: false });
+      setIsFormValid(true);
+    } catch (error) {
+      setIsFormValid(false);
+    }
+  };
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
     try {
@@ -103,6 +113,7 @@ const LoginForm = () => {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
+        validate={handleValidation}
       >
         {({ errors, touched }) => (
           <LogForm>
@@ -110,6 +121,7 @@ const LoginForm = () => {
 
             <Label htmlFor={emailInputId}>
               <InputForEmail
+                autoComplete="on"
                 type="email"
                 id={emailInputId}
                 name="email"
@@ -149,7 +161,7 @@ const LoginForm = () => {
               <FormError name="password" />
             </Label>
 
-            <Button disabled={isLoading} type="submit">
+            <Button disabled={isLoading || !isFormValid} type="submit">
               {isLoading ? 'Loading...' : 'Login'}
             </Button>
 
