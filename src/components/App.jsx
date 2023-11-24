@@ -35,7 +35,7 @@ import { PrivateRoute } from 'components/PrivateRoute';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { refreshUser } from 'redux/AuthSlice/operations';
 import { useAuth } from 'hooks/useAuth';
-import { GlobalStyle } from './GlobalStyle.styled';
+import { GlobalStyle } from './GlobalStyles';
 
 const MainPage = lazy(() => import('pages/MainPage/MainPage'));
 const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
@@ -44,6 +44,8 @@ const LoginPage = lazy(() => import('pages/LoginPage'));
 const AddPetPage = lazy(() => import('pages/AddPetPage/AddPetPage'));
 const UserPage = lazy(() => import('pages/UserPage/UserPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
+const NewsPage = lazy(() => import('pages/NewsPage'));
+const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -60,6 +62,8 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<MainPage />} />
+            <Route path="news" element={<NewsPage />} />
+            <Route path="friends" element={<OurFriendsPage />} />
             <Route
               path="register"
               element={

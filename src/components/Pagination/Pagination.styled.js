@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const PaginationContainer = styled.div`
-  width: 350px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +9,9 @@ export const PaginationContainer = styled.div`
   border-radius: 45px;
   padding: 5px;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-
+  margin-right: auto;
+  margin-left: auto;
+  
   @media screen and (min-width: 768px) {
     margin-top: 60px;
   }

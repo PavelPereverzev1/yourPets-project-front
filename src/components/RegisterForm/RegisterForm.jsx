@@ -77,11 +77,21 @@ const confirmPasswordInputId = nanoid();
 const RegisterForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   // const navigate = useNavigate();
 
   const { isLoading } = useAuth();
   const dispatch = useDispatch();
+
+  const handleValidation = async values => {
+    try {
+      await schema.validate(values, { abortEarly: false });
+      setIsFormValid(true);
+    } catch (error) {
+      setIsFormValid(false);
+    }
+  };
 
   const handleSubmit = async ({ name, email, password }, { resetForm }) => {
     try {
@@ -130,6 +140,7 @@ const RegisterForm = () => {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
+        validate={handleValidation}
       >
         {({ errors, touched }) => (
           <RegForm>
@@ -137,6 +148,7 @@ const RegisterForm = () => {
 
             <Label htmlFor={nameInputId}>
               <InputForEmailName
+                autoComplete="on"
                 type="text"
                 id={nameInputId}
                 name="name"
@@ -153,6 +165,7 @@ const RegisterForm = () => {
 
             <Label htmlFor={emailInputId}>
               <InputForEmailName
+                autoComplete="on"
                 type="email"
                 id={emailInputId}
                 name="email"
@@ -226,7 +239,7 @@ const RegisterForm = () => {
               <FormError name="confirmPassword" />
             </Label>
 
-            <Button disabled={isLoading} type="submit">
+            <Button disabled={isLoading || !isFormValid} type="submit">
               {isLoading ? 'Loading...' : 'Registration'}
             </Button>
 

@@ -7,26 +7,13 @@ import mainDesktopRetina from '../../images/pets/pets-desktop@2x.png';
 
 import BackgroundImg from '../BackgroundImg/BackgroundImg';
 
-import {
-  MainContainer,
-  MainTitleMobile,
-  MainTitleDesktop,
-  MainPetsPicture,
-} from './Main.styled';
+import { MainContainer, MainTitle, MainPetsPicture } from './Main.styled';
 
 const Main = () => {
   return (
     <BackgroundImg>
       <MainContainer>
-        <MainTitleMobile>
-          Take good care of
-          <br /> your small pets
-        </MainTitleMobile>
-
-        <MainTitleDesktop>
-          Take good care of your small
-          <br /> pets
-        </MainTitleDesktop>
+        <MainTitle>Take good care of your small pets</MainTitle>
 
         <picture>
           <source
