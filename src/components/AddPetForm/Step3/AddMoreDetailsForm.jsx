@@ -1,6 +1,6 @@
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import React from 'react';
+import React, { useRef } from 'react';
 import sprite from '../../../images/icons/sprite.svg';
 import {
   FormAddMoreDetails,
@@ -9,7 +9,7 @@ import {
   PhotoLabel,
   ImagePreview,
   UploadIcon,
-  PhotoInput,
+  // PhotoInput,
   CommentsInput,
   CommentsLabel,
 } from './AddMoreDetails.styled';
@@ -22,14 +22,25 @@ import {
   ButtonWhite,
   BtnIcon,
 } from '../ButtonsBlock/ButtonsBlock.styled';
+// import Image from '../../../images/pets/pet-photo-example.png';
+import PreviewImage from '../ImageForm/PreviewImage';
+
+const SUPPORTED_FORMATS = ['image/png', 'image/jpeg', 'image/jpg'];
 
 const stepThreeValidationSchema = Yup.object().shape({
   file: Yup.mixed()
+    .nullable()
     .required('Select a file')
-    .test('fileSize', 'The file must be less than 3MB', value => {
-      if (!value) return true; // Дозволити порожні значення
-      return value.size <= 3145728; // 3MB in bytes
-    }),
+    .test(
+      'FILE_SIZE',
+      'Uploaded file must be 3MB or less',
+      value => !value || (value && value.size <= 3145728)
+    )
+    .test(
+      'FILE_FORMAT',
+      'Uploaded file has unsupported format',
+      value => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
+    ),
 
   sex: Yup.string().when('category', {
     is: val => ['sell', 'lost-found', 'in-good-hands'].includes(val),
@@ -56,6 +67,9 @@ const AddMoreDetailsForm = props => {
     props.next(values, true);
   };
 
+  const fileRef = useRef(null);
+  console.log('fileRef', fileRef.current);
+
   return (
     <BackgroundCard>
       <TitleComponent name="Add pet" />
@@ -65,16 +79,30 @@ const AddMoreDetailsForm = props => {
         initialValues={props.data}
         onSubmit={handleSubmit}
       >
-        {({ values }) => (
+        {({ values, setFieldValue }) => (
           <FormAddMoreDetails>
             <PhotoBlock>
+              <button
+                onClick={() => {
+                  fileRef.current.click();
+                }}
+              >
+                Upload
+              </button>
+              <PreviewImage file={values.file} />
+
               <PhotoLabel htmlFor="file">Load the pet’s image:</PhotoLabel>
-              <ImagePreview id="default-svg-preview">
-                <PhotoInput
+              <ImagePreview>
+                <input
+                  ref={fileRef}
+                  hidden
                   type="file"
-                  accept=".JPG, .PNG"
+                  // accept=".JPG, .PNG"
                   id="file"
                   name="file"
+                  onChange={event => {
+                    setFieldValue('file', event.target.files[0]);
+                  }}
                 />
                 <UploadIcon>
                   <use href={`${sprite}#icon-plus`} />

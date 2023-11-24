@@ -12,16 +12,15 @@ export const FormContext = createContext();
 function AddPetForm() {
   const initialFormData = {
     category: '',
-    petsName: '',
-    petsDateOfBirth: '',
-    petsType: '',
+    name: '',
+    date: '',
+    type: '',
     titleOfAdd: '',
-    petsImage: '',
+    file: null,
     comments: '',
     location: '',
     price: '',
     sex: '',
-    isError: 'false',
   };
   const [formData, setFormData] = useState(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
