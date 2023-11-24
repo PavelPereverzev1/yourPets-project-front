@@ -75,20 +75,19 @@ display:flex;
 
 justify-content: center;
 
+max-width:288px;
+height:288px;
 
-width:100%;
  
 color:white;
 `;
 
 export const Image = styled.img`
 
-max-width:288px;
-height:288px;;
+width:100%;
+height:100%;
 
-@media(min-width:768px){
-  max-width:336px
-}
+
 
 `;
 export const TextDiv = styled.div`
@@ -281,3 +280,25 @@ font-weight:600;
 padding-right:5px;
 `;
 
+
+export const Remove = styled.button`
+
+display:flex;
+align-items:center;
+justify-content: center;
+margin-top: 60px;
+margin-left:220px;
+position: absolute;
+width:40px;
+height:40px;
+background-color:#CCE4FB;
+border-radius:50%;
+border:2px solid #CCE4FB;
+&:hover{
+cursor:pointer;
+    svg{
+        
+        fill:#54ADFF;
+    }
+}
+`;

@@ -1,6 +1,15 @@
 import styled from 'styled-components';
+import { Form as FormikForm, Field } from 'formik';
 
-export const FormPersonalDetails = styled.form`
+export const temporaryBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #111;
+  border-radius: 20px;
+`;
+
+export const FormPersonalDetails = styled(FormikForm)`
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -14,7 +23,7 @@ export const DetailWrapper = styled.div`
   gap: 8px;
 `;
 
-export const DetailInput = styled.input`
+export const DetailInput = styled(Field)`
   display: flex;
   width: 394px;
   padding: 12px 16px;

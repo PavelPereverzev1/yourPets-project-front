@@ -11,7 +11,7 @@ export const LogForm = styled(Form)`
   height: 425px;
 
   padding: 28px 12px 28px 12px;
-  margin-top: 45px;
+  margin: 45px auto 0;
 
   background-color: var(--white);
   border-radius: 20px;
@@ -65,6 +65,10 @@ const InputStyles = `
   border-radius: 40px;
   border: solid 1px;
 
+  outline: none;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   ::placeholder {
     font-weight: 400;
     font-size: 16px;
@@ -94,7 +98,7 @@ export const InputForEmail = styled(Field)`
 
         border-color: var(--red);
         &:focus {
-          outline: solid 1px var(--red);
+          box-shadow: 0 0 0 1px var(--red);
         }
       `;
     }
@@ -104,7 +108,7 @@ export const InputForEmail = styled(Field)`
 
         border-color: var(--green);
         &:focus {
-          outline: solid 1px var(--green);
+          box-shadow: 0 0 0 1px var(--green);
         }
       `;
     }
@@ -113,7 +117,7 @@ export const InputForEmail = styled(Field)`
 
       border-color: var(--blueLink);
       &:focus {
-        outline: solid 1px var(--blueLink);
+        box-shadow: 0 0 0 1px var(--blueLink);
       }
     `;
   }}
@@ -129,7 +133,7 @@ export const InputForPassword = styled(Field)`
 
         border-color: var(--red);
         &:focus {
-          outline: solid 1px var(--red);
+          box-shadow: 0 0 0 1px var(--red);
         }
       `;
     }
@@ -139,7 +143,7 @@ export const InputForPassword = styled(Field)`
 
         border-color: var(--green);
         &:focus {
-          outline: solid 1px var(--green);
+          box-shadow: 0 0 0 1px var(--green);
         }
       `;
     }
@@ -148,7 +152,7 @@ export const InputForPassword = styled(Field)`
 
       border-color: var(--blueLink);
       &:focus {
-        outline: solid 1px var(--blueLink);
+        box-shadow: 0 0 0 1px var(--blueLink);
       }
     `;
   }}
@@ -171,8 +175,33 @@ export const Button = styled.button`
   border-radius: 40px;
   border: none;
 
+  cursor: pointer;
+
   color: var(--white);
   background-color: var(--blueLink);
+
+  ${({ disabled }) =>
+    disabled &&
+    `
+    background-color: var(--gray);
+    cursor: not-allowed;
+
+    &:hover,
+  &:focus {
+    background-color: var(--gray);
+  }
+  `};
+
+  ${({ disabled }) =>
+    !disabled &&
+    `
+    &:hover,
+  &:focus {
+    background-color: #00bfff;
+  }
+  `};
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     width: 458px;
@@ -200,15 +229,13 @@ export const ExtraText = styled.p`
   }
 `;
 
-export const ErrorText = styled.p`
-  position: absolute;
+const MessagesStyles = `
+position: absolute;
   bottom: -34px;
   left: -8px;
 
   font-weight: 400;
   font-size: 12px;
-
-  color: red;
 
   @media screen and (min-width: 768px) {
     bottom: -36px;
@@ -219,23 +246,16 @@ export const ErrorText = styled.p`
   }
 `;
 
-export const PasswordSecureText = styled.p`
-  position: absolute;
-  bottom: -34px;
-  left: -8px;
+export const ErrorText = styled.p`
+  ${MessagesStyles}
 
-  font-weight: 400;
-  font-size: 12px;
+  color: var(--red);
+`;
+
+export const PasswordSecureText = styled.p`
+  ${MessagesStyles}
 
   color: var(--green);
-
-  @media screen and (min-width: 768px) {
-    bottom: -36px;
-    left: 18px;
-  }
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
 export const LinkToRegister = styled(NavLink)`

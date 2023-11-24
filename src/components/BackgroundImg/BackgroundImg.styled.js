@@ -7,13 +7,11 @@ import bgDesktop1x from '../../images/background/bg-desktop@1x.png';
 import bgDesktop2x from '../../images/background/bg-desktop@2x.png';
 
 export const StyledBackgroundImg = styled.div`
-  position: relative;
   width: 100%;
-  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: contain;
   background-color: var(--background);
   background-image: url(${bgMobile1x});
-  background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
 
   @media (min-device-pixel-ratio: 2),

@@ -5,6 +5,7 @@ import {
   selectIsLoggedIn,
   selectIsLoading,
   selectAuthError,
+  selectIsFirstLoggedIn,
 } from 'redux/AuthSlice';
 
 export const useAuth = () => {
@@ -13,6 +14,14 @@ export const useAuth = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectIsLoading);
   const authError = useSelector(selectAuthError);
+  const isFirstLoggedIn = useSelector(selectIsFirstLoggedIn);
 
-  return { user, isRefreshing, isLoggedIn, isLoading, authError };
+  return {
+    user,
+    isRefreshing,
+    isLoggedIn,
+    isLoading,
+    authError,
+    isFirstLoggedIn,
+  };
 };

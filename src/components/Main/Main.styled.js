@@ -1,55 +1,41 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div`
-  position: relative;
-
-  @media (min-width: 1200px) {
+  @media (min-width: 1280px) {
     display: flex;
-    align-items: center;
-    margin-top: 30px;
   }
 `;
 
-export const MainTitleMobile = styled.h1`
-  margin-top: 60px;
+export const MainTitle = styled.h1`
+  margin: 50px auto 20px;
+  width: 280px;
   font-size: 32px;
-  font-style: normal;
+  line-height: 1.4;
+  text-align: left;
   font-weight: 700;
-  line-height: 1.38;
-  color: var(--black);
+  font-style: normal;
 
   @media screen and (min-width: 768px) {
-    margin-top: 80px;
+    margin: 80px auto 27px;
+    width: 588px;
     font-size: 68px;
     line-height: 1.47;
-    text-align: left;
-    width: 588px;
   }
-
-  @media (min-width: 1200px) {
-    display: none;
-  }
-`;
-
-export const MainTitleDesktop = styled.h2`
-  font-size: 68px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 1.3;
-
-  @media (max-width: 1199px) {
-    display: none;
+  @media screen and (min-width: 1280px) {
+    margin: 188px 0 248px;
+    width: 700px;
+    line-height: 1.3;
+    font-size: 70px;
   }
 `;
 
 export const MainPetsPicture = styled.img`
-  position: absolute;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
 
-  @media screen and (min-width: 768px) {
-    width: 768px;
-  }
-  @media screen and (min-width: 1200px) {
-    position: static;
-    width: auto;
+  @media screen and (min-width: 1280px) {
+    right: 100px;
+    top: 20px;
   }
 `;

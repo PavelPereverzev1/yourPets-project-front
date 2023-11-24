@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Form as FormikForm, Field } from 'formik';
 
-export const AddMoreDetailsWrapper = styled.form`
+export const FormAddMoreDetails = styled(FormikForm)`
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -36,7 +37,7 @@ export const ImagePreview = styled.div`
   border-radius: 40px;
   background-color: var(--blueLight);
 `;
-export const PhotoInput = styled.input`
+export const PhotoInput = styled(Field)`
   position: absolute;
   display: block;
   top: 0;
