@@ -8,7 +8,6 @@ import bgDesktop2x from '../../images/background/bg-desktop@2x.png';
 
 export const StyledBackgroundImg = styled.div`
   width: 100%;
-  min-height: 100vh;
   background-repeat: no-repeat;
   background-size: contain;
   background-color: var(--background);
