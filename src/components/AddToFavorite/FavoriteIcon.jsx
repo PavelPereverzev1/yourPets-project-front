@@ -1,7 +1,7 @@
-export const FavoriteIcon = () => {
+export const FavoriteIcon = ({ isFavorite }) => {
   return (
     <svg
-      fill="none"
+      fill={isFavorite ? '#fff' : 'none'}
       stroke="#fff"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"

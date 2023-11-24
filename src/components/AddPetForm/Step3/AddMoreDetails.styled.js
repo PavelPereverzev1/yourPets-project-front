@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form as FormikForm, Field } from 'formik';
+import { Form as FormikForm } from 'formik';
 
 export const FormAddMoreDetails = styled(FormikForm)`
   display: flex;
@@ -26,18 +26,23 @@ export const PhotoLabel = styled.label`
   font-weight: 500;
   line-height: 28px;
 `;
+
 export const ImagePreview = styled.div`
   position: relative;
   width: 182px;
   height: 182px;
+  border-radius: 40px;
+  overflow: hidden;
+`;
+export const DefaultImage = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  border-radius: 40px;
   background-color: var(--blueLight);
 `;
-export const PhotoInput = styled(Field)`
+export const PhotoInput = styled.input`
   position: absolute;
   display: block;
   top: 0;
