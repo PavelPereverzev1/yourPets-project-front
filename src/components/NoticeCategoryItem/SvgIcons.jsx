@@ -24,7 +24,7 @@ export const PetIcon = () => {
             viewBox="0 0 32 32"
             width="24"
             height="24"
-            style={{ transition: 'fill 0.3s' }} // Додано перехід для плавного змінювання кольору
+            style={{ transition: 'fill 0.3s' }} 
           >
             <path
               strokeLinejoin="round"
