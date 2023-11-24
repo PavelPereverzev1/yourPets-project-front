@@ -1,28 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FavoriteIcon } from './FavoriteIcon';
 import { AddToFavoriteButton, AddToFavoriteText } from './AddToFavorite.styled';
+import { useAuth } from '../../hooks/useAuth';
+import Notify from 'notiflix';
 
-const AddToFavorite = () => {
-  // const handleAddToFavorite = (id) => {
-  //   if(!isLoggedIn){
-  //     setIsLoggedIn(isLoggedIn)
-  //   }
-  //   if (isLoggedIn) {
-  //     Notify.failure('Please, sign in');
-  //   } else {
+const AddToFavorite = ({ notice }) => {
+  const { isLoggedIn, user } = useAuth();
+  const [favorites, setFavorites] = useState(user.favorites || []);
 
-  //     const updatedData = dataf.map((item) =>
-  //       item.id === id ? { ...item, isFavorite: !item.isFavorite } : item
-  //     );
-  //     setDataf(updatedData);
-  //   }
-  // };
-  //onClick={() => handleAddToFavorite(item.id)}
+  const handleAddToFavorite = id => {
+    if (!isLoggedIn) {
+      Notify.failure('Please, sign in');
+    } else {
+      console.log(notice.id);
+    }
+  };
 
   return (
     <AddToFavoriteButton>
       <AddToFavoriteText>Add to</AddToFavoriteText>
-      <FavoriteIcon></FavoriteIcon>
+      <FavoriteIcon isFavorite={notice.isFavorite}></FavoriteIcon>
     </AddToFavoriteButton>
   );
 };

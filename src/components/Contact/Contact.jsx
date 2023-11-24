@@ -6,7 +6,7 @@ import { ContactButton } from './Contact.styled';
 const Contact = ({ notice }) => {
   return (
     <ContactButton>
-      <Link to={`tel:${notice.phone}`}>Contact</Link>
+      <Link to={`tel:${notice.ownerPhone}`}>Contact</Link>
     </ContactButton>
   );
 };

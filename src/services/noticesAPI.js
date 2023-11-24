@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://yourpets-project-backend.onrender.com/';
+const BASE_URL = 'https://yourpets-project-backend.onrender.com';
 
 const options = {
   method: 'GET',
@@ -14,7 +14,7 @@ export const getNoticesAPI = async () => {
   return data;
 };
 
-export const getNoticesDetailsAPI = async id => {
-  const { data } = await axios(`${BASE_URL}/notices/${id}`, options);
+export const getNoticesDetailsAPI = async noticeDetail => {
+  const { data } = await axios(`${BASE_URL}/notices/${noticeDetail}`, options);
   return data;
 };
