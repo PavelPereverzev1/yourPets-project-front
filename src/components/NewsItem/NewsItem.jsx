@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Item,
   Wrapper,
   NewsImg,
   NewsTitle,
@@ -7,11 +8,13 @@ import {
   NewsDate,
   NewsLink,
   BottomWrapper,
+  Line,
 } from './NewsItem.styled';
 
 function NewsItem() {
   return (
-    <>
+    <Item>
+    <Line />
     <Wrapper>
       <NewsImg src="../../images/logo/log-small.png" />
       <NewsTitle>On Pets, Moral Logic and Love</NewsTitle>
@@ -26,7 +29,7 @@ function NewsItem() {
       <NewsLink>Read more</NewsLink>
       </BottomWrapper>
     </Wrapper>
-      </>
+      </Item>
   );
 }
 

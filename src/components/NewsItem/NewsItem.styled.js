@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-width: 280px;
-background-color: #ffffff;
-border-radius: 20px;
-margin-bottom: 24px;
-
-&:: before {
-    content: '';
+export const Item = styled.li`
+list-style: none;
+`
+ 
+export const Line = styled.div`
     display: block;
     margin-bottom: 12px;
     width: 280px;
@@ -15,6 +12,31 @@ margin-bottom: 24px;
     border: none;
     border-radius: 40px;
     background-image: var(--blueGradient);
+
+    @media screen and (min-width: 768px){
+        width: 336px;
+        margin-bottom: 14px;
+    }
+
+    @media screen and (min-width: 1280px){
+        width: 395px;
+    }
+`
+
+export const Wrapper = styled.div`
+width: 280px;
+background-color: #ffffff;
+border-radius: 20px;
+margin-bottom: 24px;
+
+@media screen and (min-width: 768px){
+    width: 336px;
+    margin-right: 32px;
+}
+
+@media screen and (min-width: 1280px){
+    width: 395px;
+    margin-right: 31px;
 }
 `
 
@@ -23,6 +45,14 @@ width: 280px;
 height: 252px;
 border-radius: 20px;
 margin-bottom: 16px;
+
+@media screen and (min-width: 768px){
+    width: 336px;
+}
+
+@media screen and (min-width: 1280px){
+    width: 395px;
+}
 `
 
 export const NewsTitle = styled.h3`
@@ -51,6 +81,7 @@ display: flex;
 justify-content: space-between;
 padding-left: 12px;
 padding-right: 12px;
+padding-bottom: 12px;
 `
 
 export const NewsDate = styled.p`
