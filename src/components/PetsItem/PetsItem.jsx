@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, DataWrapper, Image, Text, TextTitle } from './PetsItem.styled';
 
 const PetsItem = ({ pet }) => {

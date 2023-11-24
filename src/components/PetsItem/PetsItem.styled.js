@@ -3,8 +3,9 @@ import { styled } from 'styled-components';
 export const Card = styled.div`
   position: relative;
   display: flex;
-  width: 51.3125rem;
-  padding: 1.25rem;
+  flex-direction: column;
+  width: 280px;
+  padding: 16px 20px 20px 20px;
   gap: 2rem;
 
   border-radius: 2.5rem;

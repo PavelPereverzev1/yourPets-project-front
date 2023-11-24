@@ -65,12 +65,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    /* font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
       'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; */
-    font-family: 'Manrope'; 
+    -moz-osx-font-smoothing: grayscale;
     background-color: var(--background);
     color: var(--black);
   }
@@ -90,5 +89,9 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
     max-width: 100%;
     height: auto;
+  }
+
+   input, button, textarea, select {
+    font: inherit;
   }
 `;
