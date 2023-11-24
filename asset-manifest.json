@@ -1,9 +1,10 @@
 {
   "files": {
     "main.css": "/yourPets-project-front/static/css/main.d09caff4.css",
-    "main.js": "/yourPets-project-front/static/js/main.8763db59.js",
+    "main.js": "/yourPets-project-front/static/js/main.6065b134.js",
     "static/js/799.2bdc0418.chunk.js": "/yourPets-project-front/static/js/799.2bdc0418.chunk.js",
-    "static/js/496.8606d0ef.chunk.js": "/yourPets-project-front/static/js/496.8606d0ef.chunk.js",
+    "static/css/570.88284187.chunk.css": "/yourPets-project-front/static/css/570.88284187.chunk.css",
+    "static/js/570.199cc1ae.chunk.js": "/yourPets-project-front/static/js/570.199cc1ae.chunk.js",
     "static/css/761.5e503b9a.chunk.css": "/yourPets-project-front/static/css/761.5e503b9a.chunk.css",
     "static/js/761.d06cb43e.chunk.js": "/yourPets-project-front/static/js/761.d06cb43e.chunk.js",
     "static/css/72.5e503b9a.chunk.css": "/yourPets-project-front/static/css/72.5e503b9a.chunk.css",
@@ -38,9 +39,10 @@
     "static/media/bg-mobile@1x.png": "/yourPets-project-front/static/media/bg-mobile@1x.3dbc8c2599d652ed7615.png",
     "index.html": "/yourPets-project-front/index.html",
     "main.d09caff4.css.map": "/yourPets-project-front/static/css/main.d09caff4.css.map",
-    "main.8763db59.js.map": "/yourPets-project-front/static/js/main.8763db59.js.map",
+    "main.6065b134.js.map": "/yourPets-project-front/static/js/main.6065b134.js.map",
     "799.2bdc0418.chunk.js.map": "/yourPets-project-front/static/js/799.2bdc0418.chunk.js.map",
-    "496.8606d0ef.chunk.js.map": "/yourPets-project-front/static/js/496.8606d0ef.chunk.js.map",
+    "570.88284187.chunk.css.map": "/yourPets-project-front/static/css/570.88284187.chunk.css.map",
+    "570.199cc1ae.chunk.js.map": "/yourPets-project-front/static/js/570.199cc1ae.chunk.js.map",
     "761.5e503b9a.chunk.css.map": "/yourPets-project-front/static/css/761.5e503b9a.chunk.css.map",
     "761.d06cb43e.chunk.js.map": "/yourPets-project-front/static/js/761.d06cb43e.chunk.js.map",
     "72.5e503b9a.chunk.css.map": "/yourPets-project-front/static/css/72.5e503b9a.chunk.css.map",
@@ -57,6 +59,6 @@
   },
   "entrypoints": [
     "static/css/main.d09caff4.css",
-    "static/js/main.8763db59.js"
+    "static/js/main.6065b134.js"
   ]
 }
