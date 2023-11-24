@@ -11,6 +11,7 @@ import ClearInputFieldButton from 'components/ClearInputFieldButton';
 import ConfirmationIconComponent from 'components/ConfirmationIconComponent';
 import { useAuth } from 'hooks/useAuth';
 import { logIn } from 'redux/AuthSlice/operations';
+import BackgroundImg from '../BackgroundImg/BackgroundImg';
 import {
   ToastText,
   LogForm,
@@ -46,10 +47,10 @@ const schema = yup.object().shape({
     .string()
     .min(6, 'Password must be at least 6 characters long.')
     .max(16, 'Password must not exceed 16 characters.')
-    .matches(
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,16}$/,
-      'Require 1 uppercase, 1 lowercase, and 1 digit.'
-    )
+    // .matches(
+    //   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,16}$/,
+    //   'Require 1 uppercase, 1 lowercase, and 1 digit.'
+    // )
     .required('Password is required.'),
 });
 
@@ -63,11 +64,21 @@ const passwordInputId = nanoid();
 
 const LoginForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   // const navigate = useNavigate();
 
   const { isLoading } = useAuth();
   const dispatch = useDispatch();
+
+  const handleValidation = async values => {
+    try {
+      await schema.validate(values, { abortEarly: false });
+      setIsFormValid(true);
+    } catch (error) {
+      setIsFormValid(false);
+    }
+  };
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
     try {
@@ -98,68 +109,74 @@ const LoginForm = () => {
 
   return (
     <>
-      <ToastContainer />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={handleSubmit}
-      >
-        {({ errors, touched }) => (
-          <LogForm>
-            <Title>Login</Title>
+      <BackgroundImg>
+        <ToastContainer />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={schema}
+          onSubmit={handleSubmit}
+          validate={handleValidation}
+        >
+          {({ errors, touched }) => (
+            <LogForm>
+              <Title>Login</Title>
 
-            <Label htmlFor={emailInputId}>
-              <InputForEmail
-                type="email"
-                id={emailInputId}
-                name="email"
-                placeholder="Email"
-                error={touched.email && errors.email ? 1 : 0}
-                valid={touched.email && !errors.email ? 1 : 0}
-              />
-              {touched.email && errors.email && (
-                <ClearInputFieldButton name="email" />
-              )}
-              {touched.email && !errors.email && <ConfirmationIconComponent />}
-              <FormError name="email" />
-            </Label>
+              <Label htmlFor={emailInputId}>
+                <InputForEmail
+                  autoComplete="on"
+                  type="email"
+                  id={emailInputId}
+                  name="email"
+                  placeholder="Email"
+                  error={touched.email && errors.email ? 1 : 0}
+                  valid={touched.email && !errors.email ? 1 : 0}
+                />
+                {touched.email && errors.email && (
+                  <ClearInputFieldButton name="email" />
+                )}
+                {touched.email && !errors.email && (
+                  <ConfirmationIconComponent />
+                )}
+                <FormError name="email" />
+              </Label>
 
-            <Label htmlFor={passwordInputId}>
-              <InputForPassword
-                type={passwordVisible ? 'text' : 'password'}
-                id={passwordInputId}
-                name="password"
-                placeholder="Password"
-                error={touched.password && errors.password ? 1 : 0}
-                valid={touched.password && !errors.password ? 1 : 0}
-              />
-              {touched.password && errors.password && (
-                <ClearInputFieldButton name="password" positionRight={46} />
-              )}
-              {touched.password && !errors.password && (
-                <ConfirmationIconComponent positionRight={46} />
-              )}
-              <ShowPasswordButton
-                isOpen={passwordVisible}
-                onClick={togglePasswordVisibility}
-              />
-              {touched.password && !errors.password && !passwordVisible && (
-                <PasswordSecureText>Password is secure.</PasswordSecureText>
-              )}
-              <FormError name="password" />
-            </Label>
+              <Label htmlFor={passwordInputId}>
+                <InputForPassword
+                  type={passwordVisible ? 'text' : 'password'}
+                  id={passwordInputId}
+                  name="password"
+                  placeholder="Password"
+                  error={touched.password && errors.password ? 1 : 0}
+                  valid={touched.password && !errors.password ? 1 : 0}
+                />
+                {touched.password && errors.password && (
+                  <ClearInputFieldButton name="password" positionRight={46} />
+                )}
+                {touched.password && !errors.password && (
+                  <ConfirmationIconComponent positionRight={46} />
+                )}
+                <ShowPasswordButton
+                  isOpen={passwordVisible}
+                  onClick={togglePasswordVisibility}
+                />
+                {touched.password && !errors.password && !passwordVisible && (
+                  <PasswordSecureText>Password is secure.</PasswordSecureText>
+                )}
+                <FormError name="password" />
+              </Label>
 
-            <Button disabled={isLoading} type="submit">
-              {isLoading ? 'Loading...' : 'Login'}
-            </Button>
+              <Button disabled={isLoading || !isFormValid} type="submit">
+                {isLoading ? 'Loading...' : 'Login'}
+              </Button>
 
-            <ExtraText>
-              Don't have an account?{' '}
-              <LinkToRegister to="/register">Register</LinkToRegister>
-            </ExtraText>
-          </LogForm>
-        )}
-      </Formik>
+              <ExtraText>
+                Don't have an account?{' '}
+                <LinkToRegister to="/register">Register</LinkToRegister>
+              </ExtraText>
+            </LogForm>
+          )}
+        </Formik>
+      </BackgroundImg>
     </>
   );
 };

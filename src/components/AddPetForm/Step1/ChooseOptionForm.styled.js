@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-export const Form = styled.form`
+import { Form as FormikForm, Field } from 'formik';
+
+export const FormChooseOption = styled(FormikForm)`
   width: 100%;
 `;
 
@@ -10,7 +12,7 @@ export const RadioWrapper = styled.div`
   gap: 12px;
 `;
 
-export const RadioButton = styled.input`
+export const RadioButton = styled(Field)`
   position: absolute;
   top: 0;
   left: 0;

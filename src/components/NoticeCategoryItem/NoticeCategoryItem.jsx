@@ -66,8 +66,8 @@ const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
             <>
               <Favorite onClick={() => toggleFavorite(notice.id)}>
                 <FavoriteIcon
-                  isFavorite={favorites.some(
-                    favorite => favorite.id === notice.id
+                  isfavorite={favorites.some(
+                    favorite => favorite === notice.id
                   )}
                 ></FavoriteIcon>
               </Favorite>

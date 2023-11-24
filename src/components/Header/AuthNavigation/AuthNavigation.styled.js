@@ -26,4 +26,15 @@ export const AuthBtn = styled(Link)`
     background-color: var(--yellow);
     cursor: pointer;
   }
+  &:hover svg,
+  &:focus svg {
+    fill: var(--white);
+  }
+`;
+
+export const Svg = styled.svg`
+  width: 24px;
+  height: 24px;
+  fill: var(--yellow);
+  transition: fill 350ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
