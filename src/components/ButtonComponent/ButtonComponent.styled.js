@@ -7,7 +7,6 @@ export const Button = styled.button`
   gap: 8px;
   width: ${props => props.width || '248px'};
   height: ${props => props.height || '38px'};
-  font-family: 'Manrope';
   font-size: 16px;
   font-weight: 700;
   line-height: normal;

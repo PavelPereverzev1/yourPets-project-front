@@ -1,12 +1,11 @@
-import React from 'react';
 import { Card, DataWrapper, Image, Text, TextTitle } from './PetsItem.styled';
 
 const PetsItem = ({ pet }) => {
-  const { image, type, name, datebirth, comments } = pet;
+  const { name, birthday, type, comments, photoURL } = pet;
   return (
     <Card>
       <Image
-        src={image}
+        src={photoURL}
         alt={type}
         width="10.0625rem"
         height="10.0625rem"
@@ -19,7 +18,7 @@ const PetsItem = ({ pet }) => {
         </Text>
         <Text>
           <TextTitle>Date of birth: </TextTitle>
-          {datebirth}
+          {birthday}
         </Text>
         <Text>
           <TextTitle>Type: </TextTitle>

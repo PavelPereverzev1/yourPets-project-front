@@ -12,7 +12,11 @@ export const validateUserSchema = Yup.object({
   email: Yup.string()
     .matches(emailRegExp, 'Invalid email format.')
     .required('Email is required'),
-  birthday: Yup.string().matches(dateRegExp, 'Please use YYYY-MM-DD format.'),
-  phone: Yup.string().matches(phoneRegExp, 'Please use +380XXXXXXXXX format.'),
-  city: Yup.string(),
+  birthday: Yup.string()
+    .matches(dateRegExp, 'Please use YYYY-MM-DD format.')
+    .required(),
+  phone: Yup.string()
+    .matches(phoneRegExp, 'Please use +380XXXXXXXXX format.')
+    .required(),
+  city: Yup.string().required(),
 });

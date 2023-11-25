@@ -4,7 +4,9 @@ export const Btn = styled.button`
   display: flex;
   align-items: center;
   gap: 12px;
+  font-weight: 500;
   letter-spacing: 0.64px;
+  height: 31px;
   color: var(--gray);
   background: none;
   border: none;
