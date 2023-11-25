@@ -89,7 +89,7 @@ const NoticeCategoryItem = ({ notice }) => {
               ></FavoriteIcon>
             </Favorite>
           )}{' '}
-          {isLoggedIn && (
+          {isLoggedIn && user._id === notice.owner && (
             <Remove onClick={() => setDeleteModalActive(true)}>
               <RemoveIcon></RemoveIcon>
             </Remove>
