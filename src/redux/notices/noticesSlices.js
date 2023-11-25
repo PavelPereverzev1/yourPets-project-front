@@ -31,8 +31,13 @@ const noticesSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(deleteNoticeById.pending, handlePending)
-      .addCase(deleteNoticeById.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload.user };
+      .addCase(deleteNoticeById.fulfilled, (state, { payload }) => {
+        const itemsWithoutDeletedNotice = state.items.filter(
+          item => item.id !== payload
+        );
+
+        state.items = [...itemsWithoutDeletedNotice];
+        state.isLoading = false;
       })
       .addCase(deleteNoticeById.rejected, handleRejected);
   },
