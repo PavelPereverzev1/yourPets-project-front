@@ -86,13 +86,13 @@ const PersonalDetailsForm = props => {
               </DetailWrapper>
 
               <DetailWrapper>
-                <DetailLabel htmlFor="date"> Date Of Birth</DetailLabel>
+                <DetailLabel htmlFor="birthday"> Date Of Birth</DetailLabel>
                 <DetailInput
-                  id="date"
+                  id="birthday"
                   name="birthday"
                   placeholder="YYYY-MM-DD"
                 ></DetailInput>
-                <ErrorComponent name="date" />
+                <ErrorComponent name="birthday" />
               </DetailWrapper>
 
               <DetailWrapper>

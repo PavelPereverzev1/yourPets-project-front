@@ -38,7 +38,7 @@ import { Title } from '../Step1/ChooseOptionForm.styled';
 const SUPPORTED_FORMATS = ['image/png', 'image/jpeg', 'image/jpg'];
 
 const stepThreeValidationSchema = Yup.object().shape({
-  file: Yup.mixed()
+  photo: Yup.mixed()
     .nullable()
     .required('Select a file')
     .test(
@@ -113,14 +113,14 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                       ref={fileRef}
                       hidden
                       type="file"
-                      id="file"
-                      name="file"
+                      id="photo"
+                      name="photo"
                       onChange={event => {
-                        setFieldValue('file', event.target.files[0]);
+                        setFieldValue('photo', event.target.files[0]);
                       }}
                     />
-                    {values.file !== null ? (
-                      <PreviewImage file={values.file} />
+                    {values.photo !== null ? (
+                      <PreviewImage photo={values.photo} />
                     ) : (
                       <DefaultImage>
                         <UploadIcon>
@@ -129,7 +129,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                       </DefaultImage>
                     )}
                   </ImagePreview>
-                  <ErrorMessage name="file" />
+                  <ErrorMessage name="photo" />
                 </PhotoBlock>
               </SexPhotoblock>
 
