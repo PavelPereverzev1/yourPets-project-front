@@ -1,12 +1,18 @@
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import React, { useRef } from 'react';
+
+import BackgroundCard from '../BackgroundCard';
+import PreviewImage from '../PreviewImage/PreviewImage';
+import StepsBlock from '../StepsBlock';
+
 import sprite from '../../../images/icons/sprite.svg';
 import {
   FormSellMoreDetails,
   BlocksWrapper,
   SexPhotoblock,
   Sexblock,
+  SexList,
   RadioButton,
   IconSex,
   PhotoBlock,
@@ -21,15 +27,13 @@ import {
   CommentsInput,
   Label,
 } from './SellMoreDetailsForm.styled';
-import BackgroundCard from '../BackgroundCard';
-import TitleComponent from '../../TitleComponent/TitleComponent';
-import StepsBlock from '../StepsBlock';
 import {
+  ButtonsWrapper,
   ButtonBlue,
   ButtonWhite,
   BtnIcon,
 } from '../ButtonsBlock/ButtonsBlock.styled';
-import PreviewImage from '../ImageForm/PreviewImage';
+import { Title } from '../Step1/ChooseOptionForm.styled';
 
 const SUPPORTED_FORMATS = ['image/png', 'image/jpeg', 'image/jpg'];
 
@@ -66,8 +70,8 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
   const fileRef = useRef(null);
 
   return (
-    <BackgroundCard width="882px">
-      <TitleComponent name="Add pet" />
+    <BackgroundCard>
+      <Title>Add pet</Title>
       <StepsBlock step={3} />
       <Formik
         validationSchema={stepThreeValidationSchema}
@@ -80,21 +84,23 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
               <SexPhotoblock>
                 <Sexblock role="group" aria-labelledby="gender-radio-group">
                   <h3>The Sex</h3>
-                  <Label>
-                    <IconSex>
-                      <use href={`${sprite}#icon-female`} />
-                    </IconSex>
-                    <RadioButton type="radio" name="sex" value="female" />
-                    Female
-                  </Label>
+                  <SexList>
+                    <Label>
+                      <IconSex>
+                        <use href={`${sprite}#icon-female`} />
+                      </IconSex>
+                      <RadioButton type="radio" name="sex" value="female" />
+                      Female
+                    </Label>
 
-                  <Label>
-                    <IconSex>
-                      <use href={`${sprite}#icon-male`} />
-                    </IconSex>
-                    <RadioButton type="radio" name="sex" value="male" />
-                    Male
-                  </Label>
+                    <Label>
+                      <IconSex>
+                        <use href={`${sprite}#icon-male`} />
+                      </IconSex>
+                      <RadioButton type="radio" name="sex" value="male" />
+                      Male
+                    </Label>
+                  </SexList>
 
                   <ErrorMessage name="sex" />
                 </Sexblock>
@@ -162,18 +168,20 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
               </LocationPriceBlock>
             </BlocksWrapper>
 
-            <ButtonWhite type="button" onClick={() => prev(values)}>
-              <BtnIcon>
-                <use href={`${sprite}#icon-arrow-left`} />
-              </BtnIcon>
-              Back
-            </ButtonWhite>
-            <ButtonBlue type="submit">
-              Done
-              <BtnIcon>
-                <use href={`${sprite}#icon-pawprint-1`} />
-              </BtnIcon>
-            </ButtonBlue>
+            <ButtonsWrapper>
+              <ButtonBlue type="submit">
+                Done
+                <BtnIcon>
+                  <use href={`${sprite}#icon-pawprint-1`} />
+                </BtnIcon>
+              </ButtonBlue>
+              <ButtonWhite type="button" onClick={() => prev(values)}>
+                <BtnIcon>
+                  <use href={`${sprite}#icon-arrow-left`} />
+                </BtnIcon>
+                Back
+              </ButtonWhite>
+            </ButtonsWrapper>
           </FormSellMoreDetails>
         )}
       </Formik>
