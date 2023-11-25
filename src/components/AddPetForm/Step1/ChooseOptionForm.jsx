@@ -1,25 +1,25 @@
 import React from 'react';
-// import { FormContext } from '../AddPetForm';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+import BackgroundCard from '../BackgroundCard';
+import StepsBlock from '../StepsBlock';
+import ErrorComponent from '../ErrorComponent';
+
+import sprite from '../../../images/icons/sprite.svg';
 import {
+  Title,
   FormChooseOption,
   RadioButton,
   RadioWrapper,
   Label,
 } from './ChooseOptionForm.styled';
-import BackgroundCard from '../BackgroundCard';
-import TitleComponent from '../../TitleComponent/TitleComponent';
-import StepsBlock from '../StepsBlock';
-// import ButtonsBlock from '../ButtonsBlock';
-import sprite from '../../../images/icons/sprite.svg';
 import {
+  ButtonsWrapper,
   ButtonBlue,
   ButtonWhite,
   BtnIcon,
 } from '../ButtonsBlock/ButtonsBlock.styled';
-// import ErrorComponent from '../ErrorComponent';
-
-import { Formik, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 
 const stepOneValidationSchema = Yup.object().shape({
   category: Yup.string()
@@ -35,7 +35,7 @@ const ChooseOptionForm = props => {
   return (
     <>
       <BackgroundCard>
-        <TitleComponent name="Add pet" />
+        <Title>Add pet</Title>
         <StepsBlock step={1} />
         <Formik
           validationSchema={stepOneValidationSchema}
@@ -72,21 +72,23 @@ const ChooseOptionForm = props => {
                   />
                   in good hands
                 </Label>
-                <ErrorMessage name="category" />
+                <ErrorComponent name="category" />
               </RadioWrapper>
 
-              <ButtonWhite type="button">
-                <BtnIcon>
-                  <use href={`${sprite}#icon-arrow-left`} />
-                </BtnIcon>
-                Cancel
-              </ButtonWhite>
-              <ButtonBlue type="submit">
-                Next
-                <BtnIcon>
-                  <use href={`${sprite}#icon-pawprint-1`} />
-                </BtnIcon>
-              </ButtonBlue>
+              <ButtonsWrapper>
+                <ButtonBlue type="submit">
+                  Next
+                  <BtnIcon>
+                    <use href={`${sprite}#icon-pawprint-1`} />
+                  </BtnIcon>
+                </ButtonBlue>
+                <ButtonWhite type="button">
+                  <BtnIcon>
+                    <use href={`${sprite}#icon-arrow-left`} />
+                  </BtnIcon>
+                  Cancel
+                </ButtonWhite>
+              </ButtonsWrapper>
             </FormChooseOption>
           )}
         </Formik>
