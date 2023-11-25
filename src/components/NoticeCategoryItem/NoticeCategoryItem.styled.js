@@ -75,9 +75,8 @@ display:flex;
 
 justify-content: center;
 
-max-width:288px;
+width:288px;
 height:288px;
-
  
 color:white;
 `;
@@ -86,7 +85,7 @@ export const Image = styled.img`
 
 width:100%;
 height:100%;
-
+object-fit: contain;
 
 
 `;
@@ -106,7 +105,7 @@ export const Text = styled.a`
 margin-top: 10px;
 display: flex;
 justify-content: center;
-font-size: 24px;
+font-size: 20px;
 font-weight:700;
 height:auto;
 max-width:231px;
