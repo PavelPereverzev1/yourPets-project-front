@@ -56,6 +56,9 @@ export const FilledButton = styled(Button)`
 `;
 
 export const RoundButton = styled(FilledButton)`
+  position: sticky;
+  top: 200px;
+  z-index: +1;
   flex-direction: column;
   gap: 4px;
   width: 80px;

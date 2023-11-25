@@ -1,16 +1,25 @@
-import { Card, DataWrapper, Image, Text, TextTitle } from './PetsItem.styled';
+import {
+  Card,
+  DataWrapper,
+  Image,
+  Text,
+  TextTitle,
+  Thumb,
+} from './PetsItem.styled';
 
 const PetsItem = ({ pet }) => {
   const { name, birthday, type, comments, photoURL } = pet;
   return (
     <Card>
-      <Image
-        src={photoURL}
-        alt={type}
-        width="10.0625rem"
-        height="10.0625rem"
-        loading="lazy"
-      />
+      <Thumb>
+        <Image
+          src={photoURL}
+          alt={type}
+          width="10.0625rem"
+          height="10.0625rem"
+          loading="lazy"
+        />
+      </Thumb>
       <DataWrapper>
         <Text>
           <TextTitle>Name: </TextTitle>
