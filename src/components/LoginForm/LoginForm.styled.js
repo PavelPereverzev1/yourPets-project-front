@@ -9,10 +9,8 @@ export const ToastText = styled.span`
 export const LogForm = styled(Form)`
   width: 280px;
   height: 425px;
-
   padding: 28px 12px 28px 12px;
-  margin: 45px auto 0;
-
+  margin: 45px auto 88px;
   background-color: var(--white);
   border-radius: 20px;
   box-shadow: 3px 8px 14px 0px #88c6fd30;
@@ -20,14 +18,14 @@ export const LogForm = styled(Form)`
   @media screen and (min-width: 768px) {
     width: 608px;
     height: 481px;
-
     padding: 56px 75px 56px 75px;
-    margin-top: 92px;
-
+    margin-top: 80px;
+    margin-bottom: 395px;
     border-radius: 40px;
   }
 
   @media screen and (min-width: 1280px) {
+    margin-bottom: 139px;
   }
 `;
 
