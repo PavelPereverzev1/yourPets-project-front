@@ -15,7 +15,6 @@ const ModalNotice = ({ active, setActive, noticeDetail }) => {
       try {
         const data = await getNoticesDetailsAPI(noticeDetail);
         setNotice(data.notice);
-        console.log(data.notice);
       } catch (error) {
         console.log('error :>> ', error);
       }
