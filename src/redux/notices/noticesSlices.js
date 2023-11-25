@@ -1,7 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { getNoticesThunk, deleteNoticeById } from './noticesOperations';
+import {
+  getNoticesThunk,
+  deleteNoticeById,
+  addNoticeToFavorite,
+  deleteNoticeFromFavorite,
+} from './noticesOperations';
 
 const initialState = {
   items: [],
@@ -39,7 +44,17 @@ const noticesSlice = createSlice({
         state.items = [...itemsWithoutDeletedNotice];
         state.isLoading = false;
       })
-      .addCase(deleteNoticeById.rejected, handleRejected);
+      .addCase(deleteNoticeById.rejected, handleRejected)
+      .addCase(addNoticeToFavorite.pending, handlePending)
+      .addCase(addNoticeToFavorite.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+      })
+      .addCase(addNoticeToFavorite.rejected, handleRejected)
+      .addCase(deleteNoticeFromFavorite.pending, handlePending)
+      .addCase(deleteNoticeFromFavorite.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+      })
+      .addCase(deleteNoticeFromFavorite.rejected, handleRejected);
   },
 });
 
