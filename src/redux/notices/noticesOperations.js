@@ -18,3 +18,20 @@ export const getNoticesThunk = createAsyncThunk(
     }
   }
 );
+
+export const deleteNoticeById = createAsyncThunk(
+  'notices/{noticeId}',
+  async (query, thunkAPI) => {
+    const { id } = query;
+
+    try {
+      await axios.delete(`/notice/${id}`);
+    } catch ({
+      response: {
+        data: { message },
+      },
+    }) {
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);

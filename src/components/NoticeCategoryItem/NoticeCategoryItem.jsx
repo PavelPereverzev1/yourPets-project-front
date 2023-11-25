@@ -22,7 +22,8 @@ import {
 import AttentionModal from 'components/Modals/AttentionModal/AttentionModal.jsx';
 import DeleteModal from 'components/Modals/DeleteModal/DeleteModal.jsx';
 import { useAuth } from '../../hooks/useAuth.js';
-
+import { useDispatch } from 'react-redux';
+import { deleteNoticeById } from 'redux/notices/noticesOperations.js';
 import {
   PetIcon,
   FavoriteIcon,
@@ -35,21 +36,40 @@ import {
 
 const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
   const { isLoggedIn, user } = useAuth();
-  const [favorites, setFavorites] = useState(user.favorites || []);
+  const [favorites, setFavorites] = useState(user.favourites || []);
 
   const [modalActive, setModalActive] = useState(false);
   const [deleteModalActive, setDeleteModalActive] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const handleDeleteByIdNotice = async () => {
+    try {
+      const {
+        meta: { requestStatus },
+        payload,
+      } = await dispatch(deleteNoticeById({ id: notice.id }));
+
+      if (requestStatus === 'rejected') {
+        throw new Error(payload);
+      }
+
+      setDeleteModalActive(false);
+    } catch (error) {
+      const { message } = error;
+
+      console.log(message);
+    }
+  };
+
   const toggleFavorite = noticeId => {
     setFavorites(prevFavorites => {
-      const isPetInFavorites = prevFavorites.find(
-        favorite => favorite.id === noticeId
-      );
+      const isPetInFavorites = prevFavorites.includes(noticeId);
 
       if (!isPetInFavorites) {
         return [...prevFavorites, noticeId];
       } else {
-        return prevFavorites.filter(favorite => favorite.id !== noticeId);
+        return prevFavorites.filter(favorite => favorite !== noticeId);
       }
     });
   };
@@ -63,18 +83,16 @@ const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
             <FavoriteIcon></FavoriteIcon>
           </Favorite>
           {isLoggedIn && (
-            <>
-              <Favorite onClick={() => toggleFavorite(notice.id)}>
-                <FavoriteIcon
-                  isfavorite={favorites.some(
-                    favorite => favorite === notice.id
-                  )}
-                ></FavoriteIcon>
-              </Favorite>
-              <Remove onClick={() => setDeleteModalActive(true)}>
-                <RemoveIcon></RemoveIcon>
-              </Remove>
-            </>
+            <Favorite onClick={() => toggleFavorite(notice.id)}>
+              <FavoriteIcon
+                isfavorite={favorites.some(favorite => favorite === notice.id)}
+              ></FavoriteIcon>
+            </Favorite>
+          )}{' '}
+          {isLoggedIn && user._id === notice.owner && (
+            <Remove onClick={() => setDeleteModalActive(true)}>
+              <RemoveIcon></RemoveIcon>
+            </Remove>
           )}
           <InfoLocation>
             <LocationIcon></LocationIcon>
@@ -99,7 +117,7 @@ const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
           <Image src={notice.photoURL}></Image>
         </ImageBlock>
         <TextDiv>
-          <Text>Сute cat/dog looking for a home</Text>
+          <Text>{notice.title}</Text>
         </TextDiv>
         <LearnMoreDiv>
           <LearnMore onClick={() => handleLearnMore(notice.id)}>
@@ -115,6 +133,7 @@ const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
       <DeleteModal
         active={deleteModalActive}
         setActive={setDeleteModalActive}
+        yes={handleDeleteByIdNotice}
       ></DeleteModal>
     </>
   );
