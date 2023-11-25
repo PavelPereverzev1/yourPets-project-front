@@ -1,8 +1,29 @@
 import styled from 'styled-components';
 import { Form as FormikForm, Field } from 'formik';
 
+export const Title = styled.h1`
+  color: var(--black);
+  font-family: Manrope;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 24px;
+  margin-left: 16px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
 export const FormChooseOption = styled(FormikForm)`
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const RadioWrapper = styled.div`
@@ -10,32 +31,32 @@ export const RadioWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+
+  @media screen and (min-width: 768px) {
+    gap: 12px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
 export const RadioButton = styled(Field)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: block;
-
-  opacity: 1;
+  appearance: none;
+  cursor: pointer;
+  display: none;
 `;
 
 export const Label = styled.label`
-  position: relative;
   display: block;
 
   height: 35px;
   padding: 8px 16px;
   border-radius: 40px;
-  background-color: #cce4fb;
+  background-color: var(--blueLight);
 
-  color: #54adff;
+  color: var(--blueLink);
   font-family: Manrope;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: 0.56px;
@@ -43,12 +64,12 @@ export const Label = styled.label`
   cursor: pointer;
 
   &:hover {
-    color: #ffffff;
-    background-color: #54adff;
+    color: var(--white);
+    background-color: var(--blueLink);
   }
 
   ${RadioButton}:checked + & {
-    color: #ffffff;
-    background-color: #54adff;
+    color: var(--white);
+    background-color: var(--blueLink);
   }
 `;

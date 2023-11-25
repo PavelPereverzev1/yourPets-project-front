@@ -22,7 +22,7 @@ import {
   ButtonWhite,
   BtnIcon,
 } from '../ButtonsBlock/ButtonsBlock.styled';
-import PreviewImage from '../ImageForm/PreviewImage';
+import PreviewImage from '../PreviewImage/PreviewImage';
 
 const SUPPORTED_FORMATS = ['image/png', 'image/jpeg', 'image/jpg'];
 

@@ -1,19 +1,22 @@
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import React from 'react';
-// import { FormContext } from '../AddPetForm';
-// import { temporaryBox } from './PersonalDetailsForm.styled';
+
+import BackgroundCard from '../BackgroundCard';
+import StepsBlock from '../StepsBlock';
+import ErrorComponent from '../ErrorComponent';
+
 import {
   FormPersonalDetails,
+  FieldsWrapper,
   DetailWrapper,
   DetailInput,
   DetailLabel,
 } from './PersonalDetailsForm.styled';
-import BackgroundCard from '../BackgroundCard';
-import TitleComponent from '../../TitleComponent/TitleComponent';
-import StepsBlock from '../StepsBlock';
+import { Title } from '../Step1/ChooseOptionForm.styled';
 import sprite from '../../../images/icons/sprite.svg';
 import {
+  ButtonsWrapper,
   ButtonBlue,
   ButtonWhite,
   BtnIcon,
@@ -47,20 +50,10 @@ const PersonalDetailsForm = props => {
   const handleSubmit = values => {
     props.next(values);
   };
-  // const formProps = useContext(FormContext);
-  // const {
-  //   formData,
-  //   handleChange,
-  //   currentStep,
-  //   totalSteps,
-  //   nextStep,
-  //   backStep,
-  //   handleSubmit,
-  // } = formProps;
 
   return (
-    <BackgroundCard>
-      <TitleComponent name="Add pet" />
+    <BackgroundCard height={props.data.category !== 'your pet' && '559px'}>
+      <Title>Add pet</Title>
       <StepsBlock step={2} />
       <Formik
         validationSchema={stepTwoValidationSchema}
@@ -69,19 +62,27 @@ const PersonalDetailsForm = props => {
       >
         {({ values }) => (
           <FormPersonalDetails>
-            <div>
+            <FieldsWrapper>
               {values.category !== 'your pet' && (
                 <DetailWrapper>
                   <DetailLabel htmlFor="titleOfAdd"> Title of add</DetailLabel>
-                  <DetailInput id="titleOfAdd" name="titleOfAdd"></DetailInput>
-                  <ErrorMessage name="titleOfAdd" />
+                  <DetailInput
+                    id="titleOfAdd"
+                    name="titleOfAdd"
+                    placeholder="Type name pet"
+                  ></DetailInput>
+                  <ErrorComponent name="titleOfAdd" />
                 </DetailWrapper>
               )}
 
               <DetailWrapper>
                 <DetailLabel htmlFor="name"> Pet's name</DetailLabel>
-                <DetailInput id="name" name="name"></DetailInput>
-                <ErrorMessage name="name" />
+                <DetailInput
+                  id="name"
+                  name="name"
+                  placeholder="Type name pet"
+                ></DetailInput>
+                <ErrorComponent name="name" />
               </DetailWrapper>
 
               <DetailWrapper>
@@ -91,27 +92,33 @@ const PersonalDetailsForm = props => {
                   name="birthday"
                   placeholder="DD-MM-YYYY"
                 ></DetailInput>
-                <ErrorMessage name="date" />
+                <ErrorComponent name="date" />
               </DetailWrapper>
 
               <DetailWrapper>
                 <DetailLabel htmlFor="type"> Type</DetailLabel>
-                <DetailInput id="type" name="type"></DetailInput>
-                <ErrorMessage name="type" />
+                <DetailInput
+                  id="type"
+                  name="type"
+                  placeholder="Type of pet"
+                ></DetailInput>
+                <ErrorComponent name="type" />
               </DetailWrapper>
-            </div>
-            <ButtonWhite type="button" onClick={() => props.prev(values)}>
-              <BtnIcon>
-                <use href={`${sprite}#icon-arrow-left`} />
-              </BtnIcon>
-              Back
-            </ButtonWhite>
-            <ButtonBlue type="submit">
-              Next
-              <BtnIcon>
-                <use href={`${sprite}#icon-pawprint-1`} />
-              </BtnIcon>
-            </ButtonBlue>
+            </FieldsWrapper>
+            <ButtonsWrapper>
+              <ButtonBlue type="submit">
+                Next
+                <BtnIcon>
+                  <use href={`${sprite}#icon-pawprint-1`} />
+                </BtnIcon>
+              </ButtonBlue>
+              <ButtonWhite type="button" onClick={() => props.prev(values)}>
+                <BtnIcon>
+                  <use href={`${sprite}#icon-arrow-left`} />
+                </BtnIcon>
+                Back
+              </ButtonWhite>
+            </ButtonsWrapper>
           </FormPersonalDetails>
         )}
       </Formik>
