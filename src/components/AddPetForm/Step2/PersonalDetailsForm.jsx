@@ -31,16 +31,16 @@ const stepTwoValidationSchema = Yup.object().shape({
   birthday: Yup.string()
     .required('Enter the date in DD-MM-YYYY format')
     .matches(
-      /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19|20)\d\d$/,
+      /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
       'Invalid date format'
     ),
 
-  type: Yup.string()
+  petType: Yup.string()
     .required('Enter the type')
     .min(2, 'min 2 symbols')
     .max(16, 'max 16 symbols'),
 
-  titleOfAdd: Yup.string()
+  title: Yup.string()
     .required('Enter the title of the add')
     .min(3, 'min 3 symbols')
     .max(16, 'max 16 symbols'),
@@ -52,7 +52,7 @@ const PersonalDetailsForm = props => {
   };
 
   return (
-    <BackgroundCard height={props.data.category !== 'your pet' && '559px'}>
+    <BackgroundCard height={props.data.noticeType !== 'your pet' && '559px'}>
       <Title>Add pet</Title>
       <StepsBlock step={2} />
       <Formik
@@ -63,15 +63,15 @@ const PersonalDetailsForm = props => {
         {({ values }) => (
           <FormPersonalDetails>
             <FieldsWrapper>
-              {values.category !== 'your pet' && (
+              {values.noticeType !== 'your pet' && (
                 <DetailWrapper>
-                  <DetailLabel htmlFor="titleOfAdd"> Title of add</DetailLabel>
+                  <DetailLabel htmlFor="title"> Title of add</DetailLabel>
                   <DetailInput
-                    id="titleOfAdd"
-                    name="titleOfAdd"
-                    placeholder="Type name pet"
+                    id="title"
+                    name="title"
+                    placeholder="Enter title of add"
                   ></DetailInput>
-                  <ErrorComponent name="titleOfAdd" />
+                  <ErrorComponent name="title" />
                 </DetailWrapper>
               )}
 
@@ -86,23 +86,23 @@ const PersonalDetailsForm = props => {
               </DetailWrapper>
 
               <DetailWrapper>
-                <DetailLabel htmlFor="date"> Date Of Birth</DetailLabel>
+                <DetailLabel htmlFor="birthday"> Date Of Birth</DetailLabel>
                 <DetailInput
-                  id="date"
+                  id="birthday"
                   name="birthday"
-                  placeholder="DD-MM-YYYY"
+                  placeholder="YYYY-MM-DD"
                 ></DetailInput>
-                <ErrorComponent name="date" />
+                <ErrorComponent name="birthday" />
               </DetailWrapper>
 
               <DetailWrapper>
-                <DetailLabel htmlFor="type"> Type</DetailLabel>
+                <DetailLabel htmlFor="petType"> Type</DetailLabel>
                 <DetailInput
-                  id="type"
-                  name="type"
+                  id="petType"
+                  name="petType"
                   placeholder="Type of pet"
                 ></DetailInput>
-                <ErrorComponent name="type" />
+                <ErrorComponent name="petType" />
               </DetailWrapper>
             </FieldsWrapper>
             <ButtonsWrapper>

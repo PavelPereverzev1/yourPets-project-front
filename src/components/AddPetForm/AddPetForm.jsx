@@ -11,12 +11,12 @@ axios.defaults.baseURL = 'https://yourpets-project-backend.onrender.com';
 
 function AddPetForm() {
   const initialFormData = {
-    category: '',
+    noticeType: '',
     name: '',
     birthday: '',
-    type: '',
-    titleOfAdd: '',
-    file: null,
+    petType: '',
+    title: '',
+    photo: null,
     comments: '',
     location: '',
     price: '',
@@ -30,18 +30,20 @@ function AddPetForm() {
     let url;
 
     try {
-      if (formData.category === 'your pet') {
+      if (formData.noticeType === 'your pet') {
         url = '/pets';
       } else {
         url = '/notices';
       }
 
       const response = await axios.post(url, formData);
+      console.log('Дані, що відправляю:', formData);
+
       console.log('Response from server:', response.data);
 
-      if (formData.category === 'your pet') {
-      } else {
-      }
+      // if (formData.noticeType === 'your pet') {
+      // } else {
+      // }
     } catch (error) {
       console.error('Error sending data:', error);
     }
@@ -57,6 +59,7 @@ function AddPetForm() {
       return;
     }
     setCurrentStep(prev => prev + 1);
+    console.log('Completed step:', currentStep);
   };
 
   const handleBackStep = newData => {
