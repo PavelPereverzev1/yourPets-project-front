@@ -170,7 +170,7 @@ export const DetailInput = styled.input`
   border: 1px solid #54adff;
 `;
 
-export const CommentsInput = styled.textarea`
+export const CommentsInput = styled.input`
   display: block;
   text-align: start;
   overflow-wrap: break-word;
