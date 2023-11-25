@@ -22,12 +22,12 @@ import {
   ButtonWhite,
   BtnIcon,
 } from '../ButtonsBlock/ButtonsBlock.styled';
-import PreviewImage from '../ImageForm/PreviewImage';
+import PreviewImage from '../PreviewImage/PreviewImage';
 
 const SUPPORTED_FORMATS = ['image/png', 'image/jpeg', 'image/jpg'];
 
 const stepThreeValidationSchema = Yup.object().shape({
-  file: Yup.mixed()
+  photo: Yup.mixed()
     .nullable()
     .required('Select a file')
     .test(
@@ -62,21 +62,21 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
         {({ values, setFieldValue }) => (
           <FormAddMoreDetails>
             <PhotoBlock>
-              <PhotoLabel htmlFor="file">Load the pet’s image:</PhotoLabel>
+              <PhotoLabel htmlFor="photo">Load the pet’s image:</PhotoLabel>
 
               <ImagePreview>
                 <PhotoInput
                   ref={fileRef}
                   hidden
                   type="file"
-                  id="file"
-                  name="file"
+                  id="photo"
+                  name="photo"
                   onChange={event => {
-                    setFieldValue('file', event.target.files[0]);
+                    setFieldValue('photo', event.target.files[0]);
                   }}
                 />
-                {values.file !== null ? (
-                  <PreviewImage file={values.file} />
+                {values.photo !== null ? (
+                  <PreviewImage photo={values.photo} />
                 ) : (
                   <DefaultImage>
                     <UploadIcon>
@@ -85,7 +85,7 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
                   </DefaultImage>
                 )}
               </ImagePreview>
-              <ErrorMessage name="file" />
+              <ErrorMessage name="photo" />
             </PhotoBlock>
 
             <DetailWrapper>

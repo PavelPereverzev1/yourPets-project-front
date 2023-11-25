@@ -2,9 +2,14 @@ import styled, { css } from 'styled-components';
 
 // Buttons styles
 export const ButtonsWrapper = styled.div`
+  // position: absolute;
+  // bottom: 0;
+  // left: 16px;
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 24px;
 `;
 
 const sharedStyles = css`

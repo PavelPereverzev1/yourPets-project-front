@@ -23,9 +23,10 @@ export const deleteNoticeById = createAsyncThunk(
   'notices/{noticeId}',
   async (query, thunkAPI) => {
     const { id } = query;
-
     try {
-      await axios.delete(`/notice/${id}`);
+      await axios.delete(`/notices/${id}`);
+
+      return id;
     } catch ({
       response: {
         data: { message },

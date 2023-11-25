@@ -8,49 +8,38 @@ import {
   BtnIcon,
 } from './ButtonsBlock.styled';
 
-const ButtonsBlock = ({
-  currentStep,
-  totalSteps,
-  nextStep,
-  backStep,
-  handleSubmit,
-}) => {
+const ButtonsBlock = () => {
   return (
     <ButtonsWrapper>
-      {currentStep === 1 && (
-        <ButtonWhite>
-          <BtnIcon>
-            <use href={`${sprite}#icon-arrow-left`} />
-          </BtnIcon>
-          <Link to="/"></Link>
-          Cancel
-        </ButtonWhite>
-      )}
-      {currentStep > 1 && (
-        <ButtonWhite onClick={backStep}>
-          <BtnIcon>
-            <use href={`${sprite}#icon-arrow-left`} />
-          </BtnIcon>
-          Back
-        </ButtonWhite>
-      )}
-      {currentStep < totalSteps && (
-        <ButtonBlue onClick={nextStep}>
-          Next
-          <BtnIcon>
-            <use href={`${sprite}#icon-pawprint-1`} />
-          </BtnIcon>
-        </ButtonBlue>
-      )}
-      {currentStep === totalSteps && (
-        <ButtonBlue onClick={handleSubmit}>
-          <Link to="/"></Link>
-          Done
-          <BtnIcon>
-            <use href={`${sprite}#icon-pawprint-1`} />
-          </BtnIcon>
-        </ButtonBlue>
-      )}
+      <ButtonWhite>
+        <BtnIcon>
+          <use href={`${sprite}#icon-arrow-left`} />
+        </BtnIcon>
+        <Link to="/"></Link>
+        Cancel
+      </ButtonWhite>
+
+      <ButtonWhite>
+        <BtnIcon>
+          <use href={`${sprite}#icon-arrow-left`} />
+        </BtnIcon>
+        Back
+      </ButtonWhite>
+
+      <ButtonBlue>
+        Next
+        <BtnIcon>
+          <use href={`${sprite}#icon-pawprint-1`} />
+        </BtnIcon>
+      </ButtonBlue>
+
+      <ButtonBlue>
+        <Link to="/"></Link>
+        Done
+        <BtnIcon>
+          <use href={`${sprite}#icon-pawprint-1`} />
+        </BtnIcon>
+      </ButtonBlue>
     </ButtonsWrapper>
   );
 };

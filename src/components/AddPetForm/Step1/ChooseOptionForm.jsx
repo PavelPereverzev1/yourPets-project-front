@@ -1,28 +1,28 @@
 import React from 'react';
-// import { FormContext } from '../AddPetForm';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+import BackgroundCard from '../BackgroundCard';
+import StepsBlock from '../StepsBlock';
+import ErrorComponent from '../ErrorComponent';
+
+import sprite from '../../../images/icons/sprite.svg';
 import {
+  Title,
   FormChooseOption,
   RadioButton,
   RadioWrapper,
   Label,
 } from './ChooseOptionForm.styled';
-import BackgroundCard from '../BackgroundCard';
-import TitleComponent from '../../TitleComponent/TitleComponent';
-import StepsBlock from '../StepsBlock';
-// import ButtonsBlock from '../ButtonsBlock';
-import sprite from '../../../images/icons/sprite.svg';
 import {
+  ButtonsWrapper,
   ButtonBlue,
   ButtonWhite,
   BtnIcon,
 } from '../ButtonsBlock/ButtonsBlock.styled';
-// import ErrorComponent from '../ErrorComponent';
-
-import { Formik, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 
 const stepOneValidationSchema = Yup.object().shape({
-  category: Yup.string()
+  noticeType: Yup.string()
     .required('Choose one of the available categories')
     .oneOf(['sell', 'lost/found', 'in good hands', 'your pet']),
 });
@@ -35,7 +35,7 @@ const ChooseOptionForm = props => {
   return (
     <>
       <BackgroundCard>
-        <TitleComponent name="Add pet" />
+        <Title>Add pet</Title>
         <StepsBlock step={1} />
         <Formik
           validationSchema={stepOneValidationSchema}
@@ -44,21 +44,28 @@ const ChooseOptionForm = props => {
         >
           {() => (
             <FormChooseOption>
-              <RadioWrapper role="group" aria-labelledby="category-radio-group">
+              <RadioWrapper
+                role="group"
+                aria-labelledby="noticeType-radio-group"
+              >
                 <Label>
-                  <RadioButton type="radio" name="category" value="your pet" />
+                  <RadioButton
+                    type="radio"
+                    name="noticeType"
+                    value="your pet"
+                  />
                   your pet
                 </Label>
 
                 <Label>
-                  <RadioButton type="radio" name="category" value="sell" />
+                  <RadioButton type="radio" name="noticeType" value="sell" />
                   sell
                 </Label>
 
                 <Label>
                   <RadioButton
                     type="radio"
-                    name="category"
+                    name="noticeType"
                     value="lost/found"
                   />
                   lost/found
@@ -67,26 +74,28 @@ const ChooseOptionForm = props => {
                 <Label>
                   <RadioButton
                     type="radio"
-                    name="category"
+                    name="noticeType"
                     value="in good hands"
                   />
                   in good hands
                 </Label>
-                <ErrorMessage name="category" />
+                <ErrorComponent name="noticeType" />
               </RadioWrapper>
 
-              <ButtonWhite type="button">
-                <BtnIcon>
-                  <use href={`${sprite}#icon-arrow-left`} />
-                </BtnIcon>
-                Cancel
-              </ButtonWhite>
-              <ButtonBlue type="submit">
-                Next
-                <BtnIcon>
-                  <use href={`${sprite}#icon-pawprint-1`} />
-                </BtnIcon>
-              </ButtonBlue>
+              <ButtonsWrapper>
+                <ButtonBlue type="submit">
+                  Next
+                  <BtnIcon>
+                    <use href={`${sprite}#icon-pawprint-1`} />
+                  </BtnIcon>
+                </ButtonBlue>
+                <ButtonWhite type="button">
+                  <BtnIcon>
+                    <use href={`${sprite}#icon-arrow-left`} />
+                  </BtnIcon>
+                  Cancel
+                </ButtonWhite>
+              </ButtonsWrapper>
             </FormChooseOption>
           )}
         </Formik>

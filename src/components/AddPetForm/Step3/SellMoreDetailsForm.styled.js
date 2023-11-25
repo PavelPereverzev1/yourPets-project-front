@@ -11,6 +11,7 @@ export const FormSellMoreDetails = styled(FormikForm)`
 
 export const BlocksWrapper = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 export const SexPhotoblock = styled.div`
@@ -30,43 +31,40 @@ export const SexList = styled.div`
 `;
 
 export const RadioButton = styled(Field)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: block;
-
-  opacity: 1;
+  appearance: none;
+  cursor: pointer;
+  // display: none;
 `;
 
 export const Label = styled.label`
-  position: relative;
-  display: block;
-
+  display: inline-flex;
   height: 35px;
   padding: 8px 16px;
-  border-radius: 40px;
-  background-color: #cce4fb;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 
-  color: #54adff;
+  border-radius: 40px;
+  background-color: transparent;
+
+  color: var(--gray);
   font-family: Manrope;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0.56px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.64px;
 
   cursor: pointer;
 
   &:hover {
-    color: #ffffff;
-    background-color: #54adff;
+    color: var(--white);
+    background-color: var(--blueLink);
   }
 
   ${RadioButton}:checked + & {
-    color: #ffffff;
-    background-color: #54adff;
+    color: var(--white);
+    background-color: var(--blueLink);
   }
 `;
 
@@ -86,7 +84,7 @@ export const SexBtn = styled(Field)`
 export const IconSex = styled.svg`
   width: 24px;
   height: 24px;
-  fill: var(--blueLink);
+  stroke: var(--gray);
   transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
@@ -94,7 +92,6 @@ export const IconSex = styled.svg`
 export const PhotoBlock = styled.div`
   display: flex;
   flex-direction: column;
-
   gap: 16px;
 `;
 
@@ -173,7 +170,7 @@ export const DetailInput = styled.input`
   border: 1px solid #54adff;
 `;
 
-export const CommentsInput = styled.textarea`
+export const CommentsInput = styled.input`
   display: block;
   text-align: start;
   overflow-wrap: break-word;
