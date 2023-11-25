@@ -22,7 +22,7 @@ import {
 } from '../ButtonsBlock/ButtonsBlock.styled';
 
 const stepOneValidationSchema = Yup.object().shape({
-  category: Yup.string()
+  noticeType: Yup.string()
     .required('Choose one of the available categories')
     .oneOf(['sell', 'lost/found', 'in good hands', 'your pet']),
 });
@@ -44,21 +44,28 @@ const ChooseOptionForm = props => {
         >
           {() => (
             <FormChooseOption>
-              <RadioWrapper role="group" aria-labelledby="category-radio-group">
+              <RadioWrapper
+                role="group"
+                aria-labelledby="noticeType-radio-group"
+              >
                 <Label>
-                  <RadioButton type="radio" name="category" value="your pet" />
+                  <RadioButton
+                    type="radio"
+                    name="noticeType"
+                    value="your pet"
+                  />
                   your pet
                 </Label>
 
                 <Label>
-                  <RadioButton type="radio" name="category" value="sell" />
+                  <RadioButton type="radio" name="noticeType" value="sell" />
                   sell
                 </Label>
 
                 <Label>
                   <RadioButton
                     type="radio"
-                    name="category"
+                    name="noticeType"
                     value="lost/found"
                   />
                   lost/found
@@ -67,12 +74,12 @@ const ChooseOptionForm = props => {
                 <Label>
                   <RadioButton
                     type="radio"
-                    name="category"
+                    name="noticeType"
                     value="in good hands"
                   />
                   in good hands
                 </Label>
-                <ErrorComponent name="category" />
+                <ErrorComponent name="noticeType" />
               </RadioWrapper>
 
               <ButtonsWrapper>
