@@ -34,6 +34,12 @@ const handleRejected = (state, action) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    resetAuthState: () => initialState,
+    resetAuthError: state => {
+      state.authError = null;
+    },
+  },
   extraReducers: buider =>
     buider
       .addCase(register.pending, handlePending)
@@ -81,7 +87,8 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isUserDataLoaded = true;
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state, { payload }) => {
+        state.authError = payload;
         state.isRefreshing = false;
       })
       .addCase(updateUser.pending, handlePending)
@@ -92,6 +99,7 @@ const authSlice = createSlice({
       }),
 });
 
+export const { resetAuthState, resetAuthError } = authSlice.actions;
 export const authReducer = authSlice.reducer;
 
 //Selectors

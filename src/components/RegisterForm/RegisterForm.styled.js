@@ -9,10 +9,8 @@ export const ToastText = styled.span`
 export const RegForm = styled(Form)`
   width: 280px;
   height: 479px;
-
   padding: 28px 12px 28px 12px;
-  margin: 45px auto 0;
-
+  margin: 45px auto 34px;
   background-color: var(--white);
   border-radius: 20px;
   box-shadow: 3px 8px 14px 0px #88c6fd30;
@@ -20,15 +18,15 @@ export const RegForm = styled(Form)`
   @media screen and (min-width: 768px) {
     width: 608px;
     height: 629px;
-
     padding: 56px 75px 56px 75px;
-    margin-top: 92px;
-
+    margin-top: 80px;
+    margin-bottom: 247px;
     border-radius: 40px;
   }
 
   @media screen and (min-width: 1280px) {
     height: 617px;
+    margin-bottom: 75px;
   }
 `;
 
