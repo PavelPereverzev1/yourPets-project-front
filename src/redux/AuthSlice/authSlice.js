@@ -9,6 +9,8 @@ const initialState = {
     phone: '',
     city: '',
     avatarURL: '/yourPets-project-front/defaultAvatar.png',
+    favourites: [],
+    _id: '',
   },
   token: null,
   isLoggedIn: false,
@@ -60,6 +62,8 @@ const authSlice = createSlice({
           phone: '',
           city: '',
           avatarURL: null,
+          favourites: [],
+          _id: '',
         };
         state.token = null;
         state.isLoggedIn = false;
