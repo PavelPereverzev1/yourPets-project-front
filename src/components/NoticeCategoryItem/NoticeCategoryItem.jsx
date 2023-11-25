@@ -34,7 +34,7 @@ import {
   RemoveIcon,
 } from './SvgIcons.jsx';
 
-const NoticeCategoryItem = ({ notice }) => {
+const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favourites || []);
 
@@ -120,7 +120,7 @@ const NoticeCategoryItem = ({ notice }) => {
           <Text>{notice.title}</Text>
         </TextDiv>
         <LearnMoreDiv>
-          <LearnMore>
+          <LearnMore onClick={() => handleLearnMore(notice.id)}>
             <TextMore>Learn more</TextMore>
             <PetIcon></PetIcon>
           </LearnMore>
