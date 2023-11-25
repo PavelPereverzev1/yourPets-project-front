@@ -5,6 +5,7 @@ const noticesQuerySlice = createSlice({
   initialState: {
     searchQuery: '',
     category: 'sell',
+    page: 1,
     filter: {
       upToOneYear: false,
       upToTwoYears: false,

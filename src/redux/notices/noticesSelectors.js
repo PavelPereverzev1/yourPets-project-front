@@ -7,3 +7,5 @@ export const selectSearchQuery = state => state.query.searchQuery;
 export const selectCategory = state => state.query.category;
 
 export const selectFilter = state => state.query.filter;
+
+export const selectIsRefreshing = state => state.isRefreshing;

@@ -1,25 +1,36 @@
 import { NoticeCategoriesNav } from 'components/NoticeCategoriesNav/NoticeCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
-import { selectQuery } from 'redux/notices/noticesSelectors';
 import { useEffect } from 'react';
-import { getNoticesThunk } from 'redux/notices/noticesOperations';
-import { useDispatch, useSelector } from 'react-redux';
-import { NoticesFilters } from 'components/Filter/NoticesFilters';
+import { useDispatch } from 'react-redux';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
+import { useLocation } from 'react-router-dom';
+import { setCategory } from 'redux/notices/noticesQuerySlice';
 
 const NoticesPage = () => {
-  const query = useSelector(selectQuery);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
-    dispatch(getNoticesThunk(query));
-  }, [dispatch, query]);
+    switch (location.pathname) {
+      case '/notices/sell':
+        dispatch(setCategory('sell'));
+        break;
+      case '/notices/lost-found':
+        dispatch(setCategory('lost-found'));
+        break;
+      case '/notices/in-good-hands':
+        dispatch(setCategory('in-good-hands'));
+        break;
+      default:
+        break;
+    }
+  }, [dispatch, location]);
 
   return (
     <>
       <NoticesSearch />
       <NoticeCategoriesNav />
-      <NoticesFilters />
+      {/* <NoticesFilters /> */}
       <NoticesCategoriesList />
     </>
   );

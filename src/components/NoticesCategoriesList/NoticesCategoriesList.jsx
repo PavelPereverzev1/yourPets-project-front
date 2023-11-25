@@ -1,21 +1,45 @@
 // import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   NoticesList,
   NotFoundPetsMessage,
 } from './NoticesCategoriesList.styled';
-import { selectNotices } from 'redux/notices/noticesSelectors';
-import { useState, useEffect } from 'react';
+import {
+  selectNotices,
+  selectPage,
+  selectQuery,
+} from 'redux/notices/noticesSelectors';
+import { useEffect, useState } from 'react';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import Pagination from '../Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
+import { useLocation } from 'react-router-dom';
+import {
+  getFavoriteNotices,
+  getNoticesThunk,
+  getOwnNotices,
+} from 'redux/notices/noticesOperations';
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
+  const query = useSelector(selectQuery);
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(notices);
-  }, [notices]);
+    switch (location.pathname) {
+      case '/notices/own':
+        dispatch(getOwnNotices(query));
+        return;
+      case '/notices/favorite':
+        dispatch(getFavoriteNotices(query));
+        return;
+
+      default:
+        dispatch(getNoticesThunk(query));
+        return;
+    }
+  }, [dispatch, location, query]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
@@ -37,13 +61,15 @@ const NoticesCategoriesList = () => {
     <>
       <NoticesList>
         {currentPageItems.length > 0 ? (
-          notices.map(item => (
-            <NoticeCategoryItem
-              key={item.id}
-              notice={item}
-              handleLearnMore={handleLearnMore}
-            ></NoticeCategoryItem>
-          ))
+          notices.map(item => {
+            return (
+              <NoticeCategoryItem
+                key={item.id}
+                notice={item}
+                handleLearnMore={handleLearnMore}
+              ></NoticeCategoryItem>
+            );
+          })
         ) : (
           <NotFoundPetsMessage>
             No Pets found, reload page or try again later
