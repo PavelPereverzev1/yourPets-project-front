@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/yourPets-project-front/static/css/main.d09caff4.css",
-    "main.js": "/yourPets-project-front/static/js/main.bd2aa8ea.js",
+    "main.js": "/yourPets-project-front/static/js/main.dc555ac7.js",
     "static/js/799.2bdc0418.chunk.js": "/yourPets-project-front/static/js/799.2bdc0418.chunk.js",
     "static/css/66.9fd197a5.chunk.css": "/yourPets-project-front/static/css/66.9fd197a5.chunk.css",
     "static/js/66.2ff65f45.chunk.js": "/yourPets-project-front/static/js/66.2ff65f45.chunk.js",
@@ -39,7 +39,7 @@
     "static/media/bg-mobile@1x.png": "/yourPets-project-front/static/media/bg-mobile@1x.3dbc8c2599d652ed7615.png",
     "index.html": "/yourPets-project-front/index.html",
     "main.d09caff4.css.map": "/yourPets-project-front/static/css/main.d09caff4.css.map",
-    "main.bd2aa8ea.js.map": "/yourPets-project-front/static/js/main.bd2aa8ea.js.map",
+    "main.dc555ac7.js.map": "/yourPets-project-front/static/js/main.dc555ac7.js.map",
     "799.2bdc0418.chunk.js.map": "/yourPets-project-front/static/js/799.2bdc0418.chunk.js.map",
     "66.9fd197a5.chunk.css.map": "/yourPets-project-front/static/css/66.9fd197a5.chunk.css.map",
     "66.2ff65f45.chunk.js.map": "/yourPets-project-front/static/js/66.2ff65f45.chunk.js.map",
@@ -59,6 +59,6 @@
   },
   "entrypoints": [
     "static/css/main.d09caff4.css",
-    "static/js/main.bd2aa8ea.js"
+    "static/js/main.dc555ac7.js"
   ]
 }
