@@ -4,7 +4,7 @@ import { selectQuery } from 'redux/notices/noticesSelectors';
 import { useEffect } from 'react';
 import { getNoticesThunk } from 'redux/notices/noticesOperations';
 import { useDispatch, useSelector } from 'react-redux';
-import { NoticesFilters } from 'components/Filter/NoticesFilters';
+// import { NoticesFilters } from 'components/Filter/NoticesFilters';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
 const NoticesPage = () => {
@@ -19,7 +19,7 @@ const NoticesPage = () => {
     <>
       <NoticesSearch />
       <NoticeCategoriesNav />
-      <NoticesFilters />
+      {/* <NoticesFilters /> */}
       <NoticesCategoriesList />
     </>
   );
