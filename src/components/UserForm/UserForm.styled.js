@@ -11,7 +11,7 @@ export const Form = styled.form`
   }
 `;
 
-export const InputContainer = styled.div`
+export const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -33,6 +33,11 @@ export const InputWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const ErorrWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Label = styled.label`
