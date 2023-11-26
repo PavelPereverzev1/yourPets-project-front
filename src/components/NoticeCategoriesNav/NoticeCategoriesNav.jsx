@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import {
   NavElements,
   NavList,
@@ -6,31 +5,11 @@ import {
   StyledNavLink,
   NoticeNavContainer,
 } from './style/NoticeCategoriesNav.styled';
-import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCategory } from 'redux/notices/noticesQuerySlice';
+import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/AuthSlice';
-import { NoticesFilters } from 'components/Filter/NoticesFilters';
+
 export const NoticeCategoriesNav = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const location = useLocation();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    switch (location.pathname) {
-      case '/notices/sell':
-        dispatch(setCategory('sell'));
-        break;
-      case '/notices/lost-found':
-        dispatch(setCategory('lost-found'));
-        break;
-      case '/notices/in-good-hands':
-        dispatch(setCategory('in-good-hands'));
-        break;
-      default:
-        break;
-    }
-  }, [dispatch, location]);
 
   return (
     <NoticeNavContainer>
@@ -59,7 +38,6 @@ export const NoticeCategoriesNav = () => {
           )}
         </NavList>
       </NavElements>
-      <NoticesFilters />
     </NoticeNavContainer>
   );
 };

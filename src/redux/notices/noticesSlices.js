@@ -4,22 +4,26 @@ import storage from 'redux-persist/lib/storage';
 import {
   getNoticesThunk,
   deleteNoticeById,
+  getOwnNotices,
   addNoticeToFavorite,
   deleteNoticeFromFavorite,
 } from './noticesOperations';
 
 const initialState = {
   items: [],
+  isRefreshing: false,
   isLoading: false,
   noticesError: null,
 };
 
 const handlePending = state => {
-  state.isLoading = true;
+  state.isRefreshing = true;
+  state.isLoading = false;
   state.noticesError = null;
 };
 
 const handleRejected = (state, { payload }) => {
+  state.isRefreshing = false;
   state.isLoading = false;
   state.noticesError = payload;
 };
@@ -34,6 +38,7 @@ const noticesSlice = createSlice({
       .addCase(getNoticesThunk.fulfilled, (state, { payload }) => {
         state.items = payload.data;
         state.isLoading = false;
+        state.isRefreshing = false;
       })
       .addCase(deleteNoticeById.pending, handlePending)
       .addCase(deleteNoticeById.fulfilled, (state, { payload }) => {
@@ -43,8 +48,16 @@ const noticesSlice = createSlice({
 
         state.items = [...itemsWithoutDeletedNotice];
         state.isLoading = false;
+        state.isRefreshing = false;
       })
       .addCase(deleteNoticeById.rejected, handleRejected)
+      .addCase(getOwnNotices.pending, handlePending)
+      .addCase(getOwnNotices.rejected, handleRejected)
+      .addCase(getOwnNotices.fulfilled, (state, { payload }) => {
+        state.items = payload;
+        state.isLoading = false;
+        state.isRefreshing = false;
+      })
       .addCase(addNoticeToFavorite.pending, handlePending)
       .addCase(addNoticeToFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
