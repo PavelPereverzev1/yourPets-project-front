@@ -16,7 +16,6 @@ import { selectFriend } from 'redux/OurFriends/OurFriendsSlice';
 
 export default function OurFriends() {
   const friends = useSelector(selectFriend);
-  console.log(friends.friends)
 
   return (
       <WrapperSponsors>
