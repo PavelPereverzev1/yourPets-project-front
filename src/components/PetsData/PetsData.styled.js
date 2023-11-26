@@ -4,7 +4,14 @@ export const Section = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 31px;
+  gap: 24px;
+`;
+
+export const BgContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 130px;
 `;
 
 export const TopContainer = styled.div`
