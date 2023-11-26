@@ -19,7 +19,7 @@ function AddPetForm() {
     photo: null,
     comments: '',
     location: '',
-    price: '',
+    price: 0,
     sex: '',
   };
 
@@ -49,6 +49,21 @@ function AddPetForm() {
         console.log('Response from server:', response.data);
 
         navigate('/user');
+      }
+      if (
+        formData.noticeType === 'lost/found' ||
+        formData.noticeType === 'in good hands'
+      ) {
+        for (const key in formData) {
+          if (key !== 'price') {
+            requestData.append(key, formData[key]);
+          }
+        }
+        const response = await axios.post('/notices', requestData);
+        console.log('Дані, що відправляю:', requestData);
+        console.log('Response from server:', response.data);
+
+        navigate('/notices/own');
       } else {
         for (const key in formData) {
           requestData.append(key, formData[key]);
@@ -68,7 +83,6 @@ function AddPetForm() {
     setFormData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      console.log('data send in request', newData);
       makeRequest(newData);
       setFormData(initialFormData);
       setCurrentStep(0);
@@ -94,8 +108,6 @@ function AddPetForm() {
       data={formData}
     />,
   ];
-
-  console.log('data:', formData);
 
   return <BackgroundImg>{steps[currentStep]}</BackgroundImg>;
 }
