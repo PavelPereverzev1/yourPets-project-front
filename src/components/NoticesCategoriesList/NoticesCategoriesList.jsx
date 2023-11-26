@@ -5,7 +5,7 @@ import {
   NotFoundPetsMessage,
 } from './NoticesCategoriesList.styled';
 import { selectNotices } from 'redux/notices/noticesSelectors';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import Pagination from '../Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
