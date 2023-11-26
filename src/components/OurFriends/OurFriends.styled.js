@@ -26,6 +26,13 @@ export const WrapperSponsors = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
+    align-items: center;
+    justify-content: start;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  @media screen and (min-width: 1250px) {
+    justify-content: center;
   }
 `;
 export const WrapperCard = styled.div`
@@ -39,6 +46,11 @@ export const WrapperCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 16px;
+  transform: scale(1);
+  transition: transform var(--transition);
+  &:hover {
+    transform: scale(1.1);
+  }
   @media screen and (min-width: 768px) {
     width: 330px;
     margin-bottom: 0;
@@ -50,7 +62,8 @@ export const TitleCard = styled(Link)`
   font-size: 20px;
   line-height: 27.32px;
   color: var(--blueLink);
-  &:focus,:hover{
+  &:focus,
+  :hover {
     text-decoration: underline;
   }
 `;
