@@ -7,10 +7,12 @@ import {
   getOwnNotices,
   addNoticeToFavorite,
   deleteNoticeFromFavorite,
+  getFavoriteNotices,
 } from './noticesOperations';
 
 const initialState = {
   items: [],
+  total: 12,
   isRefreshing: false,
   isLoading: false,
   noticesError: null,
@@ -37,6 +39,7 @@ const noticesSlice = createSlice({
       .addCase(getNoticesThunk.rejected, handleRejected)
       .addCase(getNoticesThunk.fulfilled, (state, { payload }) => {
         state.items = payload.data;
+        state.total = payload.total;
         state.isLoading = false;
         state.isRefreshing = false;
       })
@@ -55,6 +58,7 @@ const noticesSlice = createSlice({
       .addCase(getOwnNotices.rejected, handleRejected)
       .addCase(getOwnNotices.fulfilled, (state, { payload }) => {
         state.items = payload.data;
+        state.total = payload.total;
         state.isLoading = false;
         state.isRefreshing = false;
       })
@@ -67,7 +71,15 @@ const noticesSlice = createSlice({
       .addCase(deleteNoticeFromFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
       })
-      .addCase(deleteNoticeFromFavorite.rejected, handleRejected);
+      .addCase(deleteNoticeFromFavorite.rejected, handleRejected)
+      .addCase(getFavoriteNotices.pending, handlePending)
+      .addCase(getFavoriteNotices.rejected, handleRejected)
+      .addCase(getFavoriteNotices.fulfilled, (state, { payload }) => {
+        state.items = payload.data;
+        state.total = payload.total;
+        state.isLoading = false;
+        state.isRefreshing = false;
+      });
   },
 });
 
