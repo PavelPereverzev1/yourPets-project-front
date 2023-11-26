@@ -23,8 +23,6 @@ import {
   UploadIcon,
   LocationPriceBlock,
   DetailWrapper,
-  CommentsLabel,
-  CommentsInput,
   Label,
 } from './SellMoreDetailsForm.styled';
 import {
@@ -38,6 +36,28 @@ import { Title } from '../Step1/ChooseOptionForm.styled';
 const SUPPORTED_FORMATS = ['image/png', 'image/jpeg', 'image/jpg'];
 
 const stepThreeValidationSchema = Yup.object().shape({
+  photo: Yup.mixed()
+    .nullable()
+    .required('Select a file')
+    .test(
+      'FILE_SIZE',
+      'Uploaded file must be 3MB or less',
+      value => !value || (value && value.size <= 3145728)
+    )
+    .test(
+      'FILE_FORMAT',
+      'Uploaded file has unsupported format',
+      value => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
+    ),
+
+  sex: Yup.string().required('Select gender').oneOf(['male', 'female']),
+
+  location: Yup.string().required('Enter location'),
+
+  comments: Yup.string().max(120, 'max 120 symbols'),
+});
+
+const stepThreeValidationSchemaSell = Yup.object().shape({
   photo: Yup.mixed()
     .nullable()
     .required('Select a file')
@@ -74,7 +94,11 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
       <Title>Add pet</Title>
       <StepsBlock step={3} />
       <Formik
-        validationSchema={stepThreeValidationSchema}
+        validationSchema={
+          data.noticeType !== 'sell'
+            ? stepThreeValidationSchema
+            : stepThreeValidationSchemaSell
+        }
         initialValues={data}
         onSubmit={handleSubmit}
       >
@@ -148,23 +172,37 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                   <DetailWrapper>
                     <label htmlFor="price"> Price</label>
                     <Field
+                      type="number"
                       id="price"
                       name="price"
-                      placeholder="000 USD"
+                      placeholder="100"
                     ></Field>
                     <ErrorMessage name="price" />
                   </DetailWrapper>
                 )}
 
                 <DetailWrapper>
+                  <label htmlFor="comments"> Comments</label>
+                  <Field
+                    id="comments"
+                    name="comments"
+                    placeholder="Enter your comments"
+                    component="textarea"
+                    rows="6"
+                  ></Field>
+                  <ErrorMessage name="comments" />
+                </DetailWrapper>
+
+                {/* <DetailWrapper>
                   <CommentsLabel htmlFor="comments"> Comments</CommentsLabel>
                   <CommentsInput
                     id="comments"
                     name="comments"
                     placeholder="Enter your comment"
+                    onChange={() => next(values)}
                   ></CommentsInput>
                   <ErrorMessage name="comments" />
-                </DetailWrapper>
+                </DetailWrapper> */}
               </LocationPriceBlock>
             </BlocksWrapper>
 

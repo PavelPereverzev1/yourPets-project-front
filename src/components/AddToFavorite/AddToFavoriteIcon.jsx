@@ -1,4 +1,4 @@
-export const FavoriteIcon = ({ isFavorite }) => {
+export const AddToFavoriteIcon = ({ isFavorite }) => {
   return (
     <svg
       fill={isFavorite ? '#fff' : 'none'}
@@ -7,6 +7,7 @@ export const FavoriteIcon = ({ isFavorite }) => {
       viewBox="0 0 32 32"
       width="24"
       height="24"
+      style={{ transition: 'fill 0.3s' }}
     >
       <path
         strokeLinejoin="round"

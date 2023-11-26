@@ -22,6 +22,25 @@ import {
   BtnIcon,
 } from '../ButtonsBlock/ButtonsBlock.styled';
 
+const stepTwoValidationSchemaAdd = Yup.object().shape({
+  name: Yup.string()
+    .required("Enter the pet's name")
+    .min(2, 'min 2 symbols')
+    .max(16, 'max 16 symbols'),
+
+  birthday: Yup.string()
+    .required('Enter the date in DD-MM-YYYY format')
+    .matches(
+      /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
+      'Invalid date format'
+    ),
+
+  petType: Yup.string()
+    .required('Enter the type')
+    .min(2, 'min 2 symbols')
+    .max(16, 'max 16 symbols'),
+});
+
 const stepTwoValidationSchema = Yup.object().shape({
   name: Yup.string()
     .required("Enter the pet's name")
@@ -52,11 +71,15 @@ const PersonalDetailsForm = props => {
   };
 
   return (
-    <BackgroundCard height={props.data.noticeType !== 'your pet' && '559px'}>
+    <BackgroundCard>
       <Title>Add pet</Title>
       <StepsBlock step={2} />
       <Formik
-        validationSchema={stepTwoValidationSchema}
+        validationSchema={
+          props.data.noticeType !== 'your pet'
+            ? stepTwoValidationSchema
+            : stepTwoValidationSchemaAdd
+        }
         initialValues={props.data}
         onSubmit={handleSubmit}
       >

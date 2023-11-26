@@ -24,7 +24,7 @@ import {
 const stepOneValidationSchema = Yup.object().shape({
   noticeType: Yup.string()
     .required('Choose one of the available categories')
-    .oneOf(['sell', 'lost/found', 'in good hands', 'your pet']),
+    .oneOf(['sell', 'lost-found', 'in-good-hands', 'your pet']),
 });
 
 const ChooseOptionForm = props => {
@@ -66,7 +66,7 @@ const ChooseOptionForm = props => {
                   <RadioButton
                     type="radio"
                     name="noticeType"
-                    value="lost/found"
+                    value="lost-found"
                   />
                   lost/found
                 </Label>
@@ -75,7 +75,7 @@ const ChooseOptionForm = props => {
                   <RadioButton
                     type="radio"
                     name="noticeType"
-                    value="in good hands"
+                    value="in-good-hands"
                   />
                   in good hands
                 </Label>

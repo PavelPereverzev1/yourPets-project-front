@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import BackgroundImg from '../BackgroundImg/BackgroundImg';
 
 import ChooseOptionForm from './Step1/ChooseOptionForm';
@@ -19,31 +19,61 @@ function AddPetForm() {
     photo: null,
     comments: '',
     location: '',
-    price: '',
+    price: 0,
     sex: '',
   };
 
   const [formData, setFormData] = useState(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
+  const navigate = useNavigate();
 
   const makeRequest = async formData => {
-    let url;
+    console.log('formData:', formData);
+    const requestData = new FormData();
 
     try {
       if (formData.noticeType === 'your pet') {
-        url = '/pets';
-      } else {
-        url = '/notices';
+        for (const key in formData) {
+          if (
+            key !== 'noticeType' &&
+            key !== 'title' &&
+            key !== 'location' &&
+            key !== 'price' &&
+            key !== 'sex'
+          ) {
+            requestData.append(key, formData[key]);
+          }
+        }
+        const response = await axios.post('/pets', requestData);
+        console.log('Дані, що відправляю:', requestData);
+        console.log('Response from server:', response.data);
+
+        navigate('/user');
       }
+      if (
+        formData.noticeType === 'lost/found' ||
+        formData.noticeType === 'in good hands'
+      ) {
+        for (const key in formData) {
+          if (key !== 'price') {
+            requestData.append(key, formData[key]);
+          }
+        }
+        const response = await axios.post('/notices', requestData);
+        console.log('Дані, що відправляю:', requestData);
+        console.log('Response from server:', response.data);
 
-      const response = await axios.post(url, formData);
-      console.log('Дані, що відправляю:', formData);
+        navigate('/notices/own');
+      } else {
+        for (const key in formData) {
+          requestData.append(key, formData[key]);
+        }
+        const response = await axios.post('/notices', requestData);
+        console.log('Дані, що відправляю:', requestData);
+        console.log('Response from server:', response.data);
 
-      console.log('Response from server:', response.data);
-
-      // if (formData.noticeType === 'your pet') {
-      // } else {
-      // }
+        navigate('/notices/own');
+      }
     } catch (error) {
       console.error('Error sending data:', error);
     }
@@ -54,12 +84,11 @@ function AddPetForm() {
 
     if (final) {
       makeRequest(newData);
-      // setFormData(initialFormData);
-      // setCurrentStep(0);
+      setFormData(initialFormData);
+      setCurrentStep(0);
       return;
     }
     setCurrentStep(prev => prev + 1);
-    console.log('Completed step:', currentStep);
   };
 
   const handleBackStep = newData => {
@@ -79,8 +108,6 @@ function AddPetForm() {
       data={formData}
     />,
   ];
-
-  console.log('data:', formData);
 
   return <BackgroundImg>{steps[currentStep]}</BackgroundImg>;
 }
