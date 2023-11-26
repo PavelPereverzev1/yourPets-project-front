@@ -23,8 +23,8 @@ import {
   UploadIcon,
   LocationPriceBlock,
   DetailWrapper,
-  CommentsLabel,
-  CommentsInput,
+  // CommentsLabel,
+  // CommentsInput,
   Label,
 } from './SellMoreDetailsForm.styled';
 import {
@@ -157,14 +157,27 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                 )}
 
                 <DetailWrapper>
+                  <label htmlFor="comments"> Comments</label>
+                  <Field
+                    id="comments"
+                    name="comments"
+                    placeholder="000 USD"
+                    component="textarea"
+                    rows="6"
+                  ></Field>
+                  <ErrorMessage name="comments" />
+                </DetailWrapper>
+
+                {/* <DetailWrapper>
                   <CommentsLabel htmlFor="comments"> Comments</CommentsLabel>
                   <CommentsInput
                     id="comments"
                     name="comments"
                     placeholder="Enter your comment"
+                    onChange={() => next(values)}
                   ></CommentsInput>
                   <ErrorMessage name="comments" />
-                </DetailWrapper>
+                </DetailWrapper> */}
               </LocationPriceBlock>
             </BlocksWrapper>
 

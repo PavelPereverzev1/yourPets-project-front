@@ -27,23 +27,20 @@ function AddPetForm() {
   const [currentStep, setCurrentStep] = useState(0);
 
   const makeRequest = async formData => {
+    console.log('formData:', formData);
     let url;
-
     try {
       if (formData.noticeType === 'your pet') {
         url = '/pets';
       } else {
         url = '/notices';
       }
-
       const response = await axios.post(url, formData);
       console.log('Дані, що відправляю:', formData);
-
       console.log('Response from server:', response.data);
-
-      // if (formData.noticeType === 'your pet') {
-      // } else {
-      // }
+      if (formData.noticeType === 'your pet') {
+      } else {
+      }
     } catch (error) {
       console.error('Error sending data:', error);
     }

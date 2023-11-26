@@ -52,7 +52,7 @@ const PersonalDetailsForm = props => {
   };
 
   return (
-    <BackgroundCard height={props.data.noticeType !== 'your pet' && '559px'}>
+    <BackgroundCard>
       <Title>Add pet</Title>
       <StepsBlock step={2} />
       <Formik
