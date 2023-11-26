@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Card = styled.div`
   position: relative;
   width: ${props => props.width || '280px'};
-  // height: ${props => props.height || '496px'};
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -16,7 +16,6 @@ export const Card = styled.div`
 
   @media screen and (min-width: 768px) {
     width: ${props => props.width || '458px'};
-    // min-height: ${props => props.height || '542px'};
 
     padding: 20px 32px;
   }
