@@ -28,7 +28,7 @@
 // };
 
 import { useEffect, lazy } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import { PrivateRoute } from 'components/PrivateRoute';
@@ -36,6 +36,7 @@ import { RestrictedRoute } from 'components/RestrictedRoute';
 import { refreshUser } from 'redux/AuthSlice/operations';
 import { useAuth } from 'hooks/useAuth';
 import { GlobalStyle } from './GlobalStyles';
+import { selectCategory } from 'redux/notices/noticesSelectors';
 
 const MainPage = lazy(() => import('pages/MainPage/MainPage'));
 const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
@@ -50,6 +51,7 @@ const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
+  const noticesCategory = useSelector(selectCategory);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -85,7 +87,10 @@ export const App = () => {
                 <PrivateRoute redirectTo="/login" component={<UserPage />} />
               }
             />
-            <Route path="notices" element={<Navigate to={'/notices/sell'} />} />
+            <Route
+              path="notices"
+              element={<Navigate to={`/notices/${noticesCategory}`} />}
+            />
             <Route
               path="notices/favorite"
               element={

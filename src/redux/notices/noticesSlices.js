@@ -4,15 +4,25 @@ import storage from 'redux-persist/lib/storage';
 import {
   getNoticesThunk,
   deleteNoticeById,
-  getOwnNotices,
   addNoticeToFavorite,
   deleteNoticeFromFavorite,
-  getFavoriteNotices,
 } from './noticesOperations';
 
 const initialState = {
   items: [],
   total: 12,
+  query: {
+    searchQuery: '',
+    category: 'sell',
+    page: 1,
+    filter: {
+      upToOneYear: false,
+      upToTwoYears: false,
+      fromTwoYears: false,
+      female: false,
+      male: false,
+    },
+  },
   isRefreshing: false,
   isLoading: false,
   noticesError: null,
@@ -20,7 +30,7 @@ const initialState = {
 
 const handlePending = state => {
   state.isRefreshing = true;
-  state.isLoading = false;
+  state.isLoading = true;
   state.noticesError = null;
 };
 
@@ -33,6 +43,20 @@ const handleRejected = (state, { payload }) => {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState,
+  reducers: {
+    setSearchQuery(state, { payload }) {
+      state.isLoading = true;
+      state.query.searchQuery = payload;
+    },
+    setCategory(state, { payload }) {
+      state.isLoading = true;
+      state.query.category = payload;
+    },
+    setFilter(state, { actions }) {
+      state.isLoading = true;
+      state.query.filter = actions;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getNoticesThunk.pending, handlePending)
@@ -54,14 +78,7 @@ const noticesSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(deleteNoticeById.rejected, handleRejected)
-      .addCase(getOwnNotices.pending, handlePending)
-      .addCase(getOwnNotices.rejected, handleRejected)
-      .addCase(getOwnNotices.fulfilled, (state, { payload }) => {
-        state.items = payload.data;
-        state.total = payload.total;
-        state.isLoading = false;
-        state.isRefreshing = false;
-      })
+
       .addCase(addNoticeToFavorite.pending, handlePending)
       .addCase(addNoticeToFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -71,22 +88,16 @@ const noticesSlice = createSlice({
       .addCase(deleteNoticeFromFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
       })
-      .addCase(deleteNoticeFromFavorite.rejected, handleRejected)
-      .addCase(getFavoriteNotices.pending, handlePending)
-      .addCase(getFavoriteNotices.rejected, handleRejected)
-      .addCase(getFavoriteNotices.fulfilled, (state, { payload }) => {
-        state.items = payload.data;
-        state.total = payload.total;
-        state.isLoading = false;
-        state.isRefreshing = false;
-      });
+      .addCase(deleteNoticeFromFavorite.rejected, handleRejected);
   },
 });
+
+export const { setSearchQuery, setCategory, setFilter } = noticesSlice.actions;
 
 const persistConfig = {
   key: 'notices',
   storage,
-  whitelist: ['items'],
+  whitelist: ['items', 'query'],
 };
 
 export const noticesPersistReducer = persistReducer(

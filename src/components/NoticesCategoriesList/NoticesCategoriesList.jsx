@@ -3,38 +3,26 @@ import {
   NoticesList,
   NotFoundPetsMessage,
 } from './NoticesCategoriesList.styled';
-import { selectNotices, selectQuery } from 'redux/notices/noticesSelectors';
+import {
+  selectIsLoading,
+  selectNotices,
+  selectQuery,
+} from 'redux/notices/noticesSelectors';
 import { useEffect, useState } from 'react';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import Pagination from '../Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
-import { useLocation } from 'react-router-dom';
-import {
-  getFavoriteNotices,
-  getNoticesThunk,
-  getOwnNotices,
-} from 'redux/notices/noticesOperations';
+import { getNoticesThunk } from 'redux/notices/noticesOperations';
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
   const query = useSelector(selectQuery);
-  const location = useLocation();
+  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    switch (location.pathname) {
-      case '/notices/own':
-        dispatch(getOwnNotices(query));
-        return;
-      case '/notices/favorite':
-        dispatch(getFavoriteNotices(query));
-        return;
-
-      default:
-        dispatch(getNoticesThunk(query));
-        return;
-    }
-  }, [dispatch, location, query]);
+    dispatch(getNoticesThunk(query));
+  }, [dispatch, query]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
@@ -54,23 +42,27 @@ const NoticesCategoriesList = () => {
   };
   return (
     <>
-      <NoticesList>
-        {currentPageItems.length > 0 ? (
-          notices.map(item => {
-            return (
-              <NoticeCategoryItem
-                key={item.id}
-                notice={item}
-                handleLearnMore={handleLearnMore}
-              ></NoticeCategoryItem>
-            );
-          })
-        ) : (
-          <NotFoundPetsMessage>
-            No Pets found, reload page or try again later
-          </NotFoundPetsMessage>
-        )}
-      </NoticesList>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <NoticesList>
+          {currentPageItems.length > 0 ? (
+            notices.map(item => {
+              return (
+                <NoticeCategoryItem
+                  key={item.id}
+                  notice={item}
+                  handleLearnMore={handleLearnMore}
+                ></NoticeCategoryItem>
+              );
+            })
+          ) : (
+            <NotFoundPetsMessage>
+              No Pets found, reload page or try again later
+            </NotFoundPetsMessage>
+          )}
+        </NoticesList>
+      )}
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
