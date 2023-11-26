@@ -13,10 +13,6 @@ import ModalNotice from 'components/ModalNotice/ModalNotice';
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
 
-  useEffect(() => {
-    console.log(notices);
-  }, [notices]);
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
   const totalPages = Math.ceil(notices.length / itemsPerPage);
