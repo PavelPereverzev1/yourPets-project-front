@@ -35,12 +35,34 @@ function AddPetForm() {
       } else {
         url = '/notices';
       }
-      const response = await axios.post(url, formData);
-      console.log('Дані, що відправляю:', formData);
-      console.log('Response from server:', response.data);
+
+      const requestData = new FormData();
+
       if (formData.noticeType === 'your pet') {
+        for (const key in formData) {
+          if (
+            key !== 'noticeType' &&
+            key !== 'title' &&
+            key !== 'location' &&
+            key !== 'price' &&
+            key !== 'sex'
+          ) {
+            requestData.append(key, formData[key]);
+          }
+        }
       } else {
+        for (const key in formData) {
+          requestData.append(key, formData[key]);
+        }
       }
+
+      const response = await axios.post(url, requestData);
+      console.log('Дані, що відправляю:', requestData);
+      console.log('Response from server:', response.data);
+
+      // if (formData.noticeType === 'your pet') {
+      // } else {
+      // }
     } catch (error) {
       console.error('Error sending data:', error);
     }
@@ -50,13 +72,13 @@ function AddPetForm() {
     setFormData(prev => ({ ...prev, ...newData }));
 
     if (final) {
+      console.log('data send in request', newData);
       makeRequest(newData);
-      // setFormData(initialFormData);
-      // setCurrentStep(0);
+      setFormData(initialFormData);
+      setCurrentStep(0);
       return;
     }
     setCurrentStep(prev => prev + 1);
-    console.log('Completed step:', currentStep);
   };
 
   const handleBackStep = newData => {
