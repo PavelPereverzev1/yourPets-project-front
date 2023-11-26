@@ -52,7 +52,6 @@ export const Input = styled.input`
   width: 190px;
   padding: 4px 12px;
   align-items: center;
-  gap: 191px;
   border-radius: 20px;
   border: 1px solid ${props => (props.$isValid ? 'var(--blueLink)' : 'red')};
   font-size: 12px;

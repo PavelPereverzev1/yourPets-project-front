@@ -24,6 +24,32 @@ export const Card = styled.div`
   }
 `;
 
+export const DeleteBtn = styled.button`
+  position: absolute;
+  top: 271px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    top: 20px;
+    right: 20px;
+  }
+`;
+
+export const DeleteIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  stroke: var(--blueLink);
+  transition: stroke var(--transition);
+
+  &:hover,
+  &:focus {
+    stroke: var(--yellow);
+  }
+`;
+
 export const Thumb = styled.div`
   flex-shrink: 0;
   width: 240px;

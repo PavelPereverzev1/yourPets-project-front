@@ -33,6 +33,7 @@ export const Button = styled.button`
 `;
 
 export const FilledButton = styled(Button)`
+  flex-direction: row-reverse;
   color: var(--white);
   background-color: var(--blueLink);
   border: none;
@@ -65,5 +66,6 @@ export const RoundButton = styled(FilledButton)`
   height: 80px;
   font-size: 12px;
   font-weight: 600;
+  margin-left: auto;
   background-image: var(--blueGradient);
 `;
