@@ -22,6 +22,7 @@ export const NoticesFilters = () => {
     female: false,
     male: false,
   });
+  console.log(filter);
   // Використати для запитів на бек за категоріями
   const handleFilterChange = filter => {
     setFilter(prevState => {
