@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import BackgroundImg from '../BackgroundImg/BackgroundImg';
 
 import ChooseOptionForm from './Step1/ChooseOptionForm';
@@ -25,19 +25,13 @@ function AddPetForm() {
 
   const [formData, setFormData] = useState(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
+  const navigate = useNavigate();
 
   const makeRequest = async formData => {
     console.log('formData:', formData);
-    let url;
+    const requestData = new FormData();
+
     try {
-      if (formData.noticeType === 'your pet') {
-        url = '/pets';
-      } else {
-        url = '/notices';
-      }
-
-      const requestData = new FormData();
-
       if (formData.noticeType === 'your pet') {
         for (const key in formData) {
           if (
@@ -50,19 +44,21 @@ function AddPetForm() {
             requestData.append(key, formData[key]);
           }
         }
+        const response = await axios.post('/pets', requestData);
+        console.log('Дані, що відправляю:', requestData);
+        console.log('Response from server:', response.data);
+
+        navigate('/user');
       } else {
         for (const key in formData) {
           requestData.append(key, formData[key]);
         }
+        const response = await axios.post('/notices', requestData);
+        console.log('Дані, що відправляю:', requestData);
+        console.log('Response from server:', response.data);
+
+        navigate('/notices/own');
       }
-
-      const response = await axios.post(url, requestData);
-      console.log('Дані, що відправляю:', requestData);
-      console.log('Response from server:', response.data);
-
-      // if (formData.noticeType === 'your pet') {
-      // } else {
-      // }
     } catch (error) {
       console.error('Error sending data:', error);
     }
