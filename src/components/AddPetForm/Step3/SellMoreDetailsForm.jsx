@@ -161,7 +161,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                   <Field
                     id="comments"
                     name="comments"
-                    placeholder="000 USD"
+                    placeholder="Enter your comments"
                     component="textarea"
                     rows="6"
                   ></Field>
