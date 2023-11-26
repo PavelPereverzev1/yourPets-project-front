@@ -5,13 +5,17 @@ import {
   NotFoundPetsMessage,
 } from './NoticesCategoriesList.styled';
 import { selectNotices } from 'redux/notices/noticesSelectors';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import Pagination from '../Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
+
+  useEffect(() => {
+    // console.log(notices);
+  }, [notices]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
