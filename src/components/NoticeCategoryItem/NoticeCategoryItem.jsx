@@ -23,7 +23,11 @@ import AttentionModal from 'components/Modals/AttentionModal/AttentionModal.jsx'
 import DeleteModal from 'components/Modals/DeleteModal/DeleteModal.jsx';
 import { useAuth } from '../../hooks/useAuth.js';
 import { useDispatch } from 'react-redux';
-import { deleteNoticeById } from 'redux/notices/noticesOperations.js';
+import {
+  deleteNoticeById,
+  addNoticeToFavorite,
+  deleteNoticeFromFavorite,
+} from 'redux/notices/noticesOperations.js';
 import {
   PetIcon,
   FavoriteIcon,
@@ -36,7 +40,7 @@ import {
 
 const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
   const { isLoggedIn, user } = useAuth();
-  const [favorites, setFavorites] = useState(user.favourites || []);
+  const [favorites, setFavorites] = useState(user.favorites || []);
 
   const [modalActive, setModalActive] = useState(false);
   const [deleteModalActive, setDeleteModalActive] = useState(false);
@@ -62,16 +66,38 @@ const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
     }
   };
 
-  const toggleFavorite = noticeId => {
-    setFavorites(prevFavorites => {
-      const isPetInFavorites = prevFavorites.includes(noticeId);
+  const toggleFavorite = async noticeId => {
+    try {
+      if (favorites.includes(noticeId)) {
+        const {
+          meta: { requestStatus },
+          payload,
+        } = await dispatch(deleteNoticeFromFavorite({ id: noticeId }));
 
-      if (!isPetInFavorites) {
-        return [...prevFavorites, noticeId];
-      } else {
-        return prevFavorites.filter(favorite => favorite !== noticeId);
+        if (requestStatus === 'rejected') {
+          throw new Error(payload);
+        }
+
+        return setFavorites(prevFavorites =>
+          prevFavorites.filter(favorite => favorite !== noticeId)
+        );
       }
-    });
+
+      const {
+        meta: { requestStatus },
+        payload,
+      } = await dispatch(addNoticeToFavorite({ id: noticeId }));
+
+      if (requestStatus === 'rejected') {
+        throw new Error(payload);
+      }
+
+      return setFavorites(prevFavorites => [...prevFavorites, noticeId]);
+    } catch (error) {
+      const { message } = error;
+
+      console.log(message);
+    }
   };
 
   return (
