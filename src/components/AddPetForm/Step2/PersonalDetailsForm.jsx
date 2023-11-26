@@ -62,7 +62,7 @@ const stepTwoValidationSchema = Yup.object().shape({
   title: Yup.string()
     .required('Enter the title of the add')
     .min(3, 'min 3 symbols')
-    .max(16, 'max 16 symbols'),
+    .max(60, 'max 60 symbols'),
 });
 
 const PersonalDetailsForm = props => {

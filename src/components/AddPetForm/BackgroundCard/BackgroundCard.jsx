@@ -1,12 +1,7 @@
 import React from 'react';
 import { Card } from './BackgroundCard.styled';
 
-export default function BackgroundCard({ children, width, height }) {
-  return (
-    <>
-      <Card width={width} height={height}>
-        {children}
-      </Card>
-    </>
-  );
+export default function BackgroundCard({ children, noticeType }) {
+  console.log('noticeType', noticeType);
+  return <Card noticeType={noticeType}>{children}</Card>;
 }

@@ -6,28 +6,41 @@ export const FormSellMoreDetails = styled(FormikForm)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 24px;
 `;
 
 export const BlocksWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 16px;
+
+  color: var(--black);
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const SexPhotoblock = styled.div`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  gap: 48px;
+  gap: 10px;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 export const Sexblock = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 8px;
 `;
 export const SexList = styled.div`
   display: flex;
-  flex-direction: row;
-  gap: 12px;
+  gap: 16px;
 `;
 
 export const RadioButton = styled(Field)`
@@ -91,28 +104,36 @@ export const IconSex = styled.svg`
 //Photoblock
 export const PhotoBlock = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  align-items: center;
 `;
 
 export const PhotoLabel = styled.label`
   display: inline-block;
-  width: 114px;
+  width: 81px;
   hight: 100%;
 
-  color: #111;
-  font-family: Manrope;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 28px;
+  &:before {
+    content: 'Load the pet’s image:';
+  }
+
+  @media screen and (max-width: 767px) {
+    &:before {
+      content: 'Ad photo:';
+    }
+  }
 `;
 export const ImagePreview = styled.div`
   position: relative;
-  width: 182px;
-  height: 182px;
-  border-radius: 40px;
+  width: 112px;
+  height: 112px;
+  border-radius: 20px;
   overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 export const DefaultImage = styled.div`
   width: 100%;
@@ -144,6 +165,7 @@ export const LocationPriceBlock = styled.div`
   display: flex;
   flex-grow: 2;
   flex-direction: column;
+  gap: 20px;
 `;
 
 export const DetailWrapper = styled.div`
@@ -153,38 +175,31 @@ export const DetailWrapper = styled.div`
   gap: 8px;
 `;
 
-export const DetailLabel = styled.label`
-  color: #111;
-  font-family: Manrope;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 26.5px;
+export const DetailLabel = styled.label``;
+
+const InputStyles = `
+display: flex;
+text-align: start;
+justify-content: center;
+width: 264px;
+padding: 8px 16px;
+border: 1px solid var(--blueLink);
 `;
 
-export const DetailInput = styled.input`
-  display: flex;
-  padding: 12px 16px;
-
+export const DetailInput = styled(Field)`
+  ${InputStyles}
+  height: 40px;
   border-radius: 40px;
-  border: 1px solid #54adff;
 `;
 
-export const CommentsInput = styled.input`
-  display: block;
-  text-align: start;
+export const CommentsInput = styled(Field)`
+  ${InputStyles}
+
+  flex-shrink: 0;
+  overflow: hidden;
   overflow-wrap: break-word;
-  min-height: 79px;
-  padding: 12px 16px;
+  text-overflow: ellipsis;
 
   border-radius: 20px;
-  border: 1px solid var(--blueLink);
 `;
-export const CommentsLabel = styled.label`
-  color: #111;
-  font-family: Manrope;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 26.5px;
-`;
+export const CommentsLabel = styled.label``;

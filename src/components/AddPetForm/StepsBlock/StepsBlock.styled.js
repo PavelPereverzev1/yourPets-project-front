@@ -7,6 +7,7 @@ export const StepsBlockWrapper = styled.div`
   margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
+    width: 392px;
     gap: 16px;
   }
 

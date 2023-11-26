@@ -23,6 +23,8 @@ import {
   UploadIcon,
   LocationPriceBlock,
   DetailWrapper,
+  DetailInput,
+  CommentsInput,
   Label,
 } from './SellMoreDetailsForm.styled';
 import {
@@ -90,7 +92,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
   const fileRef = useRef(null);
 
   return (
-    <BackgroundCard>
+    <BackgroundCard noticeType={data.noticeType}>
       <Title>Add pet</Title>
       <StepsBlock step={3} />
       <Formik
@@ -107,7 +109,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
             <BlocksWrapper>
               <SexPhotoblock>
                 <Sexblock role="group" aria-labelledby="gender-radio-group">
-                  <h3>The Sex</h3>
+                  The Sex
                   <SexList>
                     <Label>
                       <IconSex>
@@ -116,7 +118,6 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                       <RadioButton type="radio" name="sex" value="female" />
                       Female
                     </Label>
-
                     <Label>
                       <IconSex>
                         <use href={`${sprite}#icon-male`} />
@@ -125,12 +126,11 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                       Male
                     </Label>
                   </SexList>
-
                   <ErrorMessage name="sex" />
                 </Sexblock>
 
                 <PhotoBlock>
-                  <PhotoLabel htmlFor="photo">Load the pet’s image:</PhotoLabel>
+                  <PhotoLabel htmlFor="photo"></PhotoLabel>
 
                   <ImagePreview>
                     <PhotoInput
@@ -160,49 +160,38 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
               <LocationPriceBlock>
                 <DetailWrapper>
                   <label htmlFor="location"> Location</label>
-                  <Field
+                  <DetailInput
                     id="location"
                     name="location"
                     placeholder="Kyiv"
-                  ></Field>
+                  ></DetailInput>
                   <ErrorMessage name="location" />
                 </DetailWrapper>
 
                 {values.noticeType === 'sell' && (
                   <DetailWrapper>
                     <label htmlFor="price"> Price</label>
-                    <Field
+                    <DetailInput
                       type="number"
                       id="price"
                       name="price"
                       placeholder="100"
-                    ></Field>
+                    ></DetailInput>
                     <ErrorMessage name="price" />
                   </DetailWrapper>
                 )}
 
                 <DetailWrapper>
                   <label htmlFor="comments"> Comments</label>
-                  <Field
+                  <CommentsInput
                     id="comments"
                     name="comments"
                     placeholder="Enter your comments"
                     component="textarea"
-                    rows="6"
-                  ></Field>
-                  <ErrorMessage name="comments" />
-                </DetailWrapper>
-
-                {/* <DetailWrapper>
-                  <CommentsLabel htmlFor="comments"> Comments</CommentsLabel>
-                  <CommentsInput
-                    id="comments"
-                    name="comments"
-                    placeholder="Enter your comment"
-                    onChange={() => next(values)}
+                    rows="4"
                   ></CommentsInput>
                   <ErrorMessage name="comments" />
-                </DetailWrapper> */}
+                </DetailWrapper>
               </LocationPriceBlock>
             </BlocksWrapper>
 
