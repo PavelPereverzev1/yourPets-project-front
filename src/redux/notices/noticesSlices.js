@@ -52,9 +52,13 @@ const noticesSlice = createSlice({
       state.isLoading = true;
       state.query.category = payload;
     },
-    setFilter(state, { actions }) {
+    setFilter(state, { payload }) {
       state.isLoading = true;
-      state.query.filter = actions;
+      state.query.filter = payload;
+    },
+    setPage(state, { payload }) {
+      state.isLoading = true;
+      state.query.page = payload;
     },
   },
   extraReducers: builder => {
@@ -92,7 +96,8 @@ const noticesSlice = createSlice({
   },
 });
 
-export const { setSearchQuery, setCategory, setFilter } = noticesSlice.actions;
+export const { setSearchQuery, setCategory, setFilter, setPage } =
+  noticesSlice.actions;
 
 const persistConfig = {
   key: 'notices',
