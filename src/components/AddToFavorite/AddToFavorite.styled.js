@@ -26,6 +26,7 @@ export const AddToFavoriteButton = styled.button`
     }
     svg {
       stroke: var(--blueLink);
+      fill: var(--blueLink);
     }
   }
   @media screen and (min-width: 768px) {
