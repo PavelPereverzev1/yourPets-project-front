@@ -54,7 +54,7 @@ const noticesSlice = createSlice({
       .addCase(getOwnNotices.pending, handlePending)
       .addCase(getOwnNotices.rejected, handleRejected)
       .addCase(getOwnNotices.fulfilled, (state, { payload }) => {
-        state.items = payload;
+        state.items = payload.data;
         state.isLoading = false;
         state.isRefreshing = false;
       })

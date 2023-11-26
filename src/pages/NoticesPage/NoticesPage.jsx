@@ -2,8 +2,7 @@ import { NoticeCategoriesNav } from 'components/NoticeCategoriesNav/NoticeCatego
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import { useEffect } from 'react';
 
-import { getNoticesThunk } from 'redux/notices/noticesOperations';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { NoticesFilters } from 'components/Filter/NoticesFilters';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import { useLocation } from 'react-router-dom';
