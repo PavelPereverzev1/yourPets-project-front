@@ -1,14 +1,9 @@
-// import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {
   NoticesList,
   NotFoundPetsMessage,
 } from './NoticesCategoriesList.styled';
-import {
-  selectNotices,
-  selectPage,
-  selectQuery,
-} from 'redux/notices/noticesSelectors';
+import { selectNotices, selectQuery } from 'redux/notices/noticesSelectors';
 import { useEffect, useState } from 'react';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import Pagination from '../Pagination/Pagination';
