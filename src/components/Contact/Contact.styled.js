@@ -14,6 +14,7 @@ export const ContactButton = styled.button`
     color: var(--blueLink);
     font-weight: 700;
     font-size: 16px;
+    line-height: 21.86px;
   }
   &:hover {
     background-color: var(--blueLink);

@@ -28,9 +28,9 @@ const ModalNotice = ({ active, setActive, noticeDetail }) => {
         <img className={css.pet_photo} src={notice.photoURL} alt="#" />
         <p className={css.pet_category}>{notice.noticeType}</p>
         <div className={css.advertisement}>
-          <h1>{notice.title}</h1>
+          <h3>{notice.title}</h3>
           <div className={css.advertisement_list}>
-            <ul className="advertisement-list-left">
+            <ul className={css.advertisement_list_left}>
               <li>Name:</li>
               <li>Birthday:</li>
               <li>Type:</li>
@@ -39,7 +39,7 @@ const ModalNotice = ({ active, setActive, noticeDetail }) => {
               <li>Email:</li>
               <li>Phone:</li>
             </ul>
-            <ul className="advertisement-list-right">
+            <ul className={css.advertisement_list_right}>
               <li>{notice.name}</li>
               <li>{notice.birthday}</li>
               <li>{notice.petType}</li>
@@ -62,7 +62,9 @@ const ModalNotice = ({ active, setActive, noticeDetail }) => {
           </div>
         </div>
       </div>
-      <p className={css.content_middle}>Comments: {notice.comments}</p>
+      <p className={css.content_middle}>
+        <span>Comments:</span> {notice.comments}
+      </p>
       <div className={css.content_bottom}>
         <AddToFavorite notice={notice} />
         <Contact notice={notice} />
