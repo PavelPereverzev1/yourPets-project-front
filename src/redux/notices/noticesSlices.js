@@ -5,6 +5,8 @@ import {
   getNoticesThunk,
   deleteNoticeById,
   getOwnNotices,
+  addNoticeToFavorite,
+  deleteNoticeFromFavorite,
 } from './noticesOperations';
 
 const initialState = {
@@ -55,7 +57,17 @@ const noticesSlice = createSlice({
         state.items = payload;
         state.isLoading = false;
         state.isRefreshing = false;
-      });
+      })
+      .addCase(addNoticeToFavorite.pending, handlePending)
+      .addCase(addNoticeToFavorite.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+      })
+      .addCase(addNoticeToFavorite.rejected, handleRejected)
+      .addCase(deleteNoticeFromFavorite.pending, handlePending)
+      .addCase(deleteNoticeFromFavorite.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+      })
+      .addCase(deleteNoticeFromFavorite.rejected, handleRejected);
   },
 });
 

@@ -1,4 +1,4 @@
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import React, { useRef } from 'react';
 import sprite from '../../../images/icons/sprite.svg';
@@ -11,8 +11,8 @@ import {
   DefaultImage,
   UploadIcon,
   PhotoInput,
-  CommentsInput,
-  CommentsLabel,
+  // CommentsInput,
+  // CommentsLabel,
 } from './AddMoreDetails.styled';
 import BackgroundCard from '../BackgroundCard';
 import TitleComponent from '../../TitleComponent/TitleComponent';
@@ -89,12 +89,14 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
             </PhotoBlock>
 
             <DetailWrapper>
-              <CommentsLabel htmlFor="comments"> Comments</CommentsLabel>
-              <CommentsInput
+              <label htmlFor="comments"> Comments</label>
+              <Field
                 id="comments"
                 name="comments"
-                placeholder="Enter your comment"
-              ></CommentsInput>
+                placeholder="Enter your comments"
+                component="textarea"
+                rows="6"
+              ></Field>
               <ErrorMessage name="comments" />
             </DetailWrapper>
 
