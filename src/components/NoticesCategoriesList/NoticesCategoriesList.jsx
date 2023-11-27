@@ -15,9 +15,7 @@ import ModalNotice from 'components/ModalNotice/ModalNotice';
 import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
 import DeleteModal from 'components/Modals/DeleteModal/DeleteModal';
 import { getNoticesThunk } from 'redux/notices/noticesOperations';
-import {
-  deleteNoticeById,
-} from 'redux/notices/noticesOperations.js';
+import { deleteNoticeById } from 'redux/notices/noticesOperations.js';
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
@@ -37,8 +35,8 @@ const NoticesCategoriesList = () => {
   const currentPageItems = notices.slice(startIndex, endIndex);
   const [active, setActive] = useState(false);
   const [noticeDetail, setNoticeDetail] = useState('');
-  const [activeAttention, setActiveAttention] = useState(false)
-  const [activeDelete, setActiveDelete] = useState(false)
+  const [activeAttention, setActiveAttention] = useState(false);
+  const [activeDelete, setActiveDelete] = useState(false);
 
   const handlePageChange = page => {
     setCurrentPage(page);
@@ -48,11 +46,11 @@ const NoticesCategoriesList = () => {
     setActive(true);
   };
   const handleAttentionModal = () => {
-    setActiveAttention(true)
-  }
+    setActiveAttention(true);
+  };
   const handleDeleteModal = () => {
-    setActiveDelete(true)
-  }
+    setActiveDelete(true);
+  };
   const handleDeleteByIdNotice = async () => {
     try {
       const {
@@ -81,7 +79,7 @@ const NoticesCategoriesList = () => {
             notices.map(item => {
               return (
                 <NoticeCategoryItem
-                  key={item.id}
+                  key={item._id}
                   notice={item}
                   handleLearnMore={handleLearnMore}
                   handleAttentionModal={handleAttentionModal}
@@ -108,14 +106,14 @@ const NoticesCategoriesList = () => {
           noticeDetail={noticeDetail}
         />
       )}
-       <AttentionModal
+      <AttentionModal
         active={activeAttention}
         setActive={setActiveAttention}
       ></AttentionModal>
       <DeleteModal
-      active={activeDelete}
-      setActive={setActiveDelete}
-      yes={handleDeleteByIdNotice}
+        active={activeDelete}
+        setActive={setActiveDelete}
+        yes={handleDeleteByIdNotice}
       ></DeleteModal>
     </>
   );
