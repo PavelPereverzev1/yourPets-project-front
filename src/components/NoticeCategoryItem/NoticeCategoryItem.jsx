@@ -36,19 +36,18 @@ import {
   RemoveIcon,
 } from './SvgIcons.jsx';
 
-const NoticeCategoryItem = ({
-  notice,
-  handleLearnMore,
-  handleAttentionModal,
-  handleDeleteModal,
-}) => {
+const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, handleDeleteModal }) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
 
+
   const dispatch = useDispatch();
+
+  
 
   const toggleFavorite = async noticeId => {
     try {
+      console.log(notice._id)
       if (favorites.includes(noticeId)) {
         const {
           meta: { requestStatus },
@@ -90,9 +89,9 @@ const NoticeCategoryItem = ({
             <FavoriteIcon></FavoriteIcon>
           </Favorite>
           {isLoggedIn && (
-            <Favorite onClick={() => toggleFavorite(notice.id)}>
+            <Favorite onClick={() => toggleFavorite(notice._id)}>
               <FavoriteIcon
-                isfavorite={favorites.some(favorite => favorite === notice.id)}
+                isfavorite={favorites.some(favorite => favorite === notice._id)}
               ></FavoriteIcon>
             </Favorite>
           )}{' '}
@@ -103,7 +102,9 @@ const NoticeCategoryItem = ({
           )}
           <InfoLocation>
             <LocationIcon></LocationIcon>
-            <InfoText>{notice.location}</InfoText>
+            <InfoText>
+              {notice.location}
+            </InfoText>
           </InfoLocation>
           <InfoAge>
             <AgeIcon></AgeIcon>
@@ -123,12 +124,14 @@ const NoticeCategoryItem = ({
           <Text>{notice.title}</Text>
         </TextDiv>
         <LearnMoreDiv>
-          <LearnMore onClick={() => handleLearnMore(notice._id)}>
+          <LearnMore onClick={() => handleLearnMore(notice.id)}>
             <TextMore>Learn more</TextMore>
             <PetIcon></PetIcon>
           </LearnMore>
         </LearnMoreDiv>
       </Item>
+      
+      
     </>
   );
 };

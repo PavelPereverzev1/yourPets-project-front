@@ -1,78 +1,75 @@
-import React, {
-  useState,
-  // useEffect
-} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  ImageBlock,
-  Image,
-  TextDiv,
-  Text,
-  Item,
-  LearnMore,
-  TextMore,
-  LearnMoreDiv,
-  InGoodHands,
-  Favorite,
-  InfoLocation,
-  InfoAge,
-  InfoPol,
-  InfoText,
-  Remove,
-} from './NoticeCategoryItem.styled.js';
-
-import { useAuth } from '../../hooks/useAuth.js';
-import { useDispatch } from 'react-redux';
+  NoticesList,
+  NotFoundPetsMessage,
+} from './NoticesCategoriesList.styled';
 import {
-  addNoticeToFavorite,
-  deleteNoticeFromFavorite,
-} from 'redux/notices/noticesOperations.js';
+  selectCurrentPage,
+  selectIsLoading,
+  selectNotices,
+  selectQuery,
+  selectTotalNotices,
+} from 'redux/notices/noticesSelectors';
+import { useEffect, useState } from 'react';
+import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
+import Pagination from '../Pagination/Pagination';
+import ModalNotice from 'components/ModalNotice/ModalNotice';
+import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
+import DeleteModal from 'components/Modals/DeleteModal/DeleteModal';
+import { setPage } from 'redux/notices/noticesSlices';
 import {
-  PetIcon,
-  FavoriteIcon,
-  LocationIcon,
-  AgeIcon,
-  MaleIcon,
-  FemaleIcon,
-  RemoveIcon,
-} from './SvgIcons.jsx';
+  getNoticesThunk,
+  deleteNoticeById,
+} from 'redux/notices/noticesOperations';
 
-const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, handleDeleteModal }) => {
-  const { isLoggedIn, user } = useAuth();
-  const [favorites, setFavorites] = useState(user.favorites || []);
+const NoticesCategoriesList = () => {
+  const [active, setActive] = useState(false);
+  const [noticeDetail, setNoticeDetail] = useState('');
+  const [activeAttention, setActiveAttention] = useState(false);
+  const [activeDelete, setActiveDelete] = useState(false);
 
-
+  const notices = useSelector(selectNotices);
+  const query = useSelector(selectQuery);
+  const isLoading = useSelector(selectIsLoading);
+  const currentPage = useSelector(selectCurrentPage);
+  const totalNotices = useSelector(selectTotalNotices);
   const dispatch = useDispatch();
+  const totalPages = Math.ceil(totalNotices / 12);
 
-  
+  useEffect(() => {
+    dispatch(getNoticesThunk(query));
+  }, [dispatch, query]);
 
-  const toggleFavorite = async noticeId => {
+  const handlePageChange = page => {
+    dispatch(setPage(page));
+  };
+
+  const handleLearnMore = noticeId => {
+    setNoticeDetail(noticeId);
+    setActive(true);
+  };
+
+  const handleAttentionModal = () => {
+    setActiveAttention(true);
+  };
+
+  const handleDeleteModal = noticeId => {
+    setNoticeDetail(noticeId);
+    setActiveDelete(true);
+  };
+
+  const handleDeleteByIdNotice = async () => {
     try {
-      console.log(notice._id)
-      if (favorites.includes(noticeId)) {
-        const {
-          meta: { requestStatus },
-          payload,
-        } = await dispatch(deleteNoticeFromFavorite({ id: noticeId }));
-
-        if (requestStatus === 'rejected') {
-          throw new Error(payload);
-        }
-
-        return setFavorites(prevFavorites =>
-          prevFavorites.filter(favorite => favorite !== noticeId)
-        );
-      }
-
       const {
         meta: { requestStatus },
         payload,
-      } = await dispatch(addNoticeToFavorite({ id: noticeId }));
+      } = await dispatch(deleteNoticeById({ id: noticeDetail }));
 
       if (requestStatus === 'rejected') {
         throw new Error(payload);
       }
 
-      return setFavorites(prevFavorites => [...prevFavorites, noticeId]);
+      setActiveDelete(false);
     } catch (error) {
       const { message } = error;
 
@@ -82,58 +79,52 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
 
   return (
     <>
-      <Item key={notice._id}>
-        <ImageBlock>
-          <InGoodHands>{notice.noticeType}</InGoodHands>
-          <Favorite onClick={() => handleAttentionModal(true)}>
-            <FavoriteIcon></FavoriteIcon>
-          </Favorite>
-          {isLoggedIn && (
-            <Favorite onClick={() => toggleFavorite(notice._id)}>
-              <FavoriteIcon
-                isfavorite={favorites.some(favorite => favorite === notice._id)}
-              ></FavoriteIcon>
-            </Favorite>
-          )}{' '}
-          {isLoggedIn && user._id === notice.owner && (
-            <Remove onClick={() => handleDeleteModal(true)}>
-              <RemoveIcon></RemoveIcon>
-            </Remove>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <NoticesList>
+          {notices.length > 0 ? (
+            notices.map(item => {
+              return (
+                <NoticeCategoryItem
+                key={item._id}
+                notice={item}
+                handleLearnMore={() => handleLearnMore(item._id)}
+                handleAttentionModal={handleAttentionModal}
+                handleDeleteModal={() => handleDeleteModal(item._id)}
+              />
+              );
+            })
+          ) : (
+            <NotFoundPetsMessage>
+              No Pets found, reload page or try again later
+            </NotFoundPetsMessage>
           )}
-          <InfoLocation>
-            <LocationIcon></LocationIcon>
-            <InfoText>
-              {notice.location}
-            </InfoText>
-          </InfoLocation>
-          <InfoAge>
-            <AgeIcon></AgeIcon>
-            <InfoText>{notice.age} year</InfoText>
-          </InfoAge>
-          <InfoPol>
-            {notice.sex === 'male' ? (
-              <MaleIcon></MaleIcon>
-            ) : notice.sex === 'female' ? (
-              <FemaleIcon></FemaleIcon>
-            ) : null}
-            <InfoText>{notice.sex}</InfoText>
-          </InfoPol>
-          <Image src={notice.photoURL}></Image>
-        </ImageBlock>
-        <TextDiv>
-          <Text>{notice.title}</Text>
-        </TextDiv>
-        <LearnMoreDiv>
-          <LearnMore onClick={() => handleLearnMore(notice.id)}>
-            <TextMore>Learn more</TextMore>
-            <PetIcon></PetIcon>
-          </LearnMore>
-        </LearnMoreDiv>
-      </Item>
-      
-      
+        </NoticesList>
+      )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+      {active && (
+        <ModalNotice
+          active={active}
+          setActive={setActive}
+          noticeDetail={noticeDetail}
+        />
+      )}
+      <AttentionModal
+        active={activeAttention}
+        setActive={setActiveAttention}
+      ></AttentionModal>
+      <DeleteModal
+        active={activeDelete}
+        setActive={setActiveDelete}
+        yes={handleDeleteByIdNotice}
+      />
     </>
   );
 };
 
-export default NoticeCategoryItem;
+export default NoticesCategoriesList;
