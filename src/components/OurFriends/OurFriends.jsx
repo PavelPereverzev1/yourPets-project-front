@@ -7,6 +7,7 @@ import {
   InfoList,
   LogoCard,
   TitleCard,
+  TitleContainer,
   WrapperCard,
   WrapperInfo,
   WrapperSponsors,
@@ -32,9 +33,11 @@ export default function OurFriends() {
             _id
           }) => (
               <WrapperCard key={_id}>
+                <TitleContainer>
                 <TitleCard target="_blank" to={url}>
                   {title}
                 </TitleCard>
+                </TitleContainer>
                 <WrapperInfo>
                   <LogoCard src={imageUrl} alt="logo"/>
                   <InfoList>
