@@ -63,7 +63,9 @@ export const SexList = styled.div`
 export const RadioInput = styled(Field)`
   appearance: none;
   cursor: pointer;
-  // display: none;
+  display: none;
+
+  &: checked;
 `;
 
 export const StyledRadio = styled.label`

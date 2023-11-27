@@ -11,7 +11,7 @@ axios.defaults.baseURL = 'https://yourpets-project-backend.onrender.com';
 
 function AddPetForm() {
   const initialFormData = {
-    noticeType: '',
+    noticeType: 'your-pet',
     name: '',
     birthday: '',
     petType: '',
@@ -28,7 +28,6 @@ function AddPetForm() {
   const navigate = useNavigate();
 
   const makeRequest = async formData => {
-    console.log('formData:', formData);
     const requestData = new FormData();
 
     try {
@@ -44,9 +43,7 @@ function AddPetForm() {
             requestData.append(key, formData[key]);
           }
         }
-        const response = await axios.post('/pets', requestData);
-        console.log('Дані, що відправляю:', requestData);
-        console.log('Response from server:', response.data);
+        await axios.post('/pets', requestData);
 
         navigate('/user');
       }
@@ -59,19 +56,15 @@ function AddPetForm() {
             requestData.append(key, formData[key]);
           }
         }
-        const response = await axios.post('/notices', requestData);
-        console.log('Дані, що відправляю:', requestData);
-        console.log('Response from server:', response.data);
+        await axios.post('/notices', requestData);
 
         navigate('/notices/own');
       } else {
         for (const key in formData) {
           requestData.append(key, formData[key]);
         }
-        const response = await axios.post('/notices', requestData);
-        console.log('Дані, що відправляю:', requestData);
-        console.log('Response from server:', response.data);
 
+        await axios.post('/notices', requestData);
         navigate('/notices/own');
       }
     } catch (error) {
