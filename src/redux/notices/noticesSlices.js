@@ -83,16 +83,24 @@ const noticesSlice = createSlice({
       })
       .addCase(deleteNoticeById.rejected, handleRejected)
 
-      .addCase(addNoticeToFavorite.pending, handlePending)
-      .addCase(addNoticeToFavorite.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
+      .addCase(addNoticeToFavorite.pending, state => {
+        state.noticesError = null;
       })
-      .addCase(addNoticeToFavorite.rejected, handleRejected)
-      .addCase(deleteNoticeFromFavorite.pending, handlePending)
+      .addCase(addNoticeToFavorite.fulfilled, state => {
+        state.noticesError = null;
+      })
+      .addCase(addNoticeToFavorite.rejected, (state, { payload }) => {
+        state.noticesError = payload;
+      })
+      .addCase(deleteNoticeFromFavorite.pending, state => {
+        state.noticesError = null;
+      })
       .addCase(deleteNoticeFromFavorite.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
+        state.noticesError = null;
       })
-      .addCase(deleteNoticeFromFavorite.rejected, handleRejected);
+      .addCase(deleteNoticeFromFavorite.rejected, (state, { payload }) => {
+        state.noticesError = payload;
+      });
   },
 });
 
