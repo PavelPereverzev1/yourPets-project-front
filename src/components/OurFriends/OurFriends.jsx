@@ -1,4 +1,3 @@
-// import sponsor from './sponsors.json';
 import { useSelector } from 'react-redux';
 import {
   BigText,
@@ -6,6 +5,7 @@ import {
   InfoLink,
   InfoList,
   LogoCard,
+  TimeItem,
   TitleCard,
   WrapperCard,
   WrapperInfo,
@@ -38,7 +38,7 @@ export default function OurFriends() {
                 <WrapperInfo>
                   <LogoCard src={imageUrl} alt="logo"/>
                   <InfoList>
-                    <InfoItem>
+                    <TimeItem>
                       {workDays && workDays.length>0? (
                         <WorkDaysBtn workDays={workDays}/>
                       ) : (
@@ -46,7 +46,7 @@ export default function OurFriends() {
                           <BigText>Time: </BigText>day and night
                         </p>
                       )}
-                    </InfoItem>
+                    </TimeItem>
                     <InfoItem>
                       {address ? (
                         <InfoLink target="_blank" to={addressUrl}>

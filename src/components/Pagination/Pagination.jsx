@@ -50,7 +50,6 @@ const Pagination = (
       updatePages(currentPage + 1);
     }
   };
-
   return (
       <PaginationContainer>
         <PaginationButton onClick={handlePrevClick}>
@@ -61,7 +60,7 @@ const Pagination = (
             <PaginationButton
               key={page}
               onClick={() => handlePageClick(page)}
-              active={currentPage === page}
+              $active={currentPage === page}
             >
               {page}
             </PaginationButton>

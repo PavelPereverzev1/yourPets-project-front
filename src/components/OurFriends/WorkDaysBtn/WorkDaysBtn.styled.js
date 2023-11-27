@@ -16,8 +16,6 @@ position: relative;
  position: absolute;
  display: flex;
  flex-direction: column;
- /* top: 0;
- left: 0; */
  width: 120px;
  height: 160px;
  border: solid 1px var(--blueLink);
@@ -27,10 +25,10 @@ position: relative;
   font-weight: 500;
   font-size: 12px;
   line-height: 16.39px;
-  padding: 7px;
+  padding: 12px;
   gap: 4px;
  `
  export const WeekItem = styled.li`
  display: flex;
- gap: 12px;
+ justify-content: space-between;
  `

@@ -2,6 +2,7 @@
     height: 100%;
     width: 100%;
     background-color: #61616199;
+    backdrop-filter: blur(10px);
     position: fixed;
     top: 0;
     left: 0;

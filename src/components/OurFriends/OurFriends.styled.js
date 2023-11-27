@@ -76,7 +76,6 @@ export const WrapperInfo = styled.div`
   }
 `;
 export const LogoCard = styled.img`
-  /* display: block; */
   width: 100px;
   height: 68px;
   @media screen and (min-width: 768px) {
@@ -98,7 +97,19 @@ export const InfoItem = styled.li`
   font-weight: 400;
   font-size: 12px;
   line-height: 16.39px;
-`;
+  line-height: 1rem;
+  max-height: 3rem;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+export const TimeItem = styled.li`
+  font-family: Manrope, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16.39px;
+`
 export const InfoLink = styled(Link)`
   color: #111111;
   transition: color var(--transition);
