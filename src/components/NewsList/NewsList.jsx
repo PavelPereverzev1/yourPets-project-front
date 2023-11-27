@@ -14,9 +14,10 @@ function NewsList() {
   };
 
   const filteredNews = query ? filterNewsByQuery(news, query) : news;
+  console.log(filteredNews)
 
   useEffect(() => {
-    dispatch(fetchNews());
+    dispatch(fetchNews({ page: 1, limit: 6, search: '' }));
   }, [dispatch]);
 
 
