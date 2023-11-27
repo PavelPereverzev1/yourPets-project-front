@@ -123,9 +123,7 @@ const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
           <InfoLocation>
             <LocationIcon></LocationIcon>
             <InfoText>
-              {notice.location.length > 5
-                ? notice.location.slice(0, 5) + '...'
-                : notice.location}
+              {notice.location}
             </InfoText>
           </InfoLocation>
           <InfoAge>
