@@ -6,7 +6,9 @@ import {
   InfoLink,
   InfoList,
   LogoCard,
+  TimeItem,
   TitleCard,
+  TitleContainer,
   WrapperCard,
   WrapperInfo,
   WrapperSponsors,
@@ -32,13 +34,15 @@ export default function OurFriends() {
             _id
           }) => (
               <WrapperCard key={_id}>
+                <TitleContainer>
                 <TitleCard target="_blank" to={url}>
                   {title}
                 </TitleCard>
+                </TitleContainer>
                 <WrapperInfo>
                   <LogoCard src={imageUrl} alt="logo"/>
                   <InfoList>
-                    <InfoItem>
+                    <TimeItem>
                       {workDays && workDays.length>0? (
                         <WorkDaysBtn workDays={workDays}/>
                       ) : (
@@ -46,7 +50,7 @@ export default function OurFriends() {
                           <BigText>Time: </BigText>day and night
                         </p>
                       )}
-                    </InfoItem>
+                    </TimeItem>
                     <InfoItem>
                       {address ? (
                         <InfoLink target="_blank" to={addressUrl}>
