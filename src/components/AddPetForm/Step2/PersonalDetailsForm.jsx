@@ -62,7 +62,7 @@ const stepTwoValidationSchema = Yup.object().shape({
   title: Yup.string()
     .required('Enter the title of the add')
     .min(3, 'min 3 symbols')
-    .max(16, 'max 16 symbols'),
+    .max(60, 'max 60 symbols'),
 });
 
 const PersonalDetailsForm = props => {
@@ -128,16 +128,22 @@ const PersonalDetailsForm = props => {
                 <ErrorComponent name="petType" />
               </DetailWrapper>
             </FieldsWrapper>
-            <ButtonsWrapper>
+            <ButtonsWrapper noticeType={values.noticeType}>
               <ButtonBlue type="submit">
                 Next
                 <BtnIcon>
-                  <use href={`${sprite}#icon-pawprint-1`} />
+                  <use
+                    href={`${sprite}#icon-pawprint-1`}
+                    fill="var(--background)"
+                  />
                 </BtnIcon>
               </ButtonBlue>
               <ButtonWhite type="button" onClick={() => props.prev(values)}>
                 <BtnIcon>
-                  <use href={`${sprite}#icon-arrow-left`} />
+                  <use
+                    href={`${sprite}#icon-arrow-left`}
+                    stroke="var(--blueLink)"
+                  />
                 </BtnIcon>
                 Back
               </ButtonWhite>

@@ -1,4 +1,4 @@
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import React, { useRef } from 'react';
 
@@ -13,7 +13,8 @@ import {
   SexPhotoblock,
   Sexblock,
   SexList,
-  RadioButton,
+  StyledRadio,
+  RadioInput,
   IconSex,
   PhotoBlock,
   ImagePreview,
@@ -23,7 +24,8 @@ import {
   UploadIcon,
   LocationPriceBlock,
   DetailWrapper,
-  Label,
+  DetailInput,
+  CommentsInput,
 } from './SellMoreDetailsForm.styled';
 import {
   ButtonsWrapper,
@@ -90,7 +92,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
   const fileRef = useRef(null);
 
   return (
-    <BackgroundCard>
+    <BackgroundCard noticeType={data.noticeType}>
       <Title>Add pet</Title>
       <StepsBlock step={3} />
       <Formik
@@ -107,25 +109,33 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
             <BlocksWrapper>
               <SexPhotoblock>
                 <Sexblock role="group" aria-labelledby="gender-radio-group">
-                  <h3>The Sex</h3>
+                  The Sex
                   <SexList>
-                    <Label>
+                    <StyledRadio>
                       <IconSex>
                         <use href={`${sprite}#icon-female`} />
                       </IconSex>
-                      <RadioButton type="radio" name="sex" value="female" />
+                      <RadioInput
+                        id="sex"
+                        type="radio"
+                        name="sex"
+                        value="female"
+                      />
                       Female
-                    </Label>
-
-                    <Label>
+                    </StyledRadio>
+                    <StyledRadio>
                       <IconSex>
                         <use href={`${sprite}#icon-male`} />
                       </IconSex>
-                      <RadioButton type="radio" name="sex" value="male" />
+                      <RadioInput
+                        id="sex"
+                        type="radio"
+                        name="sex"
+                        value="male"
+                      />
                       Male
-                    </Label>
+                    </StyledRadio>
                   </SexList>
-
                   <ErrorMessage name="sex" />
                 </Sexblock>
 
@@ -148,7 +158,10 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                     ) : (
                       <DefaultImage>
                         <UploadIcon>
-                          <use href={`${sprite}#icon-plus`} />
+                          <use
+                            href={`${sprite}#icon-plus`}
+                            stroke="var(--blueLink)"
+                          />
                         </UploadIcon>
                       </DefaultImage>
                     )}
@@ -160,49 +173,39 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
               <LocationPriceBlock>
                 <DetailWrapper>
                   <label htmlFor="location"> Location</label>
-                  <Field
+                  <DetailInput
                     id="location"
                     name="location"
                     placeholder="Kyiv"
-                  ></Field>
+                  ></DetailInput>
                   <ErrorMessage name="location" />
                 </DetailWrapper>
 
                 {values.noticeType === 'sell' && (
                   <DetailWrapper>
                     <label htmlFor="price"> Price</label>
-                    <Field
+                    <DetailInput
                       type="number"
                       id="price"
                       name="price"
                       placeholder="100"
-                    ></Field>
+                    ></DetailInput>
                     <ErrorMessage name="price" />
                   </DetailWrapper>
                 )}
 
                 <DetailWrapper>
                   <label htmlFor="comments"> Comments</label>
-                  <Field
+                  <CommentsInput
                     id="comments"
                     name="comments"
                     placeholder="Enter your comments"
                     component="textarea"
-                    rows="6"
-                  ></Field>
-                  <ErrorMessage name="comments" />
-                </DetailWrapper>
-
-                {/* <DetailWrapper>
-                  <CommentsLabel htmlFor="comments"> Comments</CommentsLabel>
-                  <CommentsInput
-                    id="comments"
-                    name="comments"
-                    placeholder="Enter your comment"
-                    onChange={() => next(values)}
+                    rows="4"
+                    noticeType={values.noticeType}
                   ></CommentsInput>
                   <ErrorMessage name="comments" />
-                </DetailWrapper> */}
+                </DetailWrapper>
               </LocationPriceBlock>
             </BlocksWrapper>
 
@@ -210,12 +213,18 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
               <ButtonBlue type="submit">
                 Done
                 <BtnIcon>
-                  <use href={`${sprite}#icon-pawprint-1`} />
+                  <use
+                    href={`${sprite}#icon-pawprint-1`}
+                    fill="var(--background)"
+                  />
                 </BtnIcon>
               </ButtonBlue>
               <ButtonWhite type="button" onClick={() => prev(values)}>
                 <BtnIcon>
-                  <use href={`${sprite}#icon-arrow-left`} />
+                  <use
+                    href={`${sprite}#icon-arrow-left`}
+                    stroke="var(--blueLink)"
+                  />
                 </BtnIcon>
                 Back
               </ButtonWhite>

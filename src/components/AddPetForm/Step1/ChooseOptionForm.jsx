@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 import BackgroundCard from '../BackgroundCard';
 import StepsBlock from '../StepsBlock';
@@ -31,6 +32,7 @@ const ChooseOptionForm = props => {
   const handleSubmit = values => {
     props.next(values);
   };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -86,12 +88,23 @@ const ChooseOptionForm = props => {
                 <ButtonBlue type="submit">
                   Next
                   <BtnIcon>
-                    <use href={`${sprite}#icon-pawprint-1`} />
+                    <use
+                      href={`${sprite}#icon-pawprint-1`}
+                      fill="var(--background)"
+                    />
                   </BtnIcon>
                 </ButtonBlue>
-                <ButtonWhite type="button">
+                <ButtonWhite
+                  type="button"
+                  onClick={() => {
+                    navigate('/user');
+                  }}
+                >
                   <BtnIcon>
-                    <use href={`${sprite}#icon-arrow-left`} />
+                    <use
+                      href={`${sprite}#icon-arrow-left`}
+                      stroke="var(--blueLink)"
+                    />
                   </BtnIcon>
                   Cancel
                 </ButtonWhite>

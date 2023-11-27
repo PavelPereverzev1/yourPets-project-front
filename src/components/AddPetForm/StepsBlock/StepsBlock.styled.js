@@ -7,6 +7,7 @@ export const StepsBlockWrapper = styled.div`
   margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
+    width: 392px;
     gap: 16px;
   }
 
@@ -40,5 +41,5 @@ export const StepLine = styled.div`
   width: 100%;
   height: 8px;
   border-radius: 8px;
-  background-color: ${props => props.bg || 'var(--blueLight)'};
+  background-color: ${props => props.color || 'var(--blueLight)'};
 `;
