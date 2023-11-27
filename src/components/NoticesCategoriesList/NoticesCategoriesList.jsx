@@ -82,7 +82,7 @@ const NoticesCategoriesList = () => {
             notices.map(item => {
               return (
                 <NoticeCategoryItem
-                  key={item.id}
+                  key={item._id}
                   notice={item}
                   handleLearnMore={handleLearnMore}
                   handleAttentionModal={handleAttentionModal}
