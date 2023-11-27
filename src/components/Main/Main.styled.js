@@ -34,11 +34,15 @@ export const MainPetsPicture = styled.img`
   position: relative;
   left: 50%;
   transform: translate(-50%);
-  max-width: 150%;
+  max-width: 140%;
   height: auto;
 
+  @media screen and (min-width: 768px) {
+    max-width: 130%;
+    transform: translate(-50%);
+  }
+
   @media screen and (min-width: 1280px) {
-    right: 100px;
-    top: 20px;
+    transform: translate(-60%);
   }
 `;
