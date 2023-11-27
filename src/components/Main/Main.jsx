@@ -19,13 +19,13 @@ const Main = () => {
           <source
             srcSet={`${mainMobile}, ${mainMobileRetina} 2x`}
             type="image/png"
-            media="(max-width: 480px)"
+            media="(max-width: 767px)"
           />
 
           <source
             srcSet={`${mainTablet}, ${mainTabletRetina} 2x`}
             type="image/png"
-            media="(max-width: 768px)"
+            media="(min-width: 768px) and (max-width: 1279px)"
           />
 
           <source
@@ -34,7 +34,7 @@ const Main = () => {
             media="(min-width: 1280px)"
           />
 
-          <MainPetsPicture src={mainMobile} alt="main page pets" />
+          <MainPetsPicture src={mainDesktop} alt="main page pets" />
         </picture>
       </MainContainer>
     </BackgroundImg>

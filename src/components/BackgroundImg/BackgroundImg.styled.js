@@ -14,29 +14,23 @@ export const StyledBackgroundImg = styled.div`
   background-image: url(${bgMobile1x});
   background-repeat: no-repeat;
 
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     background-image: url(${bgMobile2x});
   }
 
   @media screen and (min-width: 768px) {
     background-image: url(${bgTablet1x});
-  }
 
-  @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url(${bgTablet2x});
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url(${bgTablet2x});
+    }
   }
 
   @media screen and (min-width: 1280px) {
     background-image: url(${bgDesktop1x});
-  }
 
-  @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url(${bgDesktop2x});
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url(${bgDesktop2x});
+    }
   }
 `;
