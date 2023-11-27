@@ -3,11 +3,12 @@ import NewsItem from 'components/NewsItem/NewsItem'
 import { List } from './NewsList.styled'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNews } from 'redux/news/news-thunk';
+import { selectSearchQuery } from 'redux/notices/noticesSelectors';
 
 function NewsList() {
   const dispatch = useDispatch();
-  const news = useSelector(state => state.news);
-  const query = useSelector(state => state.query.searchQuery);
+  const news = useSelector(state => state.news.data);
+  const query = useSelector(selectSearchQuery);
 
   const filterNewsByQuery = (news, query) => {
     return news.filter(n => n.title.toLowerCase().includes(query.toLowerCase()));
@@ -37,3 +38,5 @@ function NewsList() {
 }
 
 export default NewsList
+
+

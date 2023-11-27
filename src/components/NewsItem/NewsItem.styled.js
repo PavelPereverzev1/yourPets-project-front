@@ -41,6 +41,10 @@ background-color: #ffffff;
 border-radius: 20px;
 margin-bottom: 24px;
 height: 578px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+
 @media screen and (min-width: 768px){
     width: 336px;
     height: 556px;
@@ -50,6 +54,10 @@ height: 578px;
     width: 395px;
     height: 534px;
 }
+`
+
+export const ContentWrapper = styled.div`
+  padding: 12px;
 `
 
 export const NewsImg = styled.img`
@@ -94,6 +102,8 @@ justify-content: space-between;
 padding-left: 12px;
 padding-right: 12px;
 padding-bottom: 12px;
+margin-top: auto;
+
 `
 
 export const NewsDate = styled.p`
