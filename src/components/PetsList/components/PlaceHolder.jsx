@@ -1,10 +1,5 @@
-import {
-  MisisngPetElement,
-  ImageWraper,
-  MissingPetImage,
-  MissingPetDis,
-} from './Placeholder.styled';
-import placeholder from '../../../images/placeholder/placeholder.jpg';
+import { MisisngPetElement, MissingPetDis } from './Placeholder.styled';
+
 export const PlaceHolder = () => {
   return (
     <MisisngPetElement>
@@ -13,9 +8,6 @@ export const PlaceHolder = () => {
         presence of your furry or feathered friends. Would you consider adding
         your beloved pets to your profile?
       </MissingPetDis>
-      <ImageWraper>
-        <MissingPetImage src={`${placeholder}`} alt="" />
-      </ImageWraper>
     </MisisngPetElement>
   );
 };
