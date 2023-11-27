@@ -2,6 +2,18 @@ import styled from 'styled-components';
 
 export const Item = styled.li`
 list-style: none;
+
+@media screen and (min-width: 768px){
+    &:nth-child(odd) {
+        margin-right: 32px;
+      }
+
+      @media screen and (min-width: 1280px){
+        margin-right: 31px;
+        &:nth-child(3n + 3) {
+            margin-right: 0;
+          }
+}
 `
  
 export const Line = styled.div`
@@ -28,15 +40,15 @@ width: 280px;
 background-color: #ffffff;
 border-radius: 20px;
 margin-bottom: 24px;
-
+height: 578px;
 @media screen and (min-width: 768px){
     width: 336px;
-    margin-right: 32px;
+    height: 556px;
 }
 
 @media screen and (min-width: 1280px){
     width: 395px;
-    margin-right: 31px;
+    height: 534px;
 }
 `
 
