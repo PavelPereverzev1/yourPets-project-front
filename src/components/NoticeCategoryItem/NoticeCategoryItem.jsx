@@ -36,14 +36,16 @@ import {
   RemoveIcon,
 } from './SvgIcons.jsx';
 
-const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, handleDeleteModal }) => {
+const NoticeCategoryItem = ({
+  notice,
+  handleLearnMore,
+  handleAttentionModal,
+  handleDeleteModal,
+}) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
 
-
   const dispatch = useDispatch();
-
-  
 
   const toggleFavorite = async noticeId => {
     try {
@@ -81,7 +83,7 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
 
   return (
     <>
-      <Item key={notice.id}>
+      <Item key={notice._id}>
         <ImageBlock>
           <InGoodHands>{notice.noticeType}</InGoodHands>
           <Favorite onClick={() => handleAttentionModal(true)}>
@@ -101,9 +103,7 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
           )}
           <InfoLocation>
             <LocationIcon></LocationIcon>
-            <InfoText>
-              {notice.location}
-            </InfoText>
+            <InfoText>{notice.location}</InfoText>
           </InfoLocation>
           <InfoAge>
             <AgeIcon></AgeIcon>
@@ -123,14 +123,12 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
           <Text>{notice.title}</Text>
         </TextDiv>
         <LearnMoreDiv>
-          <LearnMore onClick={() => handleLearnMore(notice.id)}>
+          <LearnMore onClick={() => handleLearnMore(notice._id)}>
             <TextMore>Learn more</TextMore>
             <PetIcon></PetIcon>
           </LearnMore>
         </LearnMoreDiv>
       </Item>
-      
-      
     </>
   );
 };
