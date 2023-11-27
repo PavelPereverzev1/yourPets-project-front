@@ -10,7 +10,7 @@ import {
 } from './NoticesSearch.styled';
 import sprite from '../../images/icons/sprite.svg';
 import { useDispatch } from 'react-redux';
-import { setSearchQuery } from 'redux/notices/noticesQuerySlice';
+import { setSearchQuery } from 'redux/notices/noticesSlices';
 
 function NoticesSearch() {
   const [query, setQuery] = useState('');
@@ -31,9 +31,16 @@ function NoticesSearch() {
     dispatch(setSearchQuery(query));
   };
 
-  const buttonSearchStyle = query.length > 0
-  ? { left: '225px', '@media screen and (minWidth: 768px)': { left: '240px' } }
-  : { left: '244px', '@media screen and (minWidth: 768px)': { left: '260px' } };
+  const buttonSearchStyle =
+    query.length > 0
+      ? {
+          left: '225px',
+          '@media screen and (minWidth: 768px)': { left: '240px' },
+        }
+      : {
+          left: '244px',
+          '@media screen and (minWidth: 768px)': { left: '260px' },
+        };
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -42,7 +49,7 @@ function NoticesSearch() {
         value={query}
         onChange={handleInputChange}
       />
-      <ButtonWrapper >
+      <ButtonWrapper>
         <ButtonSearch style={buttonSearchStyle} onClick={handleSubmit}>
           <SearchIcon>
             <use href={`${sprite}#icon-search`}></use>

@@ -23,6 +23,11 @@ const NavElement = styled.li`
   align-items: center;
 `;
 
+const NavBtn = styled.button`
+  background-color: inherit;
+  border: none;
+`;
+
 const StyledNavLink = styled(NavLink)`
   display: block;
   height: 35px;
@@ -50,4 +55,11 @@ const NoticeNavContainer = styled.div`
   justify-content: space-between;
 `;
 
-export { NavElements, NavList, NavElement, StyledNavLink, NoticeNavContainer };
+export {
+  NavElements,
+  NavList,
+  NavElement,
+  StyledNavLink,
+  NoticeNavContainer,
+  NavBtn,
+};
