@@ -20,11 +20,9 @@ import {
   Remove,
 } from './NoticeCategoryItem.styled.js';
 
-import DeleteModal from 'components/Modals/DeleteModal/DeleteModal.jsx';
 import { useAuth } from '../../hooks/useAuth.js';
 import { useDispatch } from 'react-redux';
 import {
-  deleteNoticeById,
   addNoticeToFavorite,
   deleteNoticeFromFavorite,
 } from 'redux/notices/noticesOperations.js';
@@ -41,28 +39,11 @@ import {
 const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, handleDeleteModal }) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
-  const [deleteModalActive, setDeleteModalActive] = useState(false);
+
 
   const dispatch = useDispatch();
 
-  const handleDeleteByIdNotice = async () => {
-    try {
-      const {
-        meta: { requestStatus },
-        payload,
-      } = await dispatch(deleteNoticeById({ id: notice.id }));
-
-      if (requestStatus === 'rejected') {
-        throw new Error(payload);
-      }
-
-      setDeleteModalActive(false);
-    } catch (error) {
-      const { message } = error;
-
-      console.log(message);
-    }
-  };
+  
 
   const toggleFavorite = async noticeId => {
     try {

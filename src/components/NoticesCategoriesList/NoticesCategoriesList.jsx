@@ -15,6 +15,9 @@ import ModalNotice from 'components/ModalNotice/ModalNotice';
 import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
 import DeleteModal from 'components/Modals/DeleteModal/DeleteModal';
 import { getNoticesThunk } from 'redux/notices/noticesOperations';
+import {
+  deleteNoticeById,
+} from 'redux/notices/noticesOperations.js';
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
@@ -50,6 +53,24 @@ const NoticesCategoriesList = () => {
   const handleDeleteModal = () => {
     setActiveDelete(true)
   }
+  const handleDeleteByIdNotice = async () => {
+    try {
+      const {
+        meta: { requestStatus },
+        payload,
+      } = await dispatch(deleteNoticeById({ id: notices.id }));
+
+      if (requestStatus === 'rejected') {
+        throw new Error(payload);
+      }
+
+      setActiveDelete(false);
+    } catch (error) {
+      const { message } = error;
+
+      console.log(message);
+    }
+  };
   return (
     <>
       {isLoading ? (
@@ -91,6 +112,11 @@ const NoticesCategoriesList = () => {
         active={activeAttention}
         setActive={setActiveAttention}
       ></AttentionModal>
+      <DeleteModal
+      active={activeDelete}
+      setActive={setActiveDelete}
+      yes={handleDeleteByIdNotice}
+      ></DeleteModal>
     </>
   );
 };
