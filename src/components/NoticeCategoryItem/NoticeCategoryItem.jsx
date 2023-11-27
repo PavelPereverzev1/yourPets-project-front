@@ -39,6 +39,12 @@ import {
 const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, handleDeleteModal }) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
+  const [isFavoriteNotice, setIsFavoriteNotice] = useState(() =>
+  favorites.some(favorite => favorite === notice._id)
+);
+const [isFavoriteButtonDisabled, setIsFavoriteButtonDisabled] =
+  useState(false);
+const [isDeleteButtonDisabled, setIsDeleteButtonDisabled] = useState(false);
 
 
   const dispatch = useDispatch();
@@ -47,21 +53,34 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
 
   const toggleFavorite = async noticeId => {
     try {
-      
+      setIsFavoriteButtonDisabled(true);
+
       if (favorites.includes(noticeId)) {
+        setIsFavoriteNotice(false);
+
         const {
           meta: { requestStatus },
           payload,
         } = await dispatch(deleteNoticeFromFavorite({ id: noticeId }));
 
         if (requestStatus === 'rejected') {
+          setIsFavoriteNotice(true);
+
+          setIsFavoriteButtonDisabled(false);
+
           throw new Error(payload);
         }
 
-        return setFavorites(prevFavorites =>
+        setFavorites(prevFavorites =>
           prevFavorites.filter(favorite => favorite !== noticeId)
         );
+
+        setIsFavoriteButtonDisabled(false);
+
+        return;
       }
+
+      setIsFavoriteNotice(true);
 
       const {
         meta: { requestStatus },
@@ -69,16 +88,21 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
       } = await dispatch(addNoticeToFavorite({ id: noticeId }));
 
       if (requestStatus === 'rejected') {
+        setIsFavoriteNotice(false);
+
+        setIsFavoriteButtonDisabled(false);
+
         throw new Error(payload);
       }
 
-      return setFavorites(prevFavorites => [...prevFavorites, noticeId]);
+      setFavorites(prevFavorites => [...prevFavorites, noticeId]);
+
+      setIsFavoriteButtonDisabled(false);
+
+      return;
     } catch (error) {
       const { message } = error;
-
-      console.log(message);
-    }
-  };
+    }}
 
   return (
     <>
@@ -91,14 +115,18 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
       </Favorite>
         )}     
         {isLoggedIn && (
-            <Favorite onClick={() => toggleFavorite(notice._id)}>
+            <Favorite
+            disabled={isFavoriteButtonDisabled}
+            onClick={() => toggleFavorite(notice._id)}>
               <FavoriteIcon
-                isfavorite={favorites.some(favorite => favorite === notice._id)}
+                isfavorite={isFavoriteNotice}
               ></FavoriteIcon>
             </Favorite>
           )}{' '}
           {isLoggedIn && user._id === notice.owner && (
-            <Remove onClick={() => handleDeleteModal(true)}>
+            <Remove
+            disabled={isDeleteButtonDisabled}
+             onClick={() => handleDeleteModal(true)}>
               <RemoveIcon></RemoveIcon>
             </Remove>
           )}

@@ -1,9 +1,9 @@
 
 
-export const AddToFavoriteIcon = ({ isfavorite }) => {
+export const AddToFavoriteIcon = ({ isFavorite }) => {
   return (
     <svg
-      fill={isfavorite ? '#54ADFF' : 'white'}
+      fill={isFavorite ? '#54ADFF' : 'white'}
       stroke={ 'white' }
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"

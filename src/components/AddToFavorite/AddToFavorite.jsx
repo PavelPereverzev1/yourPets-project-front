@@ -15,38 +15,68 @@ import {
 const AddToFavorite = ({ notice, handleAttentionModal }) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
+  const [isFavoriteNotice, setIsFavoriteNotice] = useState(() =>
+    favorites.some(favorite => favorite === notice.id)
+  );
+  const [isFavoriteButtonDisabled, setIsFavoriteButtonDisabled] =
+    useState(false);
+ 
+
   const dispatch = useDispatch();
 
-  const toggleFavorite = async (noticeId) => {
+  const toggleFavorite = async noticeId => {
+   
     try {
-     
+      setIsFavoriteButtonDisabled(true);
+
       if (favorites.includes(noticeId)) {
+        setIsFavoriteNotice(false);
+
         const {
           meta: { requestStatus },
-          payload
+          payload,
         } = await dispatch(deleteNoticeFromFavorite({ id: noticeId }));
 
         if (requestStatus === 'rejected') {
+          setIsFavoriteNotice(true);
+
+          setIsFavoriteButtonDisabled(false);
+
           throw new Error(payload);
         }
 
-        setFavorites((prevFavorites) =>
-          prevFavorites.filter((favorite) => favorite !== noticeId)
+        setFavorites(prevFavorites =>
+          prevFavorites.filter(favorite => favorite !== noticeId)
         );
-      } else {
-        const {
-          meta: { requestStatus },
-          payload
-        } = await dispatch(addNoticeToFavorite({ id: noticeId }));
 
-        if (requestStatus === 'rejected') {
-          throw new Error(payload);
-        }
+        setIsFavoriteButtonDisabled(false);
 
-        setFavorites((prevFavorites) => [...prevFavorites, noticeId]);
+        return;
       }
+
+      setIsFavoriteNotice(true);
+
+      const {
+        meta: { requestStatus },
+        payload,
+      } = await dispatch(addNoticeToFavorite({ id: noticeId }));
+
+      if (requestStatus === 'rejected') {
+        setIsFavoriteNotice(false);
+
+        setIsFavoriteButtonDisabled(false);
+
+        throw new Error(payload);
+      }
+
+      setFavorites(prevFavorites => [...prevFavorites, noticeId]);
+
+      setIsFavoriteButtonDisabled(false);
+
+      return;
     } catch (error) {
       const { message } = error;
+
       console.log(message);
     }
   };
@@ -61,11 +91,12 @@ const AddToFavorite = ({ notice, handleAttentionModal }) => {
       </AddToFavoriteButton>
     )}
     {isLoggedIn && (
-      <AddToFavoriteButton onClick={() => toggleFavorite(notice._id)}>
-        <AddToFavoriteIcon
-          isfavorite={favorites.some(favorite => favorite === notice._id)}
-        ></AddToFavoriteIcon>
-      </AddToFavoriteButton>
+      <AddToFavoriteButton disabled={isFavoriteButtonDisabled} onClick={() => toggleFavorite(notice._id)}>
+      <AddToFavoriteText>Add to </AddToFavoriteText>
+      <AddToFavoriteIcon
+        isFavorite={isFavoriteNotice}
+      ></AddToFavoriteIcon>
+    </AddToFavoriteButton>
     )}
   </>
   );
