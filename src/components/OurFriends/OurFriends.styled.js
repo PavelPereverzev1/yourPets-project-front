@@ -9,12 +9,6 @@ export const Wrapper = styled.div`
     padding-bottom: 175px;
   }
 `;
-export const TitleContainer = styled.div`
-height: 54px;
-justify-content: center;
-  align-items: center;
-display: flex;
-`
 export const Title = styled.h1`
   font-family: Manrope, sans-serif;
   font-weight: 700;
