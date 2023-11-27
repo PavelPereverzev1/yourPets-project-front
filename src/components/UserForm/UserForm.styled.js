@@ -11,7 +11,7 @@ export const Form = styled.form`
   }
 `;
 
-export const InputContainer = styled.div`
+export const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -35,6 +35,11 @@ export const InputWrapper = styled.div`
   align-items: center;
 `;
 
+export const ErorrWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Label = styled.label`
   font-size: 14px;
   font-weight: 600;
@@ -52,7 +57,6 @@ export const Input = styled.input`
   width: 190px;
   padding: 4px 12px;
   align-items: center;
-  gap: 191px;
   border-radius: 20px;
   border: 1px solid ${props => (props.$isValid ? 'var(--blueLink)' : 'red')};
   font-size: 12px;

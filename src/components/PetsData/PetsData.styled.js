@@ -1,16 +1,31 @@
 import { styled } from 'styled-components';
 
 export const Section = styled.section`
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 31px;
+  gap: 24px;
+`;
+
+export const BgContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 130px;
+`;
+
+export const TopContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Title = styled.h2`
-  font-size: 1.75rem;
-  font-style: normal;
+  font-size: 20px;
   font-weight: 500;
-  line-height: normal;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
 `;
 
 export const AddIcon = styled.svg`

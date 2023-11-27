@@ -9,6 +9,8 @@
 .pet_photo {
     width: 240px;
     height: 240px;
+    object-fit: cover;
+    border-radius: 0 0 40px 40px;
 }
 .advertisement {
     display: flex;
@@ -17,6 +19,11 @@
     /* align-items: flex-start; */
     gap: 20px;
 }
+.advertisement h3 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32.78px;
+}
 .advertisement_list {
     display: flex;
     flex-direction: row;
@@ -24,8 +31,28 @@
     align-items: flex-start;
     gap: 20px;
 }
+.advertisement_list_left {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19.12px;
+}
+.advertisement_list_right {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 19.12px;
+}
 .content_middle {
     padding: 13px 12px 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19.12px;
+    letter-spacing: 4%;
+}
+.content_middle span {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19.12px;
+    letter-spacing: 4%;
 }
 .content_bottom {
     display: flex;
@@ -41,10 +68,13 @@
     left: 20px;
     border-radius: 0 16px 16px 0;
     padding: 11px 22px 11px 12px;
-    background-color: #CCE4FB;
+    background-color: var(--blueLight);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19.12px;
 }
 .contacts {
-    color: #FFC107;
+    color: var(--yellow);
 }
 
 @media screen and (min-width: 768px){
@@ -68,6 +98,10 @@
         gap: 20px;
         padding-right: 50px;
     }
+    .advertisement h3 {
+        font-size: 28px;
+        line-height: 38.25px;
+    }
     .advertisement_list {
         display: flex;
         flex-direction: row;
@@ -75,8 +109,20 @@
         /* align-items: center; */
         gap: 50px;
     }
+    .advertisement_list_left {
+        font-size: 16px;
+        line-height: 21.86px;
+    }
+    .advertisement_list_right {
+        font-size: 16px;
+        line-height: 21.86px;
+    }
     .content_middle {
         padding: 28px 32px 0 32px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 4%;
     }
     .content_bottom {
         display: flex;

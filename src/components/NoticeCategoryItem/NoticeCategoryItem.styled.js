@@ -87,7 +87,7 @@ export const Image = styled.img`
 width:100%;
 height:100%;
 
-
+ object-fit:contain;
 
 `;
 export const TextDiv = styled.div`
@@ -103,15 +103,19 @@ height:auto;
 `;
 
 export const Text = styled.a`
-margin-top: 10px;
-display: flex;
-justify-content: center;
-font-size: 24px;
-font-weight:700;
-height:auto;
-max-width:231px;
-margin-bottom:20px;
-color:#111111;
+
+color: #111;
+    letter-spacing: -.64px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 218px;
+    margin-bottom: 4px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32.78px;
+    overflow: hidden;
+    margin-top:10px;
+    margin-bottom:10px;
 
 `;
 
@@ -233,7 +237,7 @@ export const InfoAge = styled.div`
 margin-top: 250px;
 margin-left:0px;
 position: absolute;
-justify-content: center;
+
 display:flex;
 height:20px;
 width:80px;
@@ -278,6 +282,9 @@ export const InfoText = styled.p`
 font-size:12px;
 font-weight:600;
 padding-right:5px;
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
 `;
 
 

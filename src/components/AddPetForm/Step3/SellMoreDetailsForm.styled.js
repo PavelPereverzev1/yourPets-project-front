@@ -4,8 +4,14 @@ import { Form as FormikForm, Field } from 'formik';
 export const FormSellMoreDetails = styled(FormikForm)`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 24px;
+`;
+
+export const BlocksWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SexPhotoblock = styled.div`
@@ -25,11 +31,43 @@ export const SexList = styled.div`
 `;
 
 export const RadioButton = styled(Field)`
-  position: absolute;
-  display: block;
-
-  opacity: 1;
+  appearance: none;
+  cursor: pointer;
+  // display: none;
 `;
+
+export const Label = styled.label`
+  display: inline-flex;
+  height: 35px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+
+  border-radius: 40px;
+  background-color: transparent;
+
+  color: var(--gray);
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.64px;
+
+  cursor: pointer;
+
+  &:hover {
+    color: var(--white);
+    background-color: var(--blueLink);
+  }
+
+  ${RadioButton}:checked + & {
+    color: var(--white);
+    background-color: var(--blueLink);
+  }
+`;
+
 export const SexBtn = styled(Field)`
   display: flex;
   flex-direction: row;
@@ -46,44 +84,14 @@ export const SexBtn = styled(Field)`
 export const IconSex = styled.svg`
   width: 24px;
   height: 24px;
-  fill: var(--blueLink);
+  stroke: var(--gray);
   transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
-`;
-export const Label = styled.label`
-  position: relative;
-  display: block;
-
-  height: 35px;
-  padding: 8px 16px;
-  border-radius: 40px;
-  background-color: #cce4fb;
-
-  color: #54adff;
-  font-family: Manrope;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0.56px;
-
-  cursor: pointer;
-
-  &:hover {
-    color: #ffffff;
-    background-color: #54adff;
-  }
-
-  ${RadioButton}:checked + & {
-    color: #ffffff;
-    background-color: #54adff;
-  }
 `;
 
 //Photoblock
 export const PhotoBlock = styled.div`
   display: flex;
   flex-direction: column;
-
   gap: 16px;
 `;
 
@@ -103,14 +111,18 @@ export const ImagePreview = styled.div`
   position: relative;
   width: 182px;
   height: 182px;
+  border-radius: 40px;
+  overflow: hidden;
+`;
+export const DefaultImage = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  border-radius: 40px;
   background-color: var(--blueLight);
 `;
-export const PhotoInput = styled(Field)`
+export const PhotoInput = styled.input`
   position: absolute;
   display: block;
   top: 0;
@@ -158,7 +170,7 @@ export const DetailInput = styled.input`
   border: 1px solid #54adff;
 `;
 
-export const CommentsInput = styled.textarea`
+export const CommentsInput = styled.input`
   display: block;
   text-align: start;
   overflow-wrap: break-word;

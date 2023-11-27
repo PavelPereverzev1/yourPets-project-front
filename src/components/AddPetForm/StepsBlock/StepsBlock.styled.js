@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
 export const StepsBlockWrapper = styled.div`
-  width: 392px;
+  width: 100%;
   display: flex;
   gap: 12px;
   margin-bottom: 24px;
+
+  @media screen and (min-width: 768px) {
+    gap: 16px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
 export const StepBlock = styled.div`
@@ -12,18 +19,26 @@ export const StepBlock = styled.div`
 `;
 
 export const StepName = styled.p`
-  color: ${props => props.color || '#888'};
+  color: ${props => props.color || 'var(--gray)'};
   text-align: start;
   font-family: Manrope;
-  font-size: 16px;
-  font-style: normal;
+  font-size: 10px;
   font-weight: 500;
   line-height: normal;
   margin-bottom: 12px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 27px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
+
 export const StepLine = styled.div`
   width: 100%;
   height: 8px;
   border-radius: 8px;
-  background-color: ${props => props.bg || '#cce4fb'};
+  background-color: ${props => props.bg || 'var(--blueLight)'};
 `;

@@ -7,7 +7,6 @@ export const Button = styled.button`
   gap: 8px;
   width: ${props => props.width || '248px'};
   height: ${props => props.height || '38px'};
-  font-family: 'Manrope';
   font-size: 16px;
   font-weight: 700;
   line-height: normal;
@@ -34,6 +33,7 @@ export const Button = styled.button`
 `;
 
 export const FilledButton = styled(Button)`
+  flex-direction: row-reverse;
   color: var(--white);
   background-color: var(--blueLink);
   border: none;
@@ -57,11 +57,15 @@ export const FilledButton = styled(Button)`
 `;
 
 export const RoundButton = styled(FilledButton)`
+  position: sticky;
+  top: 200px;
+  z-index: +1;
   flex-direction: column;
   gap: 4px;
   width: 80px;
   height: 80px;
   font-size: 12px;
   font-weight: 600;
+  margin-left: auto;
   background-image: var(--blueGradient);
 `;

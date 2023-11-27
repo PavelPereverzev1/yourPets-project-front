@@ -1,29 +1,40 @@
-import React from 'react';
-import { FavoriteIcon } from './FavoriteIcon';
+import { AddToFavoriteIcon } from './AddToFavoriteIcon';
 import { AddToFavoriteButton, AddToFavoriteText } from './AddToFavorite.styled';
+import { useAuth } from '../../hooks/useAuth';
+import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
+import { useState } from 'react';
 
-const AddToFavorite = () => {
-  // const handleAddToFavorite = (id) => {
-  //   if(!isLoggedIn){
-  //     setIsLoggedIn(isLoggedIn)
-  //   }
-  //   if (isLoggedIn) {
-  //     Notify.failure('Please, sign in');
-  //   } else {
+const AddToFavorite = ({ notice }) => {
+  const { isLoggedIn, user } = useAuth();
+  const [favorites, setFavorites] = useState(user.favorites || []);
+  const [active, setActive] = useState(false);
 
-  //     const updatedData = dataf.map((item) =>
-  //       item.id === id ? { ...item, isFavorite: !item.isFavorite } : item
-  //     );
-  //     setDataf(updatedData);
-  //   }
-  // };
-  //onClick={() => handleAddToFavorite(item.id)}
+  const handleAddToFavorite = noticeId => {
+    if (!isLoggedIn) {
+      setActive(true);
+    } else {
+      setFavorites(prevFavorites => {
+        const isPetInFavorites = prevFavorites.includes(noticeId);
+
+        if (!isPetInFavorites) {
+          return [...prevFavorites, noticeId];
+        } else {
+          return prevFavorites.filter(favorite => favorite !== noticeId);
+        }
+      });
+    }
+  };
 
   return (
-    <AddToFavoriteButton>
-      <AddToFavoriteText>Add to</AddToFavoriteText>
-      <FavoriteIcon></FavoriteIcon>
-    </AddToFavoriteButton>
+    <>
+      <AddToFavoriteButton onClick={() => handleAddToFavorite(notice._id)}>
+        <AddToFavoriteText>Add to </AddToFavoriteText>
+        <AddToFavoriteIcon
+          isFavorite={favorites.some(favorite => favorite === notice._id)}
+        ></AddToFavoriteIcon>
+      </AddToFavoriteButton>
+      {active && <AttentionModal active={active} setActive={setActive} />}
+    </>
   );
 };
 

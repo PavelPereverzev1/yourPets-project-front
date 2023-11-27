@@ -9,14 +9,16 @@ const initialState = {
     phone: '',
     city: '',
     avatarURL: '/yourPets-project-front/defaultAvatar.png',
+    favorites: [],
+    _id: '',
   },
-  token: null,
   isLoggedIn: false,
-  isFirstLoggedIn: false,
   isRefreshing: false,
   isLoading: false,
-  isUserDataLoaded: false,
   authError: null,
+  isFirstLoggedIn: false,
+  isUserDataLoaded: false,
+  token: null,
 };
 
 const handlePending = state => {
@@ -32,6 +34,12 @@ const handleRejected = (state, action) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    resetAuthState: () => initialState,
+    resetAuthError: state => {
+      state.authError = null;
+    },
+  },
   extraReducers: buider =>
     buider
       .addCase(register.pending, handlePending)
@@ -60,6 +68,8 @@ const authSlice = createSlice({
           phone: '',
           city: '',
           avatarURL: null,
+          favorites: [],
+          _id: '',
         };
         state.token = null;
         state.isLoggedIn = false;
@@ -74,9 +84,11 @@ const authSlice = createSlice({
         state.user = { ...state.user, ...action.payload.user };
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.isLoading = false;
         state.isUserDataLoaded = true;
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state, { payload }) => {
+        state.authError = payload;
         state.isRefreshing = false;
       })
       .addCase(updateUser.pending, handlePending)
@@ -87,6 +99,7 @@ const authSlice = createSlice({
       }),
 });
 
+export const { resetAuthState, resetAuthError } = authSlice.actions;
 export const authReducer = authSlice.reducer;
 
 //Selectors

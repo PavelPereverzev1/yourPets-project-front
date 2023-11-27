@@ -15,16 +15,16 @@ export const PetIcon = () => {
     
     }
     
-    export const FavoriteIcon = ({ isFavorite }) => {
+    export const FavoriteIcon = ({ isfavorite }) => {
         return (
           <svg
-            fill={isFavorite ? '#54ADFF' : '#CCE4FB'}
+            fill={isfavorite ? '#54ADFF' : '#CCE4FB'}
             stroke="#54ADFF"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"
             width="24"
             height="24"
-            style={{ transition: 'fill 0.3s' }} // Додано перехід для плавного змінювання кольору
+            style={{ transition: 'fill 0.3s' }} 
           >
             <path
               strokeLinejoin="round"
@@ -76,7 +76,7 @@ export const PetIcon = () => {
     export const RemoveIcon = () => {
 return(
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 32" width="24" height="24">
-<path fill="none" stroke="#54adff" strokeLinejoin="round" strokeLinecap="round" strokeMiterlimit="4" stroke-width="2" d="M24 8v16c0 1.473-1.194 2.667-2.667 2.667h-10.667c-1.473 0-2.667-1.194-2.667-2.667v-16M20 8v-1.333c0-1.473-1.194-2.667-2.667-2.667h-2.667c-1.473 0-2.667 1.194-2.667 2.667v1.333M5.333 8h21.333M13.333 13.333v8M18.667 13.333v8"></path>
+<path fill="none" stroke="#54adff" strokeLinejoin="round" strokeLinecap="round" strokeMiterlimit="4" strokeWidth="2" d="M24 8v16c0 1.473-1.194 2.667-2.667 2.667h-10.667c-1.473 0-2.667-1.194-2.667-2.667v-16M20 8v-1.333c0-1.473-1.194-2.667-2.667-2.667h-2.667c-1.473 0-2.667 1.194-2.667 2.667v1.333M5.333 8h21.333M13.333 13.333v8M18.667 13.333v8"></path>
 </svg>
 )
 

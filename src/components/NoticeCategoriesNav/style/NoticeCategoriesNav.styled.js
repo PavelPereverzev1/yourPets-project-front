@@ -1,12 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-// const NavContainer = styled.div`
-//   width: 100%;
-//   min-width: 280px;
-//   margin: 20px auto auto 24px;
-// `;
 const NavElements = styled.nav``;
+
 const NavList = styled.ul`
   width: 203px;
   display: flex;
@@ -20,14 +16,16 @@ const NavList = styled.ul`
     width: 540px;
   }
 `;
+
 const NavElement = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1200px) {
-  }
+`;
+
+const NavBtn = styled.button`
+  background-color: inherit;
+  border: none;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -35,29 +33,21 @@ const StyledNavLink = styled(NavLink)`
   height: 35px;
   padding: 8px 16px;
   border-radius: 40px;
-  background: ${props => (props.isActive ? '#54ADFF' : '#CCE4FB')};
-  color: ${props => (props.isActive ? '#FEF9F9' : '#54ADFF')};
-  font-family: Manrope;
+  background: ${props =>
+    props.isActive ? 'var(--blueLink)' : 'var(--blueLight)'};
+  color: ${props => (props.isActive ? 'var(--background)' : 'var(--blueLink)')};
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   letter-spacing: 0.56px;
-  transition: background-color 250ms cubic-bezier(0.075, 0.82, 0.165, 1),
-    color 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1200px) {
-  }
-  &:hover {
-    background-color: #54adff;
-    color: #fef9f9;
-  }
+  transition: background-color var(--transition), color var(--transition);
+
+  &:hover,
   &.active {
-    background: #54adff;
-    color: #fef9f9;
+    background-color: var(--blueLink);
+    color: var(--background);
   }
 `;
+
 const NoticeNavContainer = styled.div`
   align-items: center;
   position: relative;
@@ -65,4 +55,11 @@ const NoticeNavContainer = styled.div`
   justify-content: space-between;
 `;
 
-export { NavElements, NavList, NavElement, StyledNavLink, NoticeNavContainer };
+export {
+  NavElements,
+  NavList,
+  NavElement,
+  StyledNavLink,
+  NoticeNavContainer,
+  NavBtn,
+};

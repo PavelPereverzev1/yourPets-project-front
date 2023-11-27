@@ -1,12 +1,13 @@
-export const FavoriteIcon = () => {
+export const AddToFavoriteIcon = ({ isFavorite }) => {
   return (
     <svg
-      fill="none"
+      fill={isFavorite ? '#fff' : 'none'}
       stroke="#fff"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
       width="24"
       height="24"
+      style={{ transition: 'fill 0.3s' }}
     >
       <path
         strokeLinejoin="round"

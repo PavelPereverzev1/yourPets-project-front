@@ -3,68 +3,14 @@ import React from 'react';
 import AddMoreDetailsForm from './AddMoreDetailsForm';
 import SellMoreDetailsForm from './SellMoreDetailsForm';
 
-const MoreDetailsForm = props => {
-  console.log('MoredetailsForm-props.data', props.data.category);
+const MoreDetailsForm = ({ next, prev, data }) => {
+  console.log('MoredetailsForm data', data.noticeType);
 
-  if (props.data.category === 'your pet') {
-    return <AddMoreDetailsForm />;
+  if (data.noticeType === 'your pet') {
+    return <AddMoreDetailsForm next={next} prev={prev} data={data} />;
   } else {
-    return <SellMoreDetailsForm />;
+    return <SellMoreDetailsForm next={next} prev={prev} data={data} />;
   }
 };
 
 export default MoreDetailsForm;
-
-// const formProps = useContext(FormContext);
-// const {
-//   formData,
-//   handleChange,
-//   currentStep,
-//   totalSteps,
-//   nextStep,
-//   backStep,
-//   handleSubmit,
-// } = formProps;
-
-//   return (
-//     <>
-//       {formData.category === 'your pet' ? (
-//         <BackgroundCard>
-//           <TitleComponent name="Add pet" />
-//           <StepsBlock step={currentStep} />
-//           <AddMoreDetailsForm
-//             formData={formData}
-//             handleChange={handleChange}
-//             handleSubmit={handleSubmit}
-//           />
-//           <ButtonsBlock
-//             currentStep={currentStep}
-//             totalSteps={totalSteps}
-//             nextStep={nextStep}
-//             backStep={backStep}
-//             handleSubmit={handleSubmit}
-//           />
-//         </BackgroundCard>
-//       ) : (
-//         <BackgroundCard width="882px">
-//           <TitleComponent name="Add pet" />
-//           <StepsBlock step={currentStep} />
-//           <SellMoreDetailsForm
-//             formData={formData}
-//             handleChange={handleChange}
-//             handleSubmit={handleSubmit}
-//           />
-//           <ButtonsBlock
-//             currentStep={currentStep}
-//             totalSteps={totalSteps}
-//             nextStep={nextStep}
-//             backStep={backStep}
-//             handleSubmit={handleSubmit}
-//           />
-//         </BackgroundCard>
-//       )}
-//     </>
-//   );
-// };
-
-// export default MoreDetailsForm;

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { resetAuthState } from './authSlice';
 
 axios.defaults.baseURL = 'https://yourpets-project-backend.onrender.com';
 
@@ -70,15 +71,22 @@ export const refreshUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
+      thunkAPI.dispatch(resetAuthState());
+      return thunkAPI.rejectWithValue();
     }
 
+    setAuthHeader(persistedToken);
     try {
-      setAuthHeader(persistedToken);
-
       const response = await axios.get('/users/current');
       return response.data;
-    } catch {
+    } catch (error) {
+      if (error.response.status === 401) {
+        clearAuthHeader();
+        thunkAPI.dispatch(resetAuthState());
+        return thunkAPI.rejectWithValue(
+          'Your session has expired. Please log in again.'
+        );
+      }
       return thunkAPI.rejectWithValue(
         'Failed to update the page with your data. Please refresh the page or try again later.'
       );
