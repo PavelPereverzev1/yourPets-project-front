@@ -10,14 +10,14 @@ import {
 import { Button } from 'components/ButtonComponent/ButtonComponent.styled';
 import sprite from '../../../images/icons/sprite.svg';
 
-export default function DeleteModal({ active, setActive, yes }) {
+export default function DeleteModal({ active, setActive, yes, title }) {
   return (
     <Modal active={active} setActive={setActive}>
       <Container>
         <Title>Delete adverstiment?</Title>
         <Text>
           Are you sure you want to delete{' '}
-          <BigText>“Cute dog looking for a home”?</BigText> You can`t undo this
+          <BigText>{title}</BigText> You can`t undo this
           action.
         </Text>
         <BtnContainer>

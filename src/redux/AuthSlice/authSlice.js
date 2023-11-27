@@ -39,6 +39,9 @@ const authSlice = createSlice({
     resetAuthError: state => {
       state.authError = null;
     },
+    setIsFirstLoggedIn(state) {
+      state.isFirstLoggedIn = false;
+    },
   },
   extraReducers: buider =>
     buider
@@ -99,7 +102,8 @@ const authSlice = createSlice({
       }),
 });
 
-export const { resetAuthState, resetAuthError } = authSlice.actions;
+export const { resetAuthState, resetAuthError, setIsFirstLoggedIn } =
+  authSlice.actions;
 export const authReducer = authSlice.reducer;
 
 //Selectors
