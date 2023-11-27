@@ -12,6 +12,8 @@ import { useEffect, useState } from 'react';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import Pagination from '../Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
+import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
+import DeleteModal from 'components/Modals/DeleteModal/DeleteModal';
 import { getNoticesThunk } from 'redux/notices/noticesOperations';
 
 const NoticesCategoriesList = () => {
@@ -32,6 +34,8 @@ const NoticesCategoriesList = () => {
   const currentPageItems = notices.slice(startIndex, endIndex);
   const [active, setActive] = useState(false);
   const [noticeDetail, setNoticeDetail] = useState('');
+  const [activeAttention, setActiveAttention] = useState(false)
+  const [activeDelete, setActiveDelete] = useState(false)
 
   const handlePageChange = page => {
     setCurrentPage(page);
@@ -40,6 +44,12 @@ const NoticesCategoriesList = () => {
     setNoticeDetail(noticeId);
     setActive(true);
   };
+  const handleAttentionModal = () => {
+    setActiveAttention(true)
+  }
+  const handleDeleteModal = () => {
+    setActiveDelete(true)
+  }
   return (
     <>
       {isLoading ? (
@@ -53,6 +63,8 @@ const NoticesCategoriesList = () => {
                   key={item.id}
                   notice={item}
                   handleLearnMore={handleLearnMore}
+                  handleAttentionModal={handleAttentionModal}
+                  handleDeleteModal={handleDeleteModal}
                 ></NoticeCategoryItem>
               );
             })
@@ -75,6 +87,10 @@ const NoticesCategoriesList = () => {
           noticeDetail={noticeDetail}
         />
       )}
+       <AttentionModal
+        active={activeAttention}
+        setActive={setActiveAttention}
+      ></AttentionModal>
     </>
   );
 };

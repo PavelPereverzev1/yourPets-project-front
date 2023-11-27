@@ -19,7 +19,7 @@ import {
   InfoText,
   Remove,
 } from './NoticeCategoryItem.styled.js';
-import AttentionModal from 'components/Modals/AttentionModal/AttentionModal.jsx';
+
 import DeleteModal from 'components/Modals/DeleteModal/DeleteModal.jsx';
 import { useAuth } from '../../hooks/useAuth.js';
 import { useDispatch } from 'react-redux';
@@ -38,11 +38,9 @@ import {
   RemoveIcon,
 } from './SvgIcons.jsx';
 
-const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
+const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, handleDeleteModal }) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
-
-  const [modalActive, setModalActive] = useState(false);
   const [deleteModalActive, setDeleteModalActive] = useState(false);
 
   const dispatch = useDispatch();
@@ -105,7 +103,7 @@ const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
       <Item key={notice.id}>
         <ImageBlock>
           <InGoodHands>{notice.noticeType}</InGoodHands>
-          <Favorite onClick={() => setModalActive(true)}>
+          <Favorite onClick={() => handleAttentionModal(true)}>
             <FavoriteIcon></FavoriteIcon>
           </Favorite>
           {isLoggedIn && (
@@ -116,7 +114,7 @@ const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
             </Favorite>
           )}{' '}
           {isLoggedIn && user._id === notice.owner && (
-            <Remove onClick={() => setDeleteModalActive(true)}>
+            <Remove onClick={() => handleDeleteModal(true)}>
               <RemoveIcon></RemoveIcon>
             </Remove>
           )}
@@ -150,15 +148,8 @@ const NoticeCategoryItem = ({ notice, handleLearnMore }) => {
           </LearnMore>
         </LearnMoreDiv>
       </Item>
-      <AttentionModal
-        active={modalActive}
-        setActive={setModalActive}
-      ></AttentionModal>
-      <DeleteModal
-        active={deleteModalActive}
-        setActive={setDeleteModalActive}
-        yes={handleDeleteByIdNotice}
-      ></DeleteModal>
+      
+      
     </>
   );
 };
