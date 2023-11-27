@@ -4,9 +4,11 @@ import {
   NotFoundPetsMessage,
 } from './NoticesCategoriesList.styled';
 import {
+  selectCurrentPage,
   selectIsLoading,
   selectNotices,
   selectQuery,
+  selectTotalNotices,
 } from 'redux/notices/noticesSelectors';
 import { useEffect, useState } from 'react';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
@@ -15,36 +17,36 @@ import ModalNotice from 'components/ModalNotice/ModalNotice';
 import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
 import DeleteModal from 'components/Modals/DeleteModal/DeleteModal';
 import { getNoticesThunk } from 'redux/notices/noticesOperations';
+import { setPage } from 'redux/notices/noticesSlices';
 import { deleteNoticeById } from 'redux/notices/noticesOperations.js';
 
 const NoticesCategoriesList = () => {
-  const notices = useSelector(selectNotices);
-  const query = useSelector(selectQuery);
-  const isLoading = useSelector(selectIsLoading);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getNoticesThunk(query));
-  }, [dispatch, query]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
-  const totalPages = Math.ceil(notices.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentPageItems = notices.slice(startIndex, endIndex);
   const [active, setActive] = useState(false);
   const [noticeDetail, setNoticeDetail] = useState('');
   const [activeAttention, setActiveAttention] = useState(false);
   const [activeDelete, setActiveDelete] = useState(false);
 
+  const notices = useSelector(selectNotices);
+  const query = useSelector(selectQuery);
+  const isLoading = useSelector(selectIsLoading);
+  const currentPage = useSelector(selectCurrentPage);
+  const totalNotices = useSelector(selectTotalNotices);
+  const dispatch = useDispatch();
+  const totalPages = Math.ceil(totalNotices / 12);
+
+  useEffect(() => {
+    dispatch(getNoticesThunk(query));
+  }, [dispatch, query]);
+
   const handlePageChange = page => {
-    setCurrentPage(page);
+    dispatch(setPage(page));
   };
+
   const handleLearnMore = noticeId => {
     setNoticeDetail(noticeId);
     setActive(true);
   };
+
   const handleAttentionModal = () => {
     setActiveAttention(true);
   };
@@ -69,13 +71,14 @@ const NoticesCategoriesList = () => {
       console.log(message);
     }
   };
+
   return (
     <>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <NoticesList>
-          {currentPageItems.length > 0 ? (
+          {notices.length > 0 ? (
             notices.map(item => {
               return (
                 <NoticeCategoryItem
