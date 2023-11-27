@@ -38,5 +38,7 @@ export const MainPetsPicture = styled.img`
   height: auto;
 
   @media screen and (min-width: 1280px) {
+    right: 100px;
+    top: 20px;
   }
 `;
