@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
-import { PaginationContainer, PaginationButton, PaginationNumbers } from './Pagination.styled';
+import {
+  PaginationContainer,
+  PaginationButton,
+  PaginationNumbers,
+} from './Pagination.styled';
 
-const Pagination = (
-  { currentPage, totalPages, onPageChange }
-  ) => {
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const [displayedPages, setDisplayedPages] = useState([]);
 
   const updatePages = useCallback(
@@ -51,25 +53,31 @@ const Pagination = (
     }
   };
   return (
-      <PaginationContainer>
-        <PaginationButton onClick={handlePrevClick}>
-          <BsArrowLeft />
-        </PaginationButton>
-        <PaginationNumbers>
-          {displayedPages.map(page => (
-            <PaginationButton
-              key={page}
-              onClick={() => handlePageClick(page)}
-              $active={currentPage === page}
-            >
-              {page}
-            </PaginationButton>
-          ))}
-        </PaginationNumbers>
-        <PaginationButton onClick={handleNextClick}>
-          <BsArrowRight />
-        </PaginationButton>
-      </PaginationContainer>
+    <PaginationContainer>
+      <PaginationButton
+        disabled={currentPage === 1 && true}
+        onClick={handlePrevClick}
+      >
+        <BsArrowLeft />
+      </PaginationButton>
+      <PaginationNumbers>
+        {displayedPages.map(page => (
+          <PaginationButton
+            key={page}
+            onClick={() => handlePageClick(page)}
+            $active={currentPage === page}
+          >
+            {page}
+          </PaginationButton>
+        ))}
+      </PaginationNumbers>
+      <PaginationButton
+        disabled={currentPage === totalPages && true}
+        onClick={handleNextClick}
+      >
+        <BsArrowRight />
+      </PaginationButton>
+    </PaginationContainer>
   );
 };
 

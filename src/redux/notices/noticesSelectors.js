@@ -11,3 +11,7 @@ export const selectFilter = state => state.notices.query.filter;
 export const selectIsRefreshing = state => state.notices.isRefreshing;
 
 export const selectIsLoading = state => state.notices.isLoading;
+
+export const selectTotalNotices = state => state.notices.total;
+
+export const selectCurrentPage = state => state.notices.query.page;

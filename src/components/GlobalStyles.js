@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Manrope';
-    src: local('Manrope'), url('fonts/Manrope-Regular.woff2') format('woff2');
+    src: local('Manrope'), url('/yourPets-project-front/fonts/Manrope-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Manrope';
-    src: local('Manrope'), url('fonts/Manrope-Medium.woff2') format('woff2');
+    src: local('Manrope'), url('/yourPets-project-front/fonts/Manrope-Regular.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Manrope';
-    src: local('Manrope'), url('fonts/Manrope-SemiBold.woff2') format('woff2');
+    src: local('Manrope'), url('/yourPets-project-front/fonts/Manrope-Regular.woff2') format('woff2');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Manrope';
-    src: local('Manrope'), url('fonts/Manrope-Bold.woff2') format('woff2');
+    src: local('Manrope'), url('/yourPets-project-front/fonts/Manrope-Regular.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -35,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Inter';
-    src: local('Inter'), url('fonts/Inter-Regular.woff2') format('woff2');
+    src: local('Inter'), url('/yourPets-project-front/fonts/Inter-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
