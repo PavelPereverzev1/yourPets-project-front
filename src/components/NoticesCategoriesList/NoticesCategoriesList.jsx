@@ -12,7 +12,12 @@ import { useEffect, useState } from 'react';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import Pagination from '../Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
+import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
+import DeleteModal from 'components/Modals/DeleteModal/DeleteModal';
 import { getNoticesThunk } from 'redux/notices/noticesOperations';
+import {
+  deleteNoticeById,
+} from 'redux/notices/noticesOperations.js';
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
@@ -32,6 +37,8 @@ const NoticesCategoriesList = () => {
   const currentPageItems = notices.slice(startIndex, endIndex);
   const [active, setActive] = useState(false);
   const [noticeDetail, setNoticeDetail] = useState('');
+  const [activeAttention, setActiveAttention] = useState(false)
+  const [activeDelete, setActiveDelete] = useState(false)
 
   const handlePageChange = page => {
     setCurrentPage(page);
@@ -39,6 +46,30 @@ const NoticesCategoriesList = () => {
   const handleLearnMore = noticeId => {
     setNoticeDetail(noticeId);
     setActive(true);
+  };
+  const handleAttentionModal = () => {
+    setActiveAttention(true)
+  }
+  const handleDeleteModal = () => {
+    setActiveDelete(true)
+  }
+  const handleDeleteByIdNotice = async () => {
+    try {
+      const {
+        meta: { requestStatus },
+        payload,
+      } = await dispatch(deleteNoticeById({ id: notices.id }));
+
+      if (requestStatus === 'rejected') {
+        throw new Error(payload);
+      }
+
+      setActiveDelete(false);
+    } catch (error) {
+      const { message } = error;
+
+      console.log(message);
+    }
   };
   return (
     <>
@@ -53,6 +84,8 @@ const NoticesCategoriesList = () => {
                   key={item.id}
                   notice={item}
                   handleLearnMore={handleLearnMore}
+                  handleAttentionModal={handleAttentionModal}
+                  handleDeleteModal={handleDeleteModal}
                 ></NoticeCategoryItem>
               );
             })
@@ -75,6 +108,15 @@ const NoticesCategoriesList = () => {
           noticeDetail={noticeDetail}
         />
       )}
+       <AttentionModal
+        active={activeAttention}
+        setActive={setActiveAttention}
+      ></AttentionModal>
+      <DeleteModal
+      active={activeDelete}
+      setActive={setActiveDelete}
+      yes={handleDeleteByIdNotice}
+      ></DeleteModal>
     </>
   );
 };
