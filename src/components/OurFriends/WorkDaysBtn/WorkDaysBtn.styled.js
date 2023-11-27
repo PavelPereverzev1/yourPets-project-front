@@ -6,7 +6,7 @@ position: relative;
  export const DayBtn = styled.p`
  display: block;
  cursor: pointer;
-   color: #111111;
+   color: var(--black);
   transition: color var(--transition);
   &:focus, :hover{
     color:var(--blueLink);

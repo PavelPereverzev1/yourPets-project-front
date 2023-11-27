@@ -70,15 +70,15 @@ export const Icon = styled.svg`
     width: 24px;
     height: 24px;
     fill: var(--yellow);
-    transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: fill var(--transition);
 `
 export const ButtonOrange = styled.button`
   ${sharedStyles};
   width: 248px;
   border: 2px solid var(--yellow);
   border-radius: 40px;
-  transition: background-image 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-image var(--transition)
+    color var(--transition);
 
   &:hover,
   &:focus {

@@ -45,7 +45,7 @@ const sharedStyles = css`
   padding: 8px 28px;
   background-color: transparent;
   cursor: pointer;
-  color: #54adff;
+  color: var(--blueLink);
   font-family: Manrope, sans-serif;
   font-weight: 600;
   font-size: 16px;
@@ -56,20 +56,20 @@ export const Icon = styled.svg`
     width: 24px;
     height: 24px;
     fill: var(--blueLink);
-    transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: fill var(--transition);
 `
 export const ButtonBlue = styled.button`
   ${sharedStyles};
   width: 248px;
-  border: 2px solid #54adff;
+  border: 2px solid var(--blueLink);
   border-radius: 40px;
-  transition: background-image 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-image var(--transition),
+    color var(--transition);
 
   &:hover,
   &:focus {
-    background-image: linear-gradient(to left, #419ef1, #9bd0ff);
-    color: #fef9f9;
+    background-image: var(--blueGradient);
+    color: var(--background);
   }
 
   &:hover ${Icon}, &:focus ${Icon} {
