@@ -4,49 +4,52 @@ import {
   NotFoundPetsMessage,
 } from './NoticesCategoriesList.styled';
 import {
+  selectCurrentPage,
   selectIsLoading,
   selectNotices,
   selectQuery,
+  selectTotalNotices,
 } from 'redux/notices/noticesSelectors';
 import { useEffect, useState } from 'react';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import Pagination from '../Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
 import { getNoticesThunk } from 'redux/notices/noticesOperations';
+import { setPage } from 'redux/notices/noticesSlices';
 
 const NoticesCategoriesList = () => {
+  const [active, setActive] = useState(false);
+  const [noticeDetail, setNoticeDetail] = useState('');
+
   const notices = useSelector(selectNotices);
   const query = useSelector(selectQuery);
   const isLoading = useSelector(selectIsLoading);
+  const currentPage = useSelector(selectCurrentPage);
+  const totalNotices = useSelector(selectTotalNotices);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getNoticesThunk(query));
   }, [dispatch, query]);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
-  const totalPages = Math.ceil(notices.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentPageItems = notices.slice(startIndex, endIndex);
-  const [active, setActive] = useState(false);
-  const [noticeDetail, setNoticeDetail] = useState('');
+  const totalPages = Math.ceil(totalNotices / 12);
 
   const handlePageChange = page => {
-    setCurrentPage(page);
+    dispatch(setPage(page));
   };
+
   const handleLearnMore = noticeId => {
     setNoticeDetail(noticeId);
     setActive(true);
   };
+
   return (
     <>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <NoticesList>
-          {currentPageItems.length > 0 ? (
+          {notices.length > 0 ? (
             notices.map(item => {
               return (
                 <NoticeCategoryItem
