@@ -1,105 +1,91 @@
-# React homework template
+# <div align=center>Welcome to "Your Pet"! </div>
 
-This project was created with
-[Create React App](https://github.com/facebook/create-react-app). To get
-acquainted and configure additional features
-[refer to documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[![Your Pet](src/images/readme/YourPet.gif)](https://pavelpereverzev1.github.io/yourPets-project-front/)
 
-## Creating a repository by template
+`Your Pet` - is a web service created for animal lovers that will help you you
+find your favourite pet, who will add cool emotions to your life. З With Your
+Pet, users can create a personal account, advertise for sale, give animals to
+good hands or report found animals. Also, users can add their favourite pets to
+a separate group for easy access. The app also has a personal account section
+where users can add their favourite pets, view pet news and find contacts of
+animal support partners.
 
-Use this GoIT repository as a template for creating a repository
-of your project. To use it just tap the `«Use this template»` button and choose
-`«Create a new repository»` option, as you can see on the image below.
+<br/>
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+## <div align=center>Features:</div>
 
-The page for creating a new repository will open on the next step. Fill out
-the Name field and make sure the repository is public, then click
-`«Create repository from template»` button.
+The web application offers the following features:
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+1. User Registration and Authentication:
+   - Users can create a personal account by providing their details and setting
+     up a username and password.
+   - Once registered, users can log in securely using their credentials.
+2. Announcements:
+   - Users can create announcements to sell pets, give pets to good hands, or
+     report found pets.
+   - Each announcement includes relevant details such as pet type, breed, age,
+     and description.
+   - Users can browse existing announcements.
+3. Favorite Pets:
+   - Users can create a separate group to add their favorite pets for easy
+     access.
+   - This feature enables users to save pets they are interested in and track
+     their availability.
+4. Personal Pet Management:
+   - Users can manage their own pets by adding them to their personal account.
+   - Each pet entry can include information like pet name, breed, age, and
+     description.
+   - Users can update or remove their pet entries as needed.
+5. News about Animals:
+   - The application provides a dedicated page featuring news and articles
+     related to animals.
+   - Users can browse through the latest updates and stay informed about
+     animal-related topics.
+6. Partner Contacts:
+   - Users can access a directory of partner organizations or individuals who
+     support animals.
+   - This section provides contact information, including phone numbers, email
+     addresses, and website links.
 
-You now have a personal project repository, having a repository-template file 
-and folder structure. After that, you can work with it as you would with any 
-other private repository: clone it on your computer, write code, commit, and 
-send it to GitHub.
+<br/>
 
-## Preparing for coding
+## <div align=center>Technology List:</div>
 
-1. Make sure you have an LTS version of Node.js installed on your computer.
-   [Download and install](https://nodejs.org/en/) if needed.
-2. Install the project's base dependencies with the `npm install` command.
-3. Start development mode by running the `npm start` command.
-4. Go to [http://localhost:3000](http://localhost:3000) in your browser. This
-   page will automatically reload after saving changes to the project files.
+###### Frontend:
 
-## Deploy
+- `JSX` - a JavaScript syntax extension that allows you to write HTML together
+  with JS.
+- `Styled-components` - a library for styling components using CSS in
+  JavaScript.
+- `React.js` - a framework for building a user interface.
+- `Redux` - a program state management library.
 
-The production version of the project will automatically be linted, built, and
-deployed to GitHub Pages, in the `gh-pages` branch, every time the `main` branch
-is updated. For example, after a direct push or an accepted pull request. To do
-this, you need to edit the `homepage` field in the `package.json` file,
-replacing `your_username` and `your_repo_name` with your own, and submit the
-changes to GitHub.
+###### Backend:
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
+- `Node.js`- a server-side JavaScript runtime environment..
+- `Express.js` - a minimalistic and flexible web framework for Node
+  applications.
+- `MongoDB` - a non-relational database of NoSQL type.
 
-Next, you need to go to the settings of the GitHub repository (`Settings` >
-`Pages`) and set the distribution of the production version of files from the
-`/root` folder of the `gh-pages` branch, if this was not done automatically.
+###### Also external libraries and APIs:
 
-![GitHub Pages settings](./assets/repo-settings.png)
+- `React Router DOM` - a library for navigating between application pages.
+- `React Paginate` - a library for dividing content into pages.
+- `React Toastify` - a library for displaying notifications to the user.
+- `Redux Toolkit` - a library for efficient development using Redux, which is
+  designed to standardize and simplify writing Redux logic.
+- `Redux Persist` - a library for saving Redux state to local storage.
+- `Axios` - a library for making HTTP requests.
+- `Formik` - a library for form management and validation.
+- `Yup` - a library for validating data in schemas.
+- `And other libraries (see package.json)`.
 
-### Deployment status
+---
 
-The deployment status of the latest commit is displayed with an icon next to its
-ID.
+### <div align=center>The Backend of the "Your Pet" Project:</div>
 
-- **Yellow color** - the project is being built and deployed.
-- **Green color** - deployment completed successfully.
-- **Red color** - an error occurred during linting, build or deployment.
+###### <div align=center>["Backend"](https://github.com/PavelPereverzev1/yourPets-project-backend)</div>
 
-More detailed information about the status can be viewed by clicking on the
-icon, and in the drop-down window, follow the link `Details`.
+---
 
-![Deployment status](./assets/deploy-status.png)
-
-### Live page
-
-After some time, usually a couple of minutes, the live page can be viewed at the
-address specified in the edited `homepage` property. For example, here is a link
-to a live version for this repository
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
-
-If a blank page opens, make sure there are no errors in the `Console` tab
-related to incorrect paths to the CSS and JS files of the project (**404**). You
-most likely have the wrong value for the `homepage` property in the
-`package.json` file.
-
-### Routing
-
-If your application uses the `react-router-dom` library for routing, you must
-additionally configure the `<BrowserRouter>` component by passing the exact name
-of your repository in the `basename` prop. Slashes at the beginning and end of
-the line are required.
-
-```jsx
-<BrowserRouter basename="/your_repo_name/">
-  <App />
-</BrowserRouter>
-```
-
-## How it works
-
-![How it works](./assets/how-it-works.png)
-
-1. After each push to the `main` branch of the GitHub repository, a special
-   script (GitHub Action) is launched from the `.github/workflows/deploy.yml`
-   file.
-2. All repository files are copied to the server, where the project is
-   initialized and linted and built before deployment.
-3. If all steps are successful, the built production version of the project
-   files is sent to the `gh-pages` branch. Otherwise, the script execution log
-   will indicate what the problem is.
+### <div align=center>"Your Pet"! Take good care of your small pets. </div>
