@@ -1,6 +1,7 @@
 import TitleComponent from "components/TitleComponent/TitleComponent";
 import NoticesSearch from "components/NoticesSearch/NoticesSearch";
 import NewsList from "components/NewsList/NewsList";
+import Pagination from "components/Pagination/Pagination";
 
 const NewsPage = () => {
   return (
@@ -8,6 +9,7 @@ const NewsPage = () => {
    <TitleComponent name="News"/>
    <NoticesSearch />
   <NewsList />
+  <Pagination />
   </>
   );
 };

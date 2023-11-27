@@ -14,7 +14,6 @@ function NewsList() {
   };
 
   const filteredNews = query ? filterNewsByQuery(news, query) : news;
-  console.log(filteredNews)
 
   useEffect(() => {
     dispatch(fetchNews({ page: 1, limit: 6, search: '' }));
@@ -25,7 +24,7 @@ function NewsList() {
     <List>
     {filteredNews.map(n => (
        <NewsItem 
-       key={n.id}
+       key={n._id}
        imgUrl={n.imgUrl}
           title={n.title}
           text={n.text}
