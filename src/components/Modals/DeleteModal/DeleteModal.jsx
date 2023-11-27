@@ -16,8 +16,8 @@ export default function DeleteModal({ active, setActive, yes, title }) {
       <Container>
         <Title>Delete adverstiment?</Title>
         <Text>
-          Are you sure you want to delete{' '}
-          <BigText>{title}</BigText> You can`t undo this
+          Are you sure you want to delete
+          <BigText>"{title}"?</BigText> You can`t undo this
           action.
         </Text>
         <BtnContainer>

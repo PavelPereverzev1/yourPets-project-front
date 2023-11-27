@@ -1,40 +1,73 @@
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { AddToFavoriteIcon } from './AddToFavoriteIcon';
-import { AddToFavoriteButton, AddToFavoriteText } from './AddToFavorite.styled';
+import {
+  AddToFavoriteButton,
+  AddToFavoriteText
+} from './AddToFavorite.styled';
 import { useAuth } from '../../hooks/useAuth';
-import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
-import { useState } from 'react';
 
-const AddToFavorite = ({ notice }) => {
+import {
+  addNoticeToFavorite,
+  deleteNoticeFromFavorite
+} from 'redux/notices/noticesOperations.js';
+
+const AddToFavorite = ({ notice, handleAttentionModal }) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
-  const [active, setActive] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleAddToFavorite = noticeId => {
-    if (!isLoggedIn) {
-      setActive(true);
-    } else {
-      setFavorites(prevFavorites => {
-        const isPetInFavorites = prevFavorites.includes(noticeId);
+  const toggleFavorite = async (noticeId) => {
+    try {
+     
+      if (favorites.includes(noticeId)) {
+        const {
+          meta: { requestStatus },
+          payload
+        } = await dispatch(deleteNoticeFromFavorite({ id: noticeId }));
 
-        if (!isPetInFavorites) {
-          return [...prevFavorites, noticeId];
-        } else {
-          return prevFavorites.filter(favorite => favorite !== noticeId);
+        if (requestStatus === 'rejected') {
+          throw new Error(payload);
         }
-      });
+
+        setFavorites((prevFavorites) =>
+          prevFavorites.filter((favorite) => favorite !== noticeId)
+        );
+      } else {
+        const {
+          meta: { requestStatus },
+          payload
+        } = await dispatch(addNoticeToFavorite({ id: noticeId }));
+
+        if (requestStatus === 'rejected') {
+          throw new Error(payload);
+        }
+
+        setFavorites((prevFavorites) => [...prevFavorites, noticeId]);
+      }
+    } catch (error) {
+      const { message } = error;
+      console.log(message);
     }
   };
 
   return (
     <>
-      <AddToFavoriteButton onClick={() => handleAddToFavorite(notice._id)}>
-        <AddToFavoriteText>Add to </AddToFavoriteText>
+    {!isLoggedIn && (
+      <AddToFavoriteButton onClick={() => handleAttentionModal(true)}>
+        <AddToFavoriteIcon>
+          <AddToFavoriteText>Add to </AddToFavoriteText>
+        </AddToFavoriteIcon>
+      </AddToFavoriteButton>
+    )}
+    {isLoggedIn && (
+      <AddToFavoriteButton onClick={() => toggleFavorite(notice._id)}>
         <AddToFavoriteIcon
-          isFavorite={favorites.some(favorite => favorite === notice._id)}
+          isfavorite={favorites.some(favorite => favorite === notice._id)}
         ></AddToFavoriteIcon>
       </AddToFavoriteButton>
-      {active && <AttentionModal active={active} setActive={setActive} />}
-    </>
+    )}
+  </>
   );
 };
 

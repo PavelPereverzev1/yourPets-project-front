@@ -19,7 +19,7 @@ import {
   InfoText,
   Remove,
 } from './NoticeCategoryItem.styled.js';
-
+import sprite from '../../images/icons/sprite.svg'
 import { useAuth } from '../../hooks/useAuth.js';
 import { useDispatch } from 'react-redux';
 import {
@@ -47,7 +47,7 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
 
   const toggleFavorite = async noticeId => {
     try {
-      console.log(notice._id)
+      
       if (favorites.includes(noticeId)) {
         const {
           meta: { requestStatus },
@@ -85,10 +85,12 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
       <Item key={notice._id}>
         <ImageBlock>
           <InGoodHands>{notice.noticeType}</InGoodHands>
-          <Favorite onClick={() => handleAttentionModal(true)}>
-            <FavoriteIcon></FavoriteIcon>
-          </Favorite>
-          {isLoggedIn && (
+          {!isLoggedIn && (
+        <Favorite onClick={() => handleAttentionModal(true)}>
+        <FavoriteIcon></FavoriteIcon>
+      </Favorite>
+        )}     
+        {isLoggedIn && (
             <Favorite onClick={() => toggleFavorite(notice._id)}>
               <FavoriteIcon
                 isfavorite={favorites.some(favorite => favorite === notice._id)}
@@ -126,7 +128,8 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
         <LearnMoreDiv>
           <LearnMore onClick={() => handleLearnMore(notice.id)}>
             <TextMore>Learn more</TextMore>
-            <PetIcon></PetIcon>
+          <PetIcon/>
+            
           </LearnMore>
         </LearnMoreDiv>
       </Item>
