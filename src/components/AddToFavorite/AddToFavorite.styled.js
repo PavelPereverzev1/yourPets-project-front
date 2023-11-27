@@ -37,4 +37,5 @@ export const AddToFavoriteButton = styled.button`
 export const AddToFavoriteText = styled.p`
   font-weight: 700;
   font-size: 16px;
+  line-height: 21.86px;
 `;
