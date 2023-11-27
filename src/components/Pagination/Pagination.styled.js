@@ -26,8 +26,8 @@ export const PaginationButton = styled.button`
   margin: 0 5px;
   border: 1px solid #cce4fb;
   border-radius: 50%;
-  background-color: ${({ active }) => (active ? '#54ADFF' : 'transparent')};
-  color: ${({ active }) => (active ? '#FEF9F9;' : '#CCE4FB')};
+  background-color: ${({ $active }) => ($active ? '#54ADFF' : 'transparent')};
+  color: ${({ $active }) => ($active ? '#FEF9F9;' : '#CCE4FB')};
   cursor: pointer;
   outline: none;
 
