@@ -32,15 +32,15 @@ const StepsBlock = ({ step }) => {
     <StepsBlockWrapper>
       <StepBlock>
         <StepName color={firstStepColor}>Choose option</StepName>
-        <StepLine bg={firstStepColor} />
+        <StepLine color={firstStepColor} />
       </StepBlock>
       <StepBlock>
         <StepName color={secondStepColor}>Persons details</StepName>
-        <StepLine bg={secondStepColor} />
+        <StepLine color={secondStepColor} />
       </StepBlock>
       <StepBlock>
         <StepName color={thirdStepColor}>More info</StepName>
-        <StepLine bg={thirdStepColor} />
+        <StepLine color={thirdStepColor} />
       </StepBlock>
     </StepsBlockWrapper>
   );

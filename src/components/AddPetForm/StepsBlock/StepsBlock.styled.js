@@ -41,5 +41,5 @@ export const StepLine = styled.div`
   width: 100%;
   height: 8px;
   border-radius: 8px;
-  background-color: ${props => props.bg || 'var(--blueLight)'};
+  background-color: ${props => props.color || 'var(--blueLight)'};
 `;

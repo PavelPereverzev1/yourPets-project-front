@@ -15,7 +15,7 @@ export const Card = styled.div`
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
 
   @media screen and (min-width: 768px) {
-    padding: 32px 20px;
+    padding: 20px 32px;
     width: ${props =>
       props.noticeType === 'sell' ||
       props.noticeType === 'lost-found' ||

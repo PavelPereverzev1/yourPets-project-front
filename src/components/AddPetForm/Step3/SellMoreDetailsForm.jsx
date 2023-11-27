@@ -1,4 +1,4 @@
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import React, { useRef } from 'react';
 
@@ -13,7 +13,8 @@ import {
   SexPhotoblock,
   Sexblock,
   SexList,
-  RadioButton,
+  StyledRadio,
+  RadioInput,
   IconSex,
   PhotoBlock,
   ImagePreview,
@@ -25,7 +26,6 @@ import {
   DetailWrapper,
   DetailInput,
   CommentsInput,
-  Label,
 } from './SellMoreDetailsForm.styled';
 import {
   ButtonsWrapper,
@@ -111,26 +111,36 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                 <Sexblock role="group" aria-labelledby="gender-radio-group">
                   The Sex
                   <SexList>
-                    <Label>
+                    <StyledRadio>
                       <IconSex>
                         <use href={`${sprite}#icon-female`} />
                       </IconSex>
-                      <RadioButton type="radio" name="sex" value="female" />
+                      <RadioInput
+                        id="sex"
+                        type="radio"
+                        name="sex"
+                        value="female"
+                      />
                       Female
-                    </Label>
-                    <Label>
+                    </StyledRadio>
+                    <StyledRadio>
                       <IconSex>
                         <use href={`${sprite}#icon-male`} />
                       </IconSex>
-                      <RadioButton type="radio" name="sex" value="male" />
+                      <RadioInput
+                        id="sex"
+                        type="radio"
+                        name="sex"
+                        value="male"
+                      />
                       Male
-                    </Label>
+                    </StyledRadio>
                   </SexList>
                   <ErrorMessage name="sex" />
                 </Sexblock>
 
                 <PhotoBlock>
-                  <PhotoLabel htmlFor="photo"></PhotoLabel>
+                  <PhotoLabel htmlFor="photo">Load the pet’s image:</PhotoLabel>
 
                   <ImagePreview>
                     <PhotoInput
@@ -148,7 +158,10 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                     ) : (
                       <DefaultImage>
                         <UploadIcon>
-                          <use href={`${sprite}#icon-plus`} />
+                          <use
+                            href={`${sprite}#icon-plus`}
+                            stroke="var(--blueLink)"
+                          />
                         </UploadIcon>
                       </DefaultImage>
                     )}
@@ -189,6 +202,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                     placeholder="Enter your comments"
                     component="textarea"
                     rows="4"
+                    noticeType={values.noticeType}
                   ></CommentsInput>
                   <ErrorMessage name="comments" />
                 </DetailWrapper>
@@ -199,12 +213,18 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
               <ButtonBlue type="submit">
                 Done
                 <BtnIcon>
-                  <use href={`${sprite}#icon-pawprint-1`} />
+                  <use
+                    href={`${sprite}#icon-pawprint-1`}
+                    fill="var(--background)"
+                  />
                 </BtnIcon>
               </ButtonBlue>
               <ButtonWhite type="button" onClick={() => prev(values)}>
                 <BtnIcon>
-                  <use href={`${sprite}#icon-arrow-left`} />
+                  <use
+                    href={`${sprite}#icon-arrow-left`}
+                    stroke="var(--blueLink)"
+                  />
                 </BtnIcon>
                 Back
               </ButtonWhite>

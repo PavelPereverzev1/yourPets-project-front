@@ -2,14 +2,24 @@ import styled, { css } from 'styled-components';
 
 // Buttons styles
 export const ButtonsWrapper = styled.div`
-  // position: absolute;
-  // bottom: 0;
-  // left: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 24px;
+  gap: 20px;
+  margin-top: ${props => (props.noticeType === 'your-pet' ? '44px' : '24px')};
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 32px;
+  }
+`;
+
+export const BtnIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 const sharedStyles = css`
@@ -17,11 +27,12 @@ const sharedStyles = css`
   justify-content: center;
   align-items: center;
   gap: 12px;
+
   height: 38px;
-  padding: 8px 28px;
-  background-color: transparent;
+  border: none;
+
   cursor: pointer;
-  color: #54adff;
+
   font-family: Manrope, sans-serif;
   font-weight: 600;
   font-size: 16px;
@@ -31,32 +42,30 @@ const sharedStyles = css`
 
 export const ButtonWhite = styled.button`
   ${sharedStyles};
-  border: 2px solid transparent;
-  border-radius: 40px;
-`;
+  padding: 0;
+  color: var(--blueLink);
+  background-color: transparent;
 
-export const BtnIcon = styled.svg`
-  width: 24px;
-  height: 24px;
-  fill: var(--blueLink);
-  transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (min-width: 768px) {
+    /* flex-basis: 33%; */
+  }
 `;
 
 export const ButtonBlue = styled.button`
   ${sharedStyles};
   width: 248px;
-  border: 2px solid #54adff;
+  padding: 8px 28px;
+  color: var(--background);
+  background-color: var(--blueLink);
   border-radius: 40px;
-  transition: background-image 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover,
-  &:focus {
-    background-image: linear-gradient(to left, #419ef1, #9bd0ff);
-    color: #fef9f9;
+  &:disabled {
+    cursor: no-drop;
+    background-color: #cce4fb;
   }
 
-  &:hover ${BtnIcon}, &:focus ${BtnIcon} {
-    fill: var(--white);
+  @media screen and (min-width: 768px) {
+    /* flex-basis: 66%; */
+    margin: 0;
   }
 `;

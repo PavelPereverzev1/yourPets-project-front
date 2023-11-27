@@ -1,6 +1,9 @@
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import React, { useRef } from 'react';
+
+import BackgroundCard from '../BackgroundCard';
+import PreviewImage from '../PreviewImage/PreviewImage';
 import sprite from '../../../images/icons/sprite.svg';
 import {
   FormAddMoreDetails,
@@ -11,18 +14,17 @@ import {
   DefaultImage,
   UploadIcon,
   PhotoInput,
-  // CommentsInput,
-  // CommentsLabel,
+  CommentsInput,
 } from './AddMoreDetails.styled';
-import BackgroundCard from '../BackgroundCard';
-import TitleComponent from '../../TitleComponent/TitleComponent';
 import StepsBlock from '../StepsBlock';
 import {
+  ButtonsWrapper,
   ButtonBlue,
   ButtonWhite,
   BtnIcon,
 } from '../ButtonsBlock/ButtonsBlock.styled';
-import PreviewImage from '../PreviewImage/PreviewImage';
+
+import { Title } from '../Step1/ChooseOptionForm.styled';
 
 const SUPPORTED_FORMATS = ['image/png', 'image/jpeg', 'image/jpg'];
 
@@ -52,7 +54,7 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
 
   return (
     <BackgroundCard>
-      <TitleComponent name="Add pet" />
+      <Title>Add pet</Title>
       <StepsBlock step={3} />
       <Formik
         validationSchema={stepThreeValidationSchema}
@@ -62,7 +64,9 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
         {({ values, setFieldValue }) => (
           <FormAddMoreDetails>
             <PhotoBlock>
-              <PhotoLabel htmlFor="photo">Load the pet’s image:</PhotoLabel>
+              <PhotoLabel htmlFor="photo">
+                Load the <br /> pet’s image:
+              </PhotoLabel>
 
               <ImagePreview>
                 <PhotoInput
@@ -80,7 +84,10 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
                 ) : (
                   <DefaultImage>
                     <UploadIcon>
-                      <use href={`${sprite}#icon-plus`} />
+                      <use
+                        href={`${sprite}#icon-plus`}
+                        stroke="var(--blueLink)"
+                      />
                     </UploadIcon>
                   </DefaultImage>
                 )}
@@ -90,28 +97,35 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
 
             <DetailWrapper>
               <label htmlFor="comments"> Comments</label>
-              <Field
+              <CommentsInput
                 id="comments"
                 name="comments"
                 placeholder="Enter your comments"
                 component="textarea"
-                rows="6"
-              ></Field>
-              <ErrorMessage name="comments" />
+                rows="4"
+                noticeType={values.noticeType}
+              ></CommentsInput>
             </DetailWrapper>
-
-            <ButtonWhite type="button" onClick={() => prev(values)}>
-              <BtnIcon>
-                <use href={`${sprite}#icon-arrow-left`} />
-              </BtnIcon>
-              Back
-            </ButtonWhite>
-            <ButtonBlue type="submit">
-              Done
-              <BtnIcon>
-                <use href={`${sprite}#icon-pawprint-1`} />
-              </BtnIcon>
-            </ButtonBlue>
+            <ButtonsWrapper>
+              <ButtonBlue type="submit">
+                Done
+                <BtnIcon>
+                  <use
+                    href={`${sprite}#icon-pawprint-1`}
+                    fill="var(--background)"
+                  />
+                </BtnIcon>
+              </ButtonBlue>
+              <ButtonWhite type="button" onClick={() => prev(values)}>
+                <BtnIcon>
+                  <use
+                    href={`${sprite}#icon-arrow-left`}
+                    stroke="var(--blueLink)"
+                  />
+                </BtnIcon>
+                Back
+              </ButtonWhite>
+            </ButtonsWrapper>
           </FormAddMoreDetails>
         )}
       </Formik>

@@ -128,16 +128,22 @@ const PersonalDetailsForm = props => {
                 <ErrorComponent name="petType" />
               </DetailWrapper>
             </FieldsWrapper>
-            <ButtonsWrapper>
+            <ButtonsWrapper noticeType={values.noticeType}>
               <ButtonBlue type="submit">
                 Next
                 <BtnIcon>
-                  <use href={`${sprite}#icon-pawprint-1`} />
+                  <use
+                    href={`${sprite}#icon-pawprint-1`}
+                    fill="var(--background)"
+                  />
                 </BtnIcon>
               </ButtonBlue>
               <ButtonWhite type="button" onClick={() => props.prev(values)}>
                 <BtnIcon>
-                  <use href={`${sprite}#icon-arrow-left`} />
+                  <use
+                    href={`${sprite}#icon-arrow-left`}
+                    stroke="var(--blueLink)"
+                  />
                 </BtnIcon>
                 Back
               </ButtonWhite>
