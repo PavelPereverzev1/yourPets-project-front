@@ -37,7 +37,7 @@ export const Item = styled.li`
 
 display:flex;
 flex-direction:column;
-margin-top:50px;
+margin-top:20px;
 flex: 0 0 calc(33.3% - 20px);
 border: 1px solid #ccc; 
 
@@ -56,10 +56,16 @@ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 transition: transform 0.3s ease;
 
 &:hover{
-    box-shadow: 0 10px 5px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 7px 13px 14px 0px #74B1E83D;
+
     
 }
-@media(max-width:768px){
+@media(min-width:768px){
+    max-width:288px;
+    max-height:456px;  
+    
+  }
+@media(max-width:767px){
         max-width:336px;
         max-height:456px;  
         
@@ -78,8 +84,7 @@ justify-content: center;
 max-width:288px;
 height:288px;
 
- 
-color:white;
+
 `;
 
 export const Image = styled.img`
@@ -87,7 +92,7 @@ export const Image = styled.img`
 width:100%;
 height:100%;
 
- object-fit:contain;
+ object-fit:cover;
 
 `;
 export const TextDiv = styled.div`
@@ -102,7 +107,7 @@ height:auto;
 
 `;
 
-export const Text = styled.a`
+export const Text = styled.p`
 
 color: #111;
     letter-spacing: -.64px;
