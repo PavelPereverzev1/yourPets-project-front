@@ -2,6 +2,7 @@ import PetsItem from 'components/PetsItem/PetsItem';
 import { useEffect, useState } from 'react';
 import { fetchMyPetDeleteAPI, fethMyPetsAPI } from 'services/myPetsAPI';
 import { List, ListItem } from './PetsList.styled';
+import { PlaceHolder } from './components/PlaceHolder';
 
 const PetsList = () => {
   const [myPets, setMyPets] = useState([]);
@@ -25,13 +26,26 @@ const PetsList = () => {
 
   return (
     <List>
-      {myPets.map(pet => {
-        return (
-          <ListItem key={pet._id}>
-            <PetsItem pet={pet} handleDelete={deletePetById} />
-          </ListItem>
-        );
-      })}
+      {myPets.length === 0 ? (
+        <PlaceHolder />
+      ) : (
+        <>
+          {myPets.map(p => {
+            return (
+              <ListItem key={p._id}>
+                <PetsItem pet={p} handleDelete={deletePetById} />
+              </ListItem>
+            );
+          })}
+        </>
+      )}
+      {/* // {myPets.map(pet => {
+      //   return (
+      //     <ListItem key={pet._id}>
+      //       <PetsItem pet={pet} handleDelete={deletePetById} />
+      //     </ListItem>
+      //   );
+      // })} */}
     </List>
   );
 };
