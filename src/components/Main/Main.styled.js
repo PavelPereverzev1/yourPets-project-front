@@ -30,12 +30,13 @@ export const MainTitle = styled.h1`
 `;
 
 export const MainPetsPicture = styled.img`
+  display: block;
   position: relative;
-  margin: 0 auto;
-  width: 100%;
+  left: 50%;
+  transform: translate(-50%);
+  max-width: 150%;
+  height: auto;
 
   @media screen and (min-width: 1280px) {
-    right: 100px;
-    top: 20px;
   }
 `;
