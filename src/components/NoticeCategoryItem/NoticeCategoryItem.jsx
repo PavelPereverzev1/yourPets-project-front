@@ -17,7 +17,12 @@ import {
   InfoAge,
   InfoPol,
   InfoText,
+  Remove
 } from './NoticeCategoryItem.styled.js';
+import AttentionModal from 'components/Modals/AttentionModal/AttentionModal.jsx';
+import DeleteModal from 'components/Modals/DeleteModal/DeleteModal.jsx'
+import { useAuth } from '../../hooks/useAuth.js';
+
 
 import {
   PetIcon,
@@ -26,48 +31,57 @@ import {
   AgeIcon,
   MaleIcon,
   FemaleIcon,
+  RemoveIcon,
 } from './SvgIcons.jsx';
-// import data from './data.json';
+
 
 const NoticeCategoryItem = ({ notice }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [dataf, setDataf] = useState([]);
+  const { isLoggedIn, user } = useAuth();
+  const [favorites, setFavorites] = useState(user.favorites || []);
+
+const [modalActive, setModalActive] = useState(false)
+const [deleteModalActive, setDeleteModalActive] = useState(false)
 
 
 
-  // useEffect(() => {
-  //   setDataf(data.map(item => ({ ...item, isFavorite: false })));
-  // }, []);
 
-  const handleAddToFavorite = id => {
-    if (!isLoggedIn) {
-      setIsLoggedIn(isLoggedIn);
+
+const toggleFavorite = (noticeId) => {
+  setFavorites(prevFavorites => {
+    const isPetInFavorites = prevFavorites.find(favorite => favorite.id === noticeId);
+
+    if (!isPetInFavorites) {
+      return [...prevFavorites, noticeId];
+    } else {
+      return prevFavorites.filter(favorite => favorite.id !== noticeId);
     }
-    // if (isLoggedIn) {
-    //   console.log('error');
-    // } else {
-    //   const updatedData = dataf.map(item =>
-    //     item.id === id ? { ...item, isFavorite: !item.isFavorite } : item
-    //   );
-    //   setDataf(updatedData);
-    // }
-  };
+  });
+};
 
-  const handleLearnMore = () => {};
+
+ 
+
+
 
   return (
     <>
         <Item key={notice.id}>
           <ImageBlock>
-            <InGoodHands>{notice.state}</InGoodHands>
-            <Favorite onClick={() => handleAddToFavorite(notice.id)}>
-              <FavoriteIcon isFavorite={notice.isFavorite}></FavoriteIcon>
+            <InGoodHands>{notice.noticeType}</InGoodHands>
+            <Favorite  onClick={() => setModalActive(true)}>
+              <FavoriteIcon></FavoriteIcon>
             </Favorite>
             {isLoggedIn && (
-              <Favorite onClick={() => handleAddToFavorite(notice.id)}>
-                <FavoriteIcon isFavorite={notice.isFavorite}></FavoriteIcon>
-                {notice.isFavorite ? 'Видалити з обраних' : 'Додати до обраних'}
+              <>
+              <Favorite onClick={() => toggleFavorite(notice.id)}>
+                <FavoriteIcon isFavorite={favorites.some((favorite) => favorite.id === notice.id)}></FavoriteIcon>
+                
               </Favorite>
+              <Remove onClick={() => setDeleteModalActive(true)}>
+                <RemoveIcon></RemoveIcon>
+              </Remove>
+              </>
+
             )}
             <InfoLocation>
               <LocationIcon></LocationIcon>
@@ -89,20 +103,25 @@ const NoticeCategoryItem = ({ notice }) => {
               ) : null}
               <InfoText>{notice.sex}</InfoText>
             </InfoPol>
-            <Image src={notice.img}></Image>
+            <Image src={notice.photoURL}></Image>
           </ImageBlock>
           <TextDiv>
             <Text>Сute cat/dog looking for a home</Text>
           </TextDiv>
           <LearnMoreDiv>
-            <LearnMore onClick={handleLearnMore}>
+            <LearnMore >
               <TextMore>Learn more</TextMore>
               <PetIcon></PetIcon>
             </LearnMore>
           </LearnMoreDiv>
         </Item>
+        <AttentionModal active={modalActive} setActive={setModalActive}></AttentionModal>
+        <DeleteModal active={deleteModalActive} setActive={setDeleteModalActive} ></DeleteModal>
+   
+      
     </>
   );
 };
+
 
 export default NoticeCategoryItem;

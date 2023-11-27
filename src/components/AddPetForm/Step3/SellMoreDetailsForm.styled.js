@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Form as FormikForm, Field } from 'formik';
 
-export const FormSellMoreDetails = styled.form`
+export const FormSellMoreDetails = styled(FormikForm)`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -22,7 +23,14 @@ export const SexList = styled.div`
   flex-direction: row;
   gap: 12px;
 `;
-export const SexBtn = styled.button`
+
+export const RadioButton = styled(Field)`
+  position: absolute;
+  display: block;
+
+  opacity: 1;
+`;
+export const SexBtn = styled(Field)`
   display: flex;
   flex-direction: row;
   gap: 12px;
@@ -40,6 +48,35 @@ export const IconSex = styled.svg`
   height: 24px;
   fill: var(--blueLink);
   transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+export const Label = styled.label`
+  position: relative;
+  display: block;
+
+  height: 35px;
+  padding: 8px 16px;
+  border-radius: 40px;
+  background-color: #cce4fb;
+
+  color: #54adff;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.56px;
+
+  cursor: pointer;
+
+  &:hover {
+    color: #ffffff;
+    background-color: #54adff;
+  }
+
+  ${RadioButton}:checked + & {
+    color: #ffffff;
+    background-color: #54adff;
+  }
 `;
 
 //Photoblock
@@ -73,7 +110,7 @@ export const ImagePreview = styled.div`
   border-radius: 40px;
   background-color: var(--blueLight);
 `;
-export const PhotoInput = styled.input`
+export const PhotoInput = styled(Field)`
   position: absolute;
   display: block;
   top: 0;

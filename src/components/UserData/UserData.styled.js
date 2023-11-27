@@ -68,12 +68,24 @@ export const EditIcon = styled.svg`
   width: 24px;
   height: 24px;
   fill: var(--blueLink);
+  transition: fill var(--transition);
+
+  &:hover,
+  &:focus {
+    fill: var(--yellow);
+  }
 `;
 
 export const CloseIcon = styled.svg`
   width: 24px;
   height: 24px;
   stroke: var(--blueLink);
+  transition: stroke var(--transition);
+
+  &:hover,
+  &:focus {
+    stroke: var(--yellow);
+  }
 `;
 
 export const AvatarContainer = styled.div`
@@ -105,6 +117,13 @@ export const UploadBtn = styled.label`
   line-height: 22px;
   letter-spacing: 0.48px;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    svg {
+      stroke: var(--yellow);
+    }
+  }
 `;
 
 export const UploadInput = styled.input`
@@ -115,6 +134,7 @@ export const CameraIcon = styled.svg`
   width: 24px;
   height: 24px;
   stroke: var(--blueLink);
+  transition: stroke var(--transition);
 `;
 
 export const BtnWrapper = styled.div`
@@ -132,12 +152,20 @@ export const ConfirmBtn = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    svg {
+      stroke: var(--yellow);
+    }
+  }
 `;
 
 export const ConfirmIcon = styled.svg`
   width: 24px;
   height: 24px;
   stroke: var(--blueLink);
+  transition: stroke var(--transition);
 `;
 
 export const RemoveBtn = styled.button`

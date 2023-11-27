@@ -1,10 +1,10 @@
-import { Form, Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import React from 'react';
 // import { FormContext } from '../AddPetForm';
 // import { temporaryBox } from './PersonalDetailsForm.styled';
 import {
-  // FormPersonalDetails,
+  FormPersonalDetails,
   DetailWrapper,
   DetailInput,
   DetailLabel,
@@ -12,7 +12,12 @@ import {
 import BackgroundCard from '../BackgroundCard';
 import TitleComponent from '../../TitleComponent/TitleComponent';
 import StepsBlock from '../StepsBlock';
-// import ButtonsBlock from '../ButtonsBlock';
+import sprite from '../../../images/icons/sprite.svg';
+import {
+  ButtonBlue,
+  ButtonWhite,
+  BtnIcon,
+} from '../ButtonsBlock/ButtonsBlock.styled';
 
 const stepTwoValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -63,7 +68,7 @@ const PersonalDetailsForm = props => {
         onSubmit={handleSubmit}
       >
         {({ values }) => (
-          <Form>
+          <FormPersonalDetails>
             <div>
               <DetailWrapper>
                 <DetailLabel htmlFor="titleOfAdd"> Title of add</DetailLabel>
@@ -79,7 +84,11 @@ const PersonalDetailsForm = props => {
 
               <DetailWrapper>
                 <DetailLabel htmlFor="date"> Date Of Birth</DetailLabel>
-                <DetailInput id="date" name="date"></DetailInput>
+                <DetailInput
+                  id="date"
+                  name="date"
+                  placeholder="DD-MM-YYYY"
+                ></DetailInput>
                 <ErrorMessage name="date" />
               </DetailWrapper>
 
@@ -89,11 +98,19 @@ const PersonalDetailsForm = props => {
                 <ErrorMessage name="type" />
               </DetailWrapper>
             </div>
-            <button type="button" onClick={() => props.prev(values)}>
+            <ButtonWhite type="button" onClick={() => props.prev(values)}>
+              <BtnIcon>
+                <use href={`${sprite}#icon-arrow-left`} />
+              </BtnIcon>
               Back
-            </button>
-            <button type="submit">Next</button>
-          </Form>
+            </ButtonWhite>
+            <ButtonBlue type="submit">
+              Next
+              <BtnIcon>
+                <use href={`${sprite}#icon-pawprint-1`} />
+              </BtnIcon>
+            </ButtonBlue>
+          </FormPersonalDetails>
         )}
       </Formik>
     </BackgroundCard>
