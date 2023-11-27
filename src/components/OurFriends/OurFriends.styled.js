@@ -107,8 +107,14 @@ export const InfoItem = styled.li`
   max-height: 3rem;
   display: block;
   display: -webkit-box;
-  overflow: hidden!important;
+  overflow: hidden;
   text-overflow: ellipsis;
+`
+export const TimeItem = styled.li`
+  font-family: Manrope, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16.39px;
 `
 export const InfoLink = styled(Link)`
   color: #111111;
