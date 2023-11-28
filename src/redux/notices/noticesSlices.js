@@ -7,6 +7,7 @@ import {
   addNoticeToFavorite,
   deleteNoticeFromFavorite,
 } from './noticesOperations';
+import { logOut, logIn, register } from 'redux/AuthSlice/operations';
 
 const initialState = {
   items: [],
@@ -79,7 +80,6 @@ const noticesSlice = createSlice({
       })
       .addCase(deleteNoticeById.rejected, handleRejected)
 
-     
       .addCase(addNoticeToFavorite.pending, handlePending)
       .addCase(addNoticeToFavorite.fulfilled, state => {
         state.isLoading = false;
@@ -89,7 +89,16 @@ const noticesSlice = createSlice({
       .addCase(deleteNoticeFromFavorite.fulfilled, state => {
         state.isLoading = false;
       })
-      .addCase(deleteNoticeFromFavorite.rejected, handleRejected);
+      .addCase(deleteNoticeFromFavorite.rejected, handleRejected)
+      .addCase(logOut.fulfilled, state => {
+        state.query.category = 'sell';
+      })
+      .addCase(logIn.fulfilled, state => {
+        state.query.category = 'sell';
+      })
+      .addCase(register.fulfilled, state => {
+        state.query.category = 'sell';
+      });
   },
 });
 
