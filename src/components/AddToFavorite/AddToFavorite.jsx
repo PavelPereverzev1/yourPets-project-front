@@ -80,9 +80,8 @@ const AddToFavorite = ({ notice, handleAttentionModal }) => {
     <>
       {!isLoggedIn && (
         <AddToFavoriteButton onClick={() => handleAttentionModal(true)}>
-          <AddToFavoriteIcon>
-            <AddToFavoriteText>Add to </AddToFavoriteText>
-          </AddToFavoriteIcon>
+          <AddToFavoriteText>Add to </AddToFavoriteText>
+          <AddToFavoriteIcon></AddToFavoriteIcon>
         </AddToFavoriteButton>
       )}
       {isLoggedIn && (
