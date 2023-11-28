@@ -54,7 +54,7 @@ const NoticesCategoriesList = () => {
     setActiveAttention(true);
   };
 
-  const handleDeleteModal = (notice) => {
+  const handleDeleteModal = notice => {
     setDeleteModalTitle(notice.title);
     setNoticeDetail(notice._id);
     setActiveDelete(true);
@@ -89,12 +89,12 @@ const NoticesCategoriesList = () => {
             notices.map(item => {
               return (
                 <NoticeCategoryItem
-                key={item._id}
-                notice={item}
-                handleLearnMore={() => handleLearnMore(item._id)}
-                handleAttentionModal={handleAttentionModal}
-                handleDeleteModal={() => handleDeleteModal(item)}
-              />
+                  key={item._id}
+                  notice={item}
+                  handleLearnMore={() => handleLearnMore(item._id)}
+                  handleAttentionModal={handleAttentionModal}
+                  handleDeleteModal={() => handleDeleteModal(item)}
+                />
               );
             })
           ) : (
@@ -126,7 +126,6 @@ const NoticesCategoriesList = () => {
         setActive={setActiveDelete}
         yes={handleDeleteByIdNotice}
         title={deleteModalTitle}
-        
       />
     </>
   );

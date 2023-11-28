@@ -8,7 +8,6 @@ const NoticesPage = () => {
     <>
       <NoticesSearch />
       <NoticeCategoriesNav />
-      {/* <NoticesFilters /> */}
       <NoticesCategoriesList />
     </>
   );
