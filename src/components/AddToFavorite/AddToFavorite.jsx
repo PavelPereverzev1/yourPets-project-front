@@ -1,31 +1,26 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AddToFavoriteIcon } from './AddToFavoriteIcon';
-import {
-  AddToFavoriteButton,
-  AddToFavoriteText
-} from './AddToFavorite.styled';
+import { AddToFavoriteButton, AddToFavoriteText } from './AddToFavorite.styled';
 import { useAuth } from '../../hooks/useAuth';
 
 import {
   addNoticeToFavorite,
-  deleteNoticeFromFavorite
+  deleteNoticeFromFavorite,
 } from 'redux/notices/noticesOperations.js';
 
 const AddToFavorite = ({ notice, handleAttentionModal }) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
   const [isFavoriteNotice, setIsFavoriteNotice] = useState(() =>
-    favorites.some(favorite => favorite === notice.id)
+    favorites.some(favorite => favorite === notice._id)
   );
   const [isFavoriteButtonDisabled, setIsFavoriteButtonDisabled] =
     useState(false);
- 
 
   const dispatch = useDispatch();
 
   const toggleFavorite = async noticeId => {
-   
     try {
       setIsFavoriteButtonDisabled(true);
 
@@ -83,22 +78,24 @@ const AddToFavorite = ({ notice, handleAttentionModal }) => {
 
   return (
     <>
-    {!isLoggedIn && (
-      <AddToFavoriteButton onClick={() => handleAttentionModal(true)}>
-        <AddToFavoriteIcon>
+      {!isLoggedIn && (
+        <AddToFavoriteButton onClick={() => handleAttentionModal(true)}>
           <AddToFavoriteText>Add to </AddToFavoriteText>
-        </AddToFavoriteIcon>
-      </AddToFavoriteButton>
-    )}
-    {isLoggedIn && (
-      <AddToFavoriteButton disabled={isFavoriteButtonDisabled} onClick={() => toggleFavorite(notice._id)}>
-      <AddToFavoriteText>Add to </AddToFavoriteText>
-      <AddToFavoriteIcon
-        isFavorite={isFavoriteNotice}
-      ></AddToFavoriteIcon>
-    </AddToFavoriteButton>
-    )}
-  </>
+          <AddToFavoriteIcon></AddToFavoriteIcon>
+        </AddToFavoriteButton>
+      )}
+      {isLoggedIn && (
+        <AddToFavoriteButton
+          disabled={isFavoriteButtonDisabled}
+          onClick={() => toggleFavorite(notice._id)}
+        >
+          <AddToFavoriteText>
+            {favorites.includes(notice._id) ? 'Remove from favorite' : 'Add to'}
+          </AddToFavoriteText>
+          <AddToFavoriteIcon isFavorite={isFavoriteNotice}></AddToFavoriteIcon>
+        </AddToFavoriteButton>
+      )}
+    </>
   );
 };
 
