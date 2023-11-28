@@ -21,6 +21,7 @@ import {
   getNoticesThunk,
   deleteNoticeById,
 } from 'redux/notices/noticesOperations';
+import LoaderGif from 'components/LoaderGif/LoaderGif';
 
 const NoticesCategoriesList = () => {
   const [active, setActive] = useState(false);
@@ -82,33 +83,35 @@ const NoticesCategoriesList = () => {
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <LoaderGif />
       ) : (
-        <NoticesList>
-          {notices.length > 0 ? (
-            notices.map(item => {
-              return (
-                <NoticeCategoryItem
-                  key={item._id}
-                  notice={item}
-                  handleLearnMore={() => handleLearnMore(item._id)}
-                  handleAttentionModal={handleAttentionModal}
-                  handleDeleteModal={() => handleDeleteModal(item)}
-                />
-              );
-            })
-          ) : (
-            <NotFoundPetsMessage>
-              No Pets found, reload page or try again later
-            </NotFoundPetsMessage>
-          )}
-        </NoticesList>
+        <>
+          <NoticesList>
+            {notices.length > 0 ? (
+              notices.map(item => {
+                return (
+                  <NoticeCategoryItem
+                    key={item._id}
+                    notice={item}
+                    handleLearnMore={() => handleLearnMore(item._id)}
+                    handleAttentionModal={handleAttentionModal}
+                    handleDeleteModal={() => handleDeleteModal(item)}
+                  />
+                );
+              })
+            ) : (
+              <NotFoundPetsMessage>
+                No Pets found, reload page or try again later
+              </NotFoundPetsMessage>
+            )}
+          </NoticesList>
+        </>
       )}
-      <Pagination
+      {!isLoading && notices.length > 0 && <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
-      />
+      />}
       {active && (
         <ModalNotice
           active={active}
