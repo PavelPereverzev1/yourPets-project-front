@@ -1,70 +1,63 @@
 import styled from 'styled-components';
 
+export const FormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+
+  @media screen and (min-width: 768px) {
+    padding: 40px 0;
+  }
+`;
+
 export const Form = styled.form`
   position: relative;
+  width: 280px;
 
-  display: inline-block;
-
-  @media screen and (min-width: 768px){
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 608px;
   }
 `;
 
 export const Queryform = styled.input`
-  width: 280px;
-  height: 44px;
-  border-radius: 24px;
-  border: none;
-  margin-top: 24px;
-  margin-bottom: 20px;
   display: flex;
   justify-content: center;
-  box-shadow: 3px 8px 14px 0 #88c6fd30;
-  outline: none;
-  padding-left: 20px;
-  padding-right: 10px;
   font-family: Inter, sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
-  line-height: 1.21;
-  letter-spacing: 0.04em;
-  color: #888888;
-
-  &:hover,
-  &:focus {
-    box-shadow: 7px 13px 14px 0 #74b1e8;
-  }
+  letter-spacing: 0.56px;
+  color: var(--gray);
+  width: 100%;
+  height: 44px;
+  padding: 0 10px 0 20px;
+  box-shadow: var(--boxShadowDefault);
+  border-radius: 24px;
+  border: none;
+  outline: none;
 
   &::placeholder {
     font-family: Inter, sans-serif;
-    font-weight: 400;
     font-size: 14px;
-    line-height: 1.21;
-    letter-spacing: 0.04em;
-    color: #888888;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    color: var(--gray);
   }
 
   @media screen and (min-width: 768px) {
-    width: 608px;
+    width: 100%;
     border-radius: 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    font-weight: 500;
     font-size: 20px;
+    letter-spacing: 0.8px;
 
     &::placeholder {
       font-size: 20px;
+      letter-spacing: 0.8px;
     }
   }
-`;
-
-export const ButtonWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
 `;
 
 export const ButtonSearch = styled.button`
@@ -76,6 +69,7 @@ export const ButtonSearch = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  transition: right var(--transition);
 `;
 
 export const SearchIcon = styled.svg`
@@ -91,16 +85,12 @@ export const ButtonCancel = styled.button`
   cursor: pointer;
   position: absolute;
   top: 50%;
-  left: 250px;
+  right: 12px;
   transform: translateY(-50%);
-
-  @media screen and (min-width: 768px) {
-    left: 270px;
-  }
 `;
 
 export const DelateIcon = styled.svg`
   width: 24px;
   height: 24px;
-  stroke: #ffc107;
+  stroke: var(--yellow);
 `;

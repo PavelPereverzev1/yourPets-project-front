@@ -19,23 +19,25 @@ export const Nav = styled.div`
 
 export const NavbarLink = styled.a`
   font-size: 32px;
-  transition: transform 250ms linear;
+  font-weight: 500;
+  letter-spacing: 1.28px;
   color: var(--black);
-
-  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--transition);
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     font-size: 48px;
+    letter-spacing: 1.92px;
   }
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
+    letter-spacing: 0.8px;
   }
 
   &:hover,
   &:focus {
     color: var(--yellow);
-    cursor: pointer;
   }
 
   &.active {

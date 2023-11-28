@@ -15,6 +15,7 @@ import {
   InfoPol,
   InfoText,
   Remove,
+  CategoryLable,
 } from './NoticeCategoryItem.styled.js';
 import { useAuth } from '../../hooks/useAuth.js';
 import { useDispatch } from 'react-redux';
@@ -107,7 +108,13 @@ const NoticeCategoryItem = ({
     <>
       <Item key={notice._id}>
         <ImageBlock>
-          <InGoodHands>{notice.noticeType}</InGoodHands>
+          <InGoodHands>
+            <CategoryLable>{notice.noticeType}</CategoryLable>
+          </InGoodHands>
+          {/* <Favorite onClick={() => handleAttentionModal(true)}>
+            <FavoriteIcon></FavoriteIcon>
+          </Favorite> */}
+
           {!isLoggedIn && (
             <Favorite onClick={() => handleAttentionModal(true)}>
               <FavoriteIcon></FavoriteIcon>
@@ -120,14 +127,14 @@ const NoticeCategoryItem = ({
             >
               <FavoriteIcon isfavorite={isFavoriteNotice}></FavoriteIcon>
             </Favorite>
-          )}{' '}
+          )}
           {isLoggedIn && user._id === notice.owner && (
             <Remove disabled={false} onClick={() => handleDeleteModal(true)}>
               <RemoveIcon></RemoveIcon>
             </Remove>
           )}
           <InfoLocation>
-            <LocationIcon></LocationIcon>
+            <LocationIcon />
             <InfoText>{notice.location}</InfoText>
           </InfoLocation>
           <InfoAge>
@@ -142,7 +149,7 @@ const NoticeCategoryItem = ({
             ) : null}
             <InfoText>{notice.sex}</InfoText>
           </InfoPol>
-          <Image src={notice.photoURL}></Image>
+          <Image src={notice.photoURL} alt={notice.title} />
         </ImageBlock>
         <TextDiv>
           <Text>{notice.title}</Text>
