@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  // useEffect
-} from 'react';
+import React, { useState } from 'react';
 import {
   ImageBlock,
   Image,
@@ -19,7 +16,6 @@ import {
   InfoText,
   Remove,
 } from './NoticeCategoryItem.styled.js';
-import sprite from '../../images/icons/sprite.svg'
 import { useAuth } from '../../hooks/useAuth.js';
 import { useDispatch } from 'react-redux';
 import {
@@ -36,20 +32,22 @@ import {
   RemoveIcon,
 } from './SvgIcons.jsx';
 
-const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, handleDeleteModal }) => {
+const NoticeCategoryItem = ({
+  notice,
+  handleLearnMore,
+  handleAttentionModal,
+  handleDeleteModal,
+}) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
   const [isFavoriteNotice, setIsFavoriteNotice] = useState(() =>
-  favorites.some(favorite => favorite === notice._id)
-);
-const [isFavoriteButtonDisabled, setIsFavoriteButtonDisabled] =
-  useState(false);
-const [isDeleteButtonDisabled, setIsDeleteButtonDisabled] = useState(false);
-
+    favorites.some(favorite => favorite === notice._id)
+  );
+  const [isFavoriteButtonDisabled, setIsFavoriteButtonDisabled] =
+    useState(false);
+  // const [isDeleteButtonDisabled, setIsDeleteButtonDisabled] = useState(false);
 
   const dispatch = useDispatch();
-
-  
 
   const toggleFavorite = async noticeId => {
     try {
@@ -101,8 +99,9 @@ const [isDeleteButtonDisabled, setIsDeleteButtonDisabled] = useState(false);
 
       return;
     } catch (error) {
-      const { message } = error;
-    }}
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -110,31 +109,26 @@ const [isDeleteButtonDisabled, setIsDeleteButtonDisabled] = useState(false);
         <ImageBlock>
           <InGoodHands>{notice.noticeType}</InGoodHands>
           {!isLoggedIn && (
-        <Favorite onClick={() => handleAttentionModal(true)}>
-        <FavoriteIcon></FavoriteIcon>
-      </Favorite>
-        )}     
-        {isLoggedIn && (
+            <Favorite onClick={() => handleAttentionModal(true)}>
+              <FavoriteIcon></FavoriteIcon>
+            </Favorite>
+          )}
+          {isLoggedIn && (
             <Favorite
-            disabled={isFavoriteButtonDisabled}
-            onClick={() => toggleFavorite(notice._id)}>
-              <FavoriteIcon
-                isfavorite={isFavoriteNotice}
-              ></FavoriteIcon>
+              disabled={isFavoriteButtonDisabled}
+              onClick={() => toggleFavorite(notice._id)}
+            >
+              <FavoriteIcon isfavorite={isFavoriteNotice}></FavoriteIcon>
             </Favorite>
           )}{' '}
           {isLoggedIn && user._id === notice.owner && (
-            <Remove
-            disabled={isDeleteButtonDisabled}
-             onClick={() => handleDeleteModal(true)}>
+            <Remove disabled={false} onClick={() => handleDeleteModal(true)}>
               <RemoveIcon></RemoveIcon>
             </Remove>
           )}
           <InfoLocation>
             <LocationIcon></LocationIcon>
-            <InfoText>
-              {notice.location}
-            </InfoText>
+            <InfoText>{notice.location}</InfoText>
           </InfoLocation>
           <InfoAge>
             <AgeIcon></AgeIcon>
@@ -156,13 +150,10 @@ const [isDeleteButtonDisabled, setIsDeleteButtonDisabled] = useState(false);
         <LearnMoreDiv>
           <LearnMore onClick={() => handleLearnMore(notice.id)}>
             <TextMore>Learn more</TextMore>
-          <PetIcon/>
-            
+            <PetIcon />
           </LearnMore>
         </LearnMoreDiv>
       </Item>
-      
-      
     </>
   );
 };
