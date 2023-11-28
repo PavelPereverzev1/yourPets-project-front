@@ -49,6 +49,7 @@ const noticesSlice = createSlice({
       state.query.searchQuery = payload;
     },
     setCategory(state, { payload }) {
+      state.query.page = 1;
       state.query.category = payload;
     },
     setFilter(state, { payload }) {
@@ -80,16 +81,24 @@ const noticesSlice = createSlice({
       })
       .addCase(deleteNoticeById.rejected, handleRejected)
 
-      .addCase(addNoticeToFavorite.pending, handlePending)
+      .addCase(addNoticeToFavorite.pending, state => {
+        state.noticesError = null;
+      })
       .addCase(addNoticeToFavorite.fulfilled, state => {
-        state.isLoading = false;
+        state.noticesError = null;
       })
-      .addCase(addNoticeToFavorite.rejected, handleRejected)
-      .addCase(deleteNoticeFromFavorite.pending, handlePending)
+      .addCase(addNoticeToFavorite.rejected, (state, { payload }) => {
+        state.noticesError = payload;
+      })
+      .addCase(deleteNoticeFromFavorite.pending, state => {
+        state.noticesError = null;
+      })
       .addCase(deleteNoticeFromFavorite.fulfilled, state => {
-        state.isLoading = false;
+        state.noticesError = null;
       })
-      .addCase(deleteNoticeFromFavorite.rejected, handleRejected)
+      .addCase(deleteNoticeFromFavorite.rejected, (state, { payload }) => {
+        state.noticesError = payload;
+      })
       .addCase(logOut.fulfilled, state => {
         state.query.category = 'sell';
       })

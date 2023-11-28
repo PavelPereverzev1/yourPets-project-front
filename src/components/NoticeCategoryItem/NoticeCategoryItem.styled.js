@@ -140,12 +140,6 @@ export const Favorite = styled.button`
   border-radius: 50%;
   border: none;
   cursor: pointer;
-
-  &:hover {
-    svg {
-      fill: var(--blueLink);
-    }
-  }
 `;
 
 export const InfoLocation = styled.div`
