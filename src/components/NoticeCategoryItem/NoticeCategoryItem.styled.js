@@ -1,12 +1,10 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 export const Item = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* flex: 0 0 calc(33.3% - 20px); */
   text-align: center;
-  /* vertical-align: top; */
   width: 100%;
   height: 456px;
   background-color: white;
@@ -34,8 +32,6 @@ export const Item = styled.li`
 
 export const ImageBlock = styled.div`
   position: relative;
-  /* display: flex; */
-  /* justify-content: center; */
   overflow: hidden;
   width: 280px;
   height: 288px;
@@ -61,9 +57,6 @@ export const TextDiv = styled.div`
   align-items: center;
   padding: 20px;
   height: 106px;
-  /* margin: auto; */
-  /* width: 288px; */
-  /* height: auto; */
 `;
 
 export const Text = styled.p`
@@ -75,12 +68,25 @@ export const Text = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  /* 
+color: #111;
+    letter-spacing: -.64px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 218px;
+    margin-bottom: 4px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32.78px;
+    overflow: hidden;
+    margin-top:10px;
+    margin-bottom:10px; */
 `;
 
 export const LearnMoreDiv = styled.div``;
 export const LearnMore = styled.button`
   transition: color var(--transition), background-color var(--transition);
-
+  /* 
   border: 2px solid #54adff;
   justify-content: center;
   display: flex;
@@ -96,6 +102,22 @@ export const LearnMore = styled.button`
   svg {
     display: none;
   }
+  &:hover { */
+  border: 2px solid var(--blueLink);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 40px;
+  width: 248px;
+  margin: auto;
+  cursor: pointer;
+  height: 40px;
+  color: var(--blueLink);
+  margin-bottom: 20px;
+  svg {
+    display: none;
+  }
   &:hover {
     transition: transform 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,8 +126,10 @@ export const LearnMore = styled.button`
       margin-left: 20px;
       fill: white;
     }
+    /* a {
+      color: #fef9f9; */
     a {
-      color: #fef9f9;
+      color: var(--background);
     }
 
     background-color: #54adff;
@@ -114,7 +138,26 @@ export const LearnMore = styled.button`
 export const TextMore = styled.a`
   font-weight: 600;
   font-size: 16px;
+  /* font-weight: 600;
+font-size: 16px; */
 `;
+
+// export const InGoodHands = styled.div`
+// margin-top: 10px;
+// margin-right: 160px;
+// position: absolute;
+// justify-content: center;
+// display:flex;
+// width:126px;
+// height:32px;
+// align-items:center;
+// border-radius: 0 16px 16px 0;
+// border: 2px solid var(--blueLight);
+// color:black;
+// font-weight:500;
+// background-color:var(--blueLight);
+
+// `;
 
 export const InGoodHands = styled.div`
   /* margin-top: 10px; */
@@ -154,6 +197,22 @@ export const Favorite = styled.button`
   &:hover {
     svg {
       fill: var(--blueLink);
+      /* display:flex;
+align-items:center;
+justify-content: center;
+margin-top: 10px;
+margin-left:220px;
+position: absolute;
+width:40px;
+height:40px;
+background-color:var(--blueLight);
+border-radius:50%;
+border:2px solid var(--blueLight);
+&:hover{
+cursor:pointer;
+    svg{
+        
+        fill:var(--blueLink); */
     }
   }
 `;
@@ -178,6 +237,31 @@ export const InfoLocation = styled.div`
     width: 24px;
     height: 24px;
   }
+  /* margin-top: 250px;
+margin-right: 190px;
+position: absolute;
+justify-content: center;
+display:flex;
+height:20px;
+width:85px;
+padding:11px 5px 11px 5px;
+align-items:center;
+border-radius: 16px 16px 16px 16px;
+border: 2px solid var(--blueLight);
+color:black;
+
+background-color:var(--blueLight);
+p{
+    font-size:12px;
+font-weight:600;
+padding-right:5px;
+margin-left:5px;
+}
+svg{
+    width:24px;
+    height:24px;
+   
+} */
 `;
 
 export const InfoAge = styled.div`
@@ -200,6 +284,24 @@ export const InfoAge = styled.div`
     width: 24px;
     height: 24px;
   }
+  /* display:flex;
+height:20px;
+width:80px;
+padding:11px 5px 11px 5px;
+align-items:center;
+border-radius: 16px 16px 16px 16px;
+border: 2px solid var(--blueLight);
+color:black;
+
+background-color:var(--blueLight);
+p{
+    font-size:12px;
+font-weight:600;
+padding-right:5px;
+}
+svg{
+    padding-right:5px;
+} */
 `;
 
 export const InfoPol = styled.div`
@@ -222,6 +324,24 @@ export const InfoPol = styled.div`
     width: 24px;
     height: 24px;
   }
+  /* margin-top: 250px;
+margin-left:195px;
+position: absolute;
+justify-content: center;
+display:flex;
+height:20px;
+width:80px;
+padding:11px 5px 11px 5px;
+align-items:center;
+border-radius: 16px 16px 16px 16px;
+border: 2px solid var(--blueLight);
+color:black;
+
+background-color:var(--blueLight);
+
+svg{
+    padding-right:5px;
+} */
 `;
 
 export const InfoText = styled.p`
@@ -250,6 +370,22 @@ export const Remove = styled.button`
   &:hover {
     svg {
       fill: var(--blueLink);
+      /* display:flex;
+align-items:center;
+justify-content: center;
+margin-top: 60px;
+margin-left:220px;
+position: absolute;
+width:40px;
+height:40px;
+background-color:var(--blueLight);
+border-radius:50%;
+border:2px solid var(--blueLight);
+&:hover{
+cursor:pointer;
+    svg{
+        
+        fill:var(--blueLink); */
     }
   }
 `;
