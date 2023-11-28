@@ -33,7 +33,7 @@ export const Title = styled.h2`
     font-size: 24px;
     line-height: 1.36;
     letter-spacing: 0.3px;
-    color: #111111;
+    color:var(--black);
     @media screen and (min-width: 768px){
         font-size: 36px;
         max-width: 600px;

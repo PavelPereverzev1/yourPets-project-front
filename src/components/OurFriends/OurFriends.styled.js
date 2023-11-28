@@ -111,7 +111,7 @@ export const TimeItem = styled.li`
   line-height: 16.39px;
 `
 export const InfoLink = styled(Link)`
-  color: #111111;
+  color: var(--black);
   transition: color var(--transition);
   &:focus,
   :hover {

@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  // useEffect
-} from 'react';
+import React, { useState } from 'react';
 import {
   ImageBlock,
   Image,
@@ -19,7 +16,6 @@ import {
   InfoText,
   Remove,
 } from './NoticeCategoryItem.styled.js';
-
 import { useAuth } from '../../hooks/useAuth.js';
 import { useDispatch } from 'react-redux';
 import {
@@ -44,25 +40,45 @@ const NoticeCategoryItem = ({
 }) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
+  const [isFavoriteNotice, setIsFavoriteNotice] = useState(() =>
+    favorites.some(favorite => favorite === notice._id)
+  );
+  const [isFavoriteButtonDisabled, setIsFavoriteButtonDisabled] =
+    useState(false);
+  // const [isDeleteButtonDisabled, setIsDeleteButtonDisabled] = useState(false);
 
   const dispatch = useDispatch();
 
   const toggleFavorite = async noticeId => {
     try {
+      setIsFavoriteButtonDisabled(true);
+
       if (favorites.includes(noticeId)) {
+        setIsFavoriteNotice(false);
+
         const {
           meta: { requestStatus },
           payload,
         } = await dispatch(deleteNoticeFromFavorite({ id: noticeId }));
 
         if (requestStatus === 'rejected') {
+          setIsFavoriteNotice(true);
+
+          setIsFavoriteButtonDisabled(false);
+
           throw new Error(payload);
         }
 
-        return setFavorites(prevFavorites =>
+        setFavorites(prevFavorites =>
           prevFavorites.filter(favorite => favorite !== noticeId)
         );
+
+        setIsFavoriteButtonDisabled(false);
+
+        return;
       }
+
+      setIsFavoriteNotice(true);
 
       const {
         meta: { requestStatus },
@@ -70,14 +86,20 @@ const NoticeCategoryItem = ({
       } = await dispatch(addNoticeToFavorite({ id: noticeId }));
 
       if (requestStatus === 'rejected') {
+        setIsFavoriteNotice(false);
+
+        setIsFavoriteButtonDisabled(false);
+
         throw new Error(payload);
       }
 
-      return setFavorites(prevFavorites => [...prevFavorites, noticeId]);
-    } catch (error) {
-      const { message } = error;
+      setFavorites(prevFavorites => [...prevFavorites, noticeId]);
 
-      console.log(message);
+      setIsFavoriteButtonDisabled(false);
+
+      return;
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -86,18 +108,21 @@ const NoticeCategoryItem = ({
       <Item key={notice._id}>
         <ImageBlock>
           <InGoodHands>{notice.noticeType}</InGoodHands>
-          <Favorite onClick={() => handleAttentionModal(true)}>
-            <FavoriteIcon></FavoriteIcon>
-          </Favorite>
+          {!isLoggedIn && (
+            <Favorite onClick={() => handleAttentionModal(true)}>
+              <FavoriteIcon></FavoriteIcon>
+            </Favorite>
+          )}
           {isLoggedIn && (
-            <Favorite onClick={() => toggleFavorite(notice.id)}>
-              <FavoriteIcon
-                isfavorite={favorites.some(favorite => favorite === notice.id)}
-              ></FavoriteIcon>
+            <Favorite
+              disabled={isFavoriteButtonDisabled}
+              onClick={() => toggleFavorite(notice._id)}
+            >
+              <FavoriteIcon isfavorite={isFavoriteNotice}></FavoriteIcon>
             </Favorite>
           )}{' '}
           {isLoggedIn && user._id === notice.owner && (
-            <Remove onClick={() => handleDeleteModal(true)}>
+            <Remove disabled={false} onClick={() => handleDeleteModal(true)}>
               <RemoveIcon></RemoveIcon>
             </Remove>
           )}
@@ -123,9 +148,9 @@ const NoticeCategoryItem = ({
           <Text>{notice.title}</Text>
         </TextDiv>
         <LearnMoreDiv>
-          <LearnMore onClick={() => handleLearnMore(notice._id)}>
+          <LearnMore onClick={() => handleLearnMore(notice.id)}>
             <TextMore>Learn more</TextMore>
-            <PetIcon></PetIcon>
+            <PetIcon />
           </LearnMore>
         </LearnMoreDiv>
       </Item>

@@ -23,7 +23,7 @@ const OurFriendsPage = () => {
       {isLoading && <LoaderGif />}
       <Wrapper>
         <Title>Our friends</Title>
-        {sponsors.length !== 0 ? <OurFriends /> : <LoaderGif />}
+        {sponsors && sponsors.length !== 0 ? <OurFriends /> : <LoaderGif />}
       </Wrapper>
     </>
   );

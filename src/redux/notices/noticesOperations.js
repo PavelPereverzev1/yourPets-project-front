@@ -58,7 +58,7 @@ export const addNoticeToFavorite = createAsyncThunk(
     try {
       await axios.patch(`/notices/favorite/${id}`, null);
 
-      // return id;
+       return id;
     } catch ({
       response: {
         data: { message },
@@ -77,7 +77,7 @@ export const deleteNoticeFromFavorite = createAsyncThunk(
     try {
       await axios.delete(`/notices/favorite/${id}`);
 
-      // return id;
+       return id;
     } catch ({
       response: {
         data: { message },

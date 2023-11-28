@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser, updateUser } from './operations';
+import {
+  addNoticeToFavorite,
+  deleteNoticeFromFavorite,
+} from '../notices/noticesOperations';
 
 const initialState = {
   user: {
@@ -38,6 +42,9 @@ const authSlice = createSlice({
     resetAuthState: () => initialState,
     resetAuthError: state => {
       state.authError = null;
+    },
+    setIsFirstLoggedIn(state) {
+      state.isFirstLoggedIn = false;
     },
   },
   extraReducers: buider =>
@@ -96,10 +103,19 @@ const authSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.isLoading = false;
+      })
+      .addCase(addNoticeToFavorite.fulfilled, (state, { payload }) => {
+        state.user.favorites = [...state.user.favorites, payload];
+      })
+      .addCase(deleteNoticeFromFavorite.fulfilled, (state, { payload }) => {
+        state.user.favorites = state.user.favorites.filter(
+          favorite => favorite !== payload
+        );
       }),
 });
 
-export const { resetAuthState, resetAuthError } = authSlice.actions;
+export const { resetAuthState, resetAuthError, setIsFirstLoggedIn } =
+  authSlice.actions;
 export const authReducer = authSlice.reducer;
 
 //Selectors

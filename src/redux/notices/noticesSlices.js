@@ -45,19 +45,15 @@ const noticesSlice = createSlice({
   initialState,
   reducers: {
     setSearchQuery(state, { payload }) {
-      state.isLoading = true;
       state.query.searchQuery = payload;
     },
     setCategory(state, { payload }) {
-      state.isLoading = true;
       state.query.category = payload;
     },
     setFilter(state, { payload }) {
-      state.isLoading = true;
       state.query.filter = payload;
     },
     setPage(state, { payload }) {
-      state.isLoading = true;
       state.query.page = payload;
     },
   },
@@ -83,13 +79,14 @@ const noticesSlice = createSlice({
       })
       .addCase(deleteNoticeById.rejected, handleRejected)
 
+     
       .addCase(addNoticeToFavorite.pending, handlePending)
-      .addCase(addNoticeToFavorite.fulfilled, (state, { payload }) => {
+      .addCase(addNoticeToFavorite.fulfilled, state => {
         state.isLoading = false;
       })
       .addCase(addNoticeToFavorite.rejected, handleRejected)
       .addCase(deleteNoticeFromFavorite.pending, handlePending)
-      .addCase(deleteNoticeFromFavorite.fulfilled, (state, { payload }) => {
+      .addCase(deleteNoticeFromFavorite.fulfilled, state => {
         state.isLoading = false;
       })
       .addCase(deleteNoticeFromFavorite.rejected, handleRejected);

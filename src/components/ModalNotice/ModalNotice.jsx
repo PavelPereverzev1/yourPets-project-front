@@ -9,7 +9,7 @@ import Loader from 'components/LoaderGif/LoaderGif';
 
 import { getNoticesDetailsAPI } from '../../services/noticesAPI';
 
-const ModalNotice = ({ active, setActive, noticeDetail }) => {
+const ModalNotice = ({ active, setActive, noticeDetail, handleAttentionModal }) => {
   const [notice, setNotice] = useState(' ');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -78,7 +78,7 @@ const ModalNotice = ({ active, setActive, noticeDetail }) => {
           <span>Comments:</span> {notice.comments}
         </p>
         <div className={css.content_bottom}>
-          <AddToFavorite notice={notice} />
+          <AddToFavorite notice={notice} handleAttentionModal={handleAttentionModal} />
           <Contact notice={notice} />
         </div>
       </Modal>
