@@ -27,6 +27,7 @@ const NoticesCategoriesList = () => {
   const [noticeDetail, setNoticeDetail] = useState('');
   const [activeAttention, setActiveAttention] = useState(false);
   const [activeDelete, setActiveDelete] = useState(false);
+  const [deleteModalTitle, setDeleteModalTitle] = useState('');
 
   const notices = useSelector(selectNotices);
   const query = useSelector(selectQuery);
@@ -53,8 +54,9 @@ const NoticesCategoriesList = () => {
     setActiveAttention(true);
   };
 
-  const handleDeleteModal = noticeId => {
-    setNoticeDetail(noticeId);
+  const handleDeleteModal = (notice) => {
+    setDeleteModalTitle(notice.title);
+    setNoticeDetail(notice._id);
     setActiveDelete(true);
   };
 
@@ -91,7 +93,7 @@ const NoticesCategoriesList = () => {
                 notice={item}
                 handleLearnMore={() => handleLearnMore(item._id)}
                 handleAttentionModal={handleAttentionModal}
-                handleDeleteModal={() => handleDeleteModal(item._id)}
+                handleDeleteModal={() => handleDeleteModal(item)}
               />
               );
             })
@@ -112,6 +114,7 @@ const NoticesCategoriesList = () => {
           active={active}
           setActive={setActive}
           noticeDetail={noticeDetail}
+          handleAttentionModal={handleAttentionModal}
         />
       )}
       <AttentionModal
@@ -122,6 +125,8 @@ const NoticesCategoriesList = () => {
         active={activeDelete}
         setActive={setActiveDelete}
         yes={handleDeleteByIdNotice}
+        title={deleteModalTitle}
+        
       />
     </>
   );

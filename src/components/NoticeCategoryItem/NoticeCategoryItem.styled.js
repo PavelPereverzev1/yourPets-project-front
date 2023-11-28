@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 
 export const Container = styled.ul`
@@ -116,7 +116,7 @@ color: #111;
     max-width: 218px;
     margin-bottom: 4px;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 32.78px;
     overflow: hidden;
     margin-top:10px;
@@ -132,17 +132,17 @@ export const LearnMore = styled.button`
 transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1),
 background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
-border: 2px solid #54ADFF;
+border: 2px solid var(--blueLink);
 justify-content:center;
 display:flex;
 align-items:center;
-background-color:white;
+background-color:var(--white);
 border-radius:40px;
 width:248px;
 margin:auto;
 cursor:pointer;
 height:40px;
-color: #54ADFF; 
+color: var(--blueLink); 
 margin-bottom:20px;
 svg{
     display:none;
@@ -156,7 +156,7 @@ svg{
         fill:white;
     }
     a{
-        color:#FEF9F9;
+        color:var(--background);
     }
   
     background-color:#54ADFF;
@@ -179,10 +179,10 @@ width:126px;
 height:32px;
 align-items:center;
 border-radius: 0 16px 16px 0;
-border: 2px solid #CCE4FB;
+border: 2px solid var(--blueLight);
 color:black;
 font-weight:500;
-background-color:#CCE4FB;
+background-color:var(--blueLight);
 
 `;
 
@@ -197,14 +197,14 @@ margin-left:220px;
 position: absolute;
 width:40px;
 height:40px;
-background-color:#CCE4FB;
+background-color:var(--blueLight);
 border-radius:50%;
-border:2px solid #CCE4FB;
+border:2px solid var(--blueLight);
 &:hover{
 cursor:pointer;
     svg{
         
-        fill:#54ADFF;
+        fill:var(--blueLink);
     }
 }
 
@@ -222,10 +222,10 @@ width:85px;
 padding:11px 5px 11px 5px;
 align-items:center;
 border-radius: 16px 16px 16px 16px;
-border: 2px solid #CCE4FB;
+border: 2px solid var(--blueLight);
 color:black;
 
-background-color:#CCE4FB;
+background-color:var(--blueLight);
 p{
     font-size:12px;
 font-weight:600;
@@ -249,10 +249,10 @@ width:80px;
 padding:11px 5px 11px 5px;
 align-items:center;
 border-radius: 16px 16px 16px 16px;
-border: 2px solid #CCE4FB;
+border: 2px solid var(--blueLight);
 color:black;
 
-background-color:#CCE4FB;
+background-color:var(--blueLight);
 p{
     font-size:12px;
 font-weight:600;
@@ -273,10 +273,10 @@ width:80px;
 padding:11px 5px 11px 5px;
 align-items:center;
 border-radius: 16px 16px 16px 16px;
-border: 2px solid #CCE4FB;
+border: 2px solid var(--blueLight);
 color:black;
 
-background-color:#CCE4FB;
+background-color:var(--blueLight);
 
 svg{
     padding-right:5px;
@@ -303,14 +303,14 @@ margin-left:220px;
 position: absolute;
 width:40px;
 height:40px;
-background-color:#CCE4FB;
+background-color:var(--blueLight);
 border-radius:50%;
-border:2px solid #CCE4FB;
+border:2px solid var(--blueLight);
 &:hover{
 cursor:pointer;
     svg{
         
-        fill:#54ADFF;
+        fill:var(--blueLink);
     }
 }
 `;
