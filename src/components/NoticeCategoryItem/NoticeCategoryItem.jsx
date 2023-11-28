@@ -18,6 +18,7 @@ import {
   InfoPol,
   InfoText,
   Remove,
+  CategoryLable,
 } from './NoticeCategoryItem.styled.js';
 
 import { useAuth } from '../../hooks/useAuth.js';
@@ -36,18 +37,20 @@ import {
   RemoveIcon,
 } from './SvgIcons.jsx';
 
-const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, handleDeleteModal }) => {
+const NoticeCategoryItem = ({
+  notice,
+  handleLearnMore,
+  handleAttentionModal,
+  handleDeleteModal,
+}) => {
   const { isLoggedIn, user } = useAuth();
   const [favorites, setFavorites] = useState(user.favorites || []);
 
-
   const dispatch = useDispatch();
-
-  
 
   const toggleFavorite = async noticeId => {
     try {
-      console.log(notice._id)
+      console.log(notice._id);
       if (favorites.includes(noticeId)) {
         const {
           meta: { requestStatus },
@@ -84,7 +87,9 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
     <>
       <Item key={notice._id}>
         <ImageBlock>
-          <InGoodHands>{notice.noticeType}</InGoodHands>
+          <InGoodHands>
+            <CategoryLable>{notice.noticeType}</CategoryLable>
+          </InGoodHands>
           <Favorite onClick={() => handleAttentionModal(true)}>
             <FavoriteIcon></FavoriteIcon>
           </Favorite>
@@ -94,17 +99,15 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
                 isfavorite={favorites.some(favorite => favorite === notice._id)}
               ></FavoriteIcon>
             </Favorite>
-          )}{' '}
+          )}
           {isLoggedIn && user._id === notice.owner && (
             <Remove onClick={() => handleDeleteModal(true)}>
               <RemoveIcon></RemoveIcon>
             </Remove>
           )}
           <InfoLocation>
-            <LocationIcon></LocationIcon>
-            <InfoText>
-              {notice.location}
-            </InfoText>
+            <LocationIcon />
+            <InfoText>{notice.location}</InfoText>
           </InfoLocation>
           <InfoAge>
             <AgeIcon></AgeIcon>
@@ -118,7 +121,7 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
             ) : null}
             <InfoText>{notice.sex}</InfoText>
           </InfoPol>
-          <Image src={notice.photoURL}></Image>
+          <Image src={notice.photoURL} alt={notice.title} />
         </ImageBlock>
         <TextDiv>
           <Text>{notice.title}</Text>
@@ -130,8 +133,6 @@ const NoticeCategoryItem = ({ notice, handleLearnMore, handleAttentionModal, han
           </LearnMore>
         </LearnMoreDiv>
       </Item>
-      
-      
     </>
   );
 };

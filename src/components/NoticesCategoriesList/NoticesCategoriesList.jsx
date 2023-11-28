@@ -87,12 +87,12 @@ const NoticesCategoriesList = () => {
             notices.map(item => {
               return (
                 <NoticeCategoryItem
-                key={item._id}
-                notice={item}
-                handleLearnMore={() => handleLearnMore(item._id)}
-                handleAttentionModal={handleAttentionModal}
-                handleDeleteModal={() => handleDeleteModal(item._id)}
-              />
+                  key={item._id}
+                  notice={item}
+                  handleLearnMore={() => handleLearnMore(item._id)}
+                  handleAttentionModal={handleAttentionModal}
+                  handleDeleteModal={() => handleDeleteModal(item._id)}
+                />
               );
             })
           ) : (

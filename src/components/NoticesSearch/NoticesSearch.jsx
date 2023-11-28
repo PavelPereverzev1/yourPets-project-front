@@ -6,7 +6,7 @@ import {
   SearchIcon,
   ButtonCancel,
   DelateIcon,
-  ButtonWrapper,
+  FormWrapper,
 } from './NoticesSearch.styled';
 import sprite from '../../images/icons/sprite.svg';
 import { useDispatch } from 'react-redux';
@@ -32,24 +32,16 @@ function NoticesSearch() {
   };
 
   const buttonSearchStyle =
-    query.length > 0
-      ? {
-          left: '225px',
-          '@media screen and (minWidth: 768px)': { left: '240px' },
-        }
-      : {
-          left: '244px',
-          '@media screen and (minWidth: 768px)': { left: '260px' },
-        };
+    query.length > 0 ? { right: '40px' } : { right: '12px' };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Queryform
-        placeholder="Search"
-        value={query}
-        onChange={handleInputChange}
-      />
-      <ButtonWrapper>
+    <FormWrapper>
+      <Form onSubmit={handleSubmit}>
+        <Queryform
+          placeholder="Search"
+          value={query}
+          onChange={handleInputChange}
+        />
         <ButtonSearch style={buttonSearchStyle} onClick={handleSubmit}>
           <SearchIcon>
             <use href={`${sprite}#icon-search`}></use>
@@ -62,8 +54,8 @@ function NoticesSearch() {
             </DelateIcon>
           </ButtonCancel>
         )}
-      </ButtonWrapper>
-    </Form>
+      </Form>
+    </FormWrapper>
   );
 }
 
