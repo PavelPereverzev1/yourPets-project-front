@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Manrope';
-    src: local('Manrope'), url('/yourPets-project-front/public/fonts/Manrope-Regular.woff2') format('woff2');
+    src: local('Manrope'), url('/yourPets-project-front/fonts/Manrope-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Inter';
-    src: local('Inter'), url('/yourPets-project-front/public/fonts/Inter-Regular.woff2') format('woff2');
+    src: local('Inter'), url('/yourPets-project-front/fonts/Inter-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
