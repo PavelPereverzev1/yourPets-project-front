@@ -69,7 +69,6 @@ const noticesSlice = createSlice({
       })
       .addCase(deleteNoticeById.pending, handlePending)
       .addCase(deleteNoticeById.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.items = state.items.filter(item => item._id !== payload);
         state.isLoading = false;
         state.isRefreshing = false;
