@@ -107,7 +107,7 @@ const NoticesCategoriesList = () => {
           </NoticesList>
         </>
       )}
-      {!isLoading&&<Pagination
+      {!isLoading && notices.length > 0 && <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
