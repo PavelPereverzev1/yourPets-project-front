@@ -5,7 +5,7 @@ export const AddToFavoriteButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  /* width: 256px; */
+  min-width: 256px;
   padding: 9px 20px;
   height: 40px;
   border-radius: 40px;
@@ -31,7 +31,7 @@ export const AddToFavoriteButton = styled.button`
     }
   }
   @media screen and (min-width: 768px) {
-    /* width: 129px; */
+    min-width: 129px;
   }
 `;
 
