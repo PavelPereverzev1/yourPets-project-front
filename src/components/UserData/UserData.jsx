@@ -51,7 +51,6 @@ const UserData = () => {
     if (fileInputRef.current.files[0]) {
       const file = fileInputRef.current.files[0];
       formData.append('avatar', file);
-      console.log(formData);
       fileInputRef.current.value = null;
     }
 
