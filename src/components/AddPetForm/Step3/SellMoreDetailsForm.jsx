@@ -6,6 +6,7 @@ import BackgroundCard from '../BackgroundCard';
 import PreviewImage from '../PreviewImage/PreviewImage';
 import StepsBlock from '../StepsBlock';
 import GenderFieldRadio from '../GenderFieldRadio';
+import ErrorComponent from '../ErrorComponent';
 
 import sprite from '../../../images/icons/sprite.svg';
 import {
@@ -90,7 +91,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
   const fileRef = useRef(null);
 
   return (
-    <BackgroundCard $noticetype={data.noticeType}>
+    <BackgroundCard noticetype={data.noticeType}>
       <Title>Add pet</Title>
       <StepsBlock step={3} />
       <Formik
@@ -130,11 +131,10 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                       iconSize=""
                     />
                   </SexList>
-                  <ErrorMessage name="sex" />
+                  <ErrorComponent name="sex" />
                 </Sexblock>
                 <PhotoBlock>
                   <PhotoLabel htmlFor="photo">Load the pet’s image:</PhotoLabel>
-
                   <ImagePreview>
                     <PhotoInput
                       ref={fileRef}
@@ -159,7 +159,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                       </DefaultImage>
                     )}
                   </ImagePreview>
-                  <ErrorMessage name="photo" />
+                  <ErrorComponent name="photo" />
                 </PhotoBlock>
               </SexPhotoblock>
 
@@ -171,7 +171,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                     name="location"
                     placeholder="Kyiv"
                   ></DetailInput>
-                  <ErrorMessage name="location" />
+                  <ErrorComponent name="location" />
                 </DetailWrapper>
 
                 {values.noticeType === 'sell' && (
@@ -183,7 +183,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                       name="price"
                       placeholder="100"
                     ></DetailInput>
-                    <ErrorMessage name="price" />
+                    <ErrorComponent name="price" />
                   </DetailWrapper>
                 )}
 
@@ -197,7 +197,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                     rows="4"
                     noticeType={values.noticeType}
                   ></CommentsInput>
-                  <ErrorMessage name="comments" />
+                  <ErrorComponent name="comments" />
                 </DetailWrapper>
               </LocationPriceBlock>
             </BlocksWrapper>

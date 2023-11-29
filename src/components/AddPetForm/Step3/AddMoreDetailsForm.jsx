@@ -4,6 +4,8 @@ import React, { useRef } from 'react';
 
 import BackgroundCard from '../BackgroundCard';
 import PreviewImage from '../PreviewImage/PreviewImage';
+import ErrorComponent from '../ErrorComponent';
+
 import sprite from '../../../images/icons/sprite.svg';
 import {
   FormAddMoreDetails,
@@ -92,7 +94,7 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
                   </DefaultImage>
                 )}
               </ImagePreview>
-              <ErrorMessage name="photo" />
+              <ErrorComponent name="photo" />
             </PhotoBlock>
 
             <DetailWrapper>
@@ -105,7 +107,7 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
                 rows="4"
                 noticeType={values.noticeType}
               ></CommentsInput>
-              <ErrorMessage name="comments" />
+              <ErrorComponent name="comments" />
             </DetailWrapper>
             <ButtonsWrapper>
               <ButtonBlue type="submit">
