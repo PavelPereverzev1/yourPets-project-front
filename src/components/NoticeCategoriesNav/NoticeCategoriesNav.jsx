@@ -1,3 +1,10 @@
+import { useWindowSize } from 'hooks/useResize';
+import sprite from 'images/icons/sprite.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/AuthSlice';
+import { setCategory } from 'redux/notices/noticesSlices';
+import ButtonComponent from 'components/ButtonComponent/ButtonComponent';
+import { useNavigate } from 'react-router';
 import {
   NavElements,
   NavList,
@@ -5,14 +12,15 @@ import {
   StyledNavLink,
   NoticeNavContainer,
   NavBtn,
+  AddIcon,
 } from './style/NoticeCategoriesNav.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoggedIn } from 'redux/AuthSlice';
-import { setCategory } from 'redux/notices/noticesSlices';
 
 export const NoticeCategoriesNav = () => {
+  const [screenWidth] = useWindowSize();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleClick = () => navigate('/add-pet');
 
   return (
     <NoticeNavContainer>
@@ -65,6 +73,14 @@ export const NoticeCategoriesNav = () => {
           )}
         </NavList>
       </NavElements>
+      {screenWidth >= 768 && (
+        <ButtonComponent $variant="filled" width="129px" onClick={handleClick}>
+          <AddIcon>
+            <use href={`${sprite}#icon-plus-small`} />
+          </AddIcon>
+          Add Pet
+        </ButtonComponent>
+      )}
     </NoticeNavContainer>
   );
 };
