@@ -25,9 +25,6 @@ export const DetailWrapper = styled.div`
   @media screen and (min-width: 768px) {
     gap: 8px;
   }
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
 export const DetailInput = styled(Field)`
@@ -38,6 +35,11 @@ export const DetailInput = styled(Field)`
 
   border-radius: 40px;
   border: 1px solid var(--blueLink);
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--blueLink);
+  }
 
   &::placeholder {
     color: var(--gray);

@@ -73,6 +73,11 @@ export const PhotoInput = styled.input`
   height: 100%;
   opacity: 0;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border: none;
+  }
 `;
 
 // CommentsBlock
@@ -98,6 +103,11 @@ export const CommentsInput = styled(Field)`
   overflow-y: auto;
 
   border-radius: 20px;
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--blueLink);
+  }
 
   &::placeholder {
     color: var(--gray);

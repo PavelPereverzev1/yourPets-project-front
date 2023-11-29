@@ -31,7 +31,7 @@ function AddPetForm() {
     const requestData = new FormData();
 
     try {
-      if (formData.noticeType === 'your pet') {
+      if (formData.noticeType === 'your-pet') {
         for (const key in formData) {
           if (
             key !== 'noticeType' &&
@@ -49,7 +49,7 @@ function AddPetForm() {
       }
       if (
         formData.noticeType === 'lost/found' ||
-        formData.noticeType === 'in good hands'
+        formData.noticeType === 'in-good-hands'
       ) {
         for (const key in formData) {
           if (key !== 'price') {

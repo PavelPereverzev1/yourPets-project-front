@@ -115,6 +115,11 @@ export const PhotoInput = styled.input`
   height: 100%;
   opacity: 0;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border: none;
+  }
 `;
 
 // LocationPriceblock
@@ -148,6 +153,11 @@ justify-content: center;
 width: 100%;
 padding: 8px 16px;
 border: 1px solid var(--blueLink);
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--blueLink);
+  }
 `;
 
 export const DetailInput = styled(Field)`

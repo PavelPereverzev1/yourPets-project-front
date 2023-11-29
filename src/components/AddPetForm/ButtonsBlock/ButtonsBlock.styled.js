@@ -38,6 +38,11 @@ const sharedStyles = css`
   font-size: 16px;
   line-height: 1.36;
   letter-spacing: 0.3px;
+
+  &:hover,
+  &:focus {
+    border: none;
+  }
 `;
 
 export const ButtonWhite = styled.button`
