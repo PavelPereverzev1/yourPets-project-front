@@ -7,7 +7,7 @@ export const Item = styled.li`
   text-align: center;
   width: 100%;
   height: 456px;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 0 0 40px 40px;
   box-shadow: var(--boxShadowDefault);
   transition: box-shadow var(--transition);

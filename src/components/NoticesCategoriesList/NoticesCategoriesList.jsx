@@ -21,8 +21,9 @@ import {
   getNoticesThunk,
   deleteNoticeById,
 } from 'redux/notices/noticesOperations';
-import LoaderGif from 'components/LoaderGif/LoaderGif';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import SkeletonNotices from 'components/CardsSkeleton/SkeletonNotices';
 
 const NoticesCategoriesList = () => {
   const [active, setActive] = useState(false);
@@ -39,6 +40,7 @@ const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
   const totalPages = Math.ceil(totalNotices / 12);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!location.pathname.includes(query.category)) {
@@ -46,7 +48,18 @@ const NoticesCategoriesList = () => {
       return;
     }
     dispatch(getNoticesThunk(query));
-  }, [dispatch, location.pathname, notices.length, query]);
+  }, [dispatch, location.pathname, query]);
+
+  useEffect(() => {
+    if (!notices.length && query.category !== 'sell') {
+      Report.info(
+        'No More Notices',
+        'There are no more notices in this category. Please explore notices in other categories.',
+        'Explore',
+        () => navigate('/notices/sell')
+      );
+    }
+  }, [navigate, notices.length, query.category]);
 
   const handlePageChange = page => {
     dispatch(setPage(page));
@@ -89,7 +102,7 @@ const NoticesCategoriesList = () => {
   return (
     <>
       {isLoading ? (
-        <LoaderGif />
+        <SkeletonNotices />
       ) : (
         <>
           <NoticesList>
