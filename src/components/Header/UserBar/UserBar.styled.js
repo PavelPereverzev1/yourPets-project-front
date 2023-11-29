@@ -17,6 +17,12 @@ export const Typography = styled.p`
 `;
 
 export const Svg = styled.svg`
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
+`;
+
+export const Img = styled.img`
+  width: 28px;
+  height: 28px;
+  border-radius: 20px;
 `;
