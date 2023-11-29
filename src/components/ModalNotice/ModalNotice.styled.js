@@ -143,8 +143,7 @@ export const MiddleContentText = styled.p`
   font-weight: 500;
   line-height: 19.12px;
   letter-spacing: 0.56px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+overflow-wrap: break-word;  
   @media screen and (min-width: 768px) {
     padding: 28px 32px 0 32px;
     font-size: 16px;
