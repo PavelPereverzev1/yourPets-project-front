@@ -10,10 +10,12 @@ export const HeaderContainer = styled.div`
   @media screen and (min-width: 768px) {
     margin-top: 24px;
     height: 44px;
+    margin-bottom: 10px;
   }
   @media screen and (min-width: 1280px) {
     height: 48px;
     margin-top: 20px;
+    margin-bottom: 10px;
   }
 `;
 

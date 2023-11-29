@@ -16,7 +16,7 @@ export const MobileMenuContainer = styled.div`
   z-index: 15;
 
   @media screen and (min-width: 768px) {
-    top: 70px;
+    top: 80px;
     padding-top: 60px;
   }
 `;

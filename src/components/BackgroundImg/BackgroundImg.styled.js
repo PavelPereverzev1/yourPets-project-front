@@ -9,7 +9,7 @@ import bgDesktop2x from '../../images/background/bg-desktop@2x.png';
 export const StyledBackgroundImg = styled.div`
   width: 100%;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-color: var(--background);
   background-image: url(${bgMobile1x});
   background-repeat: no-repeat;
