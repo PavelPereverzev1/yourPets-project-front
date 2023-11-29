@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const NoticesList = styled.ul`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 24px;
   padding: 24px 0 40px 0;
