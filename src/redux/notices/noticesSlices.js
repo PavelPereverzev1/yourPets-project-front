@@ -7,6 +7,7 @@ import {
   addNoticeToFavorite,
   deleteNoticeFromFavorite,
 } from './noticesOperations';
+import { logOut, logIn, register } from 'redux/AuthSlice/operations';
 
 const initialState = {
   items: [],
@@ -48,6 +49,7 @@ const noticesSlice = createSlice({
       state.query.searchQuery = payload;
     },
     setCategory(state, { payload }) {
+      state.query.page = 1;
       state.query.category = payload;
     },
     setFilter(state, { payload }) {
@@ -69,27 +71,42 @@ const noticesSlice = createSlice({
       })
       .addCase(deleteNoticeById.pending, handlePending)
       .addCase(deleteNoticeById.fulfilled, (state, { payload }) => {
-        const itemsWithoutDeletedNotice = state.items.filter(
-          item => item.id !== payload
-        );
-
-        state.items = [...itemsWithoutDeletedNotice];
+        state.items = state.items.filter(item => item._id !== payload);
         state.isLoading = false;
         state.isRefreshing = false;
       })
       .addCase(deleteNoticeById.rejected, handleRejected)
 
-     
-      .addCase(addNoticeToFavorite.pending, handlePending)
+      .addCase(addNoticeToFavorite.pending, state => {
+        state.noticesError = null;
+      })
       .addCase(addNoticeToFavorite.fulfilled, state => {
-        state.isLoading = false;
+        state.noticesError = null;
       })
-      .addCase(addNoticeToFavorite.rejected, handleRejected)
-      .addCase(deleteNoticeFromFavorite.pending, handlePending)
-      .addCase(deleteNoticeFromFavorite.fulfilled, state => {
-        state.isLoading = false;
+      .addCase(addNoticeToFavorite.rejected, (state, { payload }) => {
+        state.noticesError = payload;
       })
-      .addCase(deleteNoticeFromFavorite.rejected, handleRejected);
+      .addCase(deleteNoticeFromFavorite.pending, state => {
+        state.noticesError = null;
+      })
+      .addCase(deleteNoticeFromFavorite.fulfilled, (state, { payload }) => {
+        state.noticesError = null;
+        if (state.query.category === 'favorite') {
+          state.items = state.items.filter(item => item._id !== payload);
+        }
+      })
+      .addCase(deleteNoticeFromFavorite.rejected, (state, { payload }) => {
+        state.noticesError = payload;
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.query.category = 'sell';
+      })
+      .addCase(logIn.fulfilled, state => {
+        state.query.category = 'sell';
+      })
+      .addCase(register.fulfilled, state => {
+        state.query.category = 'sell';
+      });
   },
 });
 

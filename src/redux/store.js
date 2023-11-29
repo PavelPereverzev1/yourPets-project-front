@@ -13,13 +13,12 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './AuthSlice';
 import { noticesPersistReducer } from './notices/noticesSlices';
 import { friendsReducer } from './OurFriends/OurFriendsSlice';
-import {NewsReducer} from './news/newsSlice';
+import { NewsReducer } from './news/newsSlice';
 
 const authPersistConfig = {
   key: 'auth',
   storage,
   blacklist: ['isFirstLoggedIn'],
-  //whitelist: ['token'],
 };
 
 export const store = configureStore({

@@ -8,6 +8,7 @@ import {
   selectIsLoading,
 } from 'redux/OurFriends/OurFriendsSlice';
 import LoaderGif from 'components/LoaderGif/LoaderGif';
+import { NotFoundPetsMessage } from 'components/NoticesCategoriesList/NoticesCategoriesList.styled';
 
 const OurFriendsPage = () => {
   const dispatch = useDispatch();
@@ -20,11 +21,18 @@ const OurFriendsPage = () => {
 
   return (
     <>
-      {isLoading && <LoaderGif />}
-      <Wrapper>
-        <Title>Our friends</Title>
-        {sponsors && sponsors.length !== 0 ? <OurFriends /> : <LoaderGif />}
-      </Wrapper>
+      {isLoading ? (
+        <LoaderGif />
+      ) : (
+        <Wrapper>
+          <Title>Our friends</Title>
+          {sponsors && sponsors.length !== 0 ? (
+            <OurFriends />
+          ) : (
+            <NotFoundPetsMessage>We don't have friends :(</NotFoundPetsMessage>
+          )}
+        </Wrapper>
+      )}
     </>
   );
 };

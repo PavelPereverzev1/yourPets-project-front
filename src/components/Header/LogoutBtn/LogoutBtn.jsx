@@ -3,14 +3,18 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../../redux/AuthSlice/operations';
 import LogOutModal from '../../Modals/LogOutModal/LogOutModal';
+import { useNavigate } from 'react-router-dom';
 
 import { ButtonLogout, Svg } from './LogoutBtn.styled';
 
 const LogoutBtn = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logOut());
+
+    navigate("/login", { replace: true });
   };
 
   const [modalActive, setModalActive] = useState(false);

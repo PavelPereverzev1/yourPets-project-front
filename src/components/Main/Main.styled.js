@@ -10,22 +10,21 @@ export const MainTitle = styled.h1`
   margin: 50px auto 20px;
   width: 280px;
   font-size: 32px;
-  line-height: 1.4;
   text-align: left;
-  font-weight: 700;
-  font-style: normal;
 
   @media screen and (min-width: 768px) {
     margin: 80px auto 27px;
     width: 588px;
     font-size: 68px;
-    line-height: 1.47;
+    line-height: 100px;
   }
+
   @media screen and (min-width: 1280px) {
     margin: 188px 0 248px;
     width: 700px;
-    line-height: 1.3;
-    font-size: 70px;
+    font-size: 68px;
+    line-height: 130%;
+    font-weight: 800;
   }
 `;
 

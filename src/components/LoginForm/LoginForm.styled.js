@@ -65,7 +65,7 @@ const InputStyles = `
 
   outline: none;
 
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow var(--transition), border-color var(--transition);
 
   ::placeholder {
     font-weight: 400;
@@ -199,7 +199,7 @@ export const Button = styled.button`
   }
   `};
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--transition);
 
   @media screen and (min-width: 768px) {
     width: 458px;
@@ -229,8 +229,7 @@ export const ExtraText = styled.p`
 
 const MessagesStyles = `
 position: absolute;
-  bottom: -34px;
-  left: -8px;
+  bottom: -31px;
 
   font-weight: 400;
   font-size: 12px;

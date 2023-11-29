@@ -4,17 +4,8 @@ export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
-  background-color: #fef9f9;
-  border-radius: 45px;
-  padding: 5px;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   margin-right: auto;
   margin-left: auto;
-  
-  @media screen and (min-width: 768px) {
-    margin-top: 60px;
-  }
 `;
 
 export const PaginationButton = styled.button`
@@ -24,28 +15,29 @@ export const PaginationButton = styled.button`
   width: 30px;
   height: 30px;
   margin: 0 5px;
-  border: 1px solid #cce4fb;
+  border: 1px solid var(--blueLink);
   border-radius: 50%;
-  background-color: ${({ $active }) => ($active ? '#54ADFF' : 'transparent')};
-  color: ${({ $active }) => ($active ? '#FEF9F9;' : '#CCE4FB')};
+  background-color: ${({ $active }) =>
+    $active ? 'var(--blueLink)' : 'transparent'};
+  color: ${({ $active }) =>
+    $active ? 'var(--background)' : 'var(--blueLink)'};
   cursor: pointer;
   outline: none;
 
   &:hover:not(:disabled) {
-    background-color: ${() => '#54ADFF'};
-    color: ${() => '#FEF9F9'};
+    background-color: ${() => 'var(--blueLink)'};
+    color: ${() => 'var(--background)'};
   }
 
   &:hover,
   &:focus {
-    border: 1px solid #cce4fb;
+    border: 1px solid var(--blueLink);
     outline: none;
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: default;
-    border: 1px solid #cce4fb;
   }
 
   @media screen and (min-width: 480px) {

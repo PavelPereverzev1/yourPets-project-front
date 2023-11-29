@@ -1,316 +1,239 @@
 import styled from 'styled-components';
 
+export const Item = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 456px;
+  background-color: var(--white);
+  border-radius: 0 0 40px 40px;
+  box-shadow: var(--boxShadowDefault);
+  transition: box-shadow var(--transition);
 
-export const Container = styled.ul`
-
-margin-top: 24px;
-margin-bottom: 40px;
-justify-content: center;
-align-items: center;
-
-@media (max-width: 767px) {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    gap: 24px;
-    justify-content: center;
-    align-items: center;
+  &:hover {
+    box-shadow: var(--boxShadowHover);
   }
 
-@media (min-width: 768px) {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: auto;
-  margin-right: auto;
-  column-gap: 32px;
-  row-gap: 24px;
-  max-width: 1280px;
-  justify-content: center;
-  align-items: center;
-}
+  @media (min-width: 320px) {
+    width: 280px;
+  }
+
+  @media (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 288px;
+  }
 `;
 
-export const Item = styled.li`
-
-
-display:flex;
-flex-direction:column;
-margin-top:20px;
-flex: 0 0 calc(33.3% - 20px);
-border: 1px solid #ccc; 
-
-text-align: center; 
-
-vertical-align: top;
-max-width:288px;
-
-justify-content: center;
-
-height:auto;
-background-color:white;
-border-radius:5px;
-border-radius: 0 0 40px 40px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-transition: transform 0.3s ease;
-
-&:hover{
-    box-shadow: 7px 13px 14px 0px #74B1E83D;
-
-    
-}
-@media(min-width:768px){
-    max-width:288px;
-    max-height:456px;  
-    
-  }
-@media(max-width:767px){
-        max-width:336px;
-        max-height:456px;  
-        
-      }
-      @media(max-width:320px){
-        margin-right:15px; 
-      }
-
-`
-
 export const ImageBlock = styled.div`
-display:flex;
+  position: relative;
+  overflow: hidden;
+  width: 280px;
+  height: 288px;
 
-justify-content: center;
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
 
-max-width:288px;
-height:288px;
-
-
+  @media screen and (min-width: 1280px) {
+    width: 288px;
+  }
 `;
 
 export const Image = styled.img`
-
-width:100%;
-height:100%;
-
- object-fit:cover;
-
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
+
 export const TextDiv = styled.div`
-
-display: flex;
-justify-content: center;
-margin:auto;
-width:288px;
-height:auto;
-
-
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  height: 106px;
 `;
 
 export const Text = styled.p`
-
-color: #111;
-    letter-spacing: -.64px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 218px;
-    margin-bottom: 4px;
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 32.78px;
-    overflow: hidden;
-    margin-top:10px;
-    margin-bottom:10px;
-
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.64px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
-
-export const LearnMoreDiv = styled.div`
-
-`
+export const LearnMoreDiv = styled.div``;
 export const LearnMore = styled.button`
-transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1),
-background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--transition), background-color var(--transition);
 
-border: 2px solid var(--blueLink);
-justify-content:center;
-display:flex;
-align-items:center;
-background-color:var(--white);
-border-radius:40px;
-width:248px;
-margin:auto;
-cursor:pointer;
-height:40px;
-color: var(--blueLink); 
-margin-bottom:20px;
-svg{
-    display:none;
-}
-&:hover{
+  border: 2px solid var(--blueLink);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 40px;
+  width: 248px;
+  margin: auto;
+  cursor: pointer;
+  height: 40px;
+  color: var(--blueLink);
+  margin-bottom: 20px;
+  svg {
+    display: none;
+  }
+  &:hover {
     transition: transform 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    svg{
-        display: flex;
-        margin-left:20px;
-        fill:white;
+    svg {
+      display: flex;
+      margin-left: 20px;
+      fill: white;
     }
-    a{
-        color:var(--background);
+    a {
+      color: var(--background);
     }
-  
-    background-color:#54ADFF;
-}
 
+    background-color: #54adff;
+  }
 `;
 export const TextMore = styled.a`
-font-weight: 600;
-font-size: 16px;
-
-`
-
-export const InGoodHands = styled.div`
-margin-top: 10px;
-margin-right: 160px;
-position: absolute;
-justify-content: center;
-display:flex;
-width:126px;
-height:32px;
-align-items:center;
-border-radius: 0 16px 16px 0;
-border: 2px solid var(--blueLight);
-color:black;
-font-weight:500;
-background-color:var(--blueLight);
-
+  font-weight: 600;
+  font-size: 16px;
 `;
 
+export const InGoodHands = styled.div`
+  position: absolute;
+  top: 16px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  padding: 11px 17px;
+  border-radius: 0 16px 16px 0;
+  color: var(--black);
+  background-color: var(--blueLight);
+`;
+
+export const CategoryLable = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+`;
 
 export const Favorite = styled.button`
-
-display:flex;
-align-items:center;
-justify-content: center;
-margin-top: 10px;
-margin-left:220px;
-position: absolute;
-width:40px;
-height:40px;
-background-color:var(--blueLight);
-border-radius:50%;
-border:2px solid var(--blueLight);
-&:hover{
-cursor:pointer;
-    svg{
-        
-        fill:var(--blueLink);
-    }
-}
-
-
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--blueLight);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
 `;
 
 export const InfoLocation = styled.div`
-margin-top: 250px;
-margin-right: 190px;
-position: absolute;
-justify-content: center;
-display:flex;
-height:20px;
-width:85px;
-padding:11px 5px 11px 5px;
-align-items:center;
-border-radius: 16px 16px 16px 16px;
-border: 2px solid var(--blueLight);
-color:black;
+  position: absolute;
+  left: 18%;
+  bottom: 12px;
+  transform: translate(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  width: 80px;
+  padding: 2px 4px;
+  border-radius: 16px;
+  border: none;
+  background-color: var(--blueLight);
 
-background-color:var(--blueLight);
-p{
-    font-size:12px;
-font-weight:600;
-padding-right:5px;
-margin-left:5px;
-}
-svg{
-    width:24px;
-    height:24px;
-   
-}
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 `;
+
 export const InfoAge = styled.div`
-margin-top: 250px;
-margin-left:0px;
-position: absolute;
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translate(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  width: 80px;
+  padding: 2px 4px;
+  border-radius: 16px;
+  border: none;
+  background-color: var(--blueLight);
 
-display:flex;
-height:20px;
-width:80px;
-padding:11px 5px 11px 5px;
-align-items:center;
-border-radius: 16px 16px 16px 16px;
-border: 2px solid var(--blueLight);
-color:black;
-
-background-color:var(--blueLight);
-p{
-    font-size:12px;
-font-weight:600;
-padding-right:5px;
-}
-svg{
-    padding-right:5px;
-}
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 `;
+
 export const InfoPol = styled.div`
-margin-top: 250px;
-margin-left:195px;
-position: absolute;
-justify-content: center;
-display:flex;
-height:20px;
-width:80px;
-padding:11px 5px 11px 5px;
-align-items:center;
-border-radius: 16px 16px 16px 16px;
-border: 2px solid var(--blueLight);
-color:black;
+  position: absolute;
+  right: 18%;
+  bottom: 12px;
+  transform: translate(50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  width: 80px;
+  padding: 2px 4px;
+  border-radius: 16px;
+  border: none;
+  background-color: var(--blueLight);
 
-background-color:var(--blueLight);
-
-svg{
-    padding-right:5px;
-}
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 export const InfoText = styled.p`
-font-size:12px;
-font-weight:600;
-padding-right:5px;
-white-space: nowrap;
-text-overflow: ellipsis;
-overflow: hidden;
+  font-size: 12px;
+  font-weight: 600;
+  padding-right: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
-
 export const Remove = styled.button`
+  position: absolute;
+  right: 12px;
+  top: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--blueLight);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
 
-display:flex;
-align-items:center;
-justify-content: center;
-margin-top: 60px;
-margin-left:220px;
-position: absolute;
-width:40px;
-height:40px;
-background-color:var(--blueLight);
-border-radius:50%;
-border:2px solid var(--blueLight);
-&:hover{
-cursor:pointer;
-    svg{
-        
-        fill:var(--blueLink);
+  &:hover {
+    svg {
+      fill: var(--blueLink);
     }
-}
+  }
 `;
