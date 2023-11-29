@@ -16,12 +16,13 @@ import Pagination from '../Pagination/Pagination';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
 import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
 import DeleteModal from 'components/Modals/DeleteModal/DeleteModal';
-import { setPage } from 'redux/notices/noticesSlices';
+import { setCategory, setPage } from 'redux/notices/noticesSlices';
 import {
   getNoticesThunk,
   deleteNoticeById,
 } from 'redux/notices/noticesOperations';
 import LoaderGif from 'components/LoaderGif/LoaderGif';
+import { useLocation } from 'react-router-dom';
 
 const NoticesCategoriesList = () => {
   const [active, setActive] = useState(false);
@@ -37,10 +38,15 @@ const NoticesCategoriesList = () => {
   const totalNotices = useSelector(selectTotalNotices);
   const dispatch = useDispatch();
   const totalPages = Math.ceil(totalNotices / 12);
+  const location = useLocation();
 
   useEffect(() => {
+    if (!location.pathname.includes(query.category)) {
+      dispatch(setCategory('sell'));
+      return;
+    }
     dispatch(getNoticesThunk(query));
-  }, [dispatch, query]);
+  }, [dispatch, location.pathname, notices.length, query]);
 
   const handlePageChange = page => {
     dispatch(setPage(page));
@@ -107,11 +113,13 @@ const NoticesCategoriesList = () => {
           </NoticesList>
         </>
       )}
-      {!isLoading && notices.length > 0 && <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />}
+      {!isLoading && notices.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
       {active && (
         <ModalNotice
           active={active}
