@@ -29,23 +29,14 @@ const PetsList = () => {
       {myPets.length === 0 ? (
         <PlaceHolder />
       ) : (
-        <>
-          {myPets.map(p => {
-            return (
-              <ListItem key={p._id}>
-                <PetsItem pet={p} handleDelete={deletePetById} />
-              </ListItem>
-            );
-          })}
-        </>
+        myPets.map(pet => {
+          return (
+            <ListItem key={pet._id}>
+              <PetsItem pet={pet} handleDelete={deletePetById} />
+            </ListItem>
+          );
+        })
       )}
-      {/* // {myPets.map(pet => {
-      //   return (
-      //     <ListItem key={pet._id}>
-      //       <PetsItem pet={pet} handleDelete={deletePetById} />
-      //     </ListItem>
-      //   );
-      // })} */}
     </List>
   );
 };
