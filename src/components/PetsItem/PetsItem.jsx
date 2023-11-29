@@ -9,6 +9,7 @@ import {
   TextTitle,
   Thumb,
 } from './PetsItem.styled';
+import { formatDate } from 'helpers/formatDate';
 
 const PetsItem = ({ pet, handleDelete }) => {
   const { name, birthday, petType, comments, photoURL, _id } = pet;
@@ -30,7 +31,7 @@ const PetsItem = ({ pet, handleDelete }) => {
         </Text>
         <Text>
           <TextTitle>Date of birth: </TextTitle>
-          {birthday}
+          {formatDate(birthday, 'DD.MM.YYYY')}
         </Text>
         <Text>
           <TextTitle>Type: </TextTitle>

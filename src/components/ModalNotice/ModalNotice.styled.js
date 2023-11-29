@@ -51,7 +51,6 @@ export const AdvertisementContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* align-items: flex-start; */
   gap: 20px;
   @media screen and (min-width: 768px) {
     display: flex;
@@ -67,6 +66,8 @@ export const Title = styled.h3`
   font-size: 24px;
   font-weight: 700;
   line-height: 32.78px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media screen and (min-width: 768px) {
     height: 76px;
     font-size: 28px;
@@ -85,7 +86,6 @@ export const ListContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    /* align-items: center; */
     gap: 50px;
   }
 `;
@@ -93,6 +93,7 @@ export const ListContainer = styled.div`
 export const LeftList = styled.ul`
   display: block;
   overflow: hidden;
+  width: 30%;
 `;
 
 export const LeftListItem = styled.li`
@@ -134,6 +135,8 @@ export const MiddleContentText = styled.p`
   font-weight: 500;
   line-height: 19.12px;
   letter-spacing: 0.56px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media screen and (min-width: 768px) {
     padding: 28px 32px 0 32px;
     font-size: 16px;

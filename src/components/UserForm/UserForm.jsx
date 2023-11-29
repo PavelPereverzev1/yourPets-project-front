@@ -12,10 +12,13 @@ import {
 } from './UserForm.styled';
 import { useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/AuthSlice';
+// import StyledDatepicker from 'components/StyledDatepicker/StyledDatepicker';
 
 const UserForm = ({ isEditFormInactive, formik }) => {
   const [screenWidth] = useWindowSize();
   const isLoading = useSelector(selectIsLoading);
+
+  console.log(formik.values);
 
   return (
     <Form onSubmit={formik.handleSubmit}>
@@ -59,6 +62,24 @@ const UserForm = ({ isEditFormInactive, formik }) => {
             />
           </ErorrWrapper>
         </InputWrapper>
+
+        {/* <InputWrapper>
+          <Label htmlFor="birthday">Birthday:</Label>
+          <ErorrWrapper>
+            <StyledDatepicker
+              selected={formik.values.birthday}
+              onChange={value => formik.setFieldValue('birthday', value)}
+              name="birthday"
+              disabled={isEditFormInactive}
+              onBlur={formik.handleBlur}
+              $isValid={!formik.errors.birthday}
+            />
+            <ValidationError
+              touched={formik.touched.birthday}
+              error={formik.errors.birthday}
+            />
+          </ErorrWrapper>
+        </InputWrapper> */}
 
         <InputWrapper>
           <Label htmlFor="birthday">Birthday:</Label>

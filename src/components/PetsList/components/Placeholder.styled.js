@@ -1,22 +1,38 @@
 import styled from 'styled-components';
 
 const MisisngPetElement = styled.li`
-  @media screen and (max-width: 768px) {
-    display: none;
+  width: 280px;
+  padding: 16px 20px 40px 20px;
+  border-radius: 20px;
+  background: var(--white);
+  box-shadow: var(--boxShadowDefault);
+  margin-bottom: 100px;
+
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    border-radius: 40px;
   }
-  font-size: 20px;
-  background-color: #fff;
-  padding: 16px;
-  border-radius: 24px;
-  margin-left: auto;
-  margin-right: auto;
+
+  @media screen and (min-width: 1280px) {
+    width: 820px;
+  }
 `;
 
 const MissingPetDis = styled.p`
-  color: inherit;
-  margin: 0;
-  padding: 24px;
+  padding: 40px 0 24px 0;
+  font-weight: 500;
   text-align: center;
-  font-size: 20px;
+  font-size: 14px;
+  letter-spacing: 0.56px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    line-height: 18px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.64px;
+  }
 `;
 export { MisisngPetElement, MissingPetDis };
