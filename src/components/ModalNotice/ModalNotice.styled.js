@@ -83,17 +83,16 @@ export const ListContainer = styled.div`
   gap: 20px;
   @media screen and (min-width: 768px) {
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     gap: 50px;
   }
 `;
 
 export const LeftList = styled.ul`
-  display: block;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   width: 30%;
+  gap: 8px;
 `;
 
 export const LeftListItem = styled.li`
@@ -109,13 +108,16 @@ export const LeftListItem = styled.li`
 `;
 
 export const RightList = styled.ul`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   overflow: hidden;
 `;
 
 export const RightListItem = styled.li`
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 12px;
   font-weight: 500;
   line-height: 19.12px;
@@ -126,7 +128,13 @@ export const RightListItem = styled.li`
 `;
 
 export const LinkContact = styled.a`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--yellow);
+  &:hover,:focus{
+    text-decoration: underline;
+  }
 `;
 
 export const MiddleContentText = styled.p`
@@ -135,8 +143,7 @@ export const MiddleContentText = styled.p`
   font-weight: 500;
   line-height: 19.12px;
   letter-spacing: 0.56px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+overflow-wrap: break-word;  
   @media screen and (min-width: 768px) {
     padding: 28px 32px 0 32px;
     font-size: 16px;
