@@ -19,7 +19,7 @@ export const ModalWrapper = styled.div`
 export const ModalContent = styled.div`
     border-radius: 20px;
     background-color: var(--white);
-    transform: ${props => props.$active ? 'scale(1)':'scale(0.5)'};
+    transform: ${props => props.$primary ? 'scale(1)':'scale(0.5)'};
     transition: 0.4s all;
     max-width: 280px;
     @media screen and (min-width: 768px){
