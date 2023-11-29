@@ -1,4 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
+import Pagination from '../Pagination/Pagination';
+import ModalNotice from 'components/ModalNotice/ModalNotice';
+import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
+import DeleteModal from 'components/Modals/DeleteModal/DeleteModal';
+import { setCategory, setPage } from 'redux/notices/noticesSlices';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import SkeletonNotices from 'components/CardsSkeleton/SkeletonNotices';
 import {
   NoticesList,
   NotFoundPetsMessage,
@@ -10,20 +20,10 @@ import {
   selectQuery,
   selectTotalNotices,
 } from 'redux/notices/noticesSelectors';
-import { useEffect, useState } from 'react';
-import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
-import Pagination from '../Pagination/Pagination';
-import ModalNotice from 'components/ModalNotice/ModalNotice';
-import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
-import DeleteModal from 'components/Modals/DeleteModal/DeleteModal';
-import { setCategory, setPage } from 'redux/notices/noticesSlices';
 import {
   getNoticesThunk,
   deleteNoticeById,
 } from 'redux/notices/noticesOperations';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Report } from 'notiflix/build/notiflix-report-aio';
-import SkeletonNotices from 'components/CardsSkeleton/SkeletonNotices';
 
 const NoticesCategoriesList = () => {
   const [active, setActive] = useState(false);
@@ -104,27 +104,25 @@ const NoticesCategoriesList = () => {
       {isLoading ? (
         <SkeletonNotices />
       ) : (
-        <>
-          <NoticesList>
-            {notices.length > 0 ? (
-              notices.map(item => {
-                return (
-                  <NoticeCategoryItem
-                    key={item._id}
-                    notice={item}
-                    handleLearnMore={() => handleLearnMore(item._id)}
-                    handleAttentionModal={handleAttentionModal}
-                    handleDeleteModal={() => handleDeleteModal(item)}
-                  />
-                );
-              })
-            ) : (
-              <NotFoundPetsMessage>
-                No Pets found, reload page or try again later
-              </NotFoundPetsMessage>
-            )}
-          </NoticesList>
-        </>
+        <NoticesList>
+          {notices.length > 0 ? (
+            notices.map(item => {
+              return (
+                <NoticeCategoryItem
+                  key={item._id}
+                  notice={item}
+                  handleLearnMore={() => handleLearnMore(item._id)}
+                  handleAttentionModal={handleAttentionModal}
+                  handleDeleteModal={() => handleDeleteModal(item)}
+                />
+              );
+            })
+          ) : (
+            <NotFoundPetsMessage>
+              No Pets found, reload page or try again later
+            </NotFoundPetsMessage>
+          )}
+        </NoticesList>
       )}
       {!isLoading && notices.length > 0 && (
         <Pagination

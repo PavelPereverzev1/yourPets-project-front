@@ -68,4 +68,5 @@ export const RoundButton = styled(FilledButton)`
   font-weight: 600;
   margin-left: auto;
   background-image: var(--blueGradient);
+  pointer-events: all;
 `;

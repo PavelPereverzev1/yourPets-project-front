@@ -49,10 +49,16 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const NoticeNavContainer = styled.div`
-  align-items: center;
+  align-items: start;
   position: relative;
   display: flex;
   justify-content: space-between;
+`;
+
+const AddIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  stroke: var(--white);
 `;
 
 export {
@@ -62,4 +68,5 @@ export {
   StyledNavLink,
   NoticeNavContainer,
   NavBtn,
+  AddIcon,
 };
