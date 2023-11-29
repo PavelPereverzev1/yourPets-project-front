@@ -28,24 +28,17 @@ export const BlocksWrapper = styled.div`
     font-size: 20px;
     line-height: 27px;
   }
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
-
+// SexPhotoblock
 export const SexPhotoblock = styled.div`
   flex: 1;
 
   display: flex;
   flex-direction: column;
   gap: 10px;
-  // height: 180px;
-  // justify-content: space-between;
 
   @media screen and (min-width: 768px) {
     gap: 40px;
-    // height: 328px;
-    // padding-bottom: 8px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -58,71 +51,12 @@ export const Sexblock = styled.div`
 `;
 export const SexList = styled.div`
   display: flex;
-`;
-
-export const RadioInput = styled(Field)`
-  appearance: none;
-  cursor: pointer;
-  display: none;
-
-  &: checked;
-`;
-
-export const StyledRadio = styled.label`
-  display: inline-flex;
-  height: 35px;
-  padding: 8px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-
-  border-radius: 40px;
-  background-color: transparent;
-
-  color: var(--gray);
-  font-family: Manrope;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.64px;
-
-  cursor: pointer;
-
-  &:hover {
-    color: var(--white);
-    background-color: var(--blueLink);
-  }
-
-  ${RadioInput}:checked + & {
-    color: var(--white);
-    background-color: var(--blueLink);
-  }
 
   @media screen and (min-width: 768px) {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: 0.56px;
-  }
-
-  @media screen and (min-width: 1280px) {
+    gap: 4px;
   }
 `;
 
-export const IconSex = styled.svg`
-  width: 24px;
-  height: 24px;
-  stroke: var(--gray);
-
-  transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  ${RadioInput}:checked + & {
-    stroke: var(--white);
-  }
-`;
-
-//Photoblock
 export const PhotoBlock = styled.div`
   display: flex;
   align-items: center;
@@ -132,15 +66,11 @@ export const PhotoBlock = styled.div`
     flex-direction: column;
     gap: 8px;
   }
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
-
 export const PhotoLabel = styled.label`
   display: inline-block;
   width: 81px;
-  hight: 100%;
+  height: 100%;
 
   @media screen and (min-width: 768px) {
     width: 100%;
@@ -189,7 +119,7 @@ export const PhotoInput = styled.input`
   cursor: pointer;
 `;
 
-//LocationPriceblock
+// LocationPriceblock
 export const LocationPriceBlock = styled.div`
   flex: 2;
 
@@ -259,8 +189,8 @@ export const CommentsInput = styled(Field)`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    height: ${props =>
-      props.noticeType === 'lost-found' || props.noticeType === 'in-good-hands'
+    height: ${noticetype =>
+      noticetype === 'lost-found' || noticetype === 'in-good-hands'
         ? '182px'
         : '79px'};
   }

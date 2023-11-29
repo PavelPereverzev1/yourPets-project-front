@@ -19,7 +19,7 @@ export const FormAddMoreDetails = styled(FormikForm)`
     line-height: 27px;
   }
 `;
-
+// PhotoBlock
 export const PhotoBlock = styled.div`
   display: flex;
   align-items: center;
@@ -28,21 +28,14 @@ export const PhotoBlock = styled.div`
   @media screen and (min-width: 768px) {
     gap: 16px;
   }
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
-
 export const PhotoLabel = styled.label`
   display: inline-block;
   width: 81px;
-  hight: 100%;
+  height: 100%;
 
   @media screen and (min-width: 768px) {
     width: 114px;
-  }
-
-  @media screen and (min-width: 1280px) {
   }
 `;
 export const ImagePreview = styled.div`
@@ -57,9 +50,6 @@ export const ImagePreview = styled.div`
     height: 182px;
     border-radius: 40px;
     margin-right: auto;
-  }
-
-  @media screen and (min-width: 1280px) {
   }
 `;
 export const DefaultImage = styled.div`
@@ -85,6 +75,7 @@ export const PhotoInput = styled.input`
   cursor: pointer;
 `;
 
+// CommentsBlock
 export const DetailWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -96,7 +87,7 @@ export const CommentsInput = styled(Field)`
   display: flex;
   text-align: start;
   justify-content: center;
-  height: 92px;
+  /* height: 92px; */
   width: 100%;
   padding: 8px 16px;
   border: 1px solid var(--blueLink);
@@ -104,7 +95,7 @@ export const CommentsInput = styled(Field)`
   flex-shrink: 0;
   overflow: hidden;
   overflow-wrap: break-word;
-  text-overflow: ellipsis;
+  overflow-y: auto;
 
   border-radius: 20px;
 
@@ -118,7 +109,7 @@ export const CommentsInput = styled(Field)`
   }
 
   @media screen and (min-width: 768px) {
-  height: 79px;
+    /* height: 79px; */
     padding: 12px 16px;
 
     &::placeholder {
@@ -126,4 +117,5 @@ export const CommentsInput = styled(Field)`
       line-height: 24px;
       letter-spacing: 0.64px;
     }
+  }
 `;
