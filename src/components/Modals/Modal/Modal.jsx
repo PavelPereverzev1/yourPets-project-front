@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import "./modal.css"
+// import "./modal.css"
 import { MdClose } from "react-icons/md";
+import { ModalCloseBtn, ModalContent, ModalWrapper } from './Modal.styled';
 
 export default function Modal({ active, setActive, children }) {
   useEffect(() => {
@@ -20,17 +21,16 @@ export default function Modal({ active, setActive, children }) {
   }, [setActive]);
   return (
     
-      <div className={active ? "modal active": "modal"} onClick={()=>setActive(false)}>
-        <div  className={active ? "modal-content active": "modal-content"} onClick={e => e.stopPropagation()}>
-          <button
-                  className="modal-close-button"
+      <ModalWrapper $primary={active} onClick={()=>setActive(false)}>
+        <ModalContent $primary={active} onClick={e => e.stopPropagation()}>
+          <ModalCloseBtn
                   onClick={()=>setActive(false)}
                 >
                   <MdClose/>
-          </button>
+          </ModalCloseBtn>
           {children}
-        </div>
-      </div>
+        </ModalContent>
+      </ModalWrapper>
     
   );
 }
