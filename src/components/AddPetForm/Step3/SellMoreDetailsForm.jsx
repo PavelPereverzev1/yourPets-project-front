@@ -2,7 +2,6 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import React, { useRef } from 'react';
 
-import BackgroundCard from '../BackgroundCard';
 import PreviewImage from '../PreviewImage/PreviewImage';
 import StepsBlock from '../StepsBlock';
 import GenderFieldRadio from '../GenderFieldRadio';
@@ -10,6 +9,7 @@ import ErrorComponent from '../ErrorComponent';
 
 import sprite from '../../../images/icons/sprite.svg';
 import {
+  Card,
   FormSellMoreDetails,
   BlocksWrapper,
   SexPhotoblock,
@@ -91,7 +91,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
   const fileRef = useRef(null);
 
   return (
-    <BackgroundCard noticetype={data.noticeType}>
+    <Card>
       <Title>Add pet</Title>
       <StepsBlock step={3} />
       <Formik
@@ -195,7 +195,6 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                     placeholder="Enter your comments"
                     component="textarea"
                     rows="4"
-                    noticeType={values.noticeType}
                   ></CommentsInput>
                   <ErrorComponent name="comments" />
                 </DetailWrapper>
@@ -225,7 +224,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
           </FormSellMoreDetails>
         )}
       </Formik>
-    </BackgroundCard>
+    </Card>
   );
 };
 

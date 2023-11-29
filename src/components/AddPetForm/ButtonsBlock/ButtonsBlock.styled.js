@@ -7,7 +7,7 @@ export const ButtonsWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  margin-top: ${props => (props.noticeType === 'your-pet' ? '44px' : '24px')};
+  margin-top: 24px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
@@ -38,6 +38,11 @@ const sharedStyles = css`
   font-size: 16px;
   line-height: 1.36;
   letter-spacing: 0.3px;
+
+  &:hover,
+  &:focus {
+    border: none;
+  }
 `;
 
 export const ButtonWhite = styled.button`

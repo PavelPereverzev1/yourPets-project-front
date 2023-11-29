@@ -9,6 +9,11 @@ export const Label = styled.label`
   background-color: ${props => (props.checked ? '#54ADFF' : '#fff')};
   border-radius: 40px;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border: none;
+  }
 `;
 export const Icon = styled.svg`
   stroke: ${props => (props.checked ? '#fff' : props.stroke)};

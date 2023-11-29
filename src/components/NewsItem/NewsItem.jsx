@@ -22,15 +22,31 @@ function formatDate(dateString) {
   return `${formattedDay}/${formattedMonth}/${year}`;
 }
 
+function truncateTitle(title, maxLength) {
+  if (title.length <= maxLength) {
+    return title;
+  }
+  return title.slice(0, maxLength) + '...';
+}
+
+function truncateText(text, maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return text.slice(0, maxLength) + '...';
+}
+
 function NewsItem({ imgUrl, title, text, date, url }) {
+  const truncatedTitle = truncateTitle(title, 40);
+  const truncatedText = truncateText(text, 150);
   return (
     <Item>
       <Line />
       <Wrapper>
         <NewsImg src={imgUrl} />
         <ContentWrapper>
-          <NewsTitle>{title}</NewsTitle>
-          <NewsText>{text}</NewsText>
+          <NewsTitle>{truncatedTitle}</NewsTitle>
+          <NewsText>{truncatedText}</NewsText>
         </ContentWrapper>
         <BottomWrapper>
           <NewsDate>{formatDate(date)}</NewsDate>
