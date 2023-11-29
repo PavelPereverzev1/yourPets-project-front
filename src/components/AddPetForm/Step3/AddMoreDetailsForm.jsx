@@ -53,7 +53,7 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
   const fileRef = useRef(null);
 
   return (
-    <BackgroundCard>
+    <BackgroundCard $noticetype={data.noticeType}>
       <Title>Add pet</Title>
       <StepsBlock step={3} />
       <Formik
@@ -105,6 +105,7 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
                 rows="4"
                 noticeType={values.noticeType}
               ></CommentsInput>
+              <ErrorMessage name="comments" />
             </DetailWrapper>
             <ButtonsWrapper>
               <ButtonBlue type="submit">

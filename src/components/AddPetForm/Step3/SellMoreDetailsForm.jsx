@@ -5,6 +5,7 @@ import React, { useRef } from 'react';
 import BackgroundCard from '../BackgroundCard';
 import PreviewImage from '../PreviewImage/PreviewImage';
 import StepsBlock from '../StepsBlock';
+import GenderFieldRadio from '../GenderFieldRadio';
 
 import sprite from '../../../images/icons/sprite.svg';
 import {
@@ -13,9 +14,6 @@ import {
   SexPhotoblock,
   Sexblock,
   SexList,
-  StyledRadio,
-  RadioInput,
-  IconSex,
   PhotoBlock,
   ImagePreview,
   DefaultImage,
@@ -92,7 +90,7 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
   const fileRef = useRef(null);
 
   return (
-    <BackgroundCard noticeType={data.noticeType}>
+    <BackgroundCard $noticetype={data.noticeType}>
       <Title>Add pet</Title>
       <StepsBlock step={3} />
       <Formik
@@ -111,34 +109,29 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                 <Sexblock role="group" aria-labelledby="gender-radio-group">
                   The Sex
                   <SexList>
-                    <StyledRadio>
-                      <IconSex>
-                        <use href={`${sprite}#icon-female`} />
-                      </IconSex>
-                      <RadioInput
-                        id="sex"
-                        type="radio"
-                        name="sex"
-                        value="female"
-                      />
-                      Female
-                    </StyledRadio>
-                    <StyledRadio>
-                      <IconSex>
-                        <use href={`${sprite}#icon-male`} />
-                      </IconSex>
-                      <RadioInput
-                        id="sex"
-                        type="radio"
-                        name="sex"
-                        value="male"
-                      />
-                      Male
-                    </StyledRadio>
+                    <GenderFieldRadio
+                      value="female"
+                      text="Female"
+                      onChange={() => setFieldValue('sex', 'female')}
+                      checked={values.sex === 'female'}
+                      stroke="#F43F5E"
+                      fill=""
+                      iconName="icon-female"
+                      iconSize=""
+                    />
+                    <GenderFieldRadio
+                      value="male"
+                      text="Male"
+                      onChange={() => setFieldValue('sex', 'male')}
+                      checked={values.sex === 'male'}
+                      stroke="#54ADFF"
+                      fill=""
+                      iconName="icon-male"
+                      iconSize=""
+                    />
                   </SexList>
                   <ErrorMessage name="sex" />
                 </Sexblock>
-
                 <PhotoBlock>
                   <PhotoLabel htmlFor="photo">Load the pet’s image:</PhotoLabel>
 

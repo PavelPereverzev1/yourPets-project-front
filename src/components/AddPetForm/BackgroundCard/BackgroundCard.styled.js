@@ -17,18 +17,18 @@ export const Card = styled.div`
   @media screen and (min-width: 768px) {
     padding: 20px 32px;
     width: ${props =>
-      props.noticeType === 'sell' ||
-      props.noticeType === 'lost-found' ||
-      props.noticeType === 'in-good-hands'
+      props.noticetype === 'sell' ||
+      props.noticetype === 'lost-found' ||
+      props.noticetype === 'in-good-hands'
         ? '704px'
         : '458px'};
   }
 
   @media screen and (min-width: 1280px) {
     width: ${props =>
-      props.noticeType === 'sell' ||
-      props.noticeType === 'lost-found' ||
-      props.noticeType === 'in-good-hands'
+      props.noticetype === 'sell' ||
+      props.noticetype === 'lost-found' ||
+      props.noticetype === 'in-good-hands'
         ? '882px'
         : '458px'};
   }

@@ -65,28 +65,28 @@ const stepTwoValidationSchema = Yup.object().shape({
     .max(60, 'max 60 symbols'),
 });
 
-const PersonalDetailsForm = props => {
+const PersonalDetailsForm = ({ next, prev, data }) => {
   const handleSubmit = values => {
-    props.next(values);
+    next(values);
   };
 
   return (
-    <BackgroundCard>
+    <BackgroundCard $noticetype={data.noticeType}>
       <Title>Add pet</Title>
       <StepsBlock step={2} />
       <Formik
         validationSchema={
-          props.data.noticeType !== 'your pet'
+          data.noticeType !== 'your-pet'
             ? stepTwoValidationSchema
             : stepTwoValidationSchemaAdd
         }
-        initialValues={props.data}
+        initialValues={data}
         onSubmit={handleSubmit}
       >
         {({ values }) => (
           <FormPersonalDetails>
             <FieldsWrapper>
-              {values.noticeType !== 'your pet' && (
+              {values.noticeType !== 'your-pet' && (
                 <DetailWrapper>
                   <DetailLabel htmlFor="title"> Title of add</DetailLabel>
                   <DetailInput
@@ -138,7 +138,7 @@ const PersonalDetailsForm = props => {
                   />
                 </BtnIcon>
               </ButtonBlue>
-              <ButtonWhite type="button" onClick={() => props.prev(values)}>
+              <ButtonWhite type="button" onClick={() => prev(values)}>
                 <BtnIcon>
                   <use
                     href={`${sprite}#icon-arrow-left`}
