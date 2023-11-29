@@ -32,6 +32,7 @@ import {
   FemaleIcon,
   RemoveIcon,
 } from './SvgIcons.jsx';
+import formatCategoryName from 'helpers/formatCategoryName.js';
 
 const NoticeCategoryItem = ({
   notice,
@@ -109,7 +110,9 @@ const NoticeCategoryItem = ({
       <Item key={notice._id}>
         <ImageBlock>
           <InGoodHands>
-            <CategoryLable>{notice.noticeType}</CategoryLable>
+            <CategoryLable>
+              {formatCategoryName(notice.noticeType)}
+            </CategoryLable>
           </InGoodHands>
           {/* <Favorite onClick={() => handleAttentionModal(true)}>
             <FavoriteIcon></FavoriteIcon>

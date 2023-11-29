@@ -91,7 +91,9 @@ const noticesSlice = createSlice({
       })
       .addCase(deleteNoticeFromFavorite.fulfilled, (state, { payload }) => {
         state.noticesError = null;
-        state.items = state.items.filter(item => item._id !== payload);
+        if (state.query.category === 'favorite') {
+          state.items = state.items.filter(item => item._id !== payload);
+        }
       })
       .addCase(deleteNoticeFromFavorite.rejected, (state, { payload }) => {
         state.noticesError = payload;
