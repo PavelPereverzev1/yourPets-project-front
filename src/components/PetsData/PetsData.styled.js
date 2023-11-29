@@ -9,9 +9,14 @@ export const Section = styled.section`
 
 export const BgContainer = styled.div`
   position: absolute;
-  width: 100%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100vw;
   height: 100%;
   padding-top: 20px;
+  padding-right: 10vw;
+  pointer-events: none;
 `;
 
 export const TopContainer = styled.div`

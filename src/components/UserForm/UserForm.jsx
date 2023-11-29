@@ -18,8 +18,6 @@ const UserForm = ({ isEditFormInactive, formik }) => {
   const [screenWidth] = useWindowSize();
   const isLoading = useSelector(selectIsLoading);
 
-  console.log(formik.values);
-
   return (
     <Form onSubmit={formik.handleSubmit}>
       <InputsContainer>
