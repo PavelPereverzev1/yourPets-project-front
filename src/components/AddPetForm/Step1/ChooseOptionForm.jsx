@@ -30,7 +30,6 @@ const stepOneValidationSchema = Yup.object().shape({
 const ChooseOptionForm = ({ next, data }) => {
   const handleSubmit = values => {
     next(values);
-    console.log('set noticeType:', data.noticeType);
   };
   const navigate = useNavigate();
 

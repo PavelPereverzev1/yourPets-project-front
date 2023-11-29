@@ -4,17 +4,18 @@ export const Item = styled.li`
 list-style: none;
 margin-bottom: 24px;
 
-@media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     &:nth-child(odd) {
-        margin-right: 32px;
-      }
+      margin-right: 32px;
+    }
 
-      @media screen and (min-width: 1280px){
-        margin-right: 31px;
-        &:nth-child(3n + 3) {
-            margin-right: 0;
-          }
-}
+    @media screen and (min-width: 1280px) {
+      margin-right: 31px;
+      &:nth-child(3n + 3) {
+        margin-right: 0;
+      }
+    }
+  }
 `;
 
 export const Line = styled.div`

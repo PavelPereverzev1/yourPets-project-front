@@ -9,8 +9,6 @@ const UserPage = () => {
   const isFirstLoggedIn = useSelector(selectIsFirstLoggedIn);
   const dispatch = useDispatch();
 
-  console.log(isFirstLoggedIn);
-
   const handleCongratsModal = () => {
     dispatch(setIsFirstLoggedIn());
   };

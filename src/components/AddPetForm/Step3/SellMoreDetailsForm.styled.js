@@ -23,7 +23,6 @@ export const BlocksWrapper = styled.div`
   @media screen and (min-width: 768px) {
     flex-direction: row;
     gap: 34px;
-    height: 328px;
 
     font-size: 20px;
     line-height: 27px;
@@ -70,7 +69,6 @@ export const PhotoBlock = styled.div`
 export const PhotoLabel = styled.label`
   display: inline-block;
   width: 81px;
-  height: 100%;
 
   @media screen and (min-width: 768px) {
     width: 100%;

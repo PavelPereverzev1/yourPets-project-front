@@ -35,5 +35,4 @@ const MissingPetDis = styled.p`
     letter-spacing: 0.64px;
   }
 `;
-
 export { MisisngPetElement, MissingPetDis };
