@@ -35,7 +35,7 @@ const ChooseOptionForm = ({ next, data }) => {
 
   return (
     <>
-      <BackgroundCard $noticetype={data.noticeType}>
+      <BackgroundCard>
         <Title>Add pet</Title>
         <StepsBlock step={1} />
         <Formik

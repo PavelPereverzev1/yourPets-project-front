@@ -28,8 +28,10 @@ export const RadioWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+  margin-bottom: 68px;
 
   @media screen and (min-width: 768px) {
     gap: 12px;
+    margin-bottom: 112px;
   }
 `;

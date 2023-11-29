@@ -9,6 +9,7 @@ import ErrorComponent from '../ErrorComponent';
 import sprite from '../../../images/icons/sprite.svg';
 import {
   FormAddMoreDetails,
+  BlocksWrapper,
   DetailWrapper,
   PhotoBlock,
   PhotoLabel,
@@ -55,7 +56,7 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
   const fileRef = useRef(null);
 
   return (
-    <BackgroundCard $noticetype={data.noticeType}>
+    <BackgroundCard>
       <Title>Add pet</Title>
       <StepsBlock step={3} />
       <Formik
@@ -65,50 +66,52 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
       >
         {({ values, setFieldValue }) => (
           <FormAddMoreDetails>
-            <PhotoBlock>
-              <PhotoLabel htmlFor="photo">
-                Load the <br /> pet’s image:
-              </PhotoLabel>
+            <BlocksWrapper>
+              <PhotoBlock>
+                <PhotoLabel htmlFor="photo">
+                  Load the <br /> pet’s image:
+                </PhotoLabel>
 
-              <ImagePreview>
-                <PhotoInput
-                  ref={fileRef}
-                  hidden
-                  type="file"
-                  id="photo"
-                  name="photo"
-                  onChange={event => {
-                    setFieldValue('photo', event.target.files[0]);
-                  }}
-                />
-                {values.photo !== null ? (
-                  <PreviewImage photo={values.photo} />
-                ) : (
-                  <DefaultImage>
-                    <UploadIcon>
-                      <use
-                        href={`${sprite}#icon-plus`}
-                        stroke="var(--blueLink)"
-                      />
-                    </UploadIcon>
-                  </DefaultImage>
-                )}
-              </ImagePreview>
-              <ErrorComponent name="photo" />
-            </PhotoBlock>
+                <ImagePreview>
+                  <PhotoInput
+                    ref={fileRef}
+                    hidden
+                    type="file"
+                    id="photo"
+                    name="photo"
+                    onChange={event => {
+                      setFieldValue('photo', event.target.files[0]);
+                    }}
+                  />
+                  {values.photo !== null ? (
+                    <PreviewImage photo={values.photo} />
+                  ) : (
+                    <DefaultImage>
+                      <UploadIcon>
+                        <use
+                          href={`${sprite}#icon-plus`}
+                          stroke="var(--blueLink)"
+                        />
+                      </UploadIcon>
+                    </DefaultImage>
+                  )}
+                </ImagePreview>
+                <ErrorComponent name="photo" />
+              </PhotoBlock>
 
-            <DetailWrapper>
-              <label htmlFor="comments"> Comments</label>
-              <CommentsInput
-                id="comments"
-                name="comments"
-                placeholder="Enter your comments"
-                component="textarea"
-                rows="4"
-                noticeType={values.noticeType}
-              ></CommentsInput>
-              <ErrorComponent name="comments" />
-            </DetailWrapper>
+              <DetailWrapper>
+                <label htmlFor="comments"> Comments</label>
+                <CommentsInput
+                  id="comments"
+                  name="comments"
+                  placeholder="Enter your comments"
+                  component="textarea"
+                  rows="4"
+                  noticeType={values.noticeType}
+                ></CommentsInput>
+                <ErrorComponent name="comments" />
+              </DetailWrapper>
+            </BlocksWrapper>
             <ButtonsWrapper>
               <ButtonBlue type="submit">
                 Done

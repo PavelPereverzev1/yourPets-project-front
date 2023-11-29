@@ -71,7 +71,7 @@ const PersonalDetailsForm = ({ next, prev, data }) => {
   };
 
   return (
-    <BackgroundCard $noticetype={data.noticeType}>
+    <BackgroundCard>
       <Title>Add pet</Title>
       <StepsBlock step={2} />
       <Formik
@@ -128,7 +128,8 @@ const PersonalDetailsForm = ({ next, prev, data }) => {
                 <ErrorComponent name="petType" />
               </DetailWrapper>
             </FieldsWrapper>
-            <ButtonsWrapper noticeType={values.noticeType}>
+
+            <ButtonsWrapper>
               <ButtonBlue type="submit">
                 Next
                 <BtnIcon>

@@ -1,6 +1,30 @@
 import styled from 'styled-components';
 import { Form as FormikForm, Field } from 'formik';
 
+export const Card = styled.div`
+  position: relative;
+  width: 280px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-radius: 40px;
+  background: #fff;
+  margin: 0 auto;
+  padding: 20px 8px;
+  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+
+  @media screen and (min-width: 768px) {
+    padding: 20px 32px;
+    width: 704px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 882px;
+  }
+`;
+
 export const FormSellMoreDetails = styled(FormikForm)`
   width: 100%;
   display: flex;
@@ -12,6 +36,7 @@ export const BlocksWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 20px;
 
   color: var(--black);
   font-family: Manrope;
@@ -115,6 +140,11 @@ export const PhotoInput = styled.input`
   height: 100%;
   opacity: 0;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border: none;
+  }
 `;
 
 // LocationPriceblock
@@ -148,6 +178,11 @@ justify-content: center;
 width: 100%;
 padding: 8px 16px;
 border: 1px solid var(--blueLink);
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--blueLink);
+  }
 `;
 
 export const DetailInput = styled(Field)`
@@ -187,9 +222,6 @@ export const CommentsInput = styled(Field)`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    height: ${noticetype =>
-      noticetype === 'lost-found' || noticetype === 'in-good-hands'
-        ? '182px'
-        : '79px'};
+    height: 79px;
   }
 `;
