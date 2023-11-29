@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Item = styled.li`
-  list-style: none;
+list-style: none;
+margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
     &:nth-child(odd) {
