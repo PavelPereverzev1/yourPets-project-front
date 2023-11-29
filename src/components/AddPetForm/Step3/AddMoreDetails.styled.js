@@ -3,10 +3,14 @@ import { Form as FormikForm, Field } from 'formik';
 
 export const FormAddMoreDetails = styled(FormikForm)`
   width: 100%;
+`;
+
+export const BlocksWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
   gap: 24px;
+  padding-bottom: 20px;
 
   color: var(--black);
   font-family: Manrope;
@@ -92,7 +96,6 @@ export const CommentsInput = styled(Field)`
   display: flex;
   text-align: start;
   justify-content: center;
-  /* height: 92px; */
   width: 100%;
   padding: 8px 16px;
   border: 1px solid var(--blueLink);
@@ -119,7 +122,6 @@ export const CommentsInput = styled(Field)`
   }
 
   @media screen and (min-width: 768px) {
-    /* height: 79px; */
     padding: 12px 16px;
 
     &::placeholder {

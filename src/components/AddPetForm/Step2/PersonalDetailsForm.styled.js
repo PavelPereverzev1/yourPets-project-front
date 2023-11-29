@@ -14,6 +14,7 @@ export const FieldsWrapper = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 20px;
+  margin-bottom: 20px;
 `;
 
 export const DetailWrapper = styled.div`

@@ -8,7 +8,6 @@ function GenderFieldRadio({
   checked,
   iconSize,
   stroke,
-  fill,
   iconName,
 }) {
   return (

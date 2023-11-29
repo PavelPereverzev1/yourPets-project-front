@@ -16,20 +16,6 @@ export const Card = styled.div`
 
   @media screen and (min-width: 768px) {
     padding: 20px 32px;
-    width: ${({ category }) =>
-      category === 'sell' ||
-      category === 'lost-found' ||
-      category === 'in-good-hands'
-        ? '704px'
-        : '458px'};
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: ${({ category }) =>
-      category === 'sell' ||
-      category === 'lost-found' ||
-      category === 'in-good-hands'
-        ? '882px'
-        : '458px'};
+    width: 458px;
   }
 `;
