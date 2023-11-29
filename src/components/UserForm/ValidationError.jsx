@@ -1,9 +1,6 @@
 import { styled } from 'styled-components';
 
 const ErrorMessage = styled.p`
-  /* position: absolute; */
-  /* bottom: -12px; */
-  /* left: 80px; */
   font-size: 10px;
   line-height: normal;
   letter-spacing: 0.48px;
