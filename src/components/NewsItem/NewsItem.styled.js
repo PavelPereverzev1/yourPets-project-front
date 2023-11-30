@@ -3,6 +3,11 @@ import styled from 'styled-components';
 export const Item = styled.li`
 list-style: none;
 margin-bottom: 24px;
+transform: scale(1);
+  transition: transform var(--transition);
+  &:hover {
+    transform: scale(1.05);
+  }
 
   @media screen and (min-width: 768px) {
     &:nth-child(odd) {
