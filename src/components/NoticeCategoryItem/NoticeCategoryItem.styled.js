@@ -10,10 +10,11 @@ export const Item = styled.li`
   background-color: var(--white);
   border-radius: 0 0 40px 40px;
   box-shadow: var(--boxShadowDefault);
-  transition: box-shadow var(--transition);
+  transition: box-shadow var(--transition), transform var(--transition);
 
   &:hover {
     box-shadow: var(--boxShadowHover);
+    transform: scale(1.05);
   }
 
   @media (min-width: 320px) {
