@@ -59,7 +59,8 @@ function AddPetForm() {
         await axios.post('/notices', requestData);
 
         navigate('/notices/own');
-      } else {
+      }
+      if (formData.noticeType === 'sell') {
         for (const key in formData) {
           requestData.append(key, formData[key]);
         }
