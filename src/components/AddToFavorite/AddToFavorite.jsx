@@ -90,7 +90,7 @@ const AddToFavorite = ({ notice, handleAttentionModal }) => {
           onClick={() => toggleFavorite(notice._id)}
         >
           <AddToFavoriteText>
-            {favorites.includes(notice._id) ? 'Remove from favorite' : 'Add to'}
+            {favorites.includes(notice._id) ? 'Remove from ' : 'Add to'}
           </AddToFavoriteText>
           <AddToFavoriteIcon isFavorite={isFavoriteNotice}></AddToFavoriteIcon>
         </AddToFavoriteButton>
