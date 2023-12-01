@@ -29,11 +29,13 @@ const NoticesPage = () => {
       <NoticeTitle>Find your favorite pet</NoticeTitle>
       <NoticesSearch />
       <NoticeCategoriesNav />
-      {/* <NoticesFilters /> */}
       <NoticesCategoriesList />
       {screenWidth < 768 && (
         <AddBtnContainer>
-          <ButtonComponent $variant="round" onClick={isLoggedIn ? handleClick: handleModalActive}>
+          <ButtonComponent
+            $variant="round"
+            onClick={isLoggedIn ? handleClick : handleModalActive}
+          >
             <AddIcon>
               <use href={`${sprite}#icon-plus`} />
             </AddIcon>
