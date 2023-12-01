@@ -8,6 +8,8 @@ import PersonalDetailsForm from './Step2/PersonalDetailsForm';
 import MoreDetailsForm from './Step3/MoreDetailsForm';
 
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setCategory } from 'redux/notices/noticesSlices';
 axios.defaults.baseURL = 'https://yourpets-project-backend.onrender.com';
 
 function AddPetForm() {
@@ -28,6 +30,7 @@ function AddPetForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const makeRequest = async formData => {
     const requestData = new FormData();
@@ -47,8 +50,6 @@ function AddPetForm() {
         }
 
         await axios.post('/pets', requestData);
-
-        navigate('/user');
       }
       if (
         formData.noticeType === 'lost/found' ||
@@ -61,8 +62,6 @@ function AddPetForm() {
         }
 
         await axios.post('/notices', requestData);
-
-        navigate('/notices/own');
       }
       if (formData.noticeType === 'sell') {
         for (const key in formData) {
@@ -70,7 +69,6 @@ function AddPetForm() {
         }
 
         await axios.post('/notices', requestData);
-        navigate('/notices/own');
       }
     } catch (error) {
       console.error('Error sending data:', error);
@@ -83,6 +81,13 @@ function AddPetForm() {
     if (final) {
       setIsLoading(true);
       await makeRequest(newData);
+      if (formData.noticeType !== 'your-pet') {
+        dispatch(setCategory('own'));
+        navigate('/notices/own');
+      } else {
+        navigate('/user');
+      }
+
       setIsLoading(false);
       setFormData(initialFormData);
       setCurrentStep(0);
