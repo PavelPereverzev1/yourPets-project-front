@@ -4,6 +4,7 @@ import React from 'react';
 
 import BackgroundCard from '../BackgroundCard';
 import StepsBlock from '../StepsBlock';
+// import FieldInput from '../FieldInput';
 import ErrorComponent from '../ErrorComponent';
 
 import {
@@ -88,6 +89,7 @@ const PersonalDetailsForm = ({ next, prev, data }) => {
             <FieldsWrapper>
               {values.noticeType !== 'your-pet' && (
                 <DetailWrapper>
+                  {/* <FieldInput id="" name="" placeholder="Enter title of add" /> */}
                   <DetailLabel htmlFor="title"> Title of add</DetailLabel>
                   <DetailInput
                     id="title"

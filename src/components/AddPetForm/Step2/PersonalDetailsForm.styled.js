@@ -35,7 +35,10 @@ export const DetailInput = styled(Field)`
   align-items: center;
 
   border-radius: 40px;
+  outline: none;
   border: 1px solid var(--blueLink);
+
+  box-shadow: rgba(136, 198, 253, 0.19) 3px 8px 14px 0px;
 
   &:hover,
   &:focus {

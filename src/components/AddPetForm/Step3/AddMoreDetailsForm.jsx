@@ -107,11 +107,11 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
                   placeholder="Enter your comments"
                   component="textarea"
                   rows="4"
-                  noticeType={values.noticeType}
                 ></CommentsInput>
                 <ErrorComponent name="comments" />
               </DetailWrapper>
             </BlocksWrapper>
+
             <ButtonsWrapper>
               <ButtonBlue type="submit">
                 Done
