@@ -55,7 +55,9 @@ const stepThreeValidationSchema = Yup.object().shape({
 
   location: Yup.string().required('Enter location'),
 
-  comments: Yup.string().max(120, 'max 120 symbols'),
+  comments: Yup.string()
+    .required('Enter your comments')
+    .max(120, 'max 120 symbols'),
 });
 
 const stepThreeValidationSchemaSell = Yup.object().shape({
@@ -81,7 +83,9 @@ const stepThreeValidationSchemaSell = Yup.object().shape({
     .required('Enter price')
     .min(1, 'The price must be greater than 0'),
 
-  comments: Yup.string().max(120, 'max 120 symbols'),
+  comments: Yup.string()
+    .required('Enter your comments')
+    .max(120, 'max 120 symbols'),
 });
 
 const SellMoreDetailsForm = ({ next, prev, data }) => {
