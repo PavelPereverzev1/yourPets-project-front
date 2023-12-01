@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackgroundImg from '../BackgroundImg/BackgroundImg';
+import LoaderGif from '../../components/LoaderGif/LoaderGif';
 
 import ChooseOptionForm from './Step1/ChooseOptionForm';
 import PersonalDetailsForm from './Step2/PersonalDetailsForm';
@@ -25,6 +26,7 @@ function AddPetForm() {
 
   const [formData, setFormData] = useState(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const makeRequest = async formData => {
@@ -43,6 +45,7 @@ function AddPetForm() {
             requestData.append(key, formData[key]);
           }
         }
+
         await axios.post('/pets', requestData);
 
         navigate('/user');
@@ -56,6 +59,7 @@ function AddPetForm() {
             requestData.append(key, formData[key]);
           }
         }
+
         await axios.post('/notices', requestData);
 
         navigate('/notices/own');
@@ -73,11 +77,13 @@ function AddPetForm() {
     }
   };
 
-  const handleNextStep = (newData, final = false) => {
+  const handleNextStep = async (newData, final = false) => {
     setFormData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      makeRequest(newData);
+      setIsLoading(true);
+      await makeRequest(newData);
+      setIsLoading(false);
       setFormData(initialFormData);
       setCurrentStep(0);
       return;
@@ -89,6 +95,7 @@ function AddPetForm() {
     setFormData(prev => ({ ...prev, ...newData }));
     setCurrentStep(prev => prev - 1);
   };
+
   const steps = [
     <ChooseOptionForm next={handleNextStep} data={formData} />,
     <PersonalDetailsForm
@@ -103,7 +110,11 @@ function AddPetForm() {
     />,
   ];
 
-  return <BackgroundImg>{steps[currentStep]}</BackgroundImg>;
+  return isLoading ? (
+    <LoaderGif />
+  ) : (
+    <BackgroundImg>{steps[currentStep]}</BackgroundImg>
+  );
 }
 
 export default AddPetForm;
