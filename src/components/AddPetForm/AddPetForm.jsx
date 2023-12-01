@@ -20,7 +20,7 @@ function AddPetForm() {
     photo: null,
     comments: '',
     location: '',
-    price: 0,
+    price: '',
     sex: '',
   };
 

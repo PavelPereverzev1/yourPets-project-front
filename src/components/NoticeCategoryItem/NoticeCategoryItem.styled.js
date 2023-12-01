@@ -11,7 +11,7 @@ export const Item = styled.li`
   border-radius: 0 0 40px 40px;
   box-shadow: var(--boxShadowDefault);
   transform: scale(1);
-  transition: box-shadow var(--transition),transform var(--transition);
+  transition: box-shadow var(--transition), transform var(--transition);
 
   &:hover {
     transform: scale(1.05);
@@ -66,7 +66,7 @@ export const Text = styled.p`
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.64px;
-  white-space: nowrap;
+  white-space: normal;
   text-overflow: ellipsis;
   overflow: hidden;
 `;
