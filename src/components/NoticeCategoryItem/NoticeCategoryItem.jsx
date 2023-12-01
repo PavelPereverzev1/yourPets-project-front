@@ -47,7 +47,7 @@ const NoticeCategoryItem = ({
   );
   const [isFavoriteButtonDisabled, setIsFavoriteButtonDisabled] =
     useState(false);
-  // const [isDeleteButtonDisabled, setIsDeleteButtonDisabled] = useState(false);
+ 
 
   const dispatch = useDispatch();
 
@@ -114,9 +114,7 @@ const NoticeCategoryItem = ({
               {formatCategoryName(notice.noticeType)}
             </CategoryLable>
           </InGoodHands>
-          {/* <Favorite onClick={() => handleAttentionModal(true)}>
-            <FavoriteIcon></FavoriteIcon>
-          </Favorite> */}
+    
 
           {!isLoggedIn && (
             <Favorite onClick={() => handleAttentionModal(true)}>
