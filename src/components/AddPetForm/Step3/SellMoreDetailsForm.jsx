@@ -159,8 +159,8 @@ const SellMoreDetailsForm = ({ next, prev, data }) => {
                       </DefaultImage>
                     )}
                   </ImagePreview>
-                  <ErrorComponent name="photo" />
                 </PhotoBlock>
+                <ErrorComponent name="photo" />
               </SexPhotoblock>
 
               <LocationPriceBlock>

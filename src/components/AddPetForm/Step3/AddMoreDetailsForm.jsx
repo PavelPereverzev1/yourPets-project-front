@@ -96,8 +96,8 @@ const AddMoreDetailsForm = ({ next, prev, data }) => {
                     </DefaultImage>
                   )}
                 </ImagePreview>
-                <ErrorComponent name="photo" />
               </PhotoBlock>
+              <ErrorComponent name="photo" />
 
               <DetailWrapper>
                 <label htmlFor="comments"> Comments</label>
