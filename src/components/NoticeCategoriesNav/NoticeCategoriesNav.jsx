@@ -14,12 +14,16 @@ import {
   NavBtn,
   AddIcon,
 } from './style/NoticeCategoriesNav.styled';
+import { useState } from 'react';
+import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
 
 export const NoticeCategoriesNav = () => {
   const [screenWidth] = useWindowSize();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [modalActive, setModalActive] = useState(false);
+  const handleModalActive = ()=> setModalActive(true);
   const handleClick = () => navigate('/add-pet');
 
   return (
@@ -74,13 +78,14 @@ export const NoticeCategoriesNav = () => {
         </NavList>
       </NavElements>
       {screenWidth >= 768 && (
-        <ButtonComponent $variant="filled" width="129px" onClick={handleClick}>
+        <ButtonComponent $variant="filled" width="129px" onClick={isLoggedIn ? handleClick: handleModalActive}>
           <AddIcon>
             <use href={`${sprite}#icon-plus-small`} />
           </AddIcon>
           Add Pet
         </ButtonComponent>
       )}
+      <AttentionModal active={modalActive} setActive={setModalActive}/>
     </NoticeNavContainer>
   );
 };

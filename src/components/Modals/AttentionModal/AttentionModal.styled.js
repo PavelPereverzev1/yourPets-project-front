@@ -55,7 +55,7 @@ const sharedStyles = css`
   justify-content: center;
   align-items: center;
   gap: 12px;
-  height: 38px;
+  height: 40px;
   padding: 8px 28px;
   background-color: transparent;
   cursor: pointer;
@@ -74,7 +74,7 @@ export const Icon = styled.svg`
 `
 export const ButtonOrange = styled.button`
   ${sharedStyles};
-  width: 248px;
+  width: 240px;
   border: 2px solid var(--yellow);
   border-radius: 40px;
   transition: background-image var(--transition)
@@ -89,4 +89,7 @@ export const ButtonOrange = styled.button`
   &:hover ${Icon}, &:focus ${Icon} {
     fill: var(--white);
   }
+  @media screen and (min-width: 768px) {
+  width: 165px;
+}
 `;
