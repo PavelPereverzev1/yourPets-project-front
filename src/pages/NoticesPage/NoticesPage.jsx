@@ -13,14 +13,15 @@ import {
 import { useWindowSize } from 'hooks/useResize';
 import { useState } from 'react';
 import AttentionModal from 'components/Modals/AttentionModal/AttentionModal';
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from 'redux/AuthSlice';
+import { useAuth } from 'hooks/useAuth';
 
 const NoticesPage = () => {
+  const [modalActive, setModalActive] = useState(false);
+
   const [screenWidth] = useWindowSize();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const [modalActive, setModalActive] = useState(false);
+  const { isLoggedIn } = useAuth();
+
   const handleModalActive = () => setModalActive(true);
   const handleClick = () => navigate('/add-pet');
 
