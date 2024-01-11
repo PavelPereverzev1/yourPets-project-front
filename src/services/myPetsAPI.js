@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axiosInstance from './axiosConfig';
 
 export const fethMyPetsAPI = async () => {
   try {
-    const res = await axios.get('/pets');
+    const res = await axiosInstance.get('/pets');
 
     return res.data;
   } catch (error) {
@@ -13,7 +13,7 @@ export const fethMyPetsAPI = async () => {
 
 export const fetchMyPetDeleteAPI = async id => {
   try {
-    const res = await axios.delete(`/pets/${id}`);
+    const res = await axiosInstance.delete(`/pets/${id}`);
 
     return res;
   } catch (error) {

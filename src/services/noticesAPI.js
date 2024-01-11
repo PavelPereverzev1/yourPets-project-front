@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInstance from './axiosConfig';
 
 const BASE_URL = 'https://yourpets-project-backend.onrender.com';
 
@@ -10,11 +10,14 @@ const options = {
 };
 
 export const getNoticesAPI = async () => {
-  const { data } = await axios(`${BASE_URL}/notices`, options);
+  const { data } = await axiosInstance(`${BASE_URL}/notices`, options);
   return data;
 };
 
 export const getNoticesDetailsAPI = async noticeDetail => {
-  const { data } = await axios(`${BASE_URL}/notices/${noticeDetail}`, options);
+  const { data } = await axiosInstance(
+    `${BASE_URL}/notices/${noticeDetail}`,
+    options
+  );
   return data;
 };

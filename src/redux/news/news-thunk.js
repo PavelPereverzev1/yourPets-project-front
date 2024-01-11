@@ -1,21 +1,27 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-axios.defaults.baseURL = 'https://yourpets-project-backend.onrender.com';
+import { createRequestTimer } from 'helpers/createRequestTimer';
+import axiosInstance from 'services/axiosConfig';
 
 export const fetchNews = createAsyncThunk(
   'news/fetchAll',
   async ({ page = 1, search = '' }, thunkAPI) => {
+    const timerId = createRequestTimer();
+
     try {
-      const { data } = await axios.get('/news?', {
+      const { data } = await axiosInstance.get('/news?', {
         params: {
           page,
           search,
         },
       });
+
+      clearTimeout(timerId);
+
       return data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch ({ response }) {
+      clearTimeout(timerId);
+
+      return thunkAPI.rejectWithValue(response.data.message);
     }
   }
 );

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axiosInstance from 'services/axiosConfig';
 
 export const getNoticesThunk = createAsyncThunk(
   'notices/getNoticesThunk',
@@ -14,19 +14,19 @@ export const getNoticesThunk = createAsyncThunk(
     try {
       switch (category) {
         case 'own':
-          const resOwn = await axios.get(ownNoticesPath);
+          const resOwn = await axiosInstance.get(ownNoticesPath);
           return resOwn.data;
 
         case 'favorite':
-          const resFavorite = await axios.get(favoriteNoticesPath);
+          const resFavorite = await axiosInstance.get(favoriteNoticesPath);
           return resFavorite.data;
 
         default:
-          const resAll = await axios.get(allNoticesPath);
+          const resAll = await axiosInstance.get(allNoticesPath);
           return resAll.data;
       }
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data.message);
     }
   }
 );
@@ -37,15 +37,11 @@ export const deleteNoticeById = createAsyncThunk(
     const { id } = query;
 
     try {
-      await axios.delete(`/notices/${id}`);
+      await axiosInstance.delete(`/notices/${id}`);
 
       return id;
-    } catch ({
-      response: {
-        data: { message },
-      },
-    }) {
-      return thunkAPI.rejectWithValue(message);
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data.message);
     }
   }
 );
@@ -56,15 +52,11 @@ export const addNoticeToFavorite = createAsyncThunk(
     const { id } = query;
 
     try {
-      await axios.patch(`/notices/favorite/${id}`, null);
+      await axiosInstance.patch(`/notices/favorite/${id}`, null);
 
-       return id;
-    } catch ({
-      response: {
-        data: { message },
-      },
-    }) {
-      return thunkAPI.rejectWithValue(message);
+      return id;
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data.message);
     }
   }
 );
@@ -75,15 +67,11 @@ export const deleteNoticeFromFavorite = createAsyncThunk(
     const { id } = query;
 
     try {
-      await axios.delete(`/notices/favorite/${id}`);
+      await axiosInstance.delete(`/notices/favorite/${id}`);
 
-       return id;
-    } catch ({
-      response: {
-        data: { message },
-      },
-    }) {
-      return thunkAPI.rejectWithValue(message);
+      return id;
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data.message);
     }
   }
 );
